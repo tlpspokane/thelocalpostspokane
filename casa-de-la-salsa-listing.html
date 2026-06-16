@@ -8,97 +8,121 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: Arial, sans-serif; background: #f5f7fa; color: #202124; }
 
-/* Nav */
-.nav { background: #1e3a5f; padding: 0 32px; height: 56px; display: flex; align-items: center; justify-content: space-between; }
-.nav-logo { font-size: 18px; font-weight: 700; color: white; letter-spacing: -0.3px; }
-.nav-links { display: flex; gap: 20px; }
-.nav-links a { text-decoration: none; color: rgba(255,255,255,0.8); font-size: 13px; }
+.nav {
+  background: #1e3a5f;
+  padding: 0 24px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-logo { font-size: 17px; font-weight: 700; color: white; letter-spacing: 0.01em; }
+.nav-links { display: flex; gap: 18px; }
+.nav-links a { text-decoration: none; color: rgba(255,255,255,0.82); font-size: 13px; }
 .nav-links a:hover { color: white; }
 
-/* Urgency bar */
-.urgency { background: #e8f4fd; border-bottom: 1px solid #b3d9f5; padding: 10px 32px; text-align: center; font-size: 13px; color: #1e3a5f; font-weight: 600; }
-.urgency span { background: #1e3a5f; color: white; padding: 2px 10px; border-radius: 12px; margin-left: 8px; font-size: 12px; }
+.banner {
+  background: #b3473b;
+  color: white;
+  text-align: center;
+  padding: 9px 16px;
+  font-size: 13px;
+  font-weight: 600;
+}
 
-/* Hero — Casa de la Salsa branded section */
-.hero { position: relative; overflow: hidden; }
-.hero-img { width: 100%; height: 320px; object-fit: cover; object-position: center 30%; display: block; filter: brightness(0.45); }
-.hero-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 24px; }
-.hero-tag { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.35); color: rgba(255,255,255,0.9); font-size: 11px; font-weight: 600; padding: 4px 14px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px; }
-.hero h1 { font-size: 36px; font-weight: 800; color: white; margin-bottom: 6px; text-shadow: 0 2px 8px rgba(0,0,0,0.4); }
-.hero-tagline { font-size: 15px; color: rgba(255,255,255,0.85); font-style: italic; margin-bottom: 18px; }
-.hero-stats { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; }
-.stat { text-align: center; }
-.stat-num { font-size: 20px; font-weight: 700; color: white; }
-.stat-label { font-size: 11px; color: rgba(255,255,255,0.7); margin-top: 2px; }
-.social-links { display: flex; gap: 10px; margin-top: 16px; justify-content: center; }
-.social-btn { display: flex; align-items: center; gap: 5px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.3); color: white; text-decoration: none; font-size: 12px; padding: 5px 12px; border-radius: 16px; }
-.social-btn:hover { background: rgba(255,255,255,0.2); }
+.hero { position: relative; width: 100%; max-height: 380px; overflow: hidden; background: #1a1a1a; }
+.hero img { width: 100%; max-height: 380px; object-fit: cover; object-position: center 35%; display: block; opacity: 0.85; }
+.hero-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 20px 24px 24px; background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, transparent 100%); }
+.hero-tag { display: inline-block; background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.35); color: white; font-size: 11px; font-weight: 600; padding: 3px 12px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+.hero-title { font-size: 32px; font-weight: 800; color: white; margin-bottom: 4px; text-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+.hero-sub { font-size: 14px; color: rgba(255,255,255,0.88); font-style: italic; }
 
-/* Main */
-.main { max-width: 960px; margin: 0 auto; padding: 28px 24px; display: grid; grid-template-columns: 1fr 320px; gap: 22px; align-items: start; }
+.page { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; display: grid; grid-template-columns: 1fr 340px; gap: 20px; }
 
-/* Cards */
-.card { background: white; border-radius: 10px; border: 1px solid #e0e6ee; padding: 20px; margin-bottom: 16px; }
-.card h2 { font-size: 14px; font-weight: 600; color: #1e3a5f; margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.04em; }
+.stats-bar { grid-column: 1 / -1; background: white; border: 1px solid #dadce0; border-radius: 8px; display: flex; padding: 4px 0; }
+.stat { flex: 1; text-align: center; padding: 14px 8px; border-right: 1px solid #dadce0; }
+.stat:last-child { border-right: none; }
+.stat-num { font-size: 20px; font-weight: 800; color: #1e3a5f; }
+.stat-label { font-size: 11px; color: #5f6368; margin-top: 3px; text-transform: uppercase; letter-spacing: 0.05em; }
 
-/* Next event card */
-.next-event { background: #1e3a5f; border-radius: 10px; padding: 18px 20px; margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between; }
-.next-event-left h3 { font-size: 11px; font-weight: 600; color: #7eb8e8; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
-.next-event-left p { font-size: 17px; font-weight: 700; color: white; margin-bottom: 6px; }
-.next-event-left span { font-size: 12px; color: rgba(255,255,255,0.65); display: block; margin-bottom: 3px; }
-.next-event-right { text-align: right; flex-shrink: 0; margin-left: 16px; }
-.date-big { font-size: 42px; font-weight: 900; color: #7eb8e8; line-height: 1; }
-.date-sub { font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 2px; }
+.social-row { display: flex; gap: 10px; flex-wrap: wrap; }
+.social-btn { display: inline-flex; align-items: center; gap: 6px; background: #f1f3f4; border: 1px solid #dadce0; color: #1e3a5f; font-size: 12px; font-weight: 600; padding: 6px 14px; border-radius: 20px; text-decoration: none; }
+.social-btn:hover { background: #e8eaed; }
 
-/* Photos */
-.photo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-.photo-grid img { width: 100%; border-radius: 8px; object-fit: cover; height: 160px; display: block; }
-.photo-grid img:first-child { grid-column: span 2; height: 220px; }
-.photo-note { background: #f0f4f8; border-left: 3px solid #1e3a5f; border-radius: 0 6px 6px 0; padding: 10px 12px; margin-top: 10px; font-size: 12px; color: #4a5568; line-height: 1.5; }
+.section { background: white; border: 1px solid #dadce0; border-radius: 8px; padding: 22px; margin-bottom: 16px; }
+.section h2 { font-size: 16px; font-weight: 700; color: #1e3a5f; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid #f0f0f0; }
+.section p { font-size: 14px; line-height: 1.7; color: #3c4043; margin-bottom: 10px; }
+.section p:last-child { margin-bottom: 0; }
 
-/* About */
-.about-text { font-size: 14px; line-height: 1.75; color: #3c4043; }
+/* NEXT EVENT CARD */
+.event-card { display: flex; gap: 16px; align-items: center; background: #fdf3f1; border: 1px solid #f0d8d4; border-radius: 8px; padding: 16px; }
+.event-date-badge { flex-shrink: 0; background: #b3473b; color: white; border-radius: 8px; text-align: center; padding: 10px 14px; min-width: 60px; }
+.event-date-badge .day { font-size: 24px; font-weight: 800; line-height: 1; }
+.event-date-badge .month { font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; margin-top: 2px; }
+.event-details h3 { font-size: 15px; font-weight: 700; color: #1e3a5f; margin-bottom: 6px; }
+.event-details p { font-size: 13px; color: #5f6368; line-height: 1.6; margin: 0; }
 
-/* Audience */
-.pills { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 12px; }
-.pill { background: #e8f0fb; color: #1e3a5f; font-size: 12px; padding: 4px 12px; border-radius: 14px; font-weight: 500; }
-.pill.green { background: #e6f4ea; color: #1a6b35; }
+/* SERIES CARD */
+.series-card { background: #f0f6f2; border: 1px solid #d4e6da; border-radius: 8px; padding: 18px; }
+.series-card h3 { font-size: 15px; font-weight: 700; color: #1e3a5f; margin-bottom: 10px; }
+.series-dates { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+.series-date-pill { background: white; border: 1px solid #c8e0d0; color: #1e3a5f; font-size: 13px; font-weight: 700; padding: 6px 14px; border-radius: 20px; }
+.series-card p { font-size: 13px; color: #3c4043; line-height: 1.65; margin-bottom: 8px; }
+.series-card p:last-child { margin-bottom: 0; }
+.series-info-row { display: flex; flex-wrap: wrap; gap: 14px; margin: 10px 0; }
+.series-info-item { font-size: 13px; color: #1e3a5f; font-weight: 600; display: flex; align-items: center; gap: 6px; }
+.series-note { font-size: 12px; color: #5f6368; background: white; border-left: 3px solid #4a8c5e; padding: 8px 12px; border-radius: 4px; margin-top: 10px; }
 
-/* What you get */
-.what-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
-.what-item { display: flex; align-items: flex-start; gap: 9px; font-size: 13px; color: #3c4043; line-height: 1.4; }
-.what-icon { width: 26px; height: 26px; border-radius: 50%; background: #e8f0fb; display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; }
+.photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 4px; }
+.photo-grid img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 6px; display: block; }
+.photo-note { font-size: 12px; color: #5f6368; margin-top: 10px; background: #f8f9fa; padding: 10px 12px; border-radius: 6px; border-left: 3px solid #b3473b; line-height: 1.5; }
 
-/* Booking card */
-.booking-card { background: white; border-radius: 10px; border: 1px solid #e0e6ee; padding: 20px; position: sticky; top: 16px; }
-.booking-card h3 { font-size: 16px; font-weight: 700; color: #1e3a5f; margin-bottom: 4px; }
-.booking-subtitle { font-size: 12px; color: #5f6368; margin-bottom: 14px; }
-.deadline { background: #e8f0fb; border-radius: 7px; padding: 8px 12px; margin-bottom: 14px; font-size: 12px; color: #1e3a5f; font-weight: 600; }
+.tag-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.tag { background: #f1f3f4; border: 1px solid #dadce0; color: #1e3a5f; font-size: 12px; font-weight: 600; padding: 5px 13px; border-radius: 20px; }
 
-/* Packages */
-.package { border: 1.5px solid #e0e6ee; border-radius: 9px; padding: 11px 13px; margin-bottom: 8px; cursor: pointer; transition: all 0.15s; position: relative; }
-.package:hover { border-color: #1e3a5f; background: #f5f8fc; }
-.package.selected { border-color: #1e3a5f; background: #f0f4f9; }
-.package-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 3px; }
-.package-name { font-size: 13px; font-weight: 600; color: #202124; }
-.package-price { font-size: 15px; font-weight: 700; color: #1e3a5f; }
-.package-desc { font-size: 11px; color: #5f6368; line-height: 1.4; }
-.package-save { background: #1a6b35; color: white; font-size: 10px; font-weight: 600; padding: 1px 7px; border-radius: 8px; margin-left: 6px; }
-.popular-badge { position: absolute; top: -9px; right: 10px; background: #1e3a5f; color: white; font-size: 9px; font-weight: 700; padding: 2px 8px; border-radius: 8px; text-transform: uppercase; letter-spacing: 0.04em; }
+.perks { list-style: none; margin-top: 4px; }
+.perks li { display: flex; align-items: flex-start; gap: 10px; padding: 9px 0; border-bottom: 1px solid #f0f0f0; font-size: 14px; color: #3c4043; }
+.perks li:last-child { border-bottom: none; }
+.perks li .icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
 
-/* Book button */
-.book-btn { width: 100%; background: #1e3a5f; color: white; border: none; padding: 13px; border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer; margin-top: 14px; transition: background 0.15s; }
-.book-btn:hover { background: #162d4a; }
+.sidebar { position: sticky; top: 20px; align-self: start; }
+.sidebar-card { background: white; border: 1px solid #dadce0; border-radius: 8px; padding: 22px; }
+.sidebar-card h3 { font-size: 15px; font-weight: 700; color: #1e3a5f; margin-bottom: 4px; }
+.sidebar-sub { font-size: 12px; color: #5f6368; margin-bottom: 16px; }
 
-/* Trust */
-hr { border: none; border-top: 1px solid #f0f0f0; margin: 13px 0; }
-.trust-item { display: flex; align-items: center; gap: 7px; font-size: 11px; color: #5f6368; margin-bottom: 5px; }
-.contact-link { text-align: center; font-size: 12px; color: #1e3a5f; margin-top: 10px; cursor: pointer; text-decoration: underline; }
+.package { border: 1.5px solid #dadce0; border-radius: 8px; padding: 13px 15px; margin-bottom: 9px; cursor: pointer; position: relative; transition: border-color 0.15s, background 0.15s; }
+.package:hover { border-color: #1e3a5f; background: #f8fafc; }
+.package.selected { border-color: #1e3a5f; background: #eef3f9; }
+.package-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+.package-name { font-size: 13px; font-weight: 700; color: #202124; }
+.package-price { font-size: 15px; font-weight: 800; color: #1e3a5f; white-space: nowrap; }
+.package-desc { font-size: 12px; color: #5f6368; margin-top: 4px; line-height: 1.5; }
+.package-save { font-size: 10px; font-weight: 700; color: #b3473b; background: #fdf0ee; padding: 2px 6px; border-radius: 10px; margin-left: 5px; }
+.badge-popular { position: absolute; top: -1px; right: 12px; background: #1e3a5f; color: white; font-size: 9px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 8px; border-radius: 0 0 6px 6px; }
 
-/* Summary */
-.summary { background: #f0f4f9; border-radius: 7px; padding: 9px 12px; margin-top: 10px; font-size: 12px; display: none; }
+.summary { background: #eef3f9; border: 1px solid #c5d5e8; border-radius: 6px; padding: 12px 14px; margin: 12px 0; display: none; }
 .summary.show { display: block; }
-.summary-title { font-weight: 700; color: #1e3a5f; margin-bottom: 2px; }
+.summary-title { font-size: 13px; font-weight: 700; color: #1e3a5f; margin-bottom: 4px; }
+.summary-note { font-size: 12px; color: #5f6368; line-height: 1.5; }
+
+.book-btn { width: 100%; background: #1e3a5f; color: white; border: none; border-radius: 8px; padding: 14px; font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 4px; transition: background 0.15s; }
+.book-btn:hover { background: #163050; }
+
+.trust { margin-top: 16px; }
+.trust hr { border: none; border-top: 1px solid #f0f0f0; margin-bottom: 12px; }
+.trust-item { font-size: 12px; color: #5f6368; padding: 4px 0; }
+.contact-link { font-size: 12px; color: #1e3a5f; font-weight: 600; margin-top: 10px; cursor: pointer; text-decoration: underline; }
+.contact-link:hover { color: #163050; }
+
+@media (max-width: 700px) {
+  .page { grid-template-columns: 1fr; }
+  .sidebar { position: static; }
+  .stats-bar { flex-wrap: wrap; }
+  .stat { min-width: 50%; border-right: none; border-bottom: 1px solid #dadce0; }
+  .stat:last-child { border-bottom: none; }
+  .hero-title { font-size: 26px; }
+  .event-card { flex-direction: column; align-items: flex-start; }
+}
 </style>
 </head>
 <body>
@@ -111,166 +135,223 @@ hr { border: none; border-top: 1px solid #f0f0f0; margin: 13px 0; }
   </div>
 </nav>
 
-<div class="urgency">
-  ⚡ Sponsorships still available for June 19 — Father's Day Weekend
-  <span>10 days away</span>
+<div class="banner">
+  ⚡ Sponsorships still available for June 19 — Father's Day Weekend, 10 days away
 </div>
 
 <div class="hero">
-  <img class="hero-img" src="IMG_5958.jpg" alt="Casa de la Salsa event" />
+  <img src="IMG_5958.jpg" alt="Casa de la Salsa event">
   <div class="hero-overlay">
     <div class="hero-tag">💃 Latin Dance Social · Spokane, WA</div>
-    <h1>Casa de la Salsa</h1>
-    <div class="hero-tagline">Move Your Body. Feel the Rhythm. Live the Passion.</div>
-    <div class="hero-stats">
-      <div class="stat"><div class="stat-num">50–300</div><div class="stat-label">Attendees per event</div></div>
-      <div class="stat"><div class="stat-num">2–4 hrs</div><div class="stat-label">Engagement time</div></div>
-      <div class="stat"><div class="stat-num">$5</div><div class="stat-label">Cover charge</div></div>
-      <div class="stat"><div class="stat-num">All Ages</div><div class="stat-label">Open to everyone</div></div>
-    </div>
-    <div class="social-links">
-      <a class="social-btn" href="https://www.instagram.com/casadelasalsaspokane1/" target="_blank">📸 Instagram</a>
-      <a class="social-btn" href="https://www.facebook.com/p/Casa-De-La-Salsa-Spokane-61573677696370/" target="_blank">👥 Facebook</a>
-    </div>
+    <div class="hero-title">Casa de la Salsa</div>
+    <div class="hero-sub">Move Your Body. Feel the Rhythm. Live the Passion.</div>
   </div>
 </div>
 
-<div class="main">
-  <div>
+<div class="page">
 
-    <!-- Next Event -->
-    <div class="next-event">
-      <div class="next-event-left">
-        <h3>🎉 Next Event</h3>
-        <p>Father's Day Weekend Salsa-Bachata Social</p>
-        <span>📍 Satori Studio · 1104 W Wellesley Ave, Spokane WA 99205</span>
-        <span>🎵 Music by River Street Latin Group · Free salsa lesson at 7:00pm · $5 cover</span>
-      </div>
-      <div class="next-event-right">
-        <div class="date-big">19</div>
-        <div class="date-sub">JUNE 2026</div>
+  <div class="stats-bar">
+    <div class="stat">
+      <div class="stat-num">50–300</div>
+      <div class="stat-label">Attendees per event</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">2–4 hrs</div>
+      <div class="stat-label">Engagement time</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">$5</div>
+      <div class="stat-label">Cover charge (Satori events)</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">All Ages</div>
+      <div class="stat-label">Open to everyone</div>
+    </div>
+  </div>
+
+  <div class="left-col">
+
+    <div class="section">
+      <div class="social-row">
+        <a class="social-btn" href="https://www.instagram.com/casadelasalsaspokane1/" target="_blank">📸 Instagram</a>
+        <a class="social-btn" href="https://www.facebook.com/p/Casa-De-La-Salsa-Spokane-61573677696370/" target="_blank">👥 Facebook</a>
       </div>
     </div>
 
-    <!-- Photos -->
-    <div class="card">
+    <!-- NEXT EVENT -->
+    <div class="section">
+      <h2>🎉 Next Event</h2>
+      <div class="event-card">
+        <div class="event-date-badge">
+          <div class="day">19</div>
+          <div class="month">June 2026</div>
+        </div>
+        <div class="event-details">
+          <h3>Father's Day Weekend Salsa-Bachata Social</h3>
+          <p>📍 Satori Studio · 1104 W Wellesley Ave, Spokane WA 99205<br>
+          🎵 Music by River Street Latin Group · Free salsa lesson at 7:00pm · $5 cover</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- NEW: SALSA IN THE PARK SERIES -->
+    <div class="section">
+      <h2>🌳 Upcoming Series: Salsa in the Park</h2>
+      <div class="series-card">
+        <h3>🎶 Salsa in the Park — Summer 2026 Outdoor Series</h3>
+        <div class="series-dates">
+          <span class="series-date-pill">📅 June 27</span>
+          <span class="series-date-pill">📅 July 11</span>
+          <span class="series-date-pill">📅 Aug 1</span>
+          <span class="series-date-pill">📅 Aug 29</span>
+        </div>
+        <p>A new outdoor series in collaboration with River Street Latin Group, featuring a free dance lesson followed by an open social on the dance floor — good food, great people, and salsa vibes under the stars.</p>
+        <div class="series-info-row">
+          <div class="series-info-item">🕓 4:00 PM – 9:00 PM</div>
+          <div class="series-info-item">📍 Mirabeau Park, The Shelter — Spokane Valley, WA</div>
+          <div class="series-info-item">💲 $12 entry · FREE with a potluck dish to share</div>
+        </div>
+        <p>Includes a free dance lesson and full social on the dance floor. Attendees are encouraged to bring a dish to share for free entry. <strong>No alcohol allowed.</strong></p>
+        <div class="series-note">
+          🎤 <strong>Sponsorship at these events:</strong> As an outdoor park series, sponsor visibility includes verbal shoutouts during the dance lesson, flyer/promo table placement, and social media tags across all four dates. Specific package availability and screen/display setup will be confirmed with sponsors — Mirabeau Park does not have a fixed projection screen like indoor venues, so signage and verbal recognition are the primary placements for this series.
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
       <h2>📸 Event Photos</h2>
       <div class="photo-grid">
-        <img src="IMG_5958.jpg" alt="Casa de la Salsa event floor" />
-        <img src="IMG_5999.jpg" alt="Sponsor announcement at event" />
-        <img src="IMG_6774.jpg" alt="Couples dancing at Casa de la Salsa" />
+        <img src="IMG_5958.jpg" alt="Casa de la Salsa event floor">
+        <img src="IMG_5999.jpg" alt="Sponsor announcement at event">
+        <img src="IMG_6774.jpg" alt="Couples dancing at Casa de la Salsa">
       </div>
       <div class="photo-note">
-        📺 <strong>About screens & displays:</strong> Photos above show past events at larger venues with projection screens. Casa de la Salsa events rotate between venues across Spokane — some have large projected screens, others have TV monitors. Screen size and placement vary by venue. The June 19 event is at Satori Studio. Your sponsor materials will always be displayed prominently on whatever setup is available, and we'll confirm the details with you after booking.
+        📺 <strong>About screens & displays:</strong> Photos above show past events at larger venues with projection screens. Casa de la Salsa events rotate between venues across Spokane — some have large projected screens, others have TV monitors, and outdoor park events (like Salsa in the Park) rely on signage and verbal shoutouts instead. Screen size and placement vary by venue. Your sponsor materials will always be displayed prominently on whatever setup is available, and we'll confirm the details with you after booking.
       </div>
     </div>
 
-    <!-- About -->
-    <div class="card">
+    <div class="section">
       <h2>About This Opportunity</h2>
-      <p class="about-text">Casa de la Salsa is Spokane's premier Latin dance social club, hosting recurring Salsa, Bachata, Merengue, and Cumbia events that draw a vibrant, engaged crowd of young professionals, couples, and community members.<br><br>
-      These aren't passive audiences — attendees arrive excited, stay for 2–4 hours, and are fully present all evening. Your brand shows up in an environment of energy, celebration, and community trust. Sponsors are recognized as supporters of something people genuinely love and return to month after month.</p>
+      <p>Casa de la Salsa is Spokane's premier Latin dance social club, hosting recurring Salsa, Bachata, Merengue, and Cumbia events that draw a vibrant, engaged crowd of young professionals, couples, and community members.</p>
+      <p>These aren't passive audiences — attendees arrive excited, stay for 2–4 hours, and are fully present all evening. Your brand shows up in an environment of energy, celebration, and community trust. Sponsors are recognized as supporters of something people genuinely love and return to month after month.</p>
+      <p>Beyond regular indoor socials at venues like Satori Studio, Casa de la Salsa now collaborates with River Street Latin Group on "Salsa in the Park" — a free outdoor summer series at Mirabeau Park that brings the same energy to a wider community audience across four dates this summer.</p>
     </div>
 
-    <!-- Audience -->
-    <div class="card">
+    <div class="section">
       <h2>👥 Who You're Reaching</h2>
-      <div class="pills">
-        <div class="pill">Young Professionals</div>
-        <div class="pill">Adults & Couples</div>
-        <div class="pill green">Ages 21–45</div>
-        <div class="pill">Spokane Locals</div>
-        <div class="pill">Latin Dance Community</div>
-        <div class="pill">All Ages Welcome</div>
-        <div class="pill">Diverse Community</div>
+      <div class="tag-list">
+        <span class="tag">Young Professionals</span>
+        <span class="tag">Adults & Couples</span>
+        <span class="tag">Ages 21–45</span>
+        <span class="tag">Spokane Locals</span>
+        <span class="tag">Latin Dance Community</span>
+        <span class="tag">All Ages Welcome</span>
+        <span class="tag">Diverse Community</span>
+        <span class="tag">Outdoor Event Goers</span>
       </div>
-      <p style="font-size:13px;color:#5f6368;line-height:1.65">This audience is highly social and community-oriented — they share experiences on social media, support local businesses, and return event after event. Sponsoring here means repeated exposure to the same engaged, loyal crowd over time.</p>
+      <p style="margin-top:14px;">This audience is highly social and community-oriented — they share experiences on social media, support local businesses, and return event after event. Sponsoring here means repeated exposure to the same engaged, loyal crowd over time, now across both indoor venues and the new outdoor park series.</p>
     </div>
 
-    <!-- What you get -->
-    <div class="card">
+    <div class="section">
       <h2>✅ Every Sponsor Receives</h2>
-      <div class="what-grid">
-        <div class="what-item"><div class="what-icon">📋</div><div>Name or logo displayed on a sponsor slide during the event</div></div>
-        <div class="what-item"><div class="what-icon">🤝</div><div>Recognition as a community supporter at the event</div></div>
-        <div class="what-item"><div class="what-icon">👥</div><div>Direct access to 50–300 engaged community members</div></div>
-        <div class="what-item"><div class="what-icon">📍</div><div>Listed as a sponsor on event materials</div></div>
-      </div>
-      <div style="background:#f0f4f9;border-left:3px solid #1e3a5f;border-radius:0 6px 6px 0;padding:10px 14px;margin-top:12px;font-size:12px;color:#4a5568;line-height:1.6;">
-        <strong style="color:#1e3a5f;">Higher packages also include:</strong> social media mentions, verbal shoutouts to the crowd, flyer and promotional material distribution, and the option to provide a giveaway or raffle item.
-      </div>
+      <ul class="perks">
+        <li><span class="icon">📋</span>Name or logo displayed on a sponsor slide (indoor events) or sponsor signage (Salsa in the Park)</li>
+        <li><span class="icon">🤝</span>Recognition as a community supporter at the event</li>
+        <li><span class="icon">👥</span>Direct access to 50–300 engaged community members per event</li>
+        <li><span class="icon">📍</span>Listed as a sponsor on event materials</li>
+      </ul>
+      <p style="margin-top:12px;"><strong>Higher packages also include:</strong> social media mentions, verbal shoutouts to the crowd, flyer and promotional material distribution, and the option to provide a giveaway or raffle item.</p>
     </div>
 
   </div>
 
-  <!-- Booking Card -->
-  <div>
-    <div class="booking-card">
+  <div class="sidebar">
+    <div class="sidebar-card">
       <h3>Sponsor This Event</h3>
-      <div class="booking-subtitle">Pick your package and request to book — approval within 1 business day.</div>
-      <div class="deadline">🗓️ Next event: June 19 — book now to be included!</div>
+      <div class="sidebar-sub">Pick your package and request to book — approval within 1 business day.</div>
+      <p style="font-size:12px; color:#b3473b; font-weight:700; margin-bottom:14px;">🗓️ Next event: June 19 — book now to be included!</p>
 
-      <div class="package selected" onclick="selectPkg(this,'Name on Sponsor Slide','$25','https://buy.stripe.com/5kQaEX2Cqfcc2h55c0fjG01')">
-        <div class="package-top"><div class="package-name">📋 Name on Sponsor Slide</div><div class="package-price">$25</div></div>
+      <div class="package" onclick="selectPkg(this, 'Name on Sponsor Slide', '$25')">
+        <div class="package-top">
+          <div class="package-name">📋 Name on Sponsor Slide</div>
+          <div class="package-price">$25</div>
+        </div>
         <div class="package-desc">Your business name on a sponsor slide — perfect for student clubs & community groups</div>
       </div>
 
-      <div class="package" onclick="selectPkg(this,'Community Spotlight','$50','https://buy.stripe.com/14AfZh3Gu8NO9JxgUIfjG02')">
-        <div class="package-top"><div class="package-name">📣 Community Spotlight</div><div class="package-price">$50</div></div>
+      <div class="package" onclick="selectPkg(this, 'Community Spotlight', '$50')">
+        <div class="package-top">
+          <div class="package-name">📣 Community Spotlight</div>
+          <div class="package-price">$50</div>
+        </div>
         <div class="package-desc">Logo + QR code on shared sponsor slide · Verbal thank-you announcement · Your social media handle tagged in the event post caption</div>
       </div>
 
-      <div class="package" onclick="selectPkg(this,'Single Event Sponsor','$150','https://buy.stripe.com/00w28r1ym5BCg7VgUIfjG00')">
-        <div class="package-top"><div class="package-name">🎤 Single Event Sponsor</div><div class="package-price">$150</div></div>
+      <div class="package" onclick="selectPkg(this, 'Single Event Sponsor', '$150')" style="position:relative;">
+        <div class="badge-popular">Most Popular</div>
+        <div class="package-top">
+          <div class="package-name">🎤 Single Event Sponsor</div>
+          <div class="package-price">$150</div>
+        </div>
         <div class="package-desc">Everything in Community Spotlight · Social media post with thank-you and business description · Verbal description of your business at the event · Promotional material distribution option · Option to provide a giveaway or raffle item</div>
       </div>
 
-      <div class="package" onclick="selectPkg(this,'3-Event Package','$400','https://buy.stripe.com/bJe28rfpcfccg7V5c0fjG03')">
-        <div class="popular-badge">Most Popular</div>
-        <div class="package-top"><div class="package-name">🥇 3-Event Package <span class="package-save">Save $50</span></div><div class="package-price">$400</div></div>
+      <div class="package" onclick="selectPkg(this, '3-Event Package', '$400')">
+        <div class="package-top">
+          <div class="package-name">🥇 3-Event Package <span class="package-save">Save $50</span></div>
+          <div class="package-price">$400</div>
+        </div>
         <div class="package-desc">Everything in Single Event × 3 — build real recognition with repeat exposure</div>
       </div>
 
-      <div class="package" onclick="selectPkg(this,'6-Event Package','$750','https://buy.stripe.com/14A6oHgtg0hi1d147WfjG04')">
-        <div class="package-top"><div class="package-name">🎖️ 6-Event Package <span class="package-save">Save $150</span></div><div class="package-price">$750</div></div>
+      <div class="package" onclick="selectPkg(this, '6-Event Package', '$750')">
+        <div class="package-top">
+          <div class="package-name">🎖️ 6-Event Package <span class="package-save">Save $150</span></div>
+          <div class="package-price">$750</div>
+        </div>
         <div class="package-desc">Maximum visibility — become a familiar face in the community</div>
       </div>
 
-      <div class="package" onclick="selectPkg(this,'Annual Community Partner','$5,000','https://buy.stripe.com/9B69AT6SGe886xlbAofjG05')">
-        <div class="package-top"><div class="package-name">⭐ Annual Community Partner</div><div class="package-price">$5,000</div></div>
+      <div class="package" onclick="selectPkg(this, 'Annual Community Partner', '$5,000')">
+        <div class="package-top">
+          <div class="package-name">⭐ Annual Community Partner</div>
+          <div class="package-price">$5,000</div>
+        </div>
         <div class="package-desc">Year-round premier sponsorship — all events, top billing, first priority</div>
       </div>
 
       <div class="summary" id="summary">
         <div class="summary-title" id="summaryTitle">Name on Sponsor Slide — $25</div>
-        <div style="color:#5f6368">You'll be taken to a short request form. Once approved we'll send you a secure payment link within 1 business day.</div>
+        <div class="summary-note">You'll be taken to a short request form. Once approved we'll send you a secure payment link within 1 business day.</div>
       </div>
 
       <button class="book-btn" onclick="bookNow()">Request to Book →</button>
 
-      <hr>
-      <div class="trust-item">📋 Submit a quick 3-minute request form</div>
-      <div class="trust-item">✅ We'll review and confirm within 1 business day</div>
-      <div class="trust-item">🔒 Secure payment link sent upon approval</div>
-      <div class="trust-item">📧 Confirmation and materials form sent to your email</div>
-      <div class="contact-link" onclick="window.open('https://sites.google.com/view/thelocalpostspokane/home','_blank')">Have questions? Contact us first</div>
+      <div class="trust">
+        <hr>
+        <div class="trust-item">📋 Submit a quick 3-minute request form</div>
+        <div class="trust-item">✅ We'll review and confirm within 1 business day</div>
+        <div class="trust-item">🔒 Secure payment link sent upon approval</div>
+        <div class="trust-item">📧 Confirmation and materials form sent to your email</div>
+        <div class="contact-link" onclick="window.open('https://sites.google.com/view/thelocalpostspokane/home','_blank')">Have questions? Contact us first</div>
+      </div>
+
     </div>
   </div>
+
 </div>
 
 <script>
-var selectedLink = 'https://buy.stripe.com/5kQaEX2Cqfcc2h55c0fjG01';
-function selectPkg(el, name, price, link) {
+function selectPkg(el, name, price) {
   document.querySelectorAll('.package').forEach(p => p.classList.remove('selected'));
   el.classList.add('selected');
-  selectedLink = link;
   document.getElementById('summaryTitle').textContent = name + ' — ' + price;
   document.getElementById('summary').classList.add('show');
 }
-function bookNow() { 
-  var formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSchD8nJNLro4uFf6oSdgXgsBPnXysBAai3Xz-84ZZ6_rQS4cQ/viewform?usp=header';
-  window.open(formUrl, '_blank'); 
+function bookNow() {
+  window.open('https://docs.google.com/forms/d/e/1FAIpQLSchD8nJNLro4uFf6oSdgXgsBPnXysBAai3Xz-84ZZ6_rQS4cQ/viewform?usp=header', '_blank');
 }
 </script>
+
 </body>
 </html>
