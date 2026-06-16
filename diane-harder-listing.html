@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diane Harder — Painting Classes · The Local Post</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Arial, sans-serif; background: #f5f7fa; color: #202124; }
+
+.nav {
+  background: #1e3a5f;
+  padding: 0 24px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-logo { font-size: 17px; font-weight: 700; color: white; letter-spacing: 0.01em; }
+.nav-links { display: flex; gap: 18px; }
+.nav-links a { text-decoration: none; color: rgba(255,255,255,0.82); font-size: 13px; }
+.nav-links a:hover { color: white; }
+
+.banner {
+  background: #b07d2e;
+  color: white;
+  text-align: center;
+  padding: 9px 16px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* HERO — warm golden/amber gradient */
+.hero {
+  background: linear-gradient(135deg, #7b4a1e 0%, #b07d2e 45%, #d4a84b 100%);
+  padding: 52px 32px 48px;
+  text-align: center;
+}
+.hero-tag {
+  display: inline-block;
+  background: rgba(255,255,255,0.18);
+  border: 1px solid rgba(255,255,255,0.4);
+  color: #fdf0d5;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 14px;
+}
+.hero-title {
+  font-size: 38px;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+.hero-sub {
+  font-size: 15px;
+  color: #fdf0d5;
+  font-style: italic;
+  margin-bottom: 6px;
+}
+.hero-tagline {
+  font-size: 13px;
+  color: rgba(255,255,255,0.82);
+}
+
+.page { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; display: grid; grid-template-columns: 1fr 340px; gap: 20px; }
+
+.stats-bar { grid-column: 1 / -1; background: linear-gradient(135deg, #7b4a1e 0%, #b07d2e 50%, #d4a84b 100%); border: none; border-radius: 8px; display: flex; padding: 4px 0; }
+.stat { flex: 1; text-align: center; padding: 14px 8px; border-right: 1px solid rgba(255,255,255,0.25); }
+.stat:last-child { border-right: none; }
+.stat-num { font-size: 20px; font-weight: 800; color: white; text-shadow: 0 1px 4px rgba(0,0,0,0.18); }
+.stat-label { font-size: 11px; color: rgba(255,255,255,0.82); margin-top: 3px; text-transform: uppercase; letter-spacing: 0.05em; }
+
+.social-row { display: flex; gap: 10px; flex-wrap: wrap; }
+.social-btn { display: inline-flex; align-items: center; gap: 6px; background: #f1f3f4; border: 1px solid #dadce0; color: #1e3a5f; font-size: 12px; font-weight: 600; padding: 6px 14px; border-radius: 20px; text-decoration: none; }
+.social-btn:hover { background: #e8eaed; }
+
+.section { background: white; border: 1px solid #dadce0; border-radius: 8px; padding: 22px; margin-bottom: 16px; }
+.section h2 { font-size: 16px; font-weight: 700; color: #1e3a5f; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid #f0f0f0; }
+.section p { font-size: 14px; line-height: 1.7; color: #3c4043; margin-bottom: 10px; }
+.section p:last-child { margin-bottom: 0; }
+
+/* PHOTO GRID */
+.photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 4px; }
+.photo-grid img { width: 100%; aspect-ratio: 1; object-fit: cover; object-position: center top; border-radius: 6px; display: block; }
+.photo-note { font-size: 12px; color: #5f6368; margin-top: 10px; background: #f8f9fa; padding: 10px 12px; border-radius: 6px; border-left: 3px solid #b07d2e; line-height: 1.5; }
+
+/* PAST CLASSES CHIPS */
+.classes-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.class-chip { background: #fdf5e6; border: 1px solid #e8d5b0; color: #7b4a1e; font-size: 12px; font-weight: 600; padding: 5px 13px; border-radius: 20px; }
+
+/* FACEBOOK GROUP CALLOUT */
+.fb-callout {
+  background: linear-gradient(135deg, #fdf5e6, #fff9f0);
+  border: 1px solid #e8d5b0;
+  border-radius: 8px;
+  padding: 18px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+.fb-icon { font-size: 32px; flex-shrink: 0; }
+.fb-callout h3 { font-size: 15px; font-weight: 700; color: #1e3a5f; margin-bottom: 6px; }
+.fb-callout p { font-size: 13px; color: #3c4043; line-height: 1.6; margin: 0; }
+.fb-stat { display: inline-block; background: #1e3a5f; color: white; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 10px; margin-top: 8px; }
+
+/* AUDIENCE TAGS */
+.tag-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.tag { background: #f1f3f4; border: 1px solid #dadce0; color: #1e3a5f; font-size: 12px; font-weight: 600; padding: 5px 13px; border-radius: 20px; }
+
+/* PERKS */
+.perks { list-style: none; margin-top: 4px; }
+.perks li { display: flex; align-items: flex-start; gap: 10px; padding: 9px 0; border-bottom: 1px solid #f0f0f0; font-size: 14px; color: #3c4043; }
+.perks li:last-child { border-bottom: none; }
+.perks li .icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+
+/* SIDEBAR */
+.sidebar { position: sticky; top: 20px; align-self: start; }
+.sidebar-card { background: white; border: 1px solid #dadce0; border-radius: 8px; padding: 22px; }
+.sidebar-card h3 { font-size: 15px; font-weight: 700; color: #1e3a5f; margin-bottom: 4px; }
+.sidebar-sub { font-size: 12px; color: #5f6368; margin-bottom: 16px; }
+
+/* PACKAGES */
+.package { border: 1.5px solid #dadce0; border-radius: 8px; padding: 13px 15px; margin-bottom: 9px; cursor: pointer; position: relative; transition: border-color 0.15s, background 0.15s; }
+.package:hover { border-color: #1e3a5f; background: #f8fafc; }
+.package.selected { border-color: #1e3a5f; background: #eef3f9; }
+.package-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+.package-name { font-size: 13px; font-weight: 700; color: #202124; }
+.package-price { font-size: 15px; font-weight: 800; color: #1e3a5f; white-space: nowrap; }
+.package-desc { font-size: 12px; color: #5f6368; margin-top: 4px; line-height: 1.5; }
+.package-save { font-size: 10px; font-weight: 700; color: #b07d2e; background: #fdf5e6; padding: 2px 6px; border-radius: 10px; margin-left: 5px; }
+
+.freq { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 10px; margin-top: 6px; text-transform: uppercase; letter-spacing: 0.05em; }
+.freq-onetime { background: #f1f3f4; color: #5f6368; }
+.freq-perclass { background: #fdf5e6; color: #7b4a1e; }
+.freq-monthly { background: #e6f4ea; color: #1e7e34; }
+.freq-ongoing { background: #fce8e6; color: #c5221f; }
+
+.badge-popular { position: absolute; top: -1px; right: 12px; background: #1e3a5f; color: white; font-size: 9px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 8px; border-radius: 0 0 6px 6px; }
+
+.summary { background: #eef3f9; border: 1px solid #c5d5e8; border-radius: 6px; padding: 12px 14px; margin: 12px 0; display: none; }
+.summary.show { display: block; }
+.summary-title { font-size: 13px; font-weight: 700; color: #1e3a5f; margin-bottom: 4px; }
+.summary-note { font-size: 12px; color: #5f6368; line-height: 1.5; }
+
+.book-btn { width: 100%; background: #1e3a5f; color: white; border: none; border-radius: 8px; padding: 14px; font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 4px; transition: background 0.15s; }
+.book-btn:hover { background: #163050; }
+
+.trust { margin-top: 16px; }
+.trust hr { border: none; border-top: 1px solid #f0f0f0; margin-bottom: 12px; }
+.trust-item { font-size: 12px; color: #5f6368; padding: 4px 0; }
+.contact-link { font-size: 12px; color: #1e3a5f; font-weight: 600; margin-top: 10px; cursor: pointer; text-decoration: underline; }
+.contact-link:hover { color: #163050; }
+
+@media (max-width: 700px) {
+  .page { grid-template-columns: 1fr; }
+  .sidebar { position: static; }
+  .stats-bar { flex-wrap: wrap; }
+  .stat { min-width: 50%; border-right: none; border-bottom: 1px solid #dadce0; }
+  .stat:last-child { border-bottom: none; }
+  .hero-title { font-size: 28px; }
+  .hero { padding: 36px 20px 32px; }
+  .fb-callout { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-logo">📌 The Local Post</div>
+  <div class="nav-links">
+    <a href="https://sites.google.com/view/thelocalpostspokane/browse-opportunities">Browse Opportunities</a>
+    <a href="https://sites.google.com/view/thelocalpostspokane/home">Home</a>
+  </div>
+</nav>
+
+<div class="banner">
+  🎨 Limited spots available — Diane keeps classes small so everyone gets personal attention
+</div>
+
+<!-- HERO — warm golden/amber gradient -->
+<div class="hero">
+  <div class="hero-tag">🎨 Private Art Classes · Spokane Area, WA</div>
+  <div class="hero-title">Diane Harder</div>
+  <div class="hero-sub">Artist · Private Painting Classes & Lessons</div>
+  <div class="hero-tagline">All ages welcome · All skill levels · Intimate home studio</div>
+</div>
+
+<div class="page">
+
+  <div class="stats-bar">
+    <div class="stat">
+      <div class="stat-num">1–4</div>
+      <div class="stat-label">Students per class</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">All Ages</div>
+      <div class="stat-label">Welcome</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">6.1K</div>
+      <div class="stat-label">Facebook Group Members</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">Flexible</div>
+      <div class="stat-label">Days & Hours</div>
+    </div>
+  </div>
+
+  <!-- LEFT COLUMN -->
+  <div class="left-col">
+
+    <div class="section">
+      <div class="social-row">
+        <a class="social-btn" href="https://www.facebook.com/groups/paintingwiththemodsquad" target="_blank">👥 Painting with the Mod Squad</a>
+        <a class="social-btn" href="tel:5097954033">📞 509.795.4033</a>
+      </div>
+    </div>
+
+    <!-- PHOTOS -->
+    <div class="section">
+      <h2>📸 Classes in Action</h2>
+      <div class="photo-grid">
+        <img src="IMG_9572.png" alt="Diane's painting class — students holding completed Mt. Fuji paintings outdoors">
+        <img src="IMG_9573.png" alt="Students showing off their wine and grapes paintings" style="object-position:center center;">
+        <img src="IMG_9587.png" alt="Students with bald eagle acrylic paintings">
+      </div>
+      <div class="photo-grid" style="margin-top:8px;">
+        <img src="IMG_9580.png" alt="Students with lavender field paintings indoors">
+        <img src="IMG_9584.png" alt="Mom and daughter with cat paintings — all ages welcome">
+        <img src="IMG_9575.png" alt="Students with jellyfish paintings outdoors">
+      </div>
+      <div class="photo-note">
+        🏡 <strong>About the setting:</strong> Classes are held inside Diane's home studio — an intimate, relaxed setting unlike a commercial studio. Advertisers reaching this audience are connecting with people who value creativity, community, and local experiences.
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <div class="section">
+      <h2>About This Opportunity</h2>
+      <p>Diane Harder is a Spokane-area artist who teaches private and small-group acrylic painting classes from her home studio. She keeps classes intentionally small — typically 1 or 2 students, with larger groups of up to 4 every other month — so every student gets personal attention from a working artist.</p>
+      <p>Classes cover a wide range of subjects: eagles, jellyfish, floral scenes, wine still lifes, Mt. Fuji, cats, and more. All ages and skill levels are welcome. Sundays are popular but scheduling is flexible. Diane also sells her original paintings and is displayed at Second Look Books in the area.</p>
+      <p>Beyond her classes, Diane leads the Facebook group <strong>"Painting with the Mod Squad"</strong> — a private community of 6,100+ artists and art lovers she actively keeps alive with daily posts, tutorials, and encouragement. That's a meaningful online platform that reaches far beyond each class session.</p>
+    </div>
+
+    <!-- FACEBOOK GROUP CALLOUT -->
+    <div class="section">
+      <h2>🌐 The Mod Squad Community</h2>
+      <div class="fb-callout">
+        <div class="fb-icon">🎨</div>
+        <div>
+          <h3>Painting with the Mod Squad</h3>
+          <p>Diane has been running this group since 2018, when she took full ownership and renamed it after growing it from the ground up. Today Diane posts monthly challenges with reference photos, shares tutorials to inspire members, and actively welcomes new painters. She runs the group with a small team of moderators from different U.S. states and around the world — so the community is monitored and active around the clock.</p>
+          <span class="fb-stat">6,100+ Members · Owner since 2018 · Global Reach</span>
+        </div>
+      </div>
+      <p style="margin-top:14px;"><strong>Important for advertisers:</strong> This group's membership is national and international — not just Spokane. A mention here reaches art lovers across the U.S. and around the world. This is priced and sold separately from Diane's local in-studio class advertising for that reason.</p>
+    </div>
+
+    <!-- WHO YOU'RE REACHING -->
+    <div class="section">
+      <h2>👥 Who You're Reaching</h2>
+      <div class="tag-list">
+        <span class="tag">Art Enthusiasts</span>
+        <span class="tag">Adult Learners</span>
+        <span class="tag">Women 40–70+</span>
+        <span class="tag">Families & Kids</span>
+        <span class="tag">Spokane Area</span>
+        <span class="tag">Creative Community</span>
+        <span class="tag">Facebook Group Members</span>
+        <span class="tag">Gift Seekers</span>
+        <span class="tag">Local Art Lovers</span>
+      </div>
+      <p style="margin-top:14px;">Diane's students and Mod Squad members are curious, community-minded people who appreciate local and handcrafted businesses. Classes are often gifted as experiences — making this audience especially receptive to gift shops, bakeries, wellness businesses, and other "treat yourself" brands.</p>
+    </div>
+
+    <!-- PAST CLASS SUBJECTS -->
+    <div class="section">
+      <h2>🖌️ Past Class Subjects</h2>
+      <p>Every class ends with students holding up their own completed painting — a joyful moment that gets shared. Here's a sample of what Diane has taught:</p>
+      <div class="classes-grid">
+        <span class="class-chip">🦅 Bald Eagle</span>
+        <span class="class-chip">🪼 Jellyfish</span>
+        <span class="class-chip">🌸 Mt. Fuji & Cherry Blossoms</span>
+        <span class="class-chip">🍷 Wine & Grapes</span>
+        <span class="class-chip">🌺 Floral Bouquets</span>
+        <span class="class-chip">🪟 French Window</span>
+        <span class="class-chip">🐱 Colorful Cats</span>
+        <span class="class-chip">💐 Lavender Fields</span>
+      </div>
+    </div>
+
+    <!-- EVERY ADVERTISER RECEIVES -->
+    <!-- ADVERTISER FIT -->
+    <div class="section">
+      <h2>🎯 Advertiser Fit</h2>
+      <p>Diane's listing has two distinct audiences with different fit profiles. Make sure you're choosing the right channel — or both.</p>
+
+      <div style="background:#fdf5e6;border:1px solid #e8d5b0;border-radius:8px;padding:16px;margin-bottom:12px;">
+        <div style="font-size:13px;font-weight:700;color:#7b4a1e;margin-bottom:8px;">🏡 In-Studio Classes — Spokane Area</div>
+        <p style="font-size:13px;color:#3c4043;line-height:1.65;margin:0;">Diane's students are local Spokane-area residents of all ages — families, adults, seniors, and kids. This audience is a great fit for businesses offering local services, experiences, gifts, food, wellness products, or anything a Spokane community member might enjoy discovering. Fit is broad and welcoming.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;">
+          <span class="class-chip">Local Services</span>
+          <span class="class-chip">Gift Shops</span>
+          <span class="class-chip">Bakeries & Food</span>
+          <span class="class-chip">Wellness & Self-Care</span>
+          <span class="class-chip">Family Experiences</span>
+          <span class="class-chip">Home & Garden</span>
+          <span class="class-chip">Local Events</span>
+        </div>
+      </div>
+
+      <div style="background:#eef3f9;border:1px solid #c5d5e8;border-radius:8px;padding:16px;">
+        <div style="font-size:13px;font-weight:700;color:#1e3a5f;margin-bottom:8px;">🌐 Mod Squad Facebook Group — National & Global</div>
+        <p style="font-size:13px;color:#3c4043;line-height:1.65;margin:0;">The Mod Squad is a community of passionate painters and art lovers from across the U.S. and around the world. Because Diane has personally built and nurtured this group since 2018, she's selective about what she promotes here — shoutouts in the Mod Squad are reserved for businesses that genuinely serve artists and feel like a natural fit for the community. Misaligned promotions won't be accepted.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;">
+          <span class="class-chip">Art Supplies</span>
+          <span class="class-chip">Paint Brands</span>
+          <span class="class-chip">Canvas & Paper</span>
+          <span class="class-chip">Brushes & Tools</span>
+          <span class="class-chip">Online Art Classes</span>
+          <span class="class-chip">Art Books</span>
+          <span class="class-chip">Framing Services</span>
+          <span class="class-chip">Creative Subscription Boxes</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>✅ Every Advertiser Receives</h2>
+      <ul class="perks">
+        <li><span class="icon">🤝</span>Recognition as a supporter of Diane's local art community</li>
+        <li><span class="icon">📋</span>Your business name or materials included in the experience</li>
+        <li><span class="icon">🎨</span>Association with a trusted, beloved local artist and community leader</li>
+      </ul>
+      <p style="margin-top:12px;"><strong>Higher packages also include:</strong> personal mentions in the Mod Squad Facebook group, the option to provide a small sample or gift for class students, and logo placement on class materials.</p>
+    </div>
+
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sidebar-card">
+      <h3>Advertise Here</h3>
+      <div class="sidebar-sub">Pick your package and request to book — approval within 1 business day.</div>
+
+      <!-- LOCAL CLASS PACKAGES -->
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:#b07d2e;margin-bottom:8px;padding-bottom:6px;border-bottom:2px solid #f0e0c0;">🏡 In-Studio Classes · Spokane Area</div>
+
+      <div class="package" onclick="selectPkg(this, 'Class Sponsor — Name Mention', '$25')">
+        <div class="package-top">
+          <div class="package-name">📋 Class Sponsor — Name Mention</div>
+          <div class="package-price">$25</div>
+        </div>
+        <div class="package-desc">Your business name mentioned by Diane to students during a class · warm, personal word-of-mouth in a trusted setting</div>
+        <span class="freq freq-perclass">Per Class</span>
+      </div>
+
+      <div class="package" onclick="selectPkg(this, 'Student Gift / Sample Drop', '$75')" style="position:relative;">
+        <div class="badge-popular">Most Popular</div>
+        <div class="package-top">
+          <div class="package-name">🎁 Student Gift / Sample Drop</div>
+          <div class="package-price">$75</div>
+        </div>
+        <div class="package-desc">Your product, sample, or gift card handed directly to students at the end of class · intimate 1–4 person setting · all ages welcome means wide gifting appeal</div>
+        <span class="freq freq-perclass">Per Class</span>
+      </div>
+
+      <div class="package" onclick="selectPkg(this, 'Monthly In-Studio Sponsor', '$150/mo')">
+        <div class="package-top">
+          <div class="package-name">📅 Monthly In-Studio Sponsor</div>
+          <div class="package-price">$150<span style="font-size:11px;font-weight:500;color:#5f6368">/mo</span></div>
+        </div>
+        <div class="package-desc">Name mention + student gift at every class Diane teaches that month · ongoing warm presence with her local student community</div>
+        <span class="freq freq-monthly">Monthly</span>
+      </div>
+
+      <!-- MOD SQUAD PACKAGES -->
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:#1e3a5f;margin:16px 0 8px;padding-bottom:6px;border-bottom:2px solid #c5d5e8;">🌐 Mod Squad Facebook Group · National / Global Reach</div>
+      <div style="font-size:11px;color:#5f6368;margin-bottom:10px;line-height:1.5;">6,100+ members across the U.S. and worldwide — pricing is separate because this audience extends far beyond Spokane.</div>
+
+      <div class="package" onclick="selectPkg(this, 'Mod Squad Shoutout', '$75')">
+        <div class="package-top">
+          <div class="package-name">📣 Mod Squad Shoutout</div>
+          <div class="package-price">$75</div>
+        </div>
+        <div class="package-desc">One dedicated post or mention in the group (6,100+ members) · Diane personally recommends your business · national + international reach</div>
+        <span class="freq freq-onetime">One-Time</span>
+      </div>
+
+      <div class="package" onclick="selectPkg(this, 'Monthly Mod Squad Partner', '$200/mo')">
+        <div class="package-top">
+          <div class="package-name">⭐ Monthly Mod Squad Partner</div>
+          <div class="package-price">$200<span style="font-size:11px;font-weight:500;color:#5f6368">/mo</span></div>
+        </div>
+        <div class="package-desc">2–3 mentions per month in the Mod Squad · recurring exposure to a warm, art-loving community across the country and around the world</div>
+        <span class="freq freq-monthly">Monthly</span>
+      </div>
+
+      <div class="package" onclick="selectPkg(this, 'Local + Global Bundle', '$225')">
+        <div class="package-top">
+          <div class="package-name">🥇 Local + Global Bundle <span class="package-save">Save $25</span></div>
+          <div class="package-price">$225</div>
+        </div>
+        <div class="package-desc">Student gift at one class + one Mod Squad group mention · reach Spokane-area students in person AND art lovers nationwide online</div>
+        <span class="freq freq-onetime">One-Time</span>
+      </div>
+
+      <div class="summary" id="summary">
+        <div class="summary-title" id="summaryTitle">Class Sponsor — Name Mention — $25</div>
+        <div class="summary-note">You'll be taken to a short request form. Once approved, we'll confirm details within 1 business day.</div>
+      </div>
+
+      <button class="book-btn" onclick="bookNow()">Request to Book →</button>
+
+      <div class="trust">
+        <hr>
+        <div class="trust-item">📋 Submit a quick 3-minute request form</div>
+        <div class="trust-item">✅ We'll review and confirm within 1 business day</div>
+        <div class="trust-item">🔒 Secure payment link sent upon approval</div>
+        <div class="trust-item">📧 Confirmation and materials form sent to your email</div>
+        <div class="contact-link" onclick="window.open('https://sites.google.com/view/thelocalpostspokane/home','_blank')">Have questions? Contact us first</div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+function selectPkg(el, name, price) {
+  document.querySelectorAll('.package').forEach(p => p.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById('summaryTitle').textContent = name + ' — ' + price;
+  document.getElementById('summary').classList.add('show');
+}
+function bookNow() {
+  window.open('https://docs.google.com/forms/d/e/1FAIpQLSchD8nJNLro4uFf6oSdgXgsBPnXysBAai3Xz-84ZZ6_rQS4cQ/viewform?usp=header', '_blank');
+}
+</script>
+
+</body>
+</html>
