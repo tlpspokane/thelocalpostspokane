@@ -8,98 +8,166 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: Arial, sans-serif; background: #f5f7fa; color: #202124; }
 
-.nav { background: #1e3a5f; padding: 0 32px; height: 56px; display: flex; align-items: center; justify-content: space-between; }
-.nav-logo { font-size: 18px; font-weight: 700; color: white; }
-.nav-links { display: flex; gap: 20px; }
-.nav-links a { text-decoration: none; color: rgba(255,255,255,0.8); font-size: 13px; }
+.nav {
+  background: #1e3a5f;
+  padding: 0 24px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-logo { font-size: 17px; font-weight: 700; color: white; }
+.nav-links { display: flex; gap: 18px; }
+.nav-links a { text-decoration: none; color: rgba(255,255,255,0.82); font-size: 13px; }
 .nav-links a:hover { color: white; }
 
-/* Hero */
-.hero { background: linear-gradient(135deg, #2d6a4f 0%, #52b788 60%, #95d5b2 100%); padding: 52px 32px; color: white; text-align: center; }
-.hero-tag { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.35); color: white; font-size: 11px; font-weight: 600; padding: 4px 14px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px; display: inline-block; }
-.hero h1 { font-size: 34px; font-weight: 800; margin-bottom: 4px; text-shadow: 0 2px 8px rgba(0,0,0,0.2); }
-.hero-sub { font-size: 16px; font-style: italic; color: rgba(255,255,255,0.9); margin-bottom: 6px; }
-.hero-desc { font-size: 14px; color: rgba(255,255,255,0.8); max-width: 560px; margin: 0 auto 20px; line-height: 1.6; }
-.hero-stats { display: flex; gap: 28px; justify-content: center; flex-wrap: wrap; margin-bottom: 18px; }
-.stat-num { font-size: 20px; font-weight: 700; color: white; }
-.stat-label { font-size: 11px; color: rgba(255,255,255,0.7); margin-top: 2px; }
-.social-links { display: flex; gap: 10px; justify-content: center; }
-.social-btn { display: flex; align-items: center; gap: 5px; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: white; text-decoration: none; font-size: 12px; padding: 6px 14px; border-radius: 16px; }
-.social-btn:hover { background: rgba(255,255,255,0.25); }
+.banner {
+  background: #3a6b3e;
+  color: white;
+  text-align: center;
+  padding: 9px 16px;
+  font-size: 13px;
+  font-weight: 600;
+}
 
-/* New location banner */
-.new-loc { background: #fff3cd; border-bottom: 1px solid #ffc107; padding: 10px 32px; text-align: center; font-size: 13px; color: #6b4c00; font-weight: 600; }
+.hero {
+  background: linear-gradient(135deg, #1e4022 0%, #3a6b3e 50%, #5a9e5f 100%);
+  padding: 52px 32px 48px;
+  text-align: center;
+}
+.hero-tag {
+  display: inline-block;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.35);
+  color: #d4f0d6;
+  font-size: 11px; font-weight: 700;
+  padding: 4px 14px; border-radius: 20px;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  margin-bottom: 14px;
+}
+.hero-title { font-size: 38px; font-weight: 800; color: white; margin-bottom: 6px; text-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+.hero-sub { font-size: 15px; color: #d4f0d6; font-style: italic; margin-bottom: 6px; }
+.hero-tagline { font-size: 13px; color: rgba(255,255,255,0.8); }
 
-/* Main */
-.main { max-width: 960px; margin: 0 auto; padding: 28px 24px; display: grid; grid-template-columns: 1fr 320px; gap: 22px; align-items: start; }
+.page { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; display: grid; grid-template-columns: 1fr 340px; gap: 20px; }
 
-/* Cards */
-.card { background: white; border-radius: 10px; border: 1px solid #e0e6ee; padding: 20px; margin-bottom: 16px; }
-.card h2 { font-size: 13px; font-weight: 700; color: #1e3a5f; margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.04em; }
+.stats-bar {
+  grid-column: 1 / -1;
+  background: linear-gradient(135deg, #1e4022 0%, #3a6b3e 50%, #5a9e5f 100%);
+  border-radius: 8px; display: flex; padding: 4px 0;
+}
+.stat { flex: 1; text-align: center; padding: 14px 8px; border-right: 1px solid rgba(255,255,255,0.22); }
+.stat:last-child { border-right: none; }
+.stat-num { font-size: 20px; font-weight: 800; color: white; }
+.stat-label { font-size: 11px; color: rgba(255,255,255,0.82); margin-top: 3px; text-transform: uppercase; letter-spacing: 0.05em; }
 
-/* Photos */
-.photo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-.photo-placeholder { background: linear-gradient(135deg, #d8f3dc, #b7e4c7); border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 28px; color: #2d6a4f; padding: 24px 12px; text-align: center; }
-.photo-placeholder span { font-size: 11px; color: #2d6a4f; margin-top: 6px; font-weight: 500; }
-.photo-placeholder.large { grid-column: span 2; padding: 32px; }
-.photo-note { background: #f0f7f4; border-left: 3px solid #2d6a4f; border-radius: 0 6px 6px 0; padding: 10px 12px; margin-top: 10px; font-size: 12px; color: #4a5568; line-height: 1.5; }
+.social-row { display: flex; gap: 10px; flex-wrap: wrap; }
+.social-btn { display: inline-flex; align-items: center; gap: 6px; background: #f1f3f4; border: 1px solid #dadce0; color: #1e3a5f; font-size: 12px; font-weight: 600; padding: 6px 14px; border-radius: 20px; text-decoration: none; }
+.social-btn:hover { background: #e8eaed; }
 
-/* Locations */
-.loc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
-.loc-card { background: #f0f7f4; border-radius: 8px; padding: 12px 14px; border: 1px solid #b7e4c7; }
-.loc-card h3 { font-size: 13px; font-weight: 700; color: #2d6a4f; margin-bottom: 4px; }
-.loc-card p { font-size: 12px; color: #4a5568; line-height: 1.5; }
-.loc-badge { background: #2d6a4f; color: white; font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 10px; margin-bottom: 6px; display: inline-block; }
+.section { background: white; border: 1px solid #dadce0; border-radius: 8px; padding: 22px; margin-bottom: 16px; }
+.section h2 { font-size: 16px; font-weight: 700; color: #1e3a5f; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid #f0f0f0; }
+.section h3 { font-size: 14px; font-weight: 700; color: #1e3a5f; margin: 14px 0 6px; }
+.section p { font-size: 14px; line-height: 1.7; color: #3c4043; margin-bottom: 10px; }
+.section p:last-child { margin-bottom: 0; }
 
-/* Audience pills */
-.pills { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 12px; }
-.pill { background: #d8f3dc; color: #1b4332; font-size: 12px; padding: 4px 12px; border-radius: 14px; font-weight: 500; }
-.pill.teal { background: #e0f2f1; color: #00695c; }
-.pill.blue { background: #e8f0fb; color: #1e3a5f; }
+.photo-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-top: 4px; }
+.photo-grid img { width: 100%; aspect-ratio: 4/3; object-fit: cover; object-position: center top; border-radius: 6px; display: block; }
+.photo-note { font-size: 12px; color: #5f6368; margin-top: 10px; background: #f8f9fa; padding: 10px 12px; border-radius: 6px; border-left: 3px solid #3a6b3e; line-height: 1.5; }
 
-/* Ad spaces */
-.spaces-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.space-item { background: #f8fffe; border: 1px solid #b7e4c7; border-radius: 8px; padding: 12px 14px; }
-.space-item h4 { font-size: 13px; font-weight: 600; color: #1b4332; margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
-.space-item p { font-size: 12px; color: #5f6368; line-height: 1.4; }
+/* LOCATION BLOCK */
+.location-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 4px; }
+.location-card { background: #f8f9fa; border: 1px solid #dadce0; border-radius: 8px; padding: 14px; }
+.location-card .loc-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #3a6b3e; margin-bottom: 6px; }
+.location-card h3 { font-size: 13px; font-weight: 700; color: #1e3a5f; margin: 0 0 4px; }
+.location-card p { font-size: 12px; color: #5f6368; margin: 0; line-height: 1.5; }
 
-/* What you get */
-.what-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
-.what-item { display: flex; align-items: flex-start; gap: 9px; font-size: 13px; color: #3c4043; line-height: 1.4; }
-.what-icon { width: 26px; height: 26px; border-radius: 50%; background: #d8f3dc; display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; }
+/* EVENTS */
+.events-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 4px; }
+.event-item { background: #f0faf1; border: 1px solid #b7e0bb; border-radius: 8px; padding: 12px 14px; }
+.event-item .e-date { font-size: 11px; font-weight: 700; color: #3a6b3e; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+.event-item .e-title { font-size: 13px; font-weight: 700; color: #1e3a5f; margin-bottom: 3px; }
+.event-item .e-desc { font-size: 12px; color: #5f6368; line-height: 1.5; }
 
-/* Events */
-.event-item { background: #f0f7f4; border-radius: 8px; padding: 12px 14px; margin-bottom: 8px; border-left: 3px solid #2d6a4f; }
-.event-item h4 { font-size: 13px; font-weight: 600; color: #1b4332; margin-bottom: 3px; }
-.event-item p { font-size: 12px; color: #5f6368; }
+/* SPACES */
+.spaces-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 4px; }
+.space-item { background: #f8f9fa; border: 1px solid #dadce0; border-radius: 6px; padding: 12px; }
+.space-item .s-icon { font-size: 18px; margin-bottom: 5px; }
+.space-item .s-title { font-size: 13px; font-weight: 700; color: #1e3a5f; margin-bottom: 3px; }
+.space-item .s-desc { font-size: 12px; color: #5f6368; line-height: 1.5; }
 
-/* Booking card */
-.booking-card { background: white; border-radius: 10px; border: 1px solid #e0e6ee; padding: 20px; position: sticky; top: 16px; }
-.booking-card h3 { font-size: 16px; font-weight: 700; color: #1e3a5f; margin-bottom: 4px; }
-.booking-subtitle { font-size: 12px; color: #5f6368; margin-bottom: 14px; }
-.sample-badge { background: #fff3cd; border: 1px solid #ffc107; border-radius: 7px; padding: 8px 12px; margin-bottom: 14px; font-size: 12px; color: #6b4c00; font-weight: 600; text-align: center; }
+/* MARKET CHIPS */
+.market-strip { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.market-chip { background: #f0faf1; border: 1px solid #b7e0bb; color: #1e4022; font-size: 12px; font-weight: 600; padding: 6px 13px; border-radius: 20px; }
 
-/* Packages */
-.package { border: 1.5px solid #e0e6ee; border-radius: 9px; padding: 11px 13px; margin-bottom: 8px; cursor: pointer; transition: all 0.15s; position: relative; }
-.package:hover { border-color: #2d6a4f; background: #f0f7f4; }
-.package.selected { border-color: #2d6a4f; background: #f0f7f4; }
-.package-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 3px; }
-.package-name { font-size: 13px; font-weight: 600; color: #202124; }
-.package-price { font-size: 15px; font-weight: 700; color: #2d6a4f; }
-.package-desc { font-size: 11px; color: #5f6368; line-height: 1.4; }
-.package-save { background: #1b4332; color: white; font-size: 10px; font-weight: 600; padding: 1px 7px; border-radius: 8px; margin-left: 6px; }
-.popular-badge { position: absolute; top: -9px; right: 10px; background: #2d6a4f; color: white; font-size: 9px; font-weight: 700; padding: 2px 8px; border-radius: 8px; text-transform: uppercase; }
+.tag-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.tag { background: #f1f3f4; border: 1px solid #dadce0; color: #1e3a5f; font-size: 12px; font-weight: 600; padding: 5px 13px; border-radius: 20px; }
 
-.book-btn { width: 100%; background: #2d6a4f; color: white; border: none; padding: 13px; border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer; margin-top: 14px; transition: background 0.15s; }
-.book-btn:hover { background: #1b4332; }
+.perks { list-style: none; margin-top: 4px; }
+.perks li { display: flex; align-items: flex-start; gap: 10px; padding: 9px 0; border-bottom: 1px solid #f0f0f0; font-size: 14px; color: #3c4043; }
+.perks li:last-child { border-bottom: none; }
+.perks li .icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
 
-hr { border: none; border-top: 1px solid #f0f0f0; margin: 13px 0; }
-.trust-item { display: flex; align-items: center; gap: 7px; font-size: 11px; color: #5f6368; margin-bottom: 5px; }
-.contact-link { text-align: center; font-size: 12px; color: #1e3a5f; margin-top: 10px; cursor: pointer; text-decoration: underline; }
+/* SIDEBAR */
+.sidebar { position: sticky; top: 20px; align-self: start; }
+.sidebar-card { background: white; border: 1px solid #dadce0; border-radius: 8px; padding: 22px; }
+.sidebar-card h3 { font-size: 15px; font-weight: 700; color: #1e3a5f; margin-bottom: 4px; }
+.sidebar-sub { font-size: 12px; color: #5f6368; margin-bottom: 16px; }
 
-.summary { background: #f0f7f4; border-radius: 7px; padding: 9px 12px; margin-top: 10px; font-size: 12px; display: none; }
+.pkg-section-label {
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.07em; padding-bottom: 6px;
+  border-bottom: 2px solid;
+  margin: 14px 0 8px;
+}
+.pkg-section-label:first-of-type { margin-top: 0; }
+.label-green { color: #3a6b3e; border-color: #b7e0bb; }
+.label-navy  { color: #1e3a5f; border-color: #c5d5e8; }
+
+.package { border: 1.5px solid #dadce0; border-radius: 8px; padding: 13px 15px; margin-bottom: 9px; cursor: pointer; position: relative; transition: border-color 0.15s, background 0.15s; }
+.package:hover { border-color: #1e3a5f; background: #f8fafc; }
+.package.selected { border-color: #1e3a5f; background: #eef3f9; }
+.package-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+.package-name { font-size: 13px; font-weight: 700; color: #202124; }
+.package-price { font-size: 15px; font-weight: 800; color: #1e3a5f; white-space: nowrap; }
+.package-desc { font-size: 12px; color: #5f6368; margin-top: 4px; line-height: 1.5; }
+.package-save { font-size: 10px; font-weight: 700; color: #3a6b3e; background: #e0f5e2; padding: 2px 6px; border-radius: 10px; margin-left: 5px; }
+.badge-popular { position: absolute; top: -1px; right: 12px; background: #1e3a5f; color: white; font-size: 9px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 8px; border-radius: 0 0 6px 6px; }
+
+.freq { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 10px; margin-top: 6px; text-transform: uppercase; letter-spacing: 0.05em; }
+.freq-onetime    { background: #f1f3f4; color: #5f6368; }
+.freq-perevent   { background: #f0faf1; color: #1e4022; }
+.freq-monthly    { background: #e6f4ea; color: #1e7e34; }
+.freq-perappear  { background: #e8f0fe; color: #1a56c4; }
+.freq-ongoing    { background: #fce8e6; color: #c5221f; }
+
+.sample-badge { background: #fff8e1; border: 1px solid #ffe082; border-radius: 6px; padding: 7px 10px; font-size: 11px; color: #7b5c00; font-weight: 600; margin-bottom: 14px; text-align: center; }
+
+.summary { background: #eef3f9; border: 1px solid #c5d5e8; border-radius: 6px; padding: 12px 14px; margin: 12px 0; display: none; }
 .summary.show { display: block; }
-.summary-title { font-weight: 700; color: #2d6a4f; margin-bottom: 2px; }
+.summary-title { font-size: 13px; font-weight: 700; color: #1e3a5f; margin-bottom: 4px; }
+.summary-note { font-size: 12px; color: #5f6368; line-height: 1.5; }
+
+.book-btn { width: 100%; background: #1e3a5f; color: white; border: none; border-radius: 8px; padding: 14px; font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 4px; transition: background 0.15s; }
+.book-btn:hover { background: #163050; }
+
+.trust { margin-top: 16px; }
+.trust hr { border: none; border-top: 1px solid #f0f0f0; margin-bottom: 12px; }
+.trust-item { font-size: 12px; color: #5f6368; padding: 4px 0; }
+.contact-link { font-size: 12px; color: #1e3a5f; font-weight: 600; margin-top: 10px; cursor: pointer; text-decoration: underline; }
+.contact-link:hover { color: #163050; }
+
+@media (max-width: 700px) {
+  .page { grid-template-columns: 1fr; }
+  .sidebar { position: static; }
+  .stats-bar { flex-wrap: wrap; }
+  .stat { min-width: 50%; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.22); }
+  .stat:last-child { border-bottom: none; }
+  .hero-title { font-size: 28px; }
+  .hero { padding: 36px 20px 32px; }
+  .events-grid, .spaces-grid, .location-grid { grid-template-columns: 1fr; }
+  .photo-grid { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 <body>
@@ -112,239 +180,342 @@ hr { border: none; border-top: 1px solid #f0f0f0; margin: 13px 0; }
   </div>
 </nav>
 
-<div class="new-loc">
+<div class="banner">
   🎉 Now in Hillyard! New location open at 5009 N. Market St. — Look for the old "Hillyard Variety" sign
 </div>
 
 <div class="hero">
   <div class="hero-tag">🛁 Bath · Body · Wellness · Spokane, WA</div>
-  <h1>BeYOUtiful Bath · Body · Burn</h1>
+  <div class="hero-title">BeYOUtiful Bath · Body · Burn</div>
   <div class="hero-sub">PNW-made. Handcrafted with love. Simply Divine.</div>
-  <div class="hero-desc">A Spokane-born, community-rooted bath and wellness brand — handcrafting natural bath bombs, candles, body care, and more since 2017. Partners with 40+ local PNW businesses and a beloved fixture at Spokane farmers markets.</div>
-  <div class="hero-stats">
-    <div class="stat"><div class="stat-num">9,600+</div><div class="stat-label">Instagram followers</div></div>
-    <div class="stat"><div class="stat-num">40+</div><div class="stat-label">Local PNW partners</div></div>
-    <div class="stat"><div class="stat-num">Since 2017</div><div class="stat-label">Spokane-rooted</div></div>
-    <div class="stat"><div class="stat-num">15-30 min</div><div class="stat-label">Avg. dwell time</div></div>
-  </div>
-  <div class="social-links">
-    <a class="social-btn" href="https://www.instagram.com/beyoutiful_bath_body_burn/" target="_blank">📸 @beyoutiful_bath_body_burn</a>
-    <a class="social-btn" href="https://facebook.com/beyoutifulbathbombs/" target="_blank">👥 Facebook</a>
-    <a class="social-btn" href="https://www.beyoutifulbathbombsandmore.com" target="_blank">🌐 Website</a>
-  </div>
+  <div class="hero-tagline">A Spokane-born, community-rooted bath and wellness brand — handcrafting natural bath bombs, candles, body care, and more since 2017</div>
 </div>
 
-<div class="main">
-  <div>
+<div class="page">
 
-    <!-- Photos -->
-    <div class="card">
+  <div class="stats-bar">
+    <div class="stat">
+      <div class="stat-num">9,600+</div>
+      <div class="stat-label">Instagram Followers</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">40+</div>
+      <div class="stat-label">Local PNW Partners</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">Since 2017</div>
+      <div class="stat-label">Spokane-Rooted</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">15–30 min</div>
+      <div class="stat-label">Avg. Dwell Time</div>
+    </div>
+  </div>
+
+  <div class="left-col">
+
+    <!-- SOCIAL LINKS -->
+    <div class="section">
+      <div class="social-row">
+        <a class="social-btn" href="https://www.instagram.com/beyoutiful_bath_body_burn/" target="_blank">📸 @beyoutiful_bath_body_burn</a>
+        <a class="social-btn" href="https://facebook.com/beyoutifulbathbombs/" target="_blank">👥 Facebook</a>
+        <a class="social-btn" href="https://www.beyoutifulbathbombsandmore.com" target="_blank">🌐 Website</a>
+      </div>
+    </div>
+
+    <!-- PHOTOS -->
+    <div class="section">
       <h2>📸 Store Photos</h2>
       <div class="photo-grid">
-        <div class="photo-placeholder large">🛁<span>Interior store photo<br>(from Instagram/social media)</span></div>
-        <div class="photo-placeholder">🪟<span>Window space</span></div>
-        <div class="photo-placeholder">🚪<span>Front entrance</span></div>
+        <img src="724169822_1375247067805892_2382382725486166025_n.jpg" alt="BeYOUtiful — Hillyard Variety storefront exterior">
+        <img src="723330736_27717960817836892_1724365233787262499_n.jpg" alt="BeYOUtiful — Hillyard Variety sign and awning">
       </div>
       <div class="photo-note">
-        📍 <strong>Photos are illustrative placeholders.</strong> BeYOUtiful Bath · Body · Burn is located at 5009 N. Market St., Spokane WA 99217 in the Hillyard neighborhood — look for the iconic "Hillyard Variety" sign. Interior photos available upon request from the business owner.
+        📍 <strong>Photos are illustrative.</strong> BeYOUtiful Bath · Body · Burn is located at 5009 N. Market St., Spokane WA 99217 in the Hillyard neighborhood — look for the iconic "Hillyard Variety" sign. Interior photos available upon request from the business owner.
       </div>
     </div>
 
-    <!-- Locations -->
-    <div class="card">
+    <!-- WHERE YOU'LL REACH THEM -->
+    <div class="section">
       <h2>📍 Where You'll Reach Their Audience</h2>
-      <div class="loc-grid">
-        <div class="loc-card">
-          <div class="loc-badge">PRIMARY STORE</div>
+      <div class="location-grid">
+        <div class="location-card">
+          <div class="loc-label">Primary Store</div>
           <h3>Hillyard — 5009 N. Market St.</h3>
-          <p>Spokane WA 99217<br>Tue–Wed & Sat: 10am–4pm<br>Thu–Fri: 10am–5:30pm<br>Sun–Mon: Closed</p>
+          <p>Spokane WA 99217<br>
+          Tue–Wed &amp; Sat: 10am–4pm<br>
+          Thu–Fri: 10am–5:30pm<br>
+          Sun–Mon: Closed</p>
         </div>
-        <div class="loc-card">
-          <div class="loc-badge" style="background:#1e3a5f">ALSO AVAILABLE</div>
-          <h3>Farmers Markets & Events</h3>
-          <p>BeYOUtiful regularly participates in Spokane-area farmers markets and community events — additional sponsorship opportunities available at market appearances.</p>
+        <div class="location-card">
+          <div class="loc-label">Weekly Markets</div>
+          <h3>Farmers Markets</h3>
+          <p>📍 Kendall Yards Night Market<br>Every Wednesday · 5–8:30pm<br><br>
+          📍 Emerson-Garfield Farmers Market<br>Every Friday</p>
         </div>
       </div>
     </div>
 
-    <!-- About -->
-    <div class="card">
-      <h2>About This Opportunity</h2>
-      <p style="font-size:14px;line-height:1.75;color:#3c4043">
-        BeYOUtiful Bath · Body · Burn isn't just a store — it's a community hub. Founded by Jessie after she made it her mission to create natural, clean beauty products, the brand has grown into one of Spokane's most beloved local wellness destinations.<br><br>
-        The store partners with over 40 local PNW businesses, hosts community events like Plant Bingo nights, and maintains a loyal, engaged following of 9,600+ on Instagram. Customers don't just shop here — they come back, they bring friends, and they genuinely love and trust this brand.<br><br>
-        Advertising here puts your brand in front of Spokane's most community-oriented, local-first consumers — in an environment where shopping local isn't just preferred, it's the whole point.
-      </p>
+    <!-- UPCOMING EVENTS -->
+    <div class="section">
+      <h2>🎉 Upcoming Events</h2>
+      <div class="events-grid">
+        <div class="event-item">
+          <div class="e-date">August 20, 2026</div>
+          <div class="e-title">✂️ DIY Macramé Earring Class</div>
+          <div class="e-desc">Hands-on crafting workshop — participants make their own macramé earrings to take home</div>
+        </div>
+        <div class="event-item">
+          <div class="e-date">August 20, 2026</div>
+          <div class="e-title">🌙 Third Thursday Event</div>
+          <div class="e-desc">Monthly community gathering bringing the Hillyard neighborhood together in-store</div>
+        </div>
+        <div class="event-item">
+          <div class="e-date">September 17, 2026</div>
+          <div class="e-title">🌙 Third Thursday Event</div>
+          <div class="e-desc">Monthly in-store community event in Hillyard</div>
+        </div>
+        <div class="event-item">
+          <div class="e-date">October 15, 2026</div>
+          <div class="e-title">🌙 Third Thursday Event</div>
+          <div class="e-desc">Monthly in-store community event in Hillyard</div>
+        </div>
+        <div class="event-item">
+          <div class="e-date">October 17, 2026</div>
+          <div class="e-title">🪴 Plant Bingo Night</div>
+          <div class="e-desc">Popular recurring event — attendees play bingo to win plants · always a full, engaged crowd</div>
+        </div>
+      </div>
     </div>
 
-    <!-- Ad Spaces -->
-    <div class="card">
+    <!-- ABOUT -->
+    <div class="section">
+      <h2>About This Opportunity</h2>
+      <p>BeYOUtiful Bath · Body · Burn isn't just a store — it's a community hub. Founded by Jessie after she made it her mission to create natural, clean beauty products, the brand has grown into one of Spokane's most beloved local wellness destinations.</p>
+      <p>The store partners with over 40 local PNW businesses, hosts community events like Plant Bingo nights and Third Thursday gatherings, and maintains a loyal, engaged following of 9,600+ on Instagram. Customers don't just shop here — they come back, they bring friends, and they genuinely love and trust this brand.</p>
+      <p>Advertising here puts your brand in front of Spokane's most community-oriented, local-first consumers — in an environment where shopping local isn't just preferred, it's the whole point.</p>
+    </div>
+
+    <!-- ADVERTISING SPACES -->
+    <div class="section">
       <h2>🎯 Available Advertising Spaces</h2>
       <div class="spaces-grid">
         <div class="space-item">
-          <h4>🚪 Front Door</h4>
-          <p>High-visibility placement at the main entrance — seen by every customer who walks in</p>
+          <div class="s-icon">🚪</div>
+          <div class="s-title">Front Door</div>
+          <div class="s-desc">High-visibility placement at the main entrance — seen by every customer who walks in</div>
         </div>
         <div class="space-item">
-          <h4>🪟 Window Space</h4>
-          <p>Street-facing window in the Hillyard neighborhood — visible to foot traffic and passersby</p>
+          <div class="s-icon">🪟</div>
+          <div class="s-title">Window Space</div>
+          <div class="s-desc">Street-facing window in the Hillyard neighborhood — visible to foot traffic and passersby</div>
         </div>
         <div class="space-item">
-          <h4>🛍️ Register Area</h4>
-          <p>Prime checkout placement — customers spend time here while completing their purchase</p>
+          <div class="s-icon">🛍️</div>
+          <div class="s-title">Register Area</div>
+          <div class="s-desc">Prime checkout placement — customers spend time here while completing their purchase</div>
         </div>
         <div class="space-item">
-          <h4>🖼️ Wall Space</h4>
-          <p>Interior wall display — visible throughout the store during browsing</p>
-        </div>
-        <div class="space-item">
-          <h4>🚶 Sidewalk Space</h4>
-          <p>Exterior sidewalk signage or A-frame placement — reaches street-level Hillyard foot traffic</p>
-        </div>
-        <div class="space-item">
-          <h4>🌿 Farmers Market</h4>
-          <p>Sponsorship opportunities at BeYOUtiful's regular farmers market appearances across Spokane</p>
+          <div class="s-icon">🖼️</div>
+          <div class="s-title">Wall Space</div>
+          <div class="s-desc">Interior wall display — visible throughout the store during browsing</div>
         </div>
       </div>
     </div>
 
-    <!-- Audience -->
-    <div class="card">
+    <!-- WHO YOU'RE REACHING -->
+    <div class="section">
       <h2>👥 Who You're Reaching</h2>
-      <div class="pills">
-        <div class="pill">Women Ages 25–55</div>
-        <div class="pill">Self-Care Enthusiasts</div>
-        <div class="pill teal">Spokane Locals</div>
-        <div class="pill blue">Hillyard Neighborhood</div>
-        <div class="pill">Local-First Shoppers</div>
-        <div class="pill">Gift Buyers</div>
-        <div class="pill teal">Wellness Community</div>
-        <div class="pill">Families & Moms</div>
+      <div class="tag-list">
+        <span class="tag">Women Ages 25–55</span>
+        <span class="tag">Self-Care Enthusiasts</span>
+        <span class="tag">Spokane Locals</span>
+        <span class="tag">Hillyard Neighborhood</span>
+        <span class="tag">Local-First Shoppers</span>
+        <span class="tag">Gift Buyers</span>
+        <span class="tag">Wellness Community</span>
+        <span class="tag">Families &amp; Moms</span>
+        <span class="tag">Farmers Market Regulars</span>
+        <span class="tag">Kendall Yards Community</span>
       </div>
-      <p style="font-size:13px;color:#5f6368;line-height:1.65">BeYOUtiful's customers are deeply local and values-driven — they actively choose local over big-box retail. Customers browse for 15–30 minutes, return regularly, and tell their friends. The brand has cultivated an audience that trusts their recommendations, making this a particularly powerful advertising environment.</p>
+      <p style="margin-top:14px;">BeYOUtiful's customers are deeply local and values-driven — they actively choose local over big-box retail. Customers browse for 15–30 minutes, return regularly, and tell their friends. The brand has cultivated an audience that trusts their recommendations, making this a particularly powerful advertising environment.</p>
     </div>
 
-    <!-- Events -->
-    <div class="card">
-      <h2>🎉 Community Events & Activations</h2>
-      <div class="event-item">
-        <h4>🌿 Plant Bingo Nights</h4>
-        <p>Recurring in-store community events with prizes, giveaways, and a highly engaged local audience. Sponsorship opportunities available for these events separately.</p>
-      </div>
-      <div class="event-item">
-        <h4>🌾 Farmers Market Appearances</h4>
-        <p>BeYOUtiful regularly sets up at Spokane-area farmers markets — reaching a new outdoor audience of community members and shoppers beyond the store.</p>
-      </div>
-      <div class="event-item">
-        <h4>🤝 Local Business Collaborations</h4>
-        <p>Active partnerships with 40+ local PNW businesses — a network that amplifies any sponsorship beyond just the BeYOUtiful audience.</p>
-      </div>
-    </div>
-
-    <!-- Advertiser Preferences -->
-    <div class="card">
+    <!-- ADVERTISER FIT -->
+    <div class="section">
       <h2>🤝 Advertiser Fit</h2>
-      <p style="font-size:13px;color:#5f6368;line-height:1.65;margin-bottom:12px">BeYOUtiful's audience is local-first, values-driven, and community-oriented. The best advertisers are ones who share those same values.</p>
-      <div class="pills" style="margin-bottom:12px">
-        <div class="pill">Local Restaurants & Cafes</div>
-        <div class="pill">Wellness & Self-Care</div>
-        <div class="pill teal">Health & Fitness</div>
-        <div class="pill blue">Local Boutiques</div>
-        <div class="pill">Nonprofits</div>
-        <div class="pill teal">Home & Lifestyle</div>
-        <div class="pill">Gift & Specialty Shops</div>
-        <div class="pill blue">Community Events</div>
-        <div class="pill">Natural & Organic Brands</div>
-        <div class="pill teal">Women-Owned Businesses</div>
+      <p>BeYOUtiful's audience is local-first, values-driven, and community-oriented. The best advertisers are ones who share those same values.</p>
+      <div class="tag-list">
+        <span class="tag">Local Restaurants &amp; Cafes</span>
+        <span class="tag">Wellness &amp; Self-Care</span>
+        <span class="tag">Health &amp; Fitness</span>
+        <span class="tag">Local Boutiques</span>
+        <span class="tag">Nonprofits</span>
+        <span class="tag">Home &amp; Lifestyle</span>
+        <span class="tag">Gift &amp; Specialty Shops</span>
+        <span class="tag">Community Events</span>
+        <span class="tag">Natural &amp; Organic Brands</span>
+        <span class="tag">Women-Owned Businesses</span>
       </div>
-      <div style="background:#fff8e1;border-left:3px solid #ffc107;border-radius:0 6px 6px 0;padding:10px 14px;font-size:12px;color:#6b4c00;line-height:1.5;">
-        <strong>Preferred advertiser note:</strong> BeYOUtiful is passionate about supporting local, independent businesses and community organizations. Advertisers that align with natural wellness, community connection, and local values are the strongest fit.
-      </div>
+      <p style="margin-top:14px;"><strong>Preferred advertiser note:</strong> BeYOUtiful is passionate about supporting local, independent businesses and community organizations. Advertisers that align with natural wellness, community connection, and local values are the strongest fit.</p>
     </div>
 
-    <!-- What you get -->
-    <div class="card">
+    <!-- EVERY ADVERTISER RECEIVES -->
+    <div class="section">
       <h2>✅ Every Advertiser Receives</h2>
-      <div class="what-grid">
-        <div class="what-item"><div class="what-icon">📋</div><div>Your materials displayed at your chosen location(s) in the store</div></div>
-        <div class="what-item"><div class="what-icon">🤝</div><div>Recognition as a community supporter by the BeYOUtiful team</div></div>
-        <div class="what-item"><div class="what-icon">👥</div><div>Exposure to loyal, local-first Spokane shoppers</div></div>
-        <div class="what-item"><div class="what-icon">📍</div><div>Listed as a community partner in the store</div></div>
-      </div>
-      <div style="background:#f0f7f4;border-left:3px solid #2d6a4f;border-radius:0 6px 6px 0;padding:10px 14px;margin-top:12px;font-size:12px;color:#4a5568;line-height:1.6;">
-        <strong style="color:#2d6a4f;">Higher packages also include:</strong> social media mentions to BeYOUtiful's 9,600+ Instagram followers, verbal mentions to customers, promotional material distribution, and farmers market activation options.
-      </div>
+      <ul class="perks">
+        <li><span class="icon">📋</span>Your materials displayed at your chosen location(s) in the store</li>
+        <li><span class="icon">🤝</span>Recognition as a community supporter by the BeYOUtiful team</li>
+        <li><span class="icon">👥</span>Exposure to loyal, local-first Spokane shoppers</li>
+        <li><span class="icon">📍</span>Listed as a community partner in the store</li>
+      </ul>
+      <p style="margin-top:12px;"><strong>Higher packages also include:</strong> social media mentions to BeYOUtiful's 9,600+ Instagram followers, verbal mentions to customers, promotional material distribution, and farmers market activation options.</p>
     </div>
 
   </div>
 
-  <!-- Booking Card -->
-  <div>
-    <div class="booking-card">
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sidebar-card">
       <h3>Advertise Here</h3>
-      <div class="booking-subtitle">Pick your space and request to book.</div>
+      <div class="sidebar-sub">Pick your space and request to book — approval within 1 business day.</div>
 
       <div class="sample-badge">🎨 Sample Listing — Pricing estimated for illustration</div>
 
-      <div class="package selected" onclick="selectPkg(this,'Plant Bingo Night Sponsor','$25/event','#')">
-        <div class="package-top"><div class="package-name">🌿 Plant Bingo Night Sponsor</div><div class="package-price">$25/event</div></div>
-        <div class="package-desc">Your name on sponsor slide + verbal thank-you at Plant Bingo — a fun, engaged in-store community event. Perfect entry-level sponsorship!</div>
-      </div>
+      <!-- IN-STORE -->
+      <div class="pkg-section-label label-green">🏪 In-Store · Hillyard</div>
 
-      <div class="package" onclick="selectPkg(this,'Register Spotlight','$50/mo','#')">
-        <div class="package-top"><div class="package-name">🛍️ Register Spotlight</div><div class="package-price">$50/mo</div></div>
+      <div class="package" onclick="selectPkg(this, 'Register Spotlight', '$50/mo')">
+        <div class="package-top">
+          <div class="package-name">🛍️ Register Spotlight</div>
+          <div class="package-price">$50<span style="font-size:11px;font-weight:500;color:#5f6368">/mo</span></div>
+        </div>
         <div class="package-desc">Flyers, cards, or small display at checkout — prime decision-making moment</div>
+        <span class="freq freq-monthly">Monthly</span>
       </div>
 
-      <div class="package" onclick="selectPkg(this,'Farmers Market Add-On','$50/appearance','#')">
-        <div class="package-top"><div class="package-name">🌾 Farmers Market Add-On</div><div class="package-price">$50/appearance</div></div>
-        <div class="package-desc">Sponsor BeYOUtiful at a farmers market appearance — flyers, samples, or signage at their booth</div>
-      </div>
-
-      <div class="package" onclick="selectPkg(this,'Wall Display','$60/mo','#')">
-        <div class="package-top"><div class="package-name">🖼️ Wall Display</div><div class="package-price">$60/mo</div></div>
+      <div class="package" onclick="selectPkg(this, 'Wall Display', '$60/mo')">
+        <div class="package-top">
+          <div class="package-name">🖼️ Wall Display</div>
+          <div class="package-price">$60<span style="font-size:11px;font-weight:500;color:#5f6368">/mo</span></div>
+        </div>
         <div class="package-desc">Poster or signage on the interior wall — visible throughout the shopping experience</div>
+        <span class="freq freq-monthly">Monthly</span>
       </div>
 
-      <div class="package" onclick="selectPkg(this,'Window Display','$75/mo','#')">
-        <div class="package-top"><div class="package-name">🪟 Window Display</div><div class="package-price">$75/mo</div></div>
+      <div class="package" onclick="selectPkg(this, 'Window Display', '$75/mo')">
+        <div class="package-top">
+          <div class="package-name">🪟 Window Display</div>
+          <div class="package-price">$75<span style="font-size:11px;font-weight:500;color:#5f6368">/mo</span></div>
+        </div>
         <div class="package-desc">Your poster or decal in the street-facing window — visible to all Hillyard foot traffic</div>
+        <span class="freq freq-monthly">Monthly</span>
       </div>
 
-      <div class="package" onclick="selectPkg(this,'Front Door Feature','$75/mo','#')">
-        <div class="package-top"><div class="package-name">🚪 Front Door Feature</div><div class="package-price">$75/mo</div></div>
+      <div class="package" onclick="selectPkg(this, 'Front Door Feature', '$75/mo')">
+        <div class="package-top">
+          <div class="package-name">🚪 Front Door Feature</div>
+          <div class="package-price">$75<span style="font-size:11px;font-weight:500;color:#5f6368">/mo</span></div>
+        </div>
         <div class="package-desc">Signage at the main entrance — seen by every single customer who walks in</div>
+        <span class="freq freq-monthly">Monthly</span>
       </div>
 
-      <div class="package" onclick="selectPkg(this,'Full Store Package','$200/mo','#')">
-        <div class="popular-badge">Best Value</div>
-        <div class="package-top"><div class="package-name">⭐ Full Store Package <span class="package-save">Save $60</span></div><div class="package-price">$200/mo</div></div>
-        <div class="package-desc">All 4 spaces + social media mention to 9,600+ followers + verbal staff mention to customers</div>
+      <!-- EVENT SPONSORSHIP -->
+      <div class="pkg-section-label label-navy">🎉 Event Sponsorship</div>
+
+      <div class="package" onclick="selectPkg(this, 'Plant Bingo Night Sponsor', '$25/event')">
+        <div class="package-top">
+          <div class="package-name">🌿 Plant Bingo Night Sponsor</div>
+          <div class="package-price">$25<span style="font-size:11px;font-weight:500;color:#5f6368">/event</span></div>
+        </div>
+        <div class="package-desc">Your name on sponsor slide + verbal thank-you at Plant Bingo — a fun, engaged in-store community event. Perfect entry-level sponsorship!</div>
+        <span class="freq freq-perevent">Per Event</span>
+      </div>
+
+      <div class="package" onclick="selectPkg(this, 'Third Thursday / Workshop Sponsor', '$50/event')">
+        <div class="package-top">
+          <div class="package-name">🌙 Third Thursday / Workshop Sponsor</div>
+          <div class="package-price">$50<span style="font-size:11px;font-weight:500;color:#5f6368">/event</span></div>
+        </div>
+        <div class="package-desc">Named sponsor of a Third Thursday event or workshop (macramé class, etc.) · verbal recognition + social post mention + option to provide a sample or giveaway for attendees</div>
+        <span class="freq freq-perevent">Per Event</span>
+      </div>
+
+      <!-- MARKET INSERT -->
+      <div class="pkg-section-label label-navy">🛒 Market Insert</div>
+
+      <div class="package" onclick="selectPkg(this, 'Market Insert', '$50/mo')">
+        <div class="package-top">
+          <div class="package-name">🌿 Market Insert</div>
+          <div class="package-price">$50<span style="font-size:11px;font-weight:500;color:#5f6368">/mo</span></div>
+        </div>
+        <div class="package-desc">Your flyer, card, or sample included with BeYOUtiful's market setup for one month · distributed to customers at both Kendall Yards (Wednesdays) and Emerson-Garfield (Fridays)</div>
+        <span class="freq freq-monthly">Monthly</span>
+      </div>
+
+      <!-- FARMERS MARKET PRESENCE -->
+      <div class="pkg-section-label label-navy">🌾 Farmers Market Presence</div>
+
+      <div class="package" onclick="selectPkg(this, 'Farmers Market Add-On', '$50/appearance')">
+        <div class="package-top">
+          <div class="package-name">🌾 Farmers Market Add-On</div>
+          <div class="package-price">$50<span style="font-size:11px;font-weight:500;color:#5f6368">/appearance</span></div>
+        </div>
+        <div class="package-desc">Sponsor BeYOUtiful at a single farmers market appearance — flyers, samples, or signage at their booth · choose Kendall Yards (Wednesday) or Emerson-Garfield (Friday)</div>
+        <span class="freq freq-perappear">Per Appearance</span>
+      </div>
+
+      <!-- SOCIAL MEDIA -->
+      <div class="pkg-section-label label-navy">📣 Social Media</div>
+
+      <div class="package" onclick="selectPkg(this, 'Social Shoutout', '$50')">
+        <div class="package-top">
+          <div class="package-name">📣 Social Shoutout</div>
+          <div class="package-price">$50</div>
+        </div>
+        <div class="package-desc">One Instagram story or post mention to BeYOUtiful's 9,600+ followers · your handle tagged · link or description of your business included</div>
+        <span class="freq freq-onetime">One-Time</span>
+      </div>
+
+      <!-- BUNDLES -->
+      <div class="pkg-section-label label-navy">⭐ Bundles</div>
+
+      <div class="package" onclick="selectPkg(this, 'Full Store Package', '$200/mo')" style="position:relative;">
+        <div class="badge-popular">Best Value</div>
+        <div class="package-top">
+          <div class="package-name">⭐ Full Store Package <span class="package-save">Save $60</span></div>
+          <div class="package-price">$200<span style="font-size:11px;font-weight:500;color:#5f6368">/mo</span></div>
+        </div>
+        <div class="package-desc">All 4 in-store spaces (register, wall, window, front door) + social media mention to 9,600+ followers + verbal staff mention to customers</div>
+        <span class="freq freq-ongoing">Ongoing</span>
       </div>
 
       <div class="summary" id="summary">
-        <div class="summary-title" id="summaryTitle">Window Display — $75/mo</div>
-        <div style="color:#5f6368">Submit a quick request form. Once approved we'll confirm details within 1 business day.</div>
+        <div class="summary-title" id="summaryTitle"></div>
+        <div class="summary-note">You'll be taken to a short request form. Once approved we'll confirm details within 1 business day.</div>
       </div>
 
       <button class="book-btn" onclick="bookNow()">Request to Book →</button>
 
-      <hr>
-      <div class="trust-item">📋 Submit a quick 3-minute request form</div>
-      <div class="trust-item">✅ Reviewed and confirmed within 1 business day</div>
-      <div class="trust-item">🔒 Secure payment link sent upon approval</div>
-      <div class="trust-item">📧 Confirmation and materials form sent to your email</div>
-      <div class="contact-link">Have questions? Contact us first</div>
+      <div class="trust">
+        <hr>
+        <div class="trust-item">📋 Submit a quick 3-minute request form</div>
+        <div class="trust-item">✅ Reviewed and confirmed within 1 business day</div>
+        <div class="trust-item">🔒 Secure payment link sent upon approval</div>
+        <div class="trust-item">📧 Confirmation and materials form sent to your email</div>
+        <div class="contact-link" onclick="window.open('https://www.thelocalpostspokane.com/home','_blank')">Have questions? Contact us first</div>
+      </div>
+
     </div>
   </div>
+
 </div>
 
 <script>
-var selectedLink = '#';
-function selectPkg(el, name, price, link) {
+function selectPkg(el, name, price) {
   document.querySelectorAll('.package').forEach(p => p.classList.remove('selected'));
   el.classList.add('selected');
-  selectedLink = link;
   document.getElementById('summaryTitle').textContent = name + ' — ' + price;
   document.getElementById('summary').classList.add('show');
 }
@@ -352,5 +523,6 @@ function bookNow() {
   window.open('https://docs.google.com/forms/d/e/1FAIpQLSchD8nJNLro4uFf6oSdgXgsBPnXysBAai3Xz-84ZZ6_rQS4cQ/viewform?usp=header', '_blank');
 }
 </script>
+
 </body>
 </html>
