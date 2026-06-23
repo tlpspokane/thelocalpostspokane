@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>We F.E.W. — The Local Post</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Arial, sans-serif; background: #f5f7fa; color: #202124; }
+
+.nav {
+  background: #1e3a5f;
+  padding: 0 24px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-logo { font-size: 17px; font-weight: 700; color: white; letter-spacing: 0.01em; }
+.nav-links { display: flex; gap: 18px; }
+.nav-links a { text-decoration: none; color: rgba(255,255,255,0.82); font-size: 13px; }
+.nav-links a:hover { color: white; }
+
+.banner {
+  background: #7a1a1a;
+  color: white;
+  text-align: center;
+  padding: 9px 16px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* HERO — cinematic dark */
+.hero {
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a0505 40%, #7a1a1a 100%);
+  padding: 52px 32px 48px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(255,255,255,0.015) 3px, rgba(255,255,255,0.015) 4px);
+  pointer-events: none;
+}
+.hero-tag { display: inline-block; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.25); color: #f5c4c4; font-size: 11px; font-weight: 700; padding: 4px 14px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px; }
+.hero-title { font-size: 44px; font-weight: 900; color: white; margin-bottom: 4px; letter-spacing: 0.04em; text-shadow: 0 2px 12px rgba(0,0,0,0.6); }
+.hero-title span { color: #e05252; }
+.hero-sub { font-size: 15px; color: #f5c4c4; font-style: italic; margin-bottom: 6px; }
+.hero-tagline { font-size: 13px; color: rgba(255,255,255,0.65); }
+
+/* LAYOUT */
+.page { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; display: grid; grid-template-columns: 1fr 340px; gap: 20px; }
+
+/* STATS BAR */
+.stats-bar { grid-column: 1 / -1; background: linear-gradient(135deg, #0a0a0a 0%, #1a0505 40%, #7a1a1a 100%); border-radius: 8px; display: flex; padding: 4px 0; }
+.stat { flex: 1; text-align: center; padding: 14px 8px; border-right: 1px solid rgba(255,255,255,0.15); }
+.stat:last-child { border-right: none; }
+.stat-num { font-size: 20px; font-weight: 800; color: white; }
+.stat-label { font-size: 11px; color: rgba(255,255,255,0.75); margin-top: 3px; text-transform: uppercase; letter-spacing: 0.05em; }
+
+.social-row { display: flex; gap: 10px; flex-wrap: wrap; }
+.social-btn { display: inline-flex; align-items: center; gap: 6px; background: #f1f3f4; border: 1px solid #dadce0; color: #1e3a5f; font-size: 12px; font-weight: 600; padding: 6px 14px; border-radius: 20px; text-decoration: none; }
+.social-btn:hover { background: #e8eaed; }
+
+.section { background: white; border: 1px solid #dadce0; border-radius: 8px; padding: 22px; margin-bottom: 16px; }
+.section h2 { font-size: 16px; font-weight: 700; color: #1e3a5f; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid #f0f0f0; }
+.section p { font-size: 14px; line-height: 1.7; color: #3c4043; margin-bottom: 10px; }
+.section p:last-child { margin-bottom: 0; }
+
+/* MISSION CALLOUT */
+.mission-callout { background: linear-gradient(135deg, #1a0505, #2a0a0a); border-radius: 8px; padding: 22px 24px; margin-bottom: 16px; text-align: center; }
+.mission-callout .mc-title { font-size: 22px; font-weight: 900; color: white; letter-spacing: 0.06em; margin-bottom: 10px; }
+.mission-callout .mc-title span { color: #e05252; }
+.mission-callout p { font-size: 14px; color: rgba(255,255,255,0.78); line-height: 1.7; margin: 0; }
+
+/* APPLE BOX CALLOUT */
+.applebox-callout {
+  background: linear-gradient(135deg, #1a0a2a, #2a1a3a);
+  border-radius: 8px;
+  padding: 20px 22px;
+  margin-bottom: 16px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+.applebox-callout .ab-icon { font-size: 32px; flex-shrink: 0; }
+.applebox-callout h3 { font-size: 15px; font-weight: 700; color: white; margin-bottom: 6px; }
+.applebox-callout p { font-size: 13px; color: rgba(255,255,255,0.78); line-height: 1.6; margin: 0; }
+.applebox-callout .ab-tag { display: inline-block; background: rgba(224,82,82,0.25); border: 1px solid rgba(224,82,82,0.5); color: #f5c4c4; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 10px; margin-top: 8px; text-transform: uppercase; letter-spacing: 0.06em; }
+
+/* OFFERINGS */
+.offerings-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 4px; }
+.offering-item { background: #f8f9fa; border: 1px solid #dadce0; border-radius: 8px; padding: 14px; border-top: 3px solid #7a1a1a; }
+.offering-item .o-icon { font-size: 22px; margin-bottom: 6px; }
+.offering-item .o-title { font-size: 13px; font-weight: 700; color: #1e3a5f; margin-bottom: 4px; }
+.offering-item .o-desc { font-size: 12px; color: #5f6368; line-height: 1.5; }
+
+/* PHOTO GRID */
+.photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 4px; }
+.photo-grid img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 6px; display: block; cursor: zoom-in; transition: opacity 0.15s; }
+.photo-grid img:hover { opacity: 0.88; }
+.photo-note { font-size: 12px; color: #5f6368; margin-top: 10px; background: #f8f9fa; padding: 10px 12px; border-radius: 6px; border-left: 3px solid #7a1a1a; line-height: 1.5; }
+
+/* TAGS */
+.tag-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.tag { background: #f1f3f4; border: 1px solid #dadce0; color: #1e3a5f; font-size: 12px; font-weight: 600; padding: 5px 13px; border-radius: 20px; }
+
+/* CHIPS */
+.chip-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.chip { background: #fdf0f0; border: 1px solid #f0c4c4; color: #5a1010; font-size: 12px; font-weight: 600; padding: 5px 13px; border-radius: 20px; }
+
+/* PARTNERS */
+.partners-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.partner-chip { background: #f1f3f4; border: 1px solid #dadce0; color: #1e3a5f; font-size: 12px; font-weight: 600; padding: 6px 14px; border-radius: 20px; text-decoration: none; }
+
+/* PERKS */
+.perks { list-style: none; margin-top: 4px; }
+.perks li { display: flex; align-items: flex-start; gap: 10px; padding: 9px 0; border-bottom: 1px solid #f0f0f0; font-size: 14px; color: #3c4043; }
+.perks li:last-child { border-bottom: none; }
+.perks li .icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+
+/* LIGHTBOX */
+.lightbox-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 9999; align-items: center; justify-content: center; cursor: zoom-out; }
+.lightbox-overlay.active { display: flex; }
+.lightbox-overlay img { max-width: 92vw; max-height: 92vh; object-fit: contain; border-radius: 4px; box-shadow: 0 8px 40px rgba(0,0,0,0.8); cursor: default; }
+.lightbox-close { position: fixed; top: 18px; right: 22px; color: white; font-size: 32px; font-weight: 300; cursor: pointer; z-index: 10000; user-select: none; }
+.lightbox-close:hover { color: #ccc; }
+
+/* SIDEBAR */
+.sidebar { position: sticky; top: 20px; align-self: start; }
+.sidebar-card { background: white; border: 1px solid #dadce0; border-radius: 8px; padding: 22px; }
+.sidebar-card h3 { font-size: 15px; font-weight: 700; color: #1e3a5f; margin-bottom: 4px; }
+.sidebar-sub { font-size: 12px; color: #5f6368; margin-bottom: 16px; }
+
+.pkg-section-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; padding-bottom: 6px; border-bottom: 2px solid; margin: 14px 0 8px; }
+.pkg-section-label:first-of-type { margin-top: 0; }
+.label-film  { color: #7a1a1a; border-color: #f0c4c4; }
+.label-navy  { color: #1e3a5f; border-color: #c5d5e8; }
+
+.package { border: 1.5px solid #dadce0; border-radius: 8px; padding: 13px 15px; margin-bottom: 9px; cursor: pointer; position: relative; transition: border-color 0.15s, background 0.15s; }
+.package:hover { border-color: #1e3a5f; background: #f8fafc; }
+.package.selected { border-color: #1e3a5f; background: #eef3f9; }
+.package-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+.package-name { font-size: 13px; font-weight: 700; color: #202124; }
+.package-price { font-size: 15px; font-weight: 800; color: #1e3a5f; white-space: nowrap; }
+.package-desc { font-size: 12px; color: #5f6368; margin-top: 4px; line-height: 1.5; }
+.package-save { font-size: 10px; font-weight: 700; color: #7a1a1a; background: #fdf0f0; padding: 2px 6px; border-radius: 10px; margin-left: 5px; }
+.badge-popular { position: absolute; top: -1px; right: 12px; background: #1e3a5f; color: white; font-size: 9px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 8px; border-radius: 0 0 6px 6px; }
+
+.freq { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 10px; margin-top: 6px; text-transform: uppercase; letter-spacing: 0.05em; }
+.freq-onetime  { background: #f1f3f4; color: #5f6368; }
+.freq-perevent { background: #fdf0f0; color: #7a1a1a; }
+.freq-monthly  { background: #e6f4ea; color: #1e7e34; }
+.freq-ongoing  { background: #fce8e6; color: #c5221f; }
+
+.sample-badge { background: #fff8e1; border: 1px solid #ffe082; border-radius: 6px; padding: 7px 10px; font-size: 11px; color: #7b5c00; font-weight: 600; margin-bottom: 14px; text-align: center; }
+
+.summary { background: #eef3f9; border: 1px solid #c5d5e8; border-radius: 6px; padding: 12px 14px; margin: 12px 0; display: none; }
+.summary.show { display: block; }
+.summary-title { font-size: 13px; font-weight: 700; color: #1e3a5f; margin-bottom: 4px; }
+.summary-note { font-size: 12px; color: #5f6368; line-height: 1.5; }
+
+.book-btn { width: 100%; background: #1e3a5f; color: white; border: none; border-radius: 8px; padding: 14px; font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 4px; transition: background 0.15s; }
+.book-btn:hover { background: #163050; }
+
+.trust { margin-top: 16px; }
+.trust hr { border: none; border-top: 1px solid #f0f0f0; margin-bottom: 12px; }
+.trust-item { font-size: 12px; color: #5f6368; padding: 4px 0; }
+.contact-link { font-size: 12px; color: #1e3a5f; font-weight: 600; margin-top: 10px; cursor: pointer; text-decoration: underline; }
+.contact-link:hover { color: #163050; }
+
+@media (max-width: 700px) {
+  .page { grid-template-columns: 1fr; }
+  .sidebar { position: static; }
+  .stats-bar { flex-wrap: wrap; }
+  .stat { min-width: 50%; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.15); }
+  .stat:last-child { border-bottom: none; }
+  .hero-title { font-size: 32px; }
+  .hero { padding: 36px 20px 32px; }
+  .offerings-grid { grid-template-columns: 1fr; }
+  .applebox-callout { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<!-- LIGHTBOX -->
+<div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
+  <span class="lightbox-close" onclick="closeLightbox()">&#x2715;</span>
+  <img id="lightbox-img" src="" alt="" onclick="event.stopPropagation()">
+</div>
+
+<nav class="nav">
+  <div class="nav-logo">📌 The Local Post</div>
+  <div class="nav-links">
+    <a href="https://www.thelocalpostspokane.com/browse-opportunities">Browse Opportunities</a>
+    <a href="https://www.thelocalpostspokane.com/home">Home</a>
+  </div>
+</nav>
+
+<div class="banner">
+  🎬 2,400+ members · Monthly mixers · The Apple Box creative space · Above the historic Garland Theater
+</div>
+
+<div class="hero">
+  <div class="hero-tag">🎬 Nonprofit · Film Community · Spokane, WA</div>
+  <div class="hero-title">We <span>F.E.W.</span></div>
+  <div class="hero-sub">Filmmakers of Eastern Washington</div>
+  <div class="hero-tagline">Community Engagement &amp; Workforce Development for Eastern Washington's Film Scene · we-few.net</div>
+</div>
+
+<div class="page">
+
+  <div class="stats-bar">
+    <div class="stat">
+      <div class="stat-num">2,400+</div>
+      <div class="stat-label">Members</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">&lt; 2 yrs</div>
+      <div class="stat-label">Time to Grow</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">Monthly</div>
+      <div class="stat-label">Mixers & Events</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">Nonprofit</div>
+      <div class="stat-label">Community Driven</div>
+    </div>
+  </div>
+
+  <div class="left-col">
+
+    <!-- SOCIAL -->
+    <div class="section">
+      <div class="social-row">
+        <a class="social-btn" href="https://www.instagram.com/we_f.e.w" target="_blank">📸 @we_f.e.w</a>
+        <a class="social-btn" href="https://Facebook.com/groups/wefewforum" target="_blank">👥 Facebook Group</a>
+        <a class="social-btn" href="https://www.we-few.net" target="_blank">🌐 we-few.net</a>
+        <a class="social-btn" href="https://www.linkedin.com/company/105597178" target="_blank">💼 LinkedIn</a>
+      </div>
+    </div>
+
+    <!-- MISSION -->
+    <div class="mission-callout">
+      <div class="mc-title">We <span>F.E.W.</span> We Happy <span>F.E.W.</span></div>
+      <p>We F.E.W. (Filmmakers of Eastern Washington) is a Spokane-based nonprofit providing community engagement and workforce development for members of the Eastern Washington film scene. Running monthly mixers, classes, and full-scale film productions, they work to keep community confidence high by ensuring everyone — at any experience level — has access to professional-level facilities, equipment, hands-on training, and direct connections to industry professionals.</p>
+    </div>
+
+    <!-- THE APPLE BOX -->
+    <div class="applebox-callout">
+      <div class="ab-icon">🎬</div>
+      <div>
+        <h3>The Apple Box — Community Creative Space</h3>
+        <p>We F.E.W. manages The Apple Box, a community access arts and media space perched above the historic Garland Theater in Spokane's Garland District. Managed by community volunteers, The Apple Box gives local filmmakers and creatives a dedicated physical home — a real space above one of Spokane's most beloved and storied cultural landmarks, where films like Benny &amp; Joon were shot in the neighborhood.</p>
+        <span class="ab-tag">📍 Above the Garland Theater · Garland District, Spokane</span>
+      </div>
+    </div>
+
+    <!-- PHOTOS -->
+    <div class="section">
+      <h2>📸 Community Photos</h2>
+      <div class="photo-grid">
+        <img src="we-few-1.jpg" alt="We F.E.W. community group" onclick="openLightbox('we-few-1.jpg', 'We F.E.W. community group')">
+        <img src="we-few-2.jpg" alt="We F.E.W. mixer event" onclick="openLightbox('we-few-2.jpg', 'We F.E.W. mixer event')">
+        <img src="we-few-3.jpg" alt="The Apple Box creative space above the Garland Theater" onclick="openLightbox('we-few-3.jpg', 'The Apple Box creative space above the Garland Theater')">
+      </div>
+      <div class="photo-note">
+        🎬 <strong>Photos coming soon.</strong> Visit <a href="https://www.we-few.net/gallery" target="_blank" style="color:#7a1a1a;">we-few.net/gallery</a> to see current community and event photos.
+      </div>
+    </div>
+
+    <!-- WHAT THEY DO -->
+    <div class="section">
+      <h2>🎥 What We F.E.W. Offers</h2>
+      <div class="offerings-grid">
+        <div class="offering-item">
+          <div class="o-icon">🍻</div>
+          <div class="o-title">Monthly Mixers</div>
+          <div class="o-desc">Recurring in-person networking events — filmmakers, crew, writers, actors, and creatives connecting face-to-face every month. Open to all experience levels, all ages.</div>
+        </div>
+        <div class="offering-item">
+          <div class="o-icon">🎓</div>
+          <div class="o-title">Classes & Workshops</div>
+          <div class="o-desc">Hands-on training covering the full filmmaking craft — accessible to beginners and professionals alike, with connections to industry mentors across the field.</div>
+        </div>
+        <div class="offering-item">
+          <div class="o-icon">🎬</div>
+          <div class="o-title">Full-Scale Productions</div>
+          <div class="o-desc">We F.E.W. produces real films — members work on actual sets alongside professionals, gaining the real-world experience that changes careers.</div>
+        </div>
+        <div class="offering-item">
+          <div class="o-icon">🏛️</div>
+          <div class="o-title">The Apple Box Space</div>
+          <div class="o-desc">A community access arts and media space above the Garland Theater — volunteer-managed, open to creatives, and a physical home for Spokane's film scene.</div>
+        </div>
+        <div class="offering-item">
+          <div class="o-icon">🎥</div>
+          <div class="o-title">Equipment Access</div>
+          <div class="o-desc">Professional-level equipment and facilities — removing the biggest barrier to entry and ensuring everyone has what they need to make their project happen.</div>
+        </div>
+        <div class="offering-item">
+          <div class="o-icon">🌐</div>
+          <div class="o-title">Multi-Platform Community</div>
+          <div class="o-desc">Active presence on Instagram, Facebook (2,400+ member group), Discord, LinkedIn, and Bluesky — a digitally engaged community that shares, supports, and amplifies.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <div class="section">
+      <h2>About This Opportunity</h2>
+      <p>We F.E.W. has grown to 2,400+ members in under two years — a remarkable pace that reflects how deeply Spokane's creative community was waiting for this kind of organization. The Facebook group alone serves as the primary hub where members post about projects, share opportunities, ask questions, and connect across every filmmaking department: directors, cinematographers, writers, actors, editors, sound designers, and passionate newcomers.</p>
+      <p>Monthly mixers are the heartbeat of the community — real in-person gatherings where people show up because they care. The Apple Box above the Garland Theater gives members a physical creative home that's become a destination. And productions give sponsors something rare: a credit in an actual film, made by and for the Eastern Washington creative community.</p>
+      <p>We F.E.W. has also hosted large-scale events at the Garland Theater itself — including a free Oscar Night screening open to the public, complete with ballots, dress code, and a red carpet. These events draw from well beyond the core membership and put sponsors in front of Spokane's broader arts and culture audience.</p>
+    </div>
+
+    <!-- PARTNER ORGS -->
+    <div class="section">
+      <h2>🤝 Partner Organizations</h2>
+      <div class="partners-row">
+        <a class="partner-chip" href="https://lynchnw.com" target="_blank">Lynch NW</a>
+        <a class="partner-chip" href="https://www.nwpfilm.com" target="_blank">NWP Film</a>
+        <a class="partner-chip" href="https://smfcu.org" target="_blank">SMFCU</a>
+        <a class="partner-chip" href="https://www.owc.com" target="_blank">OWC</a>
+        <a class="partner-chip" href="https://garlandtheater.org" target="_blank">Garland Theater</a>
+      </div>
+    </div>
+
+    <!-- WHO YOU'RE REACHING -->
+    <div class="section">
+      <h2>👥 Who You're Reaching</h2>
+      <div class="tag-list">
+        <span class="tag">Filmmakers & Directors</span>
+        <span class="tag">Cinematographers</span>
+        <span class="tag">Writers & Screenwriters</span>
+        <span class="tag">Actors & Performers</span>
+        <span class="tag">Editors & Post-Production</span>
+        <span class="tag">All Experience Levels</span>
+        <span class="tag">All Ages</span>
+        <span class="tag">Spokane & Eastern WA</span>
+        <span class="tag">Arts & Culture Community</span>
+        <span class="tag">Garland District Locals</span>
+      </div>
+      <p style="margin-top:14px;">This is an intentional, creative, mission-driven community. Members don't just consume content — they make it. They're vocal advocates for the people and businesses that support them, and in a community this tight-knit, a sponsor's name travels fast and lands with meaning.</p>
+    </div>
+
+    <!-- ADVERTISER FIT -->
+    <div class="section">
+      <h2>🎯 Advertiser Fit</h2>
+      <p>Best fits are businesses that serve creative professionals, support community arts, or simply want meaningful association with one of Spokane's most dynamic and fast-growing creative organizations.</p>
+      <div class="chip-grid">
+        <span class="chip">Production Equipment & Gear</span>
+        <span class="chip">Tech & Software</span>
+        <span class="chip">Coffee Shops & Cafes</span>
+        <span class="chip">Restaurants & Food</span>
+        <span class="chip">Recording & Audio Studios</span>
+        <span class="chip">Local Venues & Event Spaces</span>
+        <span class="chip">Marketing & Design Services</span>
+        <span class="chip">Education & Training</span>
+        <span class="chip">Legal & Business Services</span>
+        <span class="chip">Art Supply & Creative Goods</span>
+        <span class="chip">Community-Minded Brands</span>
+        <span class="chip">Nonprofit Partners</span>
+      </div>
+    </div>
+
+    <!-- EVERY ADVERTISER RECEIVES -->
+    <div class="section">
+      <h2>✅ Every Sponsor Receives</h2>
+      <ul class="perks">
+        <li><span class="icon">🎬</span>Recognition as a supporter of Eastern Washington's film and creative community</li>
+        <li><span class="icon">👥</span>Exposure to 2,400+ creative professionals, enthusiasts, and community members</li>
+        <li><span class="icon">📋</span>Your business featured in community materials, event signage, or digital communications</li>
+        <li><span class="icon">🤝</span>Association with a fast-growing, nonprofit-backed organization with real community trust</li>
+      </ul>
+      <p style="margin-top:12px;"><strong>Higher packages also include:</strong> social mentions across Instagram, Facebook, LinkedIn, and Discord; verbal recognition at mixers and events; The Apple Box signage; film production credits; and the option to sponsor a large-format public event at the Garland Theater.</p>
+    </div>
+
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sidebar-card">
+      <h3>Sponsor We F.E.W.</h3>
+      <div class="sidebar-sub">Pick your package and request to book — approval within 1 business day.</div>
+
+      <div class="sample-badge">🎨 Sample Listing — Pricing estimated for illustration</div>
+
+      <!-- COMMUNITY -->
+      <div class="pkg-section-label label-film">🎬 Community Sponsorship</div>
+
+      <div class="package" onclick="selectPkg(this, 'Community Supporter', '$25')">
+        <div class="package-top">
+          <div class="package-name">🤝 Community Supporter</div>
+          <div class="package-price">$25</div>
+        </div>
+        <div class="package-desc">Your business name listed on a community sponsor board displayed at The Apple Box space and at monthly mixer events — seen by every member who walks through the door</div>
+        <span class="freq freq-onetime">One-Time</span>
+      </div>
+
+      <div class="package" onclick="selectPkg(this, 'Social Shoutout', '$50')">
+        <div class="package-top">
+          <div class="package-name">📣 Social Shoutout</div>
+          <div class="package-price">$50</div>
+        </div>
+        <div class="package-desc">One mention across We F.E.W.'s social platforms (Instagram, Facebook, LinkedIn) · your brand introduced to 2,400+ creative community members</div>
+        <span class="freq freq-onetime">One-Time</span>
+      </div>
+
+      <!-- APPLE BOX -->
+      <div class="pkg-section-label label-navy">🏛️ The Apple Box · Above the Garland</div>
+
+      <div class="package" onclick="selectPkg(this, 'Apple Box Display', '$75/mo')">
+        <div class="package-top">
+          <div class="package-name">🏛️ Apple Box Display</div>
+          <div class="package-price">$75<span style="font-size:11px;font-weight:500;color:#5f6368">/mo</span></div>
+        </div>
+        <div class="package-desc">Ad or signage displayed in The Apple Box creative space above the Garland Theater · seen by filmmakers and creatives using the space throughout the month</div>
+        <span class="freq freq-monthly">Monthly</span>
+      </div>
+
+      <!-- EVENTS -->
+      <div class="pkg-section-label label-navy">🍻 Event Sponsorship</div>
+
+      <div class="package" onclick="selectPkg(this, 'Mixer Sponsor', '$100')" style="position:relative;">
+        <div class="badge-popular">Most Popular</div>
+        <div class="package-top">
+          <div class="package-name">🍻 Mixer Sponsor</div>
+          <div class="package-price">$100</div>
+        </div>
+        <div class="package-desc">Named sponsor of one monthly mixer · verbal recognition to the crowd · signage at the event · social media mention before and after · optional giveaway or branded item for attendees</div>
+        <span class="freq freq-perevent">Per Event</span>
+      </div>
+
+      <div class="package" onclick="selectPkg(this, 'Class / Workshop Sponsor', '$75')">
+        <div class="package-top">
+          <div class="package-name">🎓 Class / Workshop Sponsor</div>
+          <div class="package-price">$75</div>
+        </div>
+        <div class="package-desc">Named sponsor of one class or training session · recognition at the start of the session · social post mention · optional materials or gift for participants</div>
+        <span class="freq freq-perevent">Per Class</span>
+      </div>
+
+      <div class="package" onclick="selectPkg(this, 'Garland Theater Event Sponsor', '$200')">
+        <div class="package-top">
+          <div class="package-name">🎭 Garland Theater Event Sponsor</div>
+          <div class="package-price">$200</div>
+        </div>
+        <div class="package-desc">Named sponsor of a large-format public event at the Garland Theater (e.g. Oscar Night, film screenings, premiere events) · signage in the theater + verbal recognition + social media before and after</div>
+        <span class="freq freq-perevent">Per Event</span>
+      </div>
+
+      <!-- PRODUCTION -->
+      <div class="pkg-section-label label-navy">🎥 Production Credit</div>
+
+      <div class="package" onclick="selectPkg(this, 'Production Credit Sponsor', '$200')">
+        <div class="package-top">
+          <div class="package-name">🎬 Production Credit Sponsor</div>
+          <div class="package-price">$200</div>
+        </div>
+        <div class="package-desc">Your brand credited in a We F.E.W. film production · social recognition during production and release · a permanent, lasting association with Eastern Washington storytelling</div>
+        <span class="freq freq-perevent">Per Production</span>
+      </div>
+
+      <!-- MONTHLY -->
+      <div class="pkg-section-label label-navy">⭐ Monthly & Ongoing</div>
+
+      <div class="package" onclick="selectPkg(this, 'Monthly Community Partner', '$150/mo')">
+        <div class="package-top">
+          <div class="package-name">📅 Monthly Community Partner</div>
+          <div class="package-price">$150<span style="font-size:11px;font-weight:500;color:#5f6368">/mo</span></div>
+        </div>
+        <div class="package-desc">Monthly social mentions + mixer recognition + Apple Box display + listed in community materials · sustained visibility with We F.E.W.'s growing network</div>
+        <span class="freq freq-monthly">Monthly</span>
+      </div>
+
+      <div class="package" onclick="selectPkg(this, 'Premier Partner', '$350/mo')">
+        <div class="package-top">
+          <div class="package-name">⭐ Premier Partner <span class="package-save">Best Value</span></div>
+          <div class="package-price">$350<span style="font-size:11px;font-weight:500;color:#5f6368">/mo</span></div>
+        </div>
+        <div class="package-desc">Monthly mixer sponsorship + class sponsorship + Apple Box display + 3 social mentions across all platforms + production credit · deepest integration with We F.E.W.'s community and mission</div>
+        <span class="freq freq-ongoing">Ongoing</span>
+      </div>
+
+      <div class="summary" id="summary">
+        <div class="summary-title" id="summaryTitle"></div>
+        <div class="summary-note">You'll be taken to a short request form. Once approved, we'll confirm details within 1 business day.</div>
+      </div>
+
+      <button class="book-btn" onclick="bookNow()">Request to Book →</button>
+
+      <div class="trust">
+        <hr>
+        <div class="trust-item">📋 Submit a quick 3-minute request form</div>
+        <div class="trust-item">✅ We'll review and confirm within 1 business day</div>
+        <div class="trust-item">🔒 Secure payment link sent upon approval</div>
+        <div class="trust-item">📧 Confirmation and materials form sent to your email</div>
+        <div class="contact-link" onclick="window.open('https://www.thelocalpostspokane.com/home','_blank')">Have questions? Contact us first</div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+function openLightbox(src, alt) {
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox-img').alt = alt || '';
+  document.getElementById('lightbox').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('active');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeLightbox(); });
+function selectPkg(el, name, price) {
+  document.querySelectorAll('.package').forEach(p => p.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById('summaryTitle').textContent = name + ' — ' + price;
+  document.getElementById('summary').classList.add('show');
+}
+function bookNow() {
+  window.open('https://docs.google.com/forms/d/e/1FAIpQLSchD8nJNLro4uFf6oSdgXgsBPnXysBAai3Xz-84ZZ6_rQS4cQ/viewform?usp=header', '_blank');
+}
+</script>
+
+</body>
+</html>
