@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rockwood Bakery — The Local Post</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Arial, sans-serif; background: #f5f7fa; color: #202124; }
+.nav { background: #1e3a5f; padding: 0 24px; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+.nav-logo { font-size: 17px; font-weight: 700; color: white; }
+.nav-links { display: flex; gap: 18px; }
+.nav-links a { text-decoration: none; color: rgba(255,255,255,0.82); font-size: 13px; }
+.nav-links a:hover { color: white; }
+
+.banner { background: #7a4e20; color: white; text-align: center; padding: 9px 16px; font-size: 13px; font-weight: 600; }
+
+/* HERO — warm toasty wheat/brown */
+.hero {
+  background: linear-gradient(135deg, #3a1f08 0%, #7a4e20 45%, #b87a40 100%);
+  padding: 52px 32px 48px;
+  text-align: center;
+}
+.hero-tag { display: inline-block; background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.32); color: #fde8c8; font-size: 11px; font-weight: 700; padding: 4px 14px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px; }
+.hero-title { font-size: 42px; font-weight: 800; color: white; margin-bottom: 6px; text-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+.hero-sub { font-size: 15px; color: #fde8c8; font-style: italic; margin-bottom: 6px; }
+.hero-tagline { font-size: 13px; color: rgba(255,255,255,0.75); }
+
+.page { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; display: grid; grid-template-columns: 1fr 340px; gap: 20px; }
+
+.stats-bar { grid-column: 1 / -1; background: linear-gradient(135deg, #3a1f08 0%, #7a4e20 50%, #b87a40 100%); border-radius: 8px; display: flex; padding: 4px 0; }
+.stat { flex: 1; text-align: center; padding: 14px 8px; border-right: 1px solid rgba(255,255,255,0.2); }
+.stat:last-child { border-right: none; }
+.stat-num { font-size: 20px; font-weight: 800; color: white; }
+.stat-label { font-size: 11px; color: rgba(255,255,255,0.82); margin-top: 3px; text-transform: uppercase; letter-spacing: 0.05em; }
+
+.social-row { display: flex; gap: 10px; flex-wrap: wrap; }
+.social-btn { display: inline-flex; align-items: center; gap: 6px; background: #f1f3f4; border: 1px solid #dadce0; color: #1e3a5f; font-size: 12px; font-weight: 600; padding: 6px 14px; border-radius: 20px; text-decoration: none; }
+.social-btn:hover { background: #e8eaed; }
+
+.section { background: white; border: 1px solid #dadce0; border-radius: 8px; padding: 22px; margin-bottom: 16px; }
+.section h2 { font-size: 16px; font-weight: 700; color: #1e3a5f; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid #f0f0f0; }
+.section p { font-size: 14px; line-height: 1.7; color: #3c4043; margin-bottom: 10px; }
+.section p:last-child { margin-bottom: 0; }
+
+/* HISTORY CALLOUT */
+.history-callout { background: linear-gradient(135deg, #fdf3e8, #fef8f2); border: 1px solid #e8c898; border-left: 4px solid #7a4e20; border-radius: 8px; padding: 18px 20px; margin-bottom: 16px; }
+.history-callout .hc-year { font-size: 28px; font-weight: 900; color: #3a1f08; line-height: 1; margin-bottom: 8px; }
+.history-callout h3 { font-size: 14px; font-weight: 700; color: #3a1f08; margin-bottom: 6px; }
+.history-callout p { font-size: 13px; color: #3c4043; line-height: 1.7; margin: 0; }
+
+/* PRESS */
+.press-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.press-badge { background: #fdf3e8; border: 1px solid #e8c898; color: #3a1f08; font-size: 12px; font-weight: 700; padding: 5px 14px; border-radius: 20px; }
+
+/* MENU ITEMS */
+.menu-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 4px; }
+.menu-item { background: #fdf3e8; border: 1px solid #e8c898; border-radius: 8px; padding: 13px; border-top: 3px solid #7a4e20; }
+.menu-item .m-icon { font-size: 20px; margin-bottom: 5px; }
+.menu-item .m-name { font-size: 13px; font-weight: 700; color: #3a1f08; margin-bottom: 3px; }
+.menu-item .m-desc { font-size: 12px; color: #5f6368; line-height: 1.5; }
+
+/* REVIEWS */
+.review-card { background: #f8f9fa; border: 1px solid #dadce0; border-radius: 8px; padding: 14px; margin-bottom: 10px; }
+.review-card .stars { color: #f4b400; font-size: 13px; margin-bottom: 4px; }
+.review-card p { font-size: 13px; color: #3c4043; line-height: 1.6; font-style: italic; margin: 0 0 6px; }
+.review-card .reviewer { font-size: 12px; color: #5f6368; font-weight: 600; }
+
+/* HOURS */
+.hours-row { display: flex; justify-content: space-between; padding: 7px 0; border-bottom: 1px solid #f0f0f0; font-size: 13px; color: #3c4043; }
+.hours-row:last-child { border-bottom: none; }
+.hours-row .day { font-weight: 600; color: #1e3a5f; }
+.hours-row .closed { color: #b0b0b0; }
+
+/* PHOTO GRID */
+.photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 4px; }
+.photo-grid img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 6px; display: block; cursor: zoom-in; transition: opacity 0.15s; }
+.photo-grid img:hover { opacity: 0.88; }
+.photo-note { font-size: 12px; color: #5f6368; margin-top: 10px; background: #f8f9fa; padding: 10px 12px; border-radius: 6px; border-left: 3px solid #7a4e20; line-height: 1.5; }
+
+.tag-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.tag { background: #f1f3f4; border: 1px solid #dadce0; color: #1e3a5f; font-size: 12px; font-weight: 600; padding: 5px 13px; border-radius: 20px; }
+.chip-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.chip { background: #fdf3e8; border: 1px solid #e8c898; color: #3a1f08; font-size: 12px; font-weight: 600; padding: 5px 13px; border-radius: 20px; }
+
+.perks { list-style: none; margin-top: 4px; }
+.perks li { display: flex; align-items: flex-start; gap: 10px; padding: 9px 0; border-bottom: 1px solid #f0f0f0; font-size: 14px; color: #3c4043; }
+.perks li:last-child { border-bottom: none; }
+.perks li .icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+
+/* LIGHTBOX */
+.lightbox-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.88); z-index: 9999; align-items: center; justify-content: center; cursor: zoom-out; }
+.lightbox-overlay.active { display: flex; }
+.lightbox-overlay img { max-width: 92vw; max-height: 92vh; object-fit: contain; border-radius: 4px; box-shadow: 0 8px 40px rgba(0,0,0,0.6); cursor: default; }
+.lightbox-close { position: fixed; top: 18px; right: 22px; color: white; font-size: 32px; font-weight: 300; cursor: pointer; z-index: 10000; user-select: none; }
+.lightbox-close:hover { color: #ccc; }
+
+/* SIDEBAR */
+.sidebar { position: sticky; top: 20px; align-self: start; }
+.sidebar-card { background: white; border: 1px solid #dadce0; border-radius: 8px; padding: 22px; }
+.sidebar-card h3 { font-size: 15px; font-weight: 700; color: #1e3a5f; margin-bottom: 4px; }
+.sidebar-sub { font-size: 12px; color: #5f6368; margin-bottom: 16px; }
+.pkg-section-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; padding-bottom: 6px; border-bottom: 2px solid; margin: 14px 0 8px; }
+.pkg-section-label:first-of-type { margin-top: 0; }
+.label-bread { color: #7a4e20; border-color: #e8c898; }
+.label-navy  { color: #1e3a5f; border-color: #c5d5e8; }
+
+.package { border: 1.5px solid #dadce0; border-radius: 8px; padding: 13px 15px; margin-bottom: 9px; cursor: pointer; position: relative; transition: border-color 0.15s, background 0.15s; }
+.package:hover { border-color: #1e3a5f; background: #f8fafc; }
+.package.selected { border-color: #1e3a5f; background: #eef3f9; }
+.package-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+.package-name { font-size: 13px; font-weight: 700; color: #202124; }
+.package-price { font-size: 15px; font-weight: 800; color: #1e3a5f; white-space: nowrap; }
+.package-desc { font-size: 12px; color: #5f6368; margin-top: 4px; line-height: 1.5; }
+.package-save { font-size: 10px; font-weight: 700; color: #7a4e20; background: #fdf3e8; padding: 2px 6px; border-radius: 10px; margin-left: 5px; }
+.badge-popular { position: absolute; top: -1px; right: 12px; background: #1e3a5f; color: white; font-size: 9px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 8px; border-radius: 0 0 6px 6px; }
+.freq { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 10px; margin-top: 6px; text-transform: uppercase; letter-spacing: 0.05em; }
+.freq-onetime { background: #f1f3f4; color: #5f6368; }
+.freq-monthly { background: #e6f4ea; color: #1e7e34; }
+.freq-ongoing { background: #fce8e6; color: #c5221f; }
+
+.sample-badge { background: #fff8e1; border: 1px solid #ffe082; border-radius: 6px; padding: 7px 10px; font-size: 11px; color: #7b5c00; font-weight: 600; margin-bottom: 14px; text-align: center; }
+.summary { background: #eef3f9; border: 1px solid #c5d5e8; border-radius: 6px; padding: 12px 14px; margin: 12px 0; display: none; }
+.summary.show { display: block; }
+.summary-title { font-size: 13px; font-weight: 700; color: #1e3a5f; margin-bottom: 4px; }
+.summary-note { font-size: 12px; color: #5f6368; line-height: 1.5; }
+.book-btn { width: 100%; background: #1e3a5f; color: white; border: none; border-radius: 8px; padding: 14px; font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 4px; transition: background 0.15s; }
+.book-btn:hover { background: #163050; }
+.trust { margin-top: 16px; }
+.trust hr { border: none; border-top: 1px solid #f0f0f0; margin-bottom: 12px; }
+.trust-item { font-size: 12px; color: #5f6368; padding: 4px 0; }
+.contact-link { font-size: 12px; color: #1e3a5f; font-weight: 600; margin-top: 10px; cursor: pointer; text-decoration: underline; }
+
+@media (max-width: 700px) {
+  .page { grid-template-columns: 1fr; }
+  .sidebar { position: static; }
+  .stats-bar { flex-wrap: wrap; }
+  .stat { min-width: 50%; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.2); }
+  .stat:last-child { border-bottom: none; }
+  .hero-title { font-size: 30px; }
+  .hero { padding: 36px 20px 32px; }
+  .menu-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
+  <span class="lightbox-close" onclick="closeLightbox()">&#x2715;</span>
+  <img id="lightbox-img" src="" alt="" onclick="event.stopPropagation()">
+</div>
+
+<nav class="nav">
+  <div class="nav-logo">📌 The Local Post</div>
+  <div class="nav-links">
+    <a href="https://www.thelocalpostspokane.com/browse-opportunities">Browse Opportunities</a>
+    <a href="https://www.thelocalpostspokane.com/home">Home</a>
+  </div>
+</nav>
+
+<div class="banner">🥐 A South Hill institution since 1912 · Cinnamon rolls · Quiche · Coffee · Near Manito Park</div>
+
+<div class="hero">
+  <div class="hero-tag">🥐 Bakery & Café · South Hill · Spokane, WA</div>
+  <div class="hero-title">Rockwood Bakery</div>
+  <div class="hero-sub">A century of community, baked fresh every morning.</div>
+  <div class="hero-tagline">315 E 18th Ave · South Hill · Near Manito Park · (509) 747-8691</div>
+</div>
+
+<div class="page">
+
+  <div class="stats-bar">
+    <div class="stat"><div class="stat-num">1912</div><div class="stat-label">Original Building</div></div>
+    <div class="stat"><div class="stat-num">4.7 ★</div><div class="stat-label">707 Reviews</div></div>
+    <div class="stat"><div class="stat-num">Tue–Sat</div><div class="stat-label">8am–2pm</div></div>
+    <div class="stat"><div class="stat-num">South Hill</div><div class="stat-label">Near Manito Park</div></div>
+  </div>
+
+  <div class="left-col">
+
+    <div class="section">
+      <div class="social-row">
+        <a class="social-btn" href="https://www.visitspokane.com/directory/rockwood-bakery/" target="_blank">🗺️ Visit Spokane</a>
+        <a class="social-btn" href="https://joe.coffee/locations/wa/spokane/rockwood-bakery-spokane/" target="_blank">☕ Order Coffee</a>
+        <a class="social-btn" href="tel:5097478691">📞 (509) 747-8691</a>
+      </div>
+    </div>
+
+    <!-- HISTORY CALLOUT -->
+    <div class="history-callout">
+      <div class="hc-year">Since 1912</div>
+      <h3>A Century of Community — Featured in Edible Inland Northwest</h3>
+      <p>The building at 315 E 18th Ave was built in 1912 as Rockwood Market, a neighborhood grocery store serving South Hill families when the neighborhood was just coming into its own. Over a century later, the same building now houses Rockwood Bakery — still a community hub, still serving the neighbors who walk down the street from Manito Park, still buzzing with the rhythm of everyday Spokane life. Edible Inland Northwest called it "a bustling community hub, always abuzz with activity."</p>
+    </div>
+
+    <!-- PRESS -->
+    <div class="section">
+      <h2>📰 Featured In</h2>
+      <div class="press-row">
+        <span class="press-badge">📖 Edible Inland Northwest</span>
+        <span class="press-badge">🗺️ Visit Spokane</span>
+        <span class="press-badge">⭐ TripAdvisor</span>
+        <span class="press-badge">☕ Joe Coffee</span>
+      </div>
+    </div>
+
+    <!-- PHOTOS -->
+    <div class="section">
+      <h2>📸 Bakery Photos</h2>
+      <div class="photo-grid">
+        <img src="rockwood-1.jpg" alt="Rockwood Bakery interior warm space" onclick="openLightbox('rockwood-1.jpg','Rockwood Bakery interior')">
+        <img src="rockwood-2.jpg" alt="Rockwood Bakery cinnamon rolls and pastries" onclick="openLightbox('rockwood-2.jpg','Rockwood Bakery pastries')">
+        <img src="rockwood-3.jpg" alt="Rockwood Bakery coffee and baked goods" onclick="openLightbox('rockwood-3.jpg','Rockwood Bakery coffee')">
+      </div>
+      <div class="photo-note">
+        📍 <strong>About the space:</strong> Warm plank flooring, handwritten menu boards, large communal tables, and cozy nooks — a space that feels lived-in and genuinely welcoming. Walk-in from Manito Park or the surrounding Rockwood neighborhood. Photos to be updated.
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <div class="section">
+      <h2>About This Opportunity</h2>
+      <p>Rockwood Bakery is one of Spokane's most beloved institutions — a South Hill community anchor with a 4.7-star rating across 707 reviews, a 100+ year history in the same building, and a loyal neighborhood following that fills it every Tuesday through Saturday. Just a short walk from Manito Park, it draws both dedicated regulars and visitors making a morning of it.</p>
+      <p>What sets this placement apart is the dwell time and the mood. Rockwood isn't a grab-and-go coffee shop. Customers sit down with their cinnamon rolls and lattes, open their laptops or journals, and stay. Reviewers describe it as the perfect place to "slow down and savor the familiar." An ad here isn't glimpsed in passing — it's seen in full, by someone relaxed and lingering.</p>
+      <p>The handwritten menus and warm plank flooring give Rockwood a particular character: it's a place that values the personal and the local. That same sensibility applies to the businesses customers want to discover here. A thoughtful placement at Rockwood reaches South Hill's most community-rooted, local-first adults at their most receptive.</p>
+    </div>
+
+    <!-- MENU HIGHLIGHTS -->
+    <div class="section">
+      <h2>🥐 What They're Known For</h2>
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="m-icon">🌀</div>
+          <div class="m-name">Cinnamon Rolls</div>
+          <div class="m-desc">"Crispy like a danish yet perfectly buttery soft — possibly the best I've ever had." A reviewer favorite, consistently mentioned first.</div>
+        </div>
+        <div class="menu-item">
+          <div class="m-icon">🥧</div>
+          <div class="m-name">Quiche</div>
+          <div class="m-desc">Creamy, house-made quiche — a signature savory option that pairs perfectly with their coffee lineup</div>
+        </div>
+        <div class="menu-item">
+          <div class="m-icon">🍋</div>
+          <div class="m-name">Scones & Pastries</div>
+          <div class="m-desc">Mixed berry scones, zucchini walnut bread, blueberry muffins — baked fresh, generous portions</div>
+        </div>
+        <div class="menu-item">
+          <div class="m-icon">☕</div>
+          <div class="m-name">Coffee Drinks</div>
+          <div class="m-desc">Mocha lattes, matcha lattes, and espresso drinks — handcrafted, also available for online order via Joe Coffee</div>
+        </div>
+        <div class="menu-item">
+          <div class="m-icon">🍪</div>
+          <div class="m-name">Giant Cookies</div>
+          <div class="m-desc">"A snickerdoodle the size of a desert plate" — massive, fresh-baked, perfect road snack or treat</div>
+        </div>
+        <div class="menu-item">
+          <div class="m-icon">🥧</div>
+          <div class="m-name">Seasonal Pies</div>
+          <div class="m-desc">Strawberry rhubarb pie, whipped cream on the side — "awesome" per regular visitors from out of town</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REAL REVIEWS -->
+    <div class="section">
+      <h2>⭐ What Customers Say</h2>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p>"The cinnamon rolls are possibly the best I've ever had. They're crispy like a danish yet perfectly buttery soft, just mouthwatering. And the zucchini walnut bread was heavenly. Everything tastes so fresh and home baked and is very filling."</p>
+        <div class="reviewer">— Danielle L. · Google</div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p>"A gem in Spokane, Rockwood Bakery is a must-visit spot. Their coffee is spectacular, and the food is just as impressive. What really makes this place shine are the workers, who are an absolute delight. The atmosphere is neat and cozy — the perfect place to hang out with friends."</p>
+        <div class="reviewer">— Andre Lee · Google</div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p>"I love sitting here reading, journaling and just enjoying the atmosphere. The hand written menu is a fun touch — it gives you a comfortable feel. The warm plank flooring adds to the feel of the location. I definitely will work on my novels here."</p>
+        <div class="reviewer">— Aaron Linsdau · Google</div>
+      </div>
+    </div>
+
+    <!-- HOURS -->
+    <div class="section">
+      <h2>🕐 Hours</h2>
+      <div class="hours-row"><span class="day">Tuesday – Friday</span><span>8:00 AM – 2:00 PM</span></div>
+      <div class="hours-row"><span class="day">Saturday</span><span>8:00 AM – 2:00 PM</span></div>
+      <div class="hours-row"><span class="day">Sunday – Monday</span><span class="closed">Closed</span></div>
+      <p style="margin-top:10px;">315 E 18th Ave · Rockwood neighborhood · South Hill · Short walk from Manito Park · Free street parking available</p>
+    </div>
+
+    <!-- WHO YOU'RE REACHING -->
+    <div class="section">
+      <h2>👥 Who You're Reaching</h2>
+      <div class="tag-list">
+        <span class="tag">South Hill Locals</span>
+        <span class="tag">Manito Park Visitors</span>
+        <span class="tag">Remote Workers & Writers</span>
+        <span class="tag">Journal & Book Readers</span>
+        <span class="tag">Adults 25–65</span>
+        <span class="tag">Families</span>
+        <span class="tag">Foodies & Baked Goods Enthusiasts</span>
+        <span class="tag">Weekend Café Regulars</span>
+        <span class="tag">Spokane Visitors</span>
+        <span class="tag">Community-Oriented Locals</span>
+      </div>
+      <p style="margin-top:14px;">Rockwood's audience is South Hill's most loyal, most local, most community-oriented crowd. They walk here. They sit for an hour. They come back every week. This is Spokane's version of the neighborhood coffee shop that everyone has strong feelings about — and a placement here is seen by the people who love it most.</p>
+    </div>
+
+    <!-- ADVERTISER FIT -->
+    <div class="section">
+      <h2>🎯 Advertiser Fit</h2>
+      <p>Best fits align with the slow-down, community-rooted, local-first character of Rockwood Bakery. Businesses that serve the South Hill neighborhood and its residents are a natural match.</p>
+      <div class="chip-grid">
+        <span class="chip">Local Bookstores & Libraries</span>
+        <span class="chip">Yoga & Wellness Studios</span>
+        <span class="chip">Neighborhood Retail</span>
+        <span class="chip">Community Events</span>
+        <span class="chip">Candles & Home Goods</span>
+        <span class="chip">Stationery & Journals</span>
+        <span class="chip">South Hill Services</span>
+        <span class="chip">Gift Shops</span>
+        <span class="chip">Family Services</span>
+        <span class="chip">Health & Natural Food</span>
+        <span class="chip">Nonprofit Organizations</span>
+        <span class="chip">Dog-Friendly Businesses</span>
+      </div>
+    </div>
+
+    <!-- EVERY ADVERTISER RECEIVES -->
+    <div class="section">
+      <h2>✅ Every Advertiser Receives</h2>
+      <ul class="perks">
+        <li><span class="icon">🥐</span>Your business card, flyer, or materials displayed in a 100+ year South Hill institution</li>
+        <li><span class="icon">👥</span>Exposure to a deeply loyal, long-dwell-time audience of neighborhood regulars</li>
+        <li><span class="icon">📍</span>Placement in Spokane's most beloved community bakery near Manito Park</li>
+        <li><span class="icon">🤝</span>Association with a business that has been trusted by South Hill for over a century</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sidebar-card">
+      <h3>Advertise Here</h3>
+      <div class="sidebar-sub">Pick your package and request to book — approval within 1 business day.</div>
+
+      <div class="sample-badge">🎨 Sample Listing — Pricing estimated for illustration</div>
+
+      <!-- IN-BAKERY -->
+      <div class="pkg-section-label label-bread">🥐 In-Bakery · South Hill</div>
+
+      <div class="package" onclick="selectPkg(this,'Counter Card Display','$25/mo')">
+        <div class="package-top"><div class="package-name">📋 Counter Card Display</div><div class="package-price">$25<span style="font-size:11px;font-weight:500;color:#5f6368">/mo</span></div></div>
+        <div class="package-desc">Your card or small flyer at the counter or display case — seen by every customer while they order</div>
+        <span class="freq freq-monthly">Monthly</span>
+      </div>
+
+      <div class="package" onclick="selectPkg(this,'Table Card Feature','$50/mo')" style="position:relative;">
+        <div class="badge-popular">Most Popular</div>
+        <div class="package-top"><div class="package-name">🪧 Table Card Feature</div><div class="package-price">$50<span style="font-size:11px;font-weight:500;color:#5f6368">/mo</span></div></div>
+        <div class="package-desc">Your branded card on every table in the bakery · seen by every dine-in customer while they linger over coffee and pastries — the audience that stays longest</div>
+        <span class="freq freq-monthly">Monthly</span>
+      </div>
+
+      <div class="package" onclick="selectPkg(this,'In-Bakery Feature Display','$100/mo')">
+        <div class="package-top"><div class="package-name">🖼️ In-Bakery Feature Display</div><div class="package-price">$100<span style="font-size:11px;font-weight:500;color:#5f6368">/mo</span></div></div>
+        <div class="package-desc">Printed or framed ad displayed in the bakery for 30 days · seen by regulars and visitors alike throughout the entire month · premium wall placement in one of Spokane's most beloved spaces</div>
+        <span class="freq freq-monthly">Monthly</span>
+      </div>
+
+      <div class="package" onclick="selectPkg(this,'Bag Insert','$75/mo')">
+        <div class="package-top"><div class="package-name">🛍️ Bag Insert</div><div class="package-price">$75<span style="font-size:11px;font-weight:500;color:#5f6368">/mo</span></div></div>
+        <div class="package-desc">Your flyer or card placed in every bakery bag · your brand goes home with every takeout customer from the bakery and via Joe Coffee online orders</div>
+        <span class="freq freq-monthly">Monthly</span>
+      </div>
+
+      <!-- SOCIAL -->
+      <div class="pkg-section-label label-navy">📣 Social Media</div>
+
+      <div class="package" onclick="selectPkg(this,'Social Shoutout','$50')">
+        <div class="package-top"><div class="package-name">📣 Social Shoutout</div><div class="package-price">$50</div></div>
+        <div class="package-desc">One social media mention · your handle tagged · reaches Rockwood Bakery's loyal South Hill following</div>
+        <span class="freq freq-onetime">One-Time</span>
+      </div>
+
+      <!-- BUNDLES -->
+      <div class="pkg-section-label label-navy">⭐ Bundles</div>
+
+      <div class="package" onclick="selectPkg(this,'Full Monthly Partner','$175/mo')">
+        <div class="package-top"><div class="package-name">🥇 Full Monthly Partner <span class="package-save">Save $25</span></div><div class="package-price">$175<span style="font-size:11px;font-weight:500;color:#5f6368">/mo</span></div></div>
+        <div class="package-desc">In-Bakery Feature Display + Table Cards + Social Shoutout · complete in-bakery visibility at South Hill's most beloved institution</div>
+        <span class="freq freq-ongoing">Ongoing</span>
+      </div>
+
+      <div class="summary" id="summary">
+        <div class="summary-title" id="summaryTitle"></div>
+        <div class="summary-note">You'll be taken to a short request form. Once approved, we'll confirm details within 1 business day.</div>
+      </div>
+
+      <button class="book-btn" onclick="bookNow()">Request to Book →</button>
+
+      <div class="trust">
+        <hr>
+        <div class="trust-item">📋 Submit a quick 3-minute request form</div>
+        <div class="trust-item">✅ We'll review and confirm within 1 business day</div>
+        <div class="trust-item">🔒 Secure payment link sent upon approval</div>
+        <div class="trust-item">📧 Confirmation and materials form sent to your email</div>
+        <div class="contact-link" onclick="window.open('https://www.thelocalpostspokane.com/home','_blank')">Have questions? Contact us first</div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+function openLightbox(src,alt){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox-img').alt=alt||'';document.getElementById('lightbox').classList.add('active');document.body.style.overflow='hidden';}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('active');document.body.style.overflow='';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox();});
+function selectPkg(el,name,price){document.querySelectorAll('.package').forEach(p=>p.classList.remove('selected'));el.classList.add('selected');document.getElementById('summaryTitle').textContent=name+' — '+price;document.getElementById('summary').classList.add('show');}
+function bookNow(){window.open('https://docs.google.com/forms/d/e/1FAIpQLSchD8nJNLro4uFf6oSdgXgsBPnXysBAai3Xz-84ZZ6_rQS4cQ/viewform?usp=header','_blank');}
+</script>
+</body>
+</html>
