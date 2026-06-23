@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lilac City Vendor Fair — The Local Post</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Arial, sans-serif; background: #f5f7fa; color: #202124; }
+.nav { background: #1e3a5f; padding: 0 24px; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+.nav-logo { font-size: 17px; font-weight: 700; color: white; }
+.nav-links { display: flex; gap: 18px; }
+.nav-links a { text-decoration: none; color: rgba(255,255,255,0.82); font-size: 13px; }
+.nav-links a:hover { color: white; }
+
+.banner { background: #7a4fa0; color: white; text-align: center; padding: 9px 16px; font-size: 13px; font-weight: 600; }
+
+/* HERO — lilac/violet gradient */
+.hero {
+  background: linear-gradient(135deg, #3d1a60 0%, #7a4fa0 45%, #b07ad4 100%);
+  padding: 52px 32px 48px;
+  text-align: center;
+}
+.hero-tag { display: inline-block; background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.32); color: #ead8f8; font-size: 11px; font-weight: 700; padding: 4px 14px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px; }
+.hero-title { font-size: 38px; font-weight: 800; color: white; margin-bottom: 6px; text-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+.hero-sub { font-size: 15px; color: #ead8f8; font-style: italic; margin-bottom: 6px; }
+.hero-tagline { font-size: 13px; color: rgba(255,255,255,0.75); }
+
+.page { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; display: grid; grid-template-columns: 1fr 340px; gap: 20px; }
+
+.stats-bar { grid-column: 1 / -1; background: linear-gradient(135deg, #3d1a60 0%, #7a4fa0 50%, #b07ad4 100%); border-radius: 8px; display: flex; padding: 4px 0; }
+.stat { flex: 1; text-align: center; padding: 14px 8px; border-right: 1px solid rgba(255,255,255,0.2); }
+.stat:last-child { border-right: none; }
+.stat-num { font-size: 20px; font-weight: 800; color: white; }
+.stat-label { font-size: 11px; color: rgba(255,255,255,0.82); margin-top: 3px; text-transform: uppercase; letter-spacing: 0.05em; }
+
+.social-row { display: flex; gap: 10px; flex-wrap: wrap; }
+.social-btn { display: inline-flex; align-items: center; gap: 6px; background: #f1f3f4; border: 1px solid #dadce0; color: #1e3a5f; font-size: 12px; font-weight: 600; padding: 6px 14px; border-radius: 20px; text-decoration: none; }
+.social-btn:hover { background: #e8eaed; }
+
+.section { background: white; border: 1px solid #dadce0; border-radius: 8px; padding: 22px; margin-bottom: 16px; }
+.section h2 { font-size: 16px; font-weight: 700; color: #1e3a5f; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid #f0f0f0; }
+.section p { font-size: 14px; line-height: 1.7; color: #3c4043; margin-bottom: 10px; }
+.section p:last-child { margin-bottom: 0; }
+
+/* FOUNDER CALLOUT */
+.founder-callout { background: linear-gradient(135deg, #f3ecfa, #f9f5fd); border: 1px solid #d0b0e8; border-left: 4px solid #7a4fa0; border-radius: 8px; padding: 18px 20px; margin-bottom: 16px; }
+.founder-callout h3 { font-size: 14px; font-weight: 700; color: #3d1a60; margin-bottom: 6px; }
+.founder-callout p { font-size: 13px; color: #3c4043; line-height: 1.7; margin: 0; }
+
+/* PRESS BADGES */
+.press-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.press-badge { background: #f3ecfa; border: 1px solid #d0b0e8; color: #3d1a60; font-size: 12px; font-weight: 700; padding: 5px 14px; border-radius: 20px; }
+
+/* SCHEDULE CARD */
+.schedule-card { background: #f3ecfa; border: 1px solid #d0b0e8; border-radius: 8px; padding: 16px 18px; margin-top: 4px; }
+.schedule-row { display: flex; justify-content: space-between; padding: 7px 0; border-bottom: 1px solid rgba(208,176,232,0.4); font-size: 13px; color: #3c4043; }
+.schedule-row:last-child { border-bottom: none; }
+.schedule-row .day { font-weight: 700; color: #3d1a60; }
+
+/* FEATURES GRID */
+.features-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 4px; }
+.feature-item { background: #f3ecfa; border: 1px solid #d0b0e8; border-radius: 8px; padding: 13px 14px; }
+.feature-item .f-icon { font-size: 20px; margin-bottom: 5px; }
+.feature-item .f-title { font-size: 13px; font-weight: 700; color: #3d1a60; margin-bottom: 3px; }
+.feature-item .f-desc { font-size: 12px; color: #5f6368; line-height: 1.5; }
+
+/* PHOTO GRID */
+.photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 4px; }
+.photo-grid img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 6px; display: block; cursor: zoom-in; transition: opacity 0.15s; }
+.photo-grid img:hover { opacity: 0.88; }
+.photo-note { font-size: 12px; color: #5f6368; margin-top: 10px; background: #f8f9fa; padding: 10px 12px; border-radius: 6px; border-left: 3px solid #7a4fa0; line-height: 1.5; }
+
+/* VENDOR CHIPS */
+.chip-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.chip { background: #f3ecfa; border: 1px solid #d0b0e8; color: #3d1a60; font-size: 12px; font-weight: 600; padding: 5px 13px; border-radius: 20px; }
+
+.tag-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.tag { background: #f1f3f4; border: 1px solid #dadce0; color: #1e3a5f; font-size: 12px; font-weight: 600; padding: 5px 13px; border-radius: 20px; }
+
+.perks { list-style: none; margin-top: 4px; }
+.perks li { display: flex; align-items: flex-start; gap: 10px; padding: 9px 0; border-bottom: 1px solid #f0f0f0; font-size: 14px; color: #3c4043; }
+.perks li:last-child { border-bottom: none; }
+.perks li .icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+
+/* LIGHTBOX */
+.lightbox-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.88); z-index: 9999; align-items: center; justify-content: center; cursor: zoom-out; }
+.lightbox-overlay.active { display: flex; }
+.lightbox-overlay img { max-width: 92vw; max-height: 92vh; object-fit: contain; border-radius: 4px; box-shadow: 0 8px 40px rgba(0,0,0,0.6); cursor: default; }
+.lightbox-close { position: fixed; top: 18px; right: 22px; color: white; font-size: 32px; font-weight: 300; cursor: pointer; z-index: 10000; user-select: none; }
+.lightbox-close:hover { color: #ccc; }
+
+/* SIDEBAR */
+.sidebar { position: sticky; top: 20px; align-self: start; }
+.sidebar-card { background: white; border: 1px solid #dadce0; border-radius: 8px; padding: 22px; }
+.sidebar-card h3 { font-size: 15px; font-weight: 700; color: #1e3a5f; margin-bottom: 4px; }
+.sidebar-sub { font-size: 12px; color: #5f6368; margin-bottom: 16px; }
+
+.pkg-section-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; padding-bottom: 6px; border-bottom: 2px solid; margin: 14px 0 8px; }
+.pkg-section-label:first-of-type { margin-top: 0; }
+.label-lilac { color: #7a4fa0; border-color: #d0b0e8; }
+.label-navy  { color: #1e3a5f; border-color: #c5d5e8; }
+
+.package { border: 1.5px solid #dadce0; border-radius: 8px; padding: 13px 15px; margin-bottom: 9px; cursor: pointer; position: relative; transition: border-color 0.15s, background 0.15s; }
+.package:hover { border-color: #1e3a5f; background: #f8fafc; }
+.package.selected { border-color: #1e3a5f; background: #eef3f9; }
+.package-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+.package-name { font-size: 13px; font-weight: 700; color: #202124; }
+.package-price { font-size: 15px; font-weight: 800; color: #1e3a5f; white-space: nowrap; }
+.package-desc { font-size: 12px; color: #5f6368; margin-top: 4px; line-height: 1.5; }
+.package-save { font-size: 10px; font-weight: 700; color: #7a4fa0; background: #f3ecfa; padding: 2px 6px; border-radius: 10px; margin-left: 5px; }
+.badge-popular { position: absolute; top: -1px; right: 12px; background: #1e3a5f; color: white; font-size: 9px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 8px; border-radius: 0 0 6px 6px; }
+
+.freq { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 10px; margin-top: 6px; text-transform: uppercase; letter-spacing: 0.05em; }
+.freq-onetime  { background: #f1f3f4; color: #5f6368; }
+.freq-perday   { background: #f3ecfa; color: #3d1a60; }
+.freq-weekly   { background: #e8f0fe; color: #1a56c4; }
+.freq-monthly  { background: #e6f4ea; color: #1e7e34; }
+.freq-seasonal { background: #fff3e0; color: #e65100; }
+
+.sample-badge { background: #fff8e1; border: 1px solid #ffe082; border-radius: 6px; padding: 7px 10px; font-size: 11px; color: #7b5c00; font-weight: 600; margin-bottom: 14px; text-align: center; }
+.summary { background: #eef3f9; border: 1px solid #c5d5e8; border-radius: 6px; padding: 12px 14px; margin: 12px 0; display: none; }
+.summary.show { display: block; }
+.summary-title { font-size: 13px; font-weight: 700; color: #1e3a5f; margin-bottom: 4px; }
+.summary-note { font-size: 12px; color: #5f6368; line-height: 1.5; }
+.book-btn { width: 100%; background: #1e3a5f; color: white; border: none; border-radius: 8px; padding: 14px; font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 4px; transition: background 0.15s; }
+.book-btn:hover { background: #163050; }
+.trust { margin-top: 16px; }
+.trust hr { border: none; border-top: 1px solid #f0f0f0; margin-bottom: 12px; }
+.trust-item { font-size: 12px; color: #5f6368; padding: 4px 0; }
+.contact-link { font-size: 12px; color: #1e3a5f; font-weight: 600; margin-top: 10px; cursor: pointer; text-decoration: underline; }
+
+@media (max-width: 700px) {
+  .page { grid-template-columns: 1fr; }
+  .sidebar { position: static; }
+  .stats-bar { flex-wrap: wrap; }
+  .stat { min-width: 50%; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.2); }
+  .stat:last-child { border-bottom: none; }
+  .hero-title { font-size: 28px; }
+  .hero { padding: 36px 20px 32px; }
+  .features-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
+  <span class="lightbox-close" onclick="closeLightbox()">&#x2715;</span>
+  <img id="lightbox-img" src="" alt="" onclick="event.stopPropagation()">
+</div>
+
+<nav class="nav">
+  <div class="nav-logo">📌 The Local Post</div>
+  <div class="nav-links">
+    <a href="https://www.thelocalpostspokane.com/browse-opportunities">Browse Opportunities</a>
+    <a href="https://www.thelocalpostspokane.com/home">Home</a>
+  </div>
+</nav>
+
+<div class="banner">🌸 Free admission · 40+ rotating local vendors · Fri/Sat/Sun · May–August · Northtown Mall</div>
+
+<div class="hero">
+  <div class="hero-tag">🌸 Outdoor Vendor Market · Northtown Mall · Spokane, WA</div>
+  <div class="hero-title">Lilac City Vendor Fair</div>
+  <div class="hero-sub">Run by vendors. For vendors. And our community.</div>
+  <div class="hero-tagline">4750 N Division St · Corner of Division &amp; Queen · @lilaccityvendorfair · lilaccityvendorfair.com</div>
+</div>
+
+<div class="page">
+
+  <div class="stats-bar">
+    <div class="stat"><div class="stat-num">40+</div><div class="stat-label">Rotating Vendors</div></div>
+    <div class="stat"><div class="stat-num">3x/week</div><div class="stat-label">Fri · Sat · Sun</div></div>
+    <div class="stat"><div class="stat-num">Free</div><div class="stat-label">Admission</div></div>
+    <div class="stat"><div class="stat-num">May–Aug</div><div class="stat-label">All Summer Long</div></div>
+  </div>
+
+  <div class="left-col">
+
+    <div class="section">
+      <div class="social-row">
+        <a class="social-btn" href="https://www.facebook.com/LilacCityVendorFair/" target="_blank">👥 Facebook</a>
+        <a class="social-btn" href="https://lilaccityvendorfair.com" target="_blank">🌐 lilaccityvendorfair.com</a>
+        <a class="social-btn" href="tel:4257919081">📞 (425) 791-9081</a>
+      </div>
+    </div>
+
+    <!-- FOUNDER CALLOUT -->
+    <div class="founder-callout">
+      <h3>Founded by Rebeccah Benedict — Run by a Vendor, for Vendors</h3>
+      <p>"Most of our vendor events are not actually run by vendors or small business owners at all, which makes sense as to why they don't always know what we need. So I thought — this is just silly, we should be running our own events. So this is my vendor event, run by vendors, for vendors and our community."</p>
+    </div>
+
+    <!-- PRESS -->
+    <div class="section">
+      <h2>📰 As Featured In</h2>
+      <div class="press-row">
+        <span class="press-badge">📺 KXLY News</span>
+        <span class="press-badge">📺 FOX 28 Spokane</span>
+        <span class="press-badge">📰 Spokesman-Review</span>
+        <span class="press-badge">🗺️ Visit Spokane</span>
+        <span class="press-badge">🛍️ Northtown Mall</span>
+      </div>
+      <p style="margin-top:14px;">Lilac City Vendor Fair has been featured in the Spokesman-Review's "10 Under $10" twice in the same spring season — a sign of how quickly this market has become part of Spokane's community calendar.</p>
+    </div>
+
+    <!-- PHOTOS -->
+    <div class="section">
+      <h2>📸 Market Photos</h2>
+      <div class="photo-grid">
+        <img src="lcvf-1.jpg" alt="Lilac City Vendor Fair vendor booths" onclick="openLightbox('lcvf-1.jpg','Lilac City Vendor Fair')">
+        <img src="lcvf-2.jpg" alt="Lilac City Vendor Fair shoppers" onclick="openLightbox('lcvf-2.jpg','Lilac City Vendor Fair crowd')">
+        <img src="lcvf-3.jpg" alt="Lilac City Vendor Fair activities and games" onclick="openLightbox('lcvf-3.jpg','Lilac City Vendor Fair activities')">
+      </div>
+      <div class="photo-note">
+        📍 <strong>Location:</strong> Northtown Mall parking lot, corner of Division &amp; Queen, 4750 N Division St, Spokane WA 99207. The market runs outdoors — vendors rotate daily so every weekend is a different experience. Photos to be updated with actual market images.
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <div class="section">
+      <h2>About This Opportunity</h2>
+      <p>Lilac City Vendor Fair is Spokane's newest summer outdoor market — a free, family-friendly event running every Friday, Saturday, and Sunday from May through August in the Northtown Mall parking lot. Founded by Rebeccah Benedict (also founder of Little Local Artist), the fair was built on a simple idea: vendor events should be run by people who understand what vendors actually need.</p>
+      <p>With booth rentals at just $50/day (and $30/day for community helpers), the fair deliberately keeps barriers low for small businesses and emerging artists. The result is a diverse, energetic rotating lineup of 40+ vendors — artists, crafters, coffee shops, skincare brands, food vendors, and more — that changes daily, so every visit is a new discovery.</p>
+      <p>Beyond the vendors themselves, the fair features free and low-cost workshops, live artists, and giant lawn and board games — creating a true community gathering space, not just a shopping event. Advertisers here are reaching a Spokane audience that has already chosen to spend their weekend outdoors at a local market. They're in discovery mode, in a good mood, and surrounded by the kind of community-rooted businesses The Local Post is built for.</p>
+    </div>
+
+    <!-- WHAT'S AT THE FAIR -->
+    <div class="section">
+      <h2>🎪 What's at the Fair</h2>
+      <div class="features-grid">
+        <div class="feature-item">
+          <div class="f-icon">🛍️</div>
+          <div class="f-title">40+ Rotating Local Vendors</div>
+          <div class="f-desc">Artists, crafters, skincare, coffee, food & beverage — rotating daily so no two visits are the same</div>
+        </div>
+        <div class="feature-item">
+          <div class="f-icon">🎨</div>
+          <div class="f-title">Live Artists & Workshops</div>
+          <div class="f-desc">Free and low-cost workshops and live artist demonstrations throughout the season</div>
+        </div>
+        <div class="feature-item">
+          <div class="f-icon">🎲</div>
+          <div class="f-title">Giant Lawn & Board Games</div>
+          <div class="f-desc">Family-friendly games that bring kids and adults together — this is a hangout, not just a market</div>
+        </div>
+        <div class="feature-item">
+          <div class="f-icon">🏬</div>
+          <div class="f-title">Northtown Mall Partnership</div>
+          <div class="f-desc">Located right outside Northtown Mall — vendors connect with mall traffic and vice versa</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCHEDULE -->
+    <div class="section">
+      <h2>📅 Schedule</h2>
+      <div class="schedule-card">
+        <div class="schedule-row"><span class="day">Fridays</span><span>11:00 AM – 4:00 PM</span></div>
+        <div class="schedule-row"><span class="day">Saturdays</span><span>11:00 AM – 4:00 PM</span></div>
+        <div class="schedule-row"><span class="day">Sundays</span><span>11:00 AM – 4:00 PM</span></div>
+        <div class="schedule-row"><span class="day">Season</span><span>May through August 2026</span></div>
+        <div class="schedule-row"><span class="day">Admission</span><span>Free to the public</span></div>
+      </div>
+      <p style="margin-top:12px;">Vendor sign-ups remain open all season. Booth rentals: $50/day · Community Helpers: $30/day. Interested in vending? Visit <a href="https://lilaccityvendorfair.com" target="_blank" style="color:#7a4fa0;">lilaccityvendorfair.com</a>.</p>
+    </div>
+
+    <!-- VENDOR TYPES -->
+    <div class="section">
+      <h2>🏪 Types of Vendors</h2>
+      <div class="chip-grid">
+        <span class="chip">🎨 Local Artists</span>
+        <span class="chip">✂️ Handmade Crafters</span>
+        <span class="chip">☕ Coffee Shops</span>
+        <span class="chip">🧴 Skincare & Beauty</span>
+        <span class="chip">🍕 Food Vendors</span>
+        <span class="chip">🍺 Beverage Vendors</span>
+        <span class="chip">🪴 Plants & Garden</span>
+        <span class="chip">📿 Jewelry</span>
+        <span class="chip">🕯️ Candles & Home Goods</span>
+        <span class="chip">👗 Clothing & Accessories</span>
+        <span class="chip">🐾 Pet Products</span>
+        <span class="chip">🌿 Wellness Products</span>
+      </div>
+    </div>
+
+    <!-- WHO YOU'RE REACHING -->
+    <div class="section">
+      <h2>👥 Who You're Reaching</h2>
+      <div class="tag-list">
+        <span class="tag">Spokane Families</span>
+        <span class="tag">Local Shoppers</span>
+        <span class="tag">Shop Small Advocates</span>
+        <span class="tag">Northtown Area Residents</span>
+        <span class="tag">Summer Weekend Crowd</span>
+        <span class="tag">Art & Craft Enthusiasts</span>
+        <span class="tag">Foodie & Coffee Crowd</span>
+        <span class="tag">Parents with Kids</span>
+        <span class="tag">Spokane Visitors</span>
+        <span class="tag">All Ages</span>
+      </div>
+      <p style="margin-top:14px;">Free admission means no barrier to entry — this market draws the broadest possible Spokane crowd, from serious collectors to casual browsers to families looking for something to do on a summer Saturday. With 40+ rotating vendors across three days a week, the event builds a habit with regular attendees who come back weekly throughout the summer.</p>
+    </div>
+
+    <!-- ADVERTISER FIT -->
+    <div class="section">
+      <h2>🎯 Advertiser Fit</h2>
+      <p>This market is designed to celebrate local. Advertisers who align with that spirit — local businesses, community organizations, family services, and independent brands — will feel right at home here.</p>
+      <div class="chip-grid">
+        <span class="chip">Local Restaurants & Cafes</span>
+        <span class="chip">Family Activities & Venues</span>
+        <span class="chip">Community Organizations</span>
+        <span class="chip">Nonprofit Partners</span>
+        <span class="chip">Health & Wellness</span>
+        <span class="chip">Children's Services</span>
+        <span class="chip">Outdoor & Recreation</span>
+        <span class="chip">Retail & Boutiques</span>
+        <span class="chip">Arts & Craft Supplies</span>
+        <span class="chip">Gift & Lifestyle Brands</span>
+      </div>
+    </div>
+
+    <!-- EVERY ADVERTISER RECEIVES -->
+    <div class="section">
+      <h2>✅ Every Advertiser Receives</h2>
+      <ul class="perks">
+        <li><span class="icon">🌸</span>Your business recognized as a supporter of Spokane's vendor and maker community</li>
+        <li><span class="icon">👥</span>Exposure to a free-admission, multi-generational Spokane crowd three days a week all summer</li>
+        <li><span class="icon">📋</span>Your materials displayed at the market or in vendor bags</li>
+        <li><span class="icon">📍</span>Association with a community-rooted event already featured by KXLY, FOX 28, and the Spokesman-Review</li>
+      </ul>
+      <p style="margin-top:12px;"><strong>Higher packages also include:</strong> social media mentions, sponsor signage at the market, vendor bag inserts, and the option to sponsor a specific activity, workshop, or game day as the presenting brand.</p>
+    </div>
+
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sidebar-card">
+      <h3>Advertise Here</h3>
+      <div class="sidebar-sub">Pick your package and request to book — approval within 1 business day.</div>
+
+      <div class="sample-badge">🎨 Sample Listing — Pricing estimated for illustration</div>
+
+      <!-- MARKET PRESENCE -->
+      <div class="pkg-section-label label-lilac">🌸 At the Market</div>
+
+      <div class="package" onclick="selectPkg(this,'Vendor Bag Insert','$50')">
+        <div class="package-top"><div class="package-name">🛍️ Vendor Bag Insert</div><div class="package-price">$50</div></div>
+        <div class="package-desc">Your flyer, card, or sample included in vendor bags distributed to shoppers at the market · reaches every purchase made at the fair on that day</div>
+        <span class="freq freq-perday">Per Market Day</span>
+      </div>
+
+      <div class="package" onclick="selectPkg(this,'Market Signage Sponsor','$100')" style="position:relative;">
+        <div class="badge-popular">Most Popular</div>
+        <div class="package-top"><div class="package-name">🪧 Market Signage Sponsor</div><div class="package-price">$100</div></div>
+        <div class="package-desc">Your banner or sign displayed prominently at the market entrance or activity area · seen by every shopper and passerby at Northtown throughout the market day</div>
+        <span class="freq freq-perday">Per Market Day</span>
+      </div>
+
+      <div class="package" onclick="selectPkg(this,'Activity / Workshop Sponsor','$150')">
+        <div class="package-top"><div class="package-name">🎨 Activity Sponsor</div><div class="package-price">$150</div></div>
+        <div class="package-desc">Named sponsor of a workshop, live artist demo, or lawn game activity · your brand announced at the activity + signage + social media mention before and after</div>
+        <span class="freq freq-perday">Per Event</span>
+      </div>
+
+      <!-- SOCIAL -->
+      <div class="pkg-section-label label-navy">📣 Social Media</div>
+
+      <div class="package" onclick="selectPkg(this,'Social Shoutout','$50')">
+        <div class="package-top"><div class="package-name">📣 Social Shoutout</div><div class="package-price">$50</div></div>
+        <div class="package-desc">One Facebook or Instagram mention · your handle tagged · reaches Lilac City Vendor Fair's growing community following</div>
+        <span class="freq freq-onetime">One-Time</span>
+      </div>
+
+      <!-- WEEKLY & SEASONAL -->
+      <div class="pkg-section-label label-navy">🌞 Weekly & Seasonal</div>
+
+      <div class="package" onclick="selectPkg(this,'Weekly Market Partner','$200/wk')">
+        <div class="package-top"><div class="package-name">📅 Weekly Market Partner <span class="package-save">Save $100</span></div><div class="package-price">$200<span style="font-size:11px;font-weight:500;color:#5f6368">/wk</span></div></div>
+        <div class="package-desc">Signage + Bag Insert on all 3 market days (Fri/Sat/Sun) + social mention · full weekly coverage at Spokane's most community-rooted summer market</div>
+        <span class="freq freq-weekly">Weekly (Fri–Sun)</span>
+      </div>
+
+      <div class="package" onclick="selectPkg(this,'Season Sponsor','$500/mo')">
+        <div class="package-top"><div class="package-name">⭐ Season Sponsor</div><div class="package-price">$500<span style="font-size:11px;font-weight:500;color:#5f6368">/mo</span></div></div>
+        <div class="package-desc">Monthly market signage + weekly bag inserts + 4 social mentions + named sponsor in all market promotional materials for the month · deepest sustained presence all summer</div>
+        <span class="freq freq-seasonal">May–August</span>
+      </div>
+
+      <div class="summary" id="summary">
+        <div class="summary-title" id="summaryTitle"></div>
+        <div class="summary-note">You'll be taken to a short request form. Once approved, we'll confirm details within 1 business day.</div>
+      </div>
+
+      <button class="book-btn" onclick="bookNow()">Request to Book →</button>
+
+      <div class="trust">
+        <hr>
+        <div class="trust-item">📋 Submit a quick 3-minute request form</div>
+        <div class="trust-item">✅ We'll review and confirm within 1 business day</div>
+        <div class="trust-item">🔒 Secure payment link sent upon approval</div>
+        <div class="trust-item">📧 Confirmation and materials form sent to your email</div>
+        <div class="contact-link" onclick="window.open('https://www.thelocalpostspokane.com/home','_blank')">Have questions? Contact us first</div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+function openLightbox(src,alt){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox-img').alt=alt||'';document.getElementById('lightbox').classList.add('active');document.body.style.overflow='hidden';}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('active');document.body.style.overflow='';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox();});
+function selectPkg(el,name,price){document.querySelectorAll('.package').forEach(p=>p.classList.remove('selected'));el.classList.add('selected');document.getElementById('summaryTitle').textContent=name+' — '+price;document.getElementById('summary').classList.add('show');}
+function bookNow(){window.open('https://docs.google.com/forms/d/e/1FAIpQLSchD8nJNLro4uFf6oSdgXgsBPnXysBAai3Xz-84ZZ6_rQS4cQ/viewform?usp=header','_blank');}
+</script>
+</body>
+</html>
