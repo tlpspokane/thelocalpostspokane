@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Black Straw Tea Bar & Kitchen — The Local Post</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Arial, sans-serif; background: #f5f7fa; color: #202124; }
+.nav { background: #1e3a5f; padding: 0 24px; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+.nav-logo { font-size: 17px; font-weight: 700; color: white; letter-spacing: 0.01em; }
+.nav-links { display: flex; gap: 18px; }
+.nav-links a { text-decoration: none; color: rgba(255,255,255,0.82); font-size: 13px; }
+.nav-links a:hover { color: white; }
+.banner { background: #db594b; color: white; text-align: center; padding: 9px 16px; font-size: 13px; font-weight: 600; }
+.hero { background: linear-gradient(135deg, #7a1a10 0%, #db594b 50%, #e8907a 100%); padding: 52px 32px 48px; text-align: center; }
+.hero-tag { display: inline-block; background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.3); color: #fde0da; font-size: 11px; font-weight: 700; padding: 4px 14px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px; }
+.hero-title { font-size: 38px; font-weight: 800; color: white; margin-bottom: 6px; text-shadow: 0 2px 8px rgba(0,0,0,0.25); }
+.hero-sub { font-size: 15px; color: #fde0da; font-style: italic; margin-bottom: 6px; }
+.hero-tagline { font-size: 13px; color: rgba(255,255,255,0.78); }
+.page { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; display: grid; grid-template-columns: 1fr 340px; gap: 20px; }
+.stats-bar { grid-column: 1 / -1; background: linear-gradient(135deg, #7a1a10 0%, #db594b 50%, #e8907a 100%); border-radius: 8px; display: flex; padding: 4px 0; }
+.stat { flex: 1; text-align: center; padding: 14px 8px; border-right: 1px solid rgba(255,255,255,0.2); }
+.stat:last-child { border-right: none; }
+.stat-num { font-size: 20px; font-weight: 800; color: white; }
+.stat-label { font-size: 11px; color: rgba(255,255,255,0.82); margin-top: 3px; text-transform: uppercase; letter-spacing: 0.05em; }
+.social-row { display: flex; gap: 10px; flex-wrap: wrap; }
+.social-btn { display: inline-flex; align-items: center; gap: 6px; background: #f1f3f4; border: 1px solid #dadce0; color: #1e3a5f; font-size: 12px; font-weight: 600; padding: 6px 14px; border-radius: 20px; text-decoration: none; }
+.social-btn:hover { background: #e8eaed; }
+.section { background: white; border: 1px solid #dadce0; border-radius: 8px; padding: 22px; margin-bottom: 16px; }
+.section h2 { font-size: 16px; font-weight: 700; color: #1e3a5f; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid #f0f0f0; }
+.section p { font-size: 14px; line-height: 1.7; color: #3c4043; margin-bottom: 10px; }
+.section p:last-child { margin-bottom: 0; }
+.locations-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 4px; }
+.location-card { background: #fdf3f2; border: 1px solid #f0c4be; border-radius: 8px; padding: 14px; }
+.location-card .loc-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #db594b; margin-bottom: 6px; }
+.location-card h3 { font-size: 13px; font-weight: 700; color: #1e3a5f; margin-bottom: 4px; }
+.location-card p { font-size: 12px; color: #5f6368; margin: 0; line-height: 1.5; }
+.photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 4px; }
+.photo-grid img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 6px; display: block; cursor: zoom-in; transition: opacity 0.15s; }
+.photo-grid img:hover { opacity: 0.88; }
+.photo-note { font-size: 12px; color: #5f6368; margin-top: 10px; background: #f8f9fa; padding: 10px 12px; border-radius: 6px; border-left: 3px solid #db594b; line-height: 1.5; }
+.menu-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.menu-chip { background: #fdf3f2; border: 1px solid #f0c4be; color: #5a1008; font-size: 12px; font-weight: 600; padding: 5px 13px; border-radius: 20px; }
+.review-card { background: #f8f9fa; border: 1px solid #dadce0; border-radius: 8px; padding: 14px; margin-bottom: 10px; }
+.review-card .stars { color: #f4b400; font-size: 13px; margin-bottom: 4px; }
+.review-card p { font-size: 13px; color: #3c4043; line-height: 1.6; margin: 0 0 6px; font-style: italic; }
+.review-card .reviewer { font-size: 12px; color: #5f6368; font-weight: 600; }
+.tag-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.tag { background: #f1f3f4; border: 1px solid #dadce0; color: #1e3a5f; font-size: 12px; font-weight: 600; padding: 5px 13px; border-radius: 20px; }
+.chip-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.chip { background: #fdf3f2; border: 1px solid #f0c4be; color: #5a1008; font-size: 12px; font-weight: 600; padding: 5px 13px; border-radius: 20px; }
+.hours-row { display: flex; justify-content: space-between; padding: 7px 0; border-bottom: 1px solid #f0f0f0; font-size: 13px; color: #3c4043; }
+.hours-row:last-child { border-bottom: none; }
+.hours-row .day { font-weight: 600; color: #1e3a5f; }
+.perks { list-style: none; margin-top: 4px; }
+.perks li { display: flex; align-items: flex-start; gap: 10px; padding: 9px 0; border-bottom: 1px solid #f0f0f0; font-size: 14px; color: #3c4043; }
+.perks li:last-child { border-bottom: none; }
+.perks li .icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+.lightbox-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.88); z-index: 9999; align-items: center; justify-content: center; cursor: zoom-out; }
+.lightbox-overlay.active { display: flex; }
+.lightbox-overlay img { max-width: 92vw; max-height: 92vh; object-fit: contain; border-radius: 4px; box-shadow: 0 8px 40px rgba(0,0,0,0.6); cursor: default; }
+.lightbox-close { position: fixed; top: 18px; right: 22px; color: white; font-size: 32px; font-weight: 300; cursor: pointer; z-index: 10000; user-select: none; }
+.sidebar { position: sticky; top: 20px; align-self: start; }
+.sidebar-card { background: white; border: 1px solid #dadce0; border-radius: 8px; padding: 22px; }
+.sidebar-card h3 { font-size: 15px; font-weight: 700; color: #1e3a5f; margin-bottom: 4px; }
+.sidebar-sub { font-size: 12px; color: #5f6368; margin-bottom: 16px; }
+.pkg-section-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; padding-bottom: 6px; border-bottom: 2px solid; margin: 14px 0 8px; }
+.pkg-section-label:first-of-type { margin-top: 0; }
+.label-red  { color: #db594b; border-color: #f0c4be; }
+.label-navy { color: #1e3a5f; border-color: #c5d5e8; }
+.package { border: 1.5px solid #dadce0; border-radius: 8px; padding: 13px 15px; margin-bottom: 9px; cursor: pointer; position: relative; transition: border-color 0.15s, background 0.15s; }
+.package:hover { border-color: #1e3a5f; background: #f8fafc; }
+.package.selected { border-color: #1e3a5f; background: #eef3f9; }
+.package-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+.package-name { font-size: 13px; font-weight: 700; color: #202124; }
+.package-price { font-size: 15px; font-weight: 800; color: #1e3a5f; white-space: nowrap; }
+.package-desc { font-size: 12px; color: #5f6368; margin-top: 4px; line-height: 1.5; }
+.package-save { font-size: 10px; font-weight: 700; color: #db594b; background: #fdf3f2; padding: 2px 6px; border-radius: 10px; margin-left: 5px; }
+.badge-popular { position: absolute; top: -1px; right: 12px; background: #1e3a5f; color: white; font-size: 9px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 8px; border-radius: 0 0 6px 6px; }
+.freq { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 10px; margin-top: 6px; text-transform: uppercase; letter-spacing: 0.05em; }
+.freq-onetime { background: #f1f3f4; color: #5f6368; }
+.freq-monthly { background: #e6f4ea; color: #1e7e34; }
+.freq-ongoing { background: #fce8e6; color: #c5221f; }
+.sample-badge { background: #fff8e1; border: 1px solid #ffe082; border-radius: 6px; padding: 7px 10px; font-size: 11px; color: #7b5c00; font-weight: 600; margin-bottom: 14px; text-align: center; }
+.summary { background: #eef3f9; border: 1px solid #c5d5e8; border-radius: 6px; padding: 12px 14px; margin: 12px 0; display: none; }
+.summary.show { display: block; }
+.summary-title { font-size: 13px; font-weight: 700; color: #1e3a5f; margin-bottom: 4px; }
+.summary-note { font-size: 12px; color: #5f6368; line-height: 1.5; }
+.book-btn { width: 100%; background: #1e3a5f; color: white; border: none; border-radius: 8px; padding: 14px; font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 4px; transition: background 0.15s; }
+.book-btn:hover { background: #163050; }
+.trust { margin-top: 16px; }
+.trust hr { border: none; border-top: 1px solid #f0f0f0; margin-bottom: 12px; }
+.trust-item { font-size: 12px; color: #5f6368; padding: 4px 0; }
+.contact-link { font-size: 12px; color: #1e3a5f; font-weight: 600; margin-top: 10px; cursor: pointer; text-decoration: underline; }
+@media (max-width: 700px) { .page { grid-template-columns: 1fr; } .sidebar { position: static; } .stats-bar { flex-wrap: wrap; } .stat { min-width: 50%; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.2); } .stat:last-child { border-bottom: none; } .hero-title { font-size: 28px; } .hero { padding: 36px 20px 32px; } .locations-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
+  <span class="lightbox-close" onclick="closeLightbox()">&#x2715;</span>
+  <img id="lightbox-img" src="" alt="" onclick="event.stopPropagation()">
+</div>
+<nav class="nav">
+  <div class="nav-logo">📌 The Local Post</div>
+  <div class="nav-links">
+    <a href="https://www.thelocalpostspokane.com/browse-opportunities">Browse Opportunities</a>
+    <a href="https://www.thelocalpostspokane.com/home">Home</a>
+  </div>
+</nav>
+<div class="banner">🧋 Chinese food + bubble tea · 2 Spokane locations · Dine-in · Takeout · Delivery</div>
+<div class="hero">
+  <div class="hero-tag">🧋 Tea Bar & Kitchen · Spokane, WA</div>
+  <div class="hero-title">Black Straw</div>
+  <div class="hero-sub">Tea Bar &amp; Kitchen</div>
+  <div class="hero-tagline">Fresh Chinese Food · Bubble Tea · Rewards Program · 2 Locations · blackstrawspokane.com</div>
+</div>
+<div class="page">
+  <div class="stats-bar">
+    <div class="stat"><div class="stat-num">2</div><div class="stat-label">Spokane Locations</div></div>
+    <div class="stat"><div class="stat-num">7 days</div><div class="stat-label">Open Every Day</div></div>
+    <div class="stat"><div class="stat-num">Rewards</div><div class="stat-label">Loyalty Program</div></div>
+    <div class="stat"><div class="stat-num">Dine-in</div><div class="stat-label">Takeout & Delivery</div></div>
+  </div>
+  <div class="left-col">
+    <div class="section">
+      <div class="social-row">
+        <a class="social-btn" href="https://blackstrawspokane.com/menu" target="_blank">🍜 Order Online</a>
+        <a class="social-btn" href="https://blackstrawspokane.com" target="_blank">🌐 blackstrawspokane.com</a>
+        <a class="social-btn" href="https://blackstrawspokane.com/login" target="_blank">🎁 Rewards Program</a>
+      </div>
+    </div>
+    <div class="section">
+      <h2>📍 Two Spokane Locations</h2>
+      <div class="locations-grid">
+        <div class="location-card">
+          <div class="loc-label">North Spokane · NEW</div>
+          <h3>6410 N Market St</h3>
+          <p>Spokane, WA 99217<br>Mon–Thu & Sun: 11am–8:30pm<br>Fri–Sat: 11am–9pm</p>
+        </div>
+        <div class="location-card">
+          <div class="loc-label">Spokane Valley</div>
+          <h3>Spokane Valley Location</h3>
+          <p>Spokane Valley, WA<br>Mon–Thu & Sun: 11am–8:30pm<br>Fri–Sat: 11am–9pm</p>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <h2>📸 Food & Venue Photos</h2>
+      <div class="photo-grid">
+        <img src="blackstraw-1.jpg" alt="Black Straw bubble tea" onclick="openLightbox('blackstraw-1.jpg','Black Straw bubble tea')">
+        <img src="blackstraw-2.jpg" alt="Black Straw Chinese food" onclick="openLightbox('blackstraw-2.jpg','Black Straw Chinese food')">
+        <img src="blackstraw-3.jpg" alt="Black Straw restaurant interior" onclick="openLightbox('blackstraw-3.jpg','Black Straw restaurant interior')">
+      </div>
+      <div class="photo-note">📍 Photos to be updated with actual venue images. Order online at <a href="https://blackstrawspokane.com/menu" target="_blank" style="color:#db594b;">blackstrawspokane.com/menu</a>.</div>
+    </div>
+    <div class="section">
+      <h2>About This Opportunity</h2>
+      <p>Black Straw Tea Bar & Kitchen is one of Spokane's most distinctive dining destinations — combining fresh, made-daily Chinese food with a full bubble tea menu in a cozy, welcoming atmosphere. With two locations (North Spokane at 6410 N Market St and Spokane Valley), they've built a loyal following of regulars who come back for lunch, dinner, and everything in between.</p>
+      <p>What makes this placement valuable is the rewards program and the repeat customer model. Black Straw diners are not one-time visitors — they earn points, track orders online, and return regularly to redeem. That's a digitally engaged, loyalty-oriented audience that's already in the habit of supporting a business they love.</p>
+      <p>Open 7 days a week with dine-in, takeout, and delivery options, Black Straw reaches a broad cross-section of Spokane and Spokane Valley residents across every meal occasion. Advertising here means consistent visibility with an audience that's already in a good mood — sitting down to food they chose on purpose.</p>
+    </div>
+    <div class="section">
+      <h2>🍜 What They're Known For</h2>
+      <div class="menu-chips">
+        <span class="menu-chip">🧋 Bubble Tea / Boba</span>
+        <span class="menu-chip">🍊 Orange Chicken</span>
+        <span class="menu-chip">🥢 Chow Mein</span>
+        <span class="menu-chip">🍤 Honey Walnut Shrimp</span>
+        <span class="menu-chip">🥟 Egg Rolls & Wontons</span>
+        <span class="menu-chip">🍵 Matcha Milk Tea</span>
+        <span class="menu-chip">🌿 Mapo Tofu</span>
+        <span class="menu-chip">🍚 Fried Rice</span>
+        <span class="menu-chip">🫖 Taro Milk Tea</span>
+        <span class="menu-chip">🍜 Beef Noodle Soup</span>
+        <span class="menu-chip">🥗 Vegan Options</span>
+        <span class="menu-chip">🍋 Lychee Tea</span>
+      </div>
+    </div>
+    <div class="section">
+      <h2>⭐ What Guests Are Saying</h2>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p>"Oh my gosh. I am still speechless over this place. The atmosphere was so chill, the staff so polite, and the food! The milk tea was heavenly and creamy and still somehow refreshing. Seriously, some of the best Chinese food I have ever had."</p>
+        <div class="reviewer">— Amy K.</div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p>"The service was quick, friendly, and delightful. The ambience was calm and relaxing. The vegetable fried rice was cooked perfectly and the mango passion fruit tea is great. Overall great experience and will be returning soon!"</p>
+        <div class="reviewer">— Walter H.</div>
+      </div>
+    </div>
+    <div class="section">
+      <h2>🕐 Hours</h2>
+      <div class="hours-row"><span class="day">Monday – Thursday</span><span>11:00 AM – 8:30 PM</span></div>
+      <div class="hours-row"><span class="day">Friday – Saturday</span><span>11:00 AM – 9:00 PM</span></div>
+      <div class="hours-row"><span class="day">Sunday</span><span>11:00 AM – 8:30 PM</span></div>
+    </div>
+    <div class="section">
+      <h2>👥 Who You're Reaching</h2>
+      <div class="tag-list">
+        <span class="tag">Bubble Tea Enthusiasts</span>
+        <span class="tag">Foodies</span>
+        <span class="tag">Families</span>
+        <span class="tag">North Spokane Locals</span>
+        <span class="tag">Spokane Valley Residents</span>
+        <span class="tag">Lunch & Dinner Crowd</span>
+        <span class="tag">Rewards Program Members</span>
+        <span class="tag">Online Orderers</span>
+        <span class="tag">Vegan & Health-Conscious</span>
+        <span class="tag">Young Professionals</span>
+      </div>
+    </div>
+    <div class="section">
+      <h2>🎯 Advertiser Fit</h2>
+      <div class="chip-grid">
+        <span class="chip">Food & Beverage Brands</span>
+        <span class="chip">Asian Grocery & Market</span>
+        <span class="chip">Dessert & Sweet Shops</span>
+        <span class="chip">Local Events & Entertainment</span>
+        <span class="chip">Family Services</span>
+        <span class="chip">Health & Wellness</span>
+        <span class="chip">Apps & Delivery Services</span>
+        <span class="chip">Community Organizations</span>
+        <span class="chip">Local Retailers</span>
+      </div>
+    </div>
+    <div class="section">
+      <h2>✅ Every Advertiser Receives</h2>
+      <ul class="perks">
+        <li><span class="icon">📋</span>Your business card, flyer, or materials displayed at the restaurant</li>
+        <li><span class="icon">🤝</span>Recognition as a community supporter of a beloved local Spokane dining spot</li>
+        <li><span class="icon">👥</span>Exposure to a loyal, repeat dining audience across two Spokane-area locations</li>
+        <li><span class="icon">📍</span>Placement where customers are relaxed, satisfied, and receptive</li>
+      </ul>
+    </div>
+  </div>
+  <div class="sidebar">
+    <div class="sidebar-card">
+      <h3>Advertise Here</h3>
+      <div class="sidebar-sub">Pick your package and request to book — approval within 1 business day.</div>
+      <div class="sample-badge">🎨 Sample Listing — Pricing estimated for illustration</div>
+      <div class="pkg-section-label label-red">🧋 In-Restaurant</div>
+      <div class="package" onclick="selectPkg(this,'Table Card Display','$25/mo')">
+        <div class="package-top"><div class="package-name">🪧 Table Card Display</div><div class="package-price">$25<span style="font-size:11px;font-weight:500;color:#5f6368">/mo</span></div></div>
+        <div class="package-desc">Your branded card or small flyer on every table at one location · seen by every dine-in customer while they eat</div>
+        <span class="freq freq-monthly">Monthly</span>
+      </div>
+      <div class="package" onclick="selectPkg(this,'Dual-Location Table Display','$40/mo')" style="position:relative;">
+        <div class="badge-popular">Best Value</div>
+        <div class="package-top"><div class="package-name">🥇 Dual-Location Table Display <span class="package-save">Save $10</span></div><div class="package-price">$40<span style="font-size:11px;font-weight:500;color:#5f6368">/mo</span></div></div>
+        <div class="package-desc">Table card at BOTH locations · North Spokane and Spokane Valley · double the dine-in reach</div>
+        <span class="freq freq-monthly">Monthly</span>
+      </div>
+      <div class="package" onclick="selectPkg(this,'In-Restaurant Feature Display','$100/mo')">
+        <div class="package-top"><div class="package-name">🖼️ In-Restaurant Feature Display</div><div class="package-price">$100<span style="font-size:11px;font-weight:500;color:#5f6368">/mo</span></div></div>
+        <div class="package-desc">Printed or framed ad displayed in the restaurant for 30 days · seen by every dine-in customer and takeout pickup at one location</div>
+        <span class="freq freq-monthly">Monthly</span>
+      </div>
+      <div class="pkg-section-label label-navy">📦 Takeout & Delivery</div>
+      <div class="package" onclick="selectPkg(this,'Takeout Bag Insert','$75/mo')">
+        <div class="package-top"><div class="package-name">📦 Takeout Bag Insert</div><div class="package-price">$75<span style="font-size:11px;font-weight:500;color:#5f6368">/mo</span></div></div>
+        <div class="package-desc">Your flyer or card included in every takeout and delivery bag · your brand goes home with every order — including delivery customers who never set foot in the restaurant</div>
+        <span class="freq freq-monthly">Monthly</span>
+      </div>
+      <div class="pkg-section-label label-navy">📣 Social Media</div>
+      <div class="package" onclick="selectPkg(this,'Social Shoutout','$50')">
+        <div class="package-top"><div class="package-name">📣 Social Shoutout</div><div class="package-price">$50</div></div>
+        <div class="package-desc">One social media mention · your handle tagged · reaches Black Straw's loyal Spokane dining audience</div>
+        <span class="freq freq-onetime">One-Time</span>
+      </div>
+      <div class="pkg-section-label label-navy">⭐ Bundles</div>
+      <div class="package" onclick="selectPkg(this,'Full Monthly Partner','$175/mo')">
+        <div class="package-top"><div class="package-name">⭐ Full Monthly Partner <span class="package-save">Save $25</span></div><div class="package-price">$175<span style="font-size:11px;font-weight:500;color:#5f6368">/mo</span></div></div>
+        <div class="package-desc">Dual-Location Table Display + Takeout Bag Insert + Social Shoutout · in-restaurant, take-home, and online reach across both Spokane locations</div>
+        <span class="freq freq-ongoing">Ongoing</span>
+      </div>
+      <div class="summary" id="summary"><div class="summary-title" id="summaryTitle"></div><div class="summary-note">You'll be taken to a short request form. Once approved, we'll confirm details within 1 business day.</div></div>
+      <button class="book-btn" onclick="bookNow()">Request to Book →</button>
+      <div class="trust"><hr>
+        <div class="trust-item">📋 Submit a quick 3-minute request form</div>
+        <div class="trust-item">✅ We'll review and confirm within 1 business day</div>
+        <div class="trust-item">🔒 Secure payment link sent upon approval</div>
+        <div class="trust-item">📧 Confirmation and materials form sent to your email</div>
+        <div class="contact-link" onclick="window.open('https://www.thelocalpostspokane.com/home','_blank')">Have questions? Contact us first</div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+function openLightbox(src,alt){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox-img').alt=alt||'';document.getElementById('lightbox').classList.add('active');document.body.style.overflow='hidden';}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('active');document.body.style.overflow='';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox();});
+function selectPkg(el,name,price){document.querySelectorAll('.package').forEach(p=>p.classList.remove('selected'));el.classList.add('selected');document.getElementById('summaryTitle').textContent=name+' — '+price;document.getElementById('summary').classList.add('show');}
+function bookNow(){window.open('https://docs.google.com/forms/d/e/1FAIpQLSchD8nJNLro4uFf6oSdgXgsBPnXysBAai3Xz-84ZZ6_rQS4cQ/viewform?usp=header','_blank');}
+</script>
+</body>
+</html>
