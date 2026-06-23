@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1919 Wine Cellar — The Local Post</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Arial, sans-serif; background: #f5f7fa; color: #202124; }
+
+.nav {
+  background: #1e3a5f;
+  padding: 0 24px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-logo { font-size: 17px; font-weight: 700; color: white; letter-spacing: 0.01em; }
+.nav-links { display: flex; gap: 18px; }
+.nav-links a { text-decoration: none; color: rgba(255,255,255,0.82); font-size: 13px; }
+.nav-links a:hover { color: white; }
+
+.banner {
+  background: #6b2737;
+  color: white;
+  text-align: center;
+  padding: 9px 16px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* HERO — deep burgundy to warm gold */
+.hero {
+  background: linear-gradient(135deg, #2a0a10 0%, #6b2737 45%, #9e6a2a 100%);
+  padding: 52px 32px 48px;
+  text-align: center;
+}
+.hero-tag {
+  display: inline-block;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: #f5dfc0;
+  font-size: 11px; font-weight: 700;
+  padding: 4px 14px; border-radius: 20px;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  margin-bottom: 14px;
+}
+.hero-title { font-size: 42px; font-weight: 800; color: white; margin-bottom: 6px; text-shadow: 0 2px 10px rgba(0,0,0,0.4); letter-spacing: 0.01em; }
+.hero-sub { font-size: 15px; color: #f5dfc0; font-style: italic; margin-bottom: 6px; }
+.hero-tagline { font-size: 13px; color: rgba(255,255,255,0.72); }
+
+/* LAYOUT */
+.page { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; display: grid; grid-template-columns: 1fr 340px; gap: 20px; }
+
+/* STATS BAR */
+.stats-bar {
+  grid-column: 1 / -1;
+  background: linear-gradient(135deg, #2a0a10 0%, #6b2737 50%, #9e6a2a 100%);
+  border-radius: 8px; display: flex; padding: 4px 0;
+}
+.stat { flex: 1; text-align: center; padding: 14px 8px; border-right: 1px solid rgba(255,255,255,0.2); }
+.stat:last-child { border-right: none; }
+.stat-num { font-size: 20px; font-weight: 800; color: white; }
+.stat-label { font-size: 11px; color: rgba(255,255,255,0.8); margin-top: 3px; text-transform: uppercase; letter-spacing: 0.05em; }
+
+.social-row { display: flex; gap: 10px; flex-wrap: wrap; }
+.social-btn { display: inline-flex; align-items: center; gap: 6px; background: #f1f3f4; border: 1px solid #dadce0; color: #1e3a5f; font-size: 12px; font-weight: 600; padding: 6px 14px; border-radius: 20px; text-decoration: none; }
+.social-btn:hover { background: #e8eaed; }
+
+.section { background: white; border: 1px solid #dadce0; border-radius: 8px; padding: 22px; margin-bottom: 16px; }
+.section h2 { font-size: 16px; font-weight: 700; color: #1e3a5f; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid #f0f0f0; }
+.section p { font-size: 14px; line-height: 1.7; color: #3c4043; margin-bottom: 10px; }
+.section p:last-child { margin-bottom: 0; }
+
+/* WEEKLY EVENTS */
+.weekly-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 4px; }
+.weekly-item { background: #fdf5f0; border: 1px solid #e8c4b0; border-radius: 8px; padding: 13px 15px; }
+.weekly-item .w-day { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: #6b2737; margin-bottom: 5px; }
+.weekly-item .w-title { font-size: 14px; font-weight: 700; color: #1e3a5f; margin-bottom: 3px; }
+.weekly-item .w-time { font-size: 12px; color: #9e6a2a; font-weight: 600; margin-bottom: 3px; }
+.weekly-item .w-desc { font-size: 12px; color: #5f6368; line-height: 1.5; }
+
+/* HOURS TABLE */
+.hours-row { display: flex; justify-content: space-between; padding: 7px 0; border-bottom: 1px solid #f0f0f0; font-size: 13px; }
+.hours-row:last-child { border-bottom: none; }
+.hours-row .day { font-weight: 600; color: #1e3a5f; }
+.hours-row .event-tag { font-size: 11px; background: #fdf5f0; border: 1px solid #e8c4b0; color: #6b2737; padding: 1px 8px; border-radius: 10px; font-weight: 600; }
+
+/* PHOTO GRID */
+.photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 4px; }
+.photo-grid img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 6px; display: block; cursor: zoom-in; transition: opacity 0.15s; }
+.photo-grid img:hover { opacity: 0.88; }
+.photo-note { font-size: 12px; color: #5f6368; margin-top: 10px; background: #f8f9fa; padding: 10px 12px; border-radius: 6px; border-left: 3px solid #6b2737; line-height: 1.5; }
+
+/* PINOT'S CROSSOVER */
+.crossover-callout {
+  background: linear-gradient(135deg, #fdf5f0, #fff9f5);
+  border: 1px solid #e8c4b0;
+  border-left: 4px solid #9e6a2a;
+  border-radius: 8px;
+  padding: 16px 18px;
+  margin-bottom: 16px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.crossover-callout .cc-icon { font-size: 28px; flex-shrink: 0; }
+.crossover-callout h3 { font-size: 14px; font-weight: 700; color: #1e3a5f; margin-bottom: 5px; }
+.crossover-callout p { font-size: 13px; color: #3c4043; line-height: 1.6; margin: 0; }
+
+/* TAGS */
+.tag-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.tag { background: #f1f3f4; border: 1px solid #dadce0; color: #1e3a5f; font-size: 12px; font-weight: 600; padding: 5px 13px; border-radius: 20px; }
+
+/* CHIPS */
+.chip-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.chip { background: #fdf5f0; border: 1px solid #e8c4b0; color: #2a0a10; font-size: 12px; font-weight: 600; padding: 5px 13px; border-radius: 20px; }
+
+/* PERKS */
+.perks { list-style: none; margin-top: 4px; }
+.perks li { display: flex; align-items: flex-start; gap: 10px; padding: 9px 0; border-bottom: 1px solid #f0f0f0; font-size: 14px; color: #3c4043; }
+.perks li:last-child { border-bottom: none; }
+.perks li .icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+
+/* LIGHTBOX */
+.lightbox-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.88); z-index: 9999; align-items: center; justify-content: center; cursor: zoom-out; }
+.lightbox-overlay.active { display: flex; }
+.lightbox-overlay img { max-width: 92vw; max-height: 92vh; object-fit: contain; border-radius: 4px; box-shadow: 0 8px 40px rgba(0,0,0,0.6); cursor: default; }
+.lightbox-close { position: fixed; top: 18px; right: 22px; color: white; font-size: 32px; font-weight: 300; cursor: pointer; z-index: 10000; user-select: none; }
+.lightbox-close:hover { color: #ccc; }
+
+/* SIDEBAR */
+.sidebar { position: sticky; top: 20px; align-self: start; }
+.sidebar-card { background: white; border: 1px solid #dadce0; border-radius: 8px; padding: 22px; }
+.sidebar-card h3 { font-size: 15px; font-weight: 700; color: #1e3a5f; margin-bottom: 4px; }
+.sidebar-sub { font-size: 12px; color: #5f6368; margin-bottom: 16px; }
+
+.pkg-section-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; padding-bottom: 6px; border-bottom: 2px solid; margin: 14px 0 8px; }
+.pkg-section-label:first-of-type { margin-top: 0; }
+.label-wine  { color: #6b2737; border-color: #e8c4b0; }
+.label-navy  { color: #1e3a5f; border-color: #c5d5e8; }
+
+.package { border: 1.5px solid #dadce0; border-radius: 8px; padding: 13px 15px; margin-bottom: 9px; cursor: pointer; position: relative; transition: border-color 0.15s, background 0.15s; }
+.package:hover { border-color: #1e3a5f; background: #f8fafc; }
+.package.selected { border-color: #1e3a5f; background: #eef3f9; }
+.package-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+.package-name { font-size: 13px; font-weight: 700; color: #202124; }
+.package-price { font-size: 15px; font-weight: 800; color: #1e3a5f; white-space: nowrap; }
+.package-desc { font-size: 12px; color: #5f6368; margin-top: 4px; line-height: 1.5; }
+.package-save { font-size: 10px; font-weight: 700; color: #6b2737; background: #fdf0ee; padding: 2px 6px; border-radius: 10px; margin-left: 5px; }
+.badge-popular { position: absolute; top: -1px; right: 12px; background: #1e3a5f; color: white; font-size: 9px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 8px; border-radius: 0 0 6px 6px; }
+
+.freq { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 10px; margin-top: 6px; text-transform: uppercase; letter-spacing: 0.05em; }
+.freq-onetime  { background: #f1f3f4; color: #5f6368; }
+.freq-weekly   { background: #e8f0fe; color: #1a56c4; }
+.freq-perevent { background: #fdf5f0; color: #6b2737; }
+.freq-monthly  { background: #e6f4ea; color: #1e7e34; }
+.freq-ongoing  { background: #fce8e6; color: #c5221f; }
+
+.sample-badge { background: #fff8e1; border: 1px solid #ffe082; border-radius: 6px; padding: 7px 10px; font-size: 11px; color: #7b5c00; font-weight: 600; margin-bottom: 14px; text-align: center; }
+
+.summary { background: #eef3f9; border: 1px solid #c5d5e8; border-radius: 6px; padding: 12px 14px; margin: 12px 0; display: none; }
+.summary.show { display: block; }
+.summary-title { font-size: 13px; font-weight: 700; color: #1e3a5f; margin-bottom: 4px; }
+.summary-note { font-size: 12px; color: #5f6368; line-height: 1.5; }
+
+.book-btn { width: 100%; background: #1e3a5f; color: white; border: none; border-radius: 8px; padding: 14px; font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 4px; transition: background 0.15s; }
+.book-btn:hover { background: #163050; }
+
+.trust { margin-top: 16px; }
+.trust hr { border: none; border-top: 1px solid #f0f0f0; margin-bottom: 12px; }
+.trust-item { font-size: 12px; color: #5f6368; padding: 4px 0; }
+.contact-link { font-size: 12px; color: #1e3a5f; font-weight: 600; margin-top: 10px; cursor: pointer; text-decoration: underline; }
+.contact-link:hover { color: #163050; }
+
+@media (max-width: 700px) {
+  .page { grid-template-columns: 1fr; }
+  .sidebar { position: static; }
+  .stats-bar { flex-wrap: wrap; }
+  .stat { min-width: 50%; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.2); }
+  .stat:last-child { border-bottom: none; }
+  .hero-title { font-size: 30px; }
+  .hero { padding: 36px 20px 32px; }
+  .weekly-grid { grid-template-columns: 1fr; }
+  .crossover-callout { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<!-- LIGHTBOX -->
+<div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
+  <span class="lightbox-close" onclick="closeLightbox()">&#x2715;</span>
+  <img id="lightbox-img" src="" alt="" onclick="event.stopPropagation()">
+</div>
+
+<nav class="nav">
+  <div class="nav-logo">📌 The Local Post</div>
+  <div class="nav-links">
+    <a href="https://www.thelocalpostspokane.com/browse-opportunities">Browse Opportunities</a>
+    <a href="https://www.thelocalpostspokane.com/home">Home</a>
+  </div>
+</nav>
+
+<div class="banner">
+  🍷 Live music · Song Bingo · Karaoke · Half-price Wednesdays — now with food!
+</div>
+
+<div class="hero">
+  <div class="hero-tag">🍷 Wine Bar · Union District · Spokane, WA</div>
+  <div class="hero-title">1919 Wine Cellar</div>
+  <div class="hero-sub">Spokane Wine Bar &amp; Wine Tasting</div>
+  <div class="hero-tagline">1919 E Sprague Ave · Union District · Next to Pinot's Palette · 509.508.1586</div>
+</div>
+
+<div class="page">
+
+  <div class="stats-bar">
+    <div class="stat">
+      <div class="stat-num">7 days</div>
+      <div class="stat-label">Open Every Day</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">5 nights</div>
+      <div class="stat-label">Weekly Events</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">Union</div>
+      <div class="stat-label">District Location</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">Food</div>
+      <div class="stat-label">Now Serving</div>
+    </div>
+  </div>
+
+  <div class="left-col">
+
+    <!-- SOCIAL -->
+    <div class="section">
+      <div class="social-row">
+        <a class="social-btn" href="https://www.instagram.com/1919winecellar/" target="_blank">📸 @1919winecellar</a>
+        <a class="social-btn" href="https://www.facebook.com/profile.php?id=61571431913483" target="_blank">👥 Facebook</a>
+        <a class="social-btn" href="https://www.1919winecellar.com" target="_blank">🌐 1919winecellar.com</a>
+        <a class="social-btn" href="tel:5095081586">📞 509.508.1586</a>
+      </div>
+    </div>
+
+    <!-- PHOTOS -->
+    <div class="section">
+      <h2>📸 Venue Photos</h2>
+      <div class="photo-grid">
+        <img src="1919-interior-1.jpg" alt="1919 Wine Cellar interior" onclick="openLightbox('1919-interior-1.jpg', '1919 Wine Cellar interior')">
+        <img src="1919-bar.jpg" alt="1919 Wine Cellar bar" onclick="openLightbox('1919-bar.jpg', '1919 Wine Cellar bar')">
+        <img src="1919-event.jpg" alt="1919 Wine Cellar event night" onclick="openLightbox('1919-event.jpg', '1919 Wine Cellar event night')">
+      </div>
+      <div class="photo-note">
+        📍 <strong>About the venue:</strong> 1919 Wine Cellar is located at 1919 E Sprague Ave in Spokane's Union District — next to Pinot's Palette. Click any photo to view full size. Photos to be updated with actual venue images.
+      </div>
+    </div>
+
+    <!-- PINOT'S PALETTE CROSSOVER -->
+    <div class="crossover-callout">
+      <div class="cc-icon">🎨</div>
+      <div>
+        <h3>Pinot's Palette Crossover Traffic</h3>
+        <p>1919 Wine Cellar sits right next to Pinot's Palette — and Pinot's painters get $2 off their first drink when they bring their painting in after class. That means a built-in, daily stream of creative, social, local Spokane adults walking through the door already in a celebratory mood. Advertising here reaches that crossover audience too.</p>
+      </div>
+    </div>
+
+    <!-- WEEKLY EVENTS -->
+    <div class="section">
+      <h2>🎶 Weekly Recurring Events</h2>
+      <div class="weekly-grid">
+        <div class="weekly-item">
+          <div class="w-day">Tuesday</div>
+          <div class="w-title">🎸 Live Music</div>
+          <div class="w-time">6:00 – 8:00 PM</div>
+          <div class="w-desc">Rotating local live musicians — draws an engaged crowd every Tuesday evening</div>
+        </div>
+        <div class="weekly-item">
+          <div class="w-day">Wednesday</div>
+          <div class="w-title">🍷 Half-Price Wine</div>
+          <div class="w-time">4:00 – 9:00 PM</div>
+          <div class="w-desc">Half-price wine by the glass all evening — one of the most popular weekly draws</div>
+        </div>
+        <div class="weekly-item">
+          <div class="w-day">Thursday</div>
+          <div class="w-title">🎵 SINGO — Song Bingo</div>
+          <div class="w-time">Starts 7:00 PM</div>
+          <div class="w-desc">Song Bingo night — high energy, packed crowd, perfect for groups</div>
+        </div>
+        <div class="weekly-item">
+          <div class="w-day">Friday &amp; Saturday</div>
+          <div class="w-title">🎤 Karaoke</div>
+          <div class="w-time">Starts 8:00 PM</div>
+          <div class="w-desc">Hosted by Jerrod Anthony — their biggest nights of the week</div>
+        </div>
+        <div class="weekly-item">
+          <div class="w-day">Sunday</div>
+          <div class="w-title">🍺 All-Day Happy Hour</div>
+          <div class="w-time">12:00 – 8:00 PM</div>
+          <div class="w-desc">$5 featured draft beer · $7 featured red &amp; white wine — all day long</div>
+        </div>
+        <div class="weekly-item">
+          <div class="w-day">Daily</div>
+          <div class="w-title">🖼️ Pinot's Painter Special</div>
+          <div class="w-time">Every Day</div>
+          <div class="w-desc">Bring your Pinot's Palette painting and get $2 off your first drink</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HOURS -->
+    <div class="section">
+      <h2>🕐 Hours</h2>
+      <div class="hours-row"><span class="day">Monday – Wednesday</span><span>4:00 PM – 9:00 PM <span class="event-tag">Tue: Live Music · Wed: Half-Price Wine</span></span></div>
+      <div class="hours-row"><span class="day">Thursday</span><span>2:00 PM – 10:00 PM <span class="event-tag">SINGO 7pm</span></span></div>
+      <div class="hours-row"><span class="day">Friday &amp; Saturday</span><span>2:00 PM – 11:00 PM <span class="event-tag">Karaoke 8pm</span></span></div>
+      <div class="hours-row"><span class="day">Sunday</span><span>12:00 PM – 8:00 PM <span class="event-tag">All-Day Happy Hour</span></span></div>
+    </div>
+
+    <!-- ABOUT -->
+    <div class="section">
+      <h2>About This Opportunity</h2>
+      <p>1919 Wine Cellar is a wine bar and wine tasting destination in Spokane's Union District — one of the city's most active and growing neighborhoods. Open seven days a week with a different event or promotion every single night, the bar has built a loyal local following of adults who come back week after week for live music, Song Bingo, karaoke, and Spokane's best mid-week wine deal.</p>
+      <p>What makes this placement unusually strong is the combination of frequency and mood. Customers at 1919 are there to enjoy themselves — they're relaxed, social, and in a celebratory frame of mind. That's a very different advertising moment than a grocery store or waiting room. A well-placed card, a sponsored event night, or a social mention from a venue they love lands with genuine warmth.</p>
+      <p>The Pinot's Palette crossover is a bonus multiplier — next-door painters pour in after class every day, already energized from a creative experience. It's one of the most organic and loyal built-in audiences of any venue in Spokane.</p>
+    </div>
+
+    <!-- WHO YOU'RE REACHING -->
+    <div class="section">
+      <h2>👥 Who You're Reaching</h2>
+      <div class="tag-list">
+        <span class="tag">Wine Lovers</span>
+        <span class="tag">Adults 25–60</span>
+        <span class="tag">Union District Locals</span>
+        <span class="tag">Date Night Crowd</span>
+        <span class="tag">Girls' Night Out</span>
+        <span class="tag">Live Music Fans</span>
+        <span class="tag">Karaoke &amp; Trivia Regulars</span>
+        <span class="tag">Pinot's Palette Alumni</span>
+        <span class="tag">Creative Spokane Community</span>
+        <span class="tag">Weekend Social Crowd</span>
+      </div>
+      <p style="margin-top:14px;">This is an audience in a great mood — they're out, they're social, and they're spending. Customers return week after week for their favorite night (live music, SINGO, karaoke), making this a repeat-exposure environment with high engagement. Event nights especially draw packed, enthusiastic crowds who stay for hours.</p>
+    </div>
+
+    <!-- ADVERTISER FIT -->
+    <div class="section">
+      <h2>🎯 Advertiser Fit</h2>
+      <p>The best fit businesses complement the social, celebratory, adult atmosphere of a wine bar — or serve the active Spokane adults who make up this audience.</p>
+      <div class="chip-grid">
+        <span class="chip">Restaurants &amp; Food Delivery</span>
+        <span class="chip">Live Music &amp; Entertainment</span>
+        <span class="chip">Spa &amp; Beauty Services</span>
+        <span class="chip">Date Night Experiences</span>
+        <span class="chip">Local Artisans &amp; Makers</span>
+        <span class="chip">Event Venues</span>
+        <span class="chip">Wine &amp; Cheese Shops</span>
+        <span class="chip">Clothing &amp; Accessories</span>
+        <span class="chip">Wellness &amp; Self-Care</span>
+        <span class="chip">Photography Services</span>
+        <span class="chip">Travel &amp; Experiences</span>
+        <span class="chip">Candles &amp; Gift Shops</span>
+      </div>
+    </div>
+
+    <!-- EVERY ADVERTISER RECEIVES -->
+    <div class="section">
+      <h2>✅ Every Advertiser Receives</h2>
+      <ul class="perks">
+        <li><span class="icon">📋</span>Your business card, flyer, or materials displayed at the bar or tables</li>
+        <li><span class="icon">🤝</span>Recognition as a community supporter of one of Spokane's most vibrant local venues</li>
+        <li><span class="icon">👥</span>Exposure to a relaxed, social, spending-ready adult audience</li>
+        <li><span class="icon">📍</span>Placement in a Union District destination that draws crowds 7 nights a week</li>
+      </ul>
+      <p style="margin-top:12px;"><strong>Higher packages also include:</strong> social media mentions, event night sponsorship recognition, verbal shoutout from the host during SINGO or Karaoke, table tent or signage display, and the option to sponsor a weekly event night as the presenting brand.</p>
+    </div>
+
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sidebar-card">
+      <h3>Advertise Here</h3>
+      <div class="sidebar-sub">Pick your package and request to book — approval within 1 business day.</div>
+
+      <div class="sample-badge">🎨 Sample Listing — Pricing estimated for illustration</div>
+
+      <!-- IN-VENUE -->
+      <div class="pkg-section-label label-wine">🍷 In-Venue · Union District</div>
+
+      <div class="package" onclick="selectPkg(this, 'Bar Card Display', '$25/mo')">
+        <div class="package-top">
+          <div class="package-name">📋 Bar Card Display</div>
+          <div class="package-price">$25<span style="font-size:11px;font-weight:500;color:#5f6368">/mo</span></div>
+        </div>
+        <div class="package-desc">Your business card or small flyer at the bar or host stand — seen by every patron who orders or checks in</div>
+        <span class="freq freq-monthly">Monthly</span>
+      </div>
+
+      <div class="package" onclick="selectPkg(this, 'Table Tent Feature', '$75/mo')">
+        <div class="package-top">
+          <div class="package-name">🪧 Table Tent Feature</div>
+          <div class="package-price">$75<span style="font-size:11px;font-weight:500;color:#5f6368">/mo</span></div>
+        </div>
+        <div class="package-desc">Your branded table tent or small display on every table in the bar for 30 days — seen by every guest while they sit, sip, and socialize</div>
+        <span class="freq freq-monthly">Monthly</span>
+      </div>
+
+      <div class="package" onclick="selectPkg(this, 'In-Venue Feature Display', '$100/mo')" style="position:relative;">
+        <div class="badge-popular">Most Popular</div>
+        <div class="package-top">
+          <div class="package-name">🖼️ In-Venue Feature Display</div>
+          <div class="package-price">$100<span style="font-size:11px;font-weight:500;color:#5f6368">/mo</span></div>
+        </div>
+        <div class="package-desc">Printed or framed ad displayed in the venue for 30 days · prime wall or bar placement · seen by every customer 7 nights a week including packed event nights</div>
+        <span class="freq freq-monthly">Monthly</span>
+      </div>
+
+      <!-- EVENT SPONSORSHIP -->
+      <div class="pkg-section-label label-navy">🎶 Event Night Sponsorship</div>
+      <div style="font-size:11px;color:#5f6368;margin-bottom:10px;line-height:1.5;">Sponsor a weekly recurring event night — your brand announced from the stage or by the host.</div>
+
+      <div class="package" onclick="selectPkg(this, 'Live Music Sponsor — Tuesday', '$100/wk')">
+        <div class="package-top">
+          <div class="package-name">🎸 Live Music Sponsor</div>
+          <div class="package-price">$100<span style="font-size:11px;font-weight:500;color:#5f6368">/wk</span></div>
+        </div>
+        <div class="package-desc">Named sponsor of Tuesday Live Music · verbal mention from the musician + signage at the event + social media tag in event post</div>
+        <span class="freq freq-weekly">Weekly</span>
+      </div>
+
+      <div class="package" onclick="selectPkg(this, 'SINGO Night Sponsor — Thursday', '$100/wk')">
+        <div class="package-top">
+          <div class="package-name">🎵 SINGO Night Sponsor</div>
+          <div class="package-price">$100<span style="font-size:11px;font-weight:500;color:#5f6368">/wk</span></div>
+        </div>
+        <div class="package-desc">Named sponsor of Thursday SINGO · your name called out by the host · signage at the event · option to provide a giveaway prize for the winner</div>
+        <span class="freq freq-weekly">Weekly</span>
+      </div>
+
+      <div class="package" onclick="selectPkg(this, 'Karaoke Night Sponsor — Fri or Sat', '$125/wk')">
+        <div class="package-top">
+          <div class="package-name">🎤 Karaoke Night Sponsor</div>
+          <div class="package-price">$125<span style="font-size:11px;font-weight:500;color:#5f6368">/wk</span></div>
+        </div>
+        <div class="package-desc">Named sponsor of Friday or Saturday Karaoke with Jerrod Anthony · verbal shoutout from the host to a packed crowd · signage + social media mention · 1919's biggest nights</div>
+        <span class="freq freq-weekly">Weekly</span>
+      </div>
+
+      <!-- SOCIAL MEDIA -->
+      <div class="pkg-section-label label-navy">📣 Social Media</div>
+
+      <div class="package" onclick="selectPkg(this, 'Social Shoutout', '$50')">
+        <div class="package-top">
+          <div class="package-name">📣 Social Shoutout</div>
+          <div class="package-price">$50</div>
+        </div>
+        <div class="package-desc">One Instagram or Facebook mention · your handle tagged · link or description of your business included · reaches 1919's growing Union District audience</div>
+        <span class="freq freq-onetime">One-Time</span>
+      </div>
+
+      <!-- BUNDLES -->
+      <div class="pkg-section-label label-navy">⭐ Bundles</div>
+
+      <div class="package" onclick="selectPkg(this, 'Full Monthly Partner', '$200/mo')">
+        <div class="package-top">
+          <div class="package-name">🥇 Full Monthly Partner <span class="package-save">Save $25</span></div>
+          <div class="package-price">$200<span style="font-size:11px;font-weight:500;color:#5f6368">/mo</span></div>
+        </div>
+        <div class="package-desc">In-Venue Feature Display + Table Tent + Social Shoutout · complete in-venue and online reach across all 7 nights a week</div>
+        <span class="freq freq-monthly">Monthly</span>
+      </div>
+
+      <div class="package" onclick="selectPkg(this, 'Venue + Event Bundle', '$275/mo')">
+        <div class="package-top">
+          <div class="package-name">⭐ Venue + Event Bundle</div>
+          <div class="package-price">$275<span style="font-size:11px;font-weight:500;color:#5f6368">/mo</span></div>
+        </div>
+        <div class="package-desc">In-Venue Feature Display + sponsorship of one recurring weekly event night + 2 social mentions · maximum visibility including stage/host recognition on your chosen event night</div>
+        <span class="freq freq-ongoing">Ongoing</span>
+      </div>
+
+      <div class="summary" id="summary">
+        <div class="summary-title" id="summaryTitle"></div>
+        <div class="summary-note">You'll be taken to a short request form. Once approved, we'll confirm details within 1 business day.</div>
+      </div>
+
+      <button class="book-btn" onclick="bookNow()">Request to Book →</button>
+
+      <div class="trust">
+        <hr>
+        <div class="trust-item">📋 Submit a quick 3-minute request form</div>
+        <div class="trust-item">✅ We'll review and confirm within 1 business day</div>
+        <div class="trust-item">🔒 Secure payment link sent upon approval</div>
+        <div class="trust-item">📧 Confirmation and materials form sent to your email</div>
+        <div class="contact-link" onclick="window.open('https://www.thelocalpostspokane.com/home','_blank')">Have questions? Contact us first</div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+function openLightbox(src, alt) {
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox-img').alt = alt || '';
+  document.getElementById('lightbox').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('active');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeLightbox(); });
+
+function selectPkg(el, name, price) {
+  document.querySelectorAll('.package').forEach(p => p.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById('summaryTitle').textContent = name + ' — ' + price;
+  document.getElementById('summary').classList.add('show');
+}
+function bookNow() {
+  window.open('https://docs.google.com/forms/d/e/1FAIpQLSchD8nJNLro4uFf6oSdgXgsBPnXysBAai3Xz-84ZZ6_rQS4cQ/viewform?usp=header', '_blank');
+}
+</script>
+
+</body>
+</html>
