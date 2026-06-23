@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lilac City Barre — The Local Post</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Arial, sans-serif; background: #f5f7fa; color: #202124; }
+
+.nav {
+  background: #1e3a5f;
+  padding: 0 24px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-logo { font-size: 17px; font-weight: 700; color: white; letter-spacing: 0.01em; }
+.nav-links { display: flex; gap: 18px; }
+.nav-links a { text-decoration: none; color: rgba(255,255,255,0.82); font-size: 13px; }
+.nav-links a:hover { color: white; }
+
+.banner {
+  background: #7b5ea7;
+  color: white;
+  text-align: center;
+  padding: 9px 16px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* HERO — lilac/lavender gradient */
+.hero {
+  background: linear-gradient(135deg, #c9b8e8 0%, #ddd0f2 50%, #ede8f8 100%);
+  padding: 52px 32px 48px;
+  text-align: center;
+}
+.hero-tag {
+  display: inline-block;
+  background: rgba(123,94,167,0.15);
+  border: 1px solid rgba(123,94,167,0.4);
+  color: #4a2d7a;
+  font-size: 11px; font-weight: 700;
+  padding: 4px 14px; border-radius: 20px;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  margin-bottom: 14px;
+}
+.hero-title { font-size: 38px; font-weight: 800; color: #2e1a52; margin-bottom: 6px; text-shadow: 0 1px 4px rgba(0,0,0,0.1); }
+.hero-sub { font-size: 15px; color: #4a2d7a; font-style: italic; margin-bottom: 6px; }
+.hero-tagline { font-size: 13px; color: #6a4a9a; }
+
+/* LAYOUT */
+.page { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; display: grid; grid-template-columns: 1fr 340px; gap: 20px; }
+
+/* STATS BAR */
+.stats-bar {
+  grid-column: 1 / -1;
+  background: linear-gradient(135deg, #c9b8e8 0%, #ddd0f2 50%, #ede8f8 100%);
+  border-radius: 8px; display: flex; padding: 4px 0;
+}
+.stat { flex: 1; text-align: center; padding: 14px 8px; border-right: 1px solid rgba(123,94,167,0.25); }
+.stat:last-child { border-right: none; }
+.stat-num { font-size: 20px; font-weight: 800; color: #2e1a52; }
+.stat-label { font-size: 11px; color: #5a3d8a; margin-top: 3px; text-transform: uppercase; letter-spacing: 0.05em; }
+
+.social-row { display: flex; gap: 10px; flex-wrap: wrap; }
+.social-btn { display: inline-flex; align-items: center; gap: 6px; background: #f1f3f4; border: 1px solid #dadce0; color: #1e3a5f; font-size: 12px; font-weight: 600; padding: 6px 14px; border-radius: 20px; text-decoration: none; }
+.social-btn:hover { background: #e8eaed; }
+
+.section { background: white; border: 1px solid #dadce0; border-radius: 8px; padding: 22px; margin-bottom: 16px; }
+.section h2 { font-size: 16px; font-weight: 700; color: #1e3a5f; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid #f0f0f0; }
+.section p { font-size: 14px; line-height: 1.7; color: #3c4043; margin-bottom: 10px; }
+.section p:last-child { margin-bottom: 0; }
+
+/* DIFFERENTIATOR CALLOUT */
+.diff-callout {
+  background: linear-gradient(135deg, #f0ecf8, #f8f5fd);
+  border: 1px solid #d0c0e8;
+  border-left: 4px solid #7b5ea7;
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin-bottom: 16px;
+}
+.diff-callout h3 { font-size: 14px; font-weight: 700; color: #2e1a52; margin-bottom: 8px; }
+.diff-callout p { font-size: 13px; color: #3c4043; line-height: 1.7; margin: 0 0 8px; }
+.diff-callout p:last-child { margin: 0; }
+
+/* BENEFITS GRID */
+.benefits-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 4px; }
+.benefit-item { background: #f0ecf8; border: 1px solid #d0c0e8; border-radius: 8px; padding: 14px; }
+.benefit-item .b-icon { font-size: 22px; margin-bottom: 6px; }
+.benefit-item .b-title { font-size: 13px; font-weight: 700; color: #2e1a52; margin-bottom: 4px; }
+.benefit-item .b-desc { font-size: 12px; color: #5f6368; line-height: 1.5; }
+
+/* SCHEDULE STRIP */
+.schedule-strip { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.sched-chip { background: #f0ecf8; border: 1px solid #d0c0e8; color: #2e1a52; font-size: 12px; font-weight: 600; padding: 6px 14px; border-radius: 20px; }
+
+/* PHOTO GRID */
+.photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 4px; }
+.photo-grid img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 6px; display: block; cursor: zoom-in; transition: opacity 0.15s; }
+.photo-grid img:hover { opacity: 0.88; }
+.photo-note { font-size: 12px; color: #5f6368; margin-top: 10px; background: #f8f9fa; padding: 10px 12px; border-radius: 6px; border-left: 3px solid #7b5ea7; line-height: 1.5; }
+
+/* TAGS & CHIPS */
+.tag-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.tag { background: #f1f3f4; border: 1px solid #dadce0; color: #1e3a5f; font-size: 12px; font-weight: 600; padding: 5px 13px; border-radius: 20px; }
+.chip-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.chip { background: #f0ecf8; border: 1px solid #d0c0e8; color: #2e1a52; font-size: 12px; font-weight: 600; padding: 5px 13px; border-radius: 20px; }
+
+/* HOURS TABLE */
+.hours-row { display: flex; justify-content: space-between; padding: 7px 0; border-bottom: 1px solid #f0f0f0; font-size: 13px; color: #3c4043; }
+.hours-row:last-child { border-bottom: none; }
+.hours-row .day { font-weight: 600; color: #1e3a5f; }
+
+/* PERKS */
+.perks { list-style: none; margin-top: 4px; }
+.perks li { display: flex; align-items: flex-start; gap: 10px; padding: 9px 0; border-bottom: 1px solid #f0f0f0; font-size: 14px; color: #3c4043; }
+.perks li:last-child { border-bottom: none; }
+.perks li .icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+
+/* LIGHTBOX */
+.lightbox-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.88); z-index: 9999; align-items: center; justify-content: center; cursor: zoom-out; }
+.lightbox-overlay.active { display: flex; }
+.lightbox-overlay img { max-width: 92vw; max-height: 92vh; object-fit: contain; border-radius: 4px; box-shadow: 0 8px 40px rgba(0,0,0,0.6); cursor: default; }
+.lightbox-close { position: fixed; top: 18px; right: 22px; color: white; font-size: 32px; font-weight: 300; cursor: pointer; z-index: 10000; user-select: none; }
+.lightbox-close:hover { color: #ccc; }
+
+/* SIDEBAR */
+.sidebar { position: sticky; top: 20px; align-self: start; }
+.sidebar-card { background: white; border: 1px solid #dadce0; border-radius: 8px; padding: 22px; }
+.sidebar-card h3 { font-size: 15px; font-weight: 700; color: #1e3a5f; margin-bottom: 4px; }
+.sidebar-sub { font-size: 12px; color: #5f6368; margin-bottom: 16px; }
+
+.pkg-section-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; padding-bottom: 6px; border-bottom: 2px solid; margin: 14px 0 8px; }
+.pkg-section-label:first-of-type { margin-top: 0; }
+.label-lilac { color: #7b5ea7; border-color: #d0c0e8; }
+.label-navy  { color: #1e3a5f; border-color: #c5d5e8; }
+
+.package { border: 1.5px solid #dadce0; border-radius: 8px; padding: 13px 15px; margin-bottom: 9px; cursor: pointer; position: relative; transition: border-color 0.15s, background 0.15s; }
+.package:hover { border-color: #1e3a5f; background: #f8fafc; }
+.package.selected { border-color: #1e3a5f; background: #eef3f9; }
+.package-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+.package-name { font-size: 13px; font-weight: 700; color: #202124; }
+.package-price { font-size: 15px; font-weight: 800; color: #1e3a5f; white-space: nowrap; }
+.package-desc { font-size: 12px; color: #5f6368; margin-top: 4px; line-height: 1.5; }
+.package-save { font-size: 10px; font-weight: 700; color: #7b5ea7; background: #f0ecf8; padding: 2px 6px; border-radius: 10px; margin-left: 5px; }
+.badge-popular { position: absolute; top: -1px; right: 12px; background: #1e3a5f; color: white; font-size: 9px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 8px; border-radius: 0 0 6px 6px; }
+
+.freq { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 10px; margin-top: 6px; text-transform: uppercase; letter-spacing: 0.05em; }
+.freq-onetime  { background: #f1f3f4; color: #5f6368; }
+.freq-monthly  { background: #e6f4ea; color: #1e7e34; }
+.freq-perevent { background: #f0ecf8; color: #4a2d7a; }
+.freq-ongoing  { background: #fce8e6; color: #c5221f; }
+
+.sample-badge { background: #fff8e1; border: 1px solid #ffe082; border-radius: 6px; padding: 7px 10px; font-size: 11px; color: #7b5c00; font-weight: 600; margin-bottom: 14px; text-align: center; }
+
+.summary { background: #eef3f9; border: 1px solid #c5d5e8; border-radius: 6px; padding: 12px 14px; margin: 12px 0; display: none; }
+.summary.show { display: block; }
+.summary-title { font-size: 13px; font-weight: 700; color: #1e3a5f; margin-bottom: 4px; }
+.summary-note { font-size: 12px; color: #5f6368; line-height: 1.5; }
+
+.book-btn { width: 100%; background: #1e3a5f; color: white; border: none; border-radius: 8px; padding: 14px; font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 4px; transition: background 0.15s; }
+.book-btn:hover { background: #163050; }
+
+.trust { margin-top: 16px; }
+.trust hr { border: none; border-top: 1px solid #f0f0f0; margin-bottom: 12px; }
+.trust-item { font-size: 12px; color: #5f6368; padding: 4px 0; }
+.contact-link { font-size: 12px; color: #1e3a5f; font-weight: 600; margin-top: 10px; cursor: pointer; text-decoration: underline; }
+.contact-link:hover { color: #163050; }
+
+@media (max-width: 700px) {
+  .page { grid-template-columns: 1fr; }
+  .sidebar { position: static; }
+  .stats-bar { flex-wrap: wrap; }
+  .stat { min-width: 50%; border-right: none; border-bottom: 1px solid rgba(123,94,167,0.25); }
+  .stat:last-child { border-bottom: none; }
+  .hero-title { font-size: 28px; }
+  .hero { padding: 36px 20px 32px; }
+  .benefits-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- LIGHTBOX -->
+<div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
+  <span class="lightbox-close" onclick="closeLightbox()">&#x2715;</span>
+  <img id="lightbox-img" src="" alt="" onclick="event.stopPropagation()">
+</div>
+
+<nav class="nav">
+  <div class="nav-logo">📌 The Local Post</div>
+  <div class="nav-links">
+    <a href="https://www.thelocalpostspokane.com/browse-opportunities">Browse Opportunities</a>
+    <a href="https://www.thelocalpostspokane.com/home">Home</a>
+  </div>
+</nav>
+
+<div class="banner">
+  🩰 Classes 7 days a week · Ballet · Pilates · Yoga · Strength · Lincoln Heights · Spokane
+</div>
+
+<div class="hero">
+  <div class="hero-tag">🩰 Barre Studio · Lincoln Heights · Spokane, WA</div>
+  <div class="hero-title">Lilac City Barre</div>
+  <div class="hero-sub">Empowering Full-Body Workouts. Confidence You Can Feel.</div>
+  <div class="hero-tagline">2925 E. 29th Ave., Ste. C · Lincoln Heights Shopping Center · (509) 613-3222</div>
+</div>
+
+<div class="page">
+
+  <div class="stats-bar">
+    <div class="stat">
+      <div class="stat-num">7 days</div>
+      <div class="stat-label">Classes Per Week</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">5:30am</div>
+      <div class="stat-label">Earliest Class</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">DPT</div>
+      <div class="stat-label">On Staff (Safety)</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">4–6 mo</div>
+      <div class="stat-label">Instructor Training</div>
+    </div>
+  </div>
+
+  <div class="left-col">
+
+    <!-- SOCIAL -->
+    <div class="section">
+      <div class="social-row">
+        <a class="social-btn" href="https://www.instagram.com/lilaccitybarre/" target="_blank">📸 @lilaccitybarre</a>
+        <a class="social-btn" href="https://www.facebook.com/p/Lilac-City-Barre-61563116182925/" target="_blank">👥 Facebook</a>
+        <a class="social-btn" href="https://www.lilaccitybarre.com" target="_blank">🌐 lilaccitybarre.com</a>
+        <a class="social-btn" href="tel:5096133222">📞 (509) 613-3222</a>
+      </div>
+    </div>
+
+    <!-- WHAT MAKES THEM DIFFERENT -->
+    <div class="diff-callout">
+      <h3>What Makes Lilac City Barre Different</h3>
+      <p>Unlike many barre studios, Lilac City Barre always incorporates the actual ballet barre into class — because this is barre, after all. Their technique is designed by a team that includes a Doctor of Physical Therapy, a professional ballerina, and a yoga instructor, with every exercise reviewed for joint and muscle safety. Instructors complete a rigorous 4–6 month certification program before teaching.</p>
+      <p>The result: a studio that delivers a genuinely effective workout while prioritizing member wellbeing above all else — and a community that keeps coming back.</p>
+    </div>
+
+    <!-- PHOTOS -->
+    <div class="section">
+      <h2>📸 Studio Photos</h2>
+      <div class="photo-grid">
+        <img src="lcb-1.jpg" alt="Lilac City Barre class at the barre" onclick="openLightbox('lcb-1.jpg', 'Lilac City Barre class at the barre')">
+        <img src="lcb-2.jpg" alt="Lilac City Barre instructor adjusting" onclick="openLightbox('lcb-2.jpg', 'Lilac City Barre instructor adjusting')">
+        <img src="lcb-3.jpg" alt="Lilac City Barre studio" onclick="openLightbox('lcb-3.jpg', 'Lilac City Barre studio')">
+      </div>
+      <div class="photo-note">
+        📍 <strong>About the studio:</strong> Lilac City Barre is located in Lincoln Heights Shopping Center at 2925 E. 29th Ave., Ste. C in Spokane. Photos to be updated with actual studio images — click any to expand.
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <div class="section">
+      <h2>About This Opportunity</h2>
+      <p>Lilac City Barre is Spokane's dedicated barre studio — offering full-body workouts that blend ballet, Pilates, yoga, cardio, and strength training, 7 days a week starting at 5:30am. Whether members come for the early morning energy, the noon reset, or the evening challenge, they keep coming back because the results are real and the community is genuinely supportive.</p>
+      <p>Members at a barre studio are regulars by nature — they book classes week after week, often multiple times a week, and build lasting relationships with the studio and each other. That's a loyal, health-focused, female-skewing audience that invests in their wellbeing and the brands that support it.</p>
+      <p>With a merch store, events calendar, certified instructors, and a Doctor of Physical Therapy on staff, Lilac City Barre positions itself as a premium, safety-first fitness community — and their members know the difference. Advertising here reaches an audience that doesn't cut corners.</p>
+    </div>
+
+    <!-- CLASS BENEFITS -->
+    <div class="section">
+      <h2>🩰 The Benefits of Barre</h2>
+      <div class="benefits-grid">
+        <div class="benefit-item">
+          <div class="b-icon">💪</div>
+          <div class="b-title">Increased Strength</div>
+          <div class="b-desc">Combines weights and bodyweight training to build strength and beautifully sculpted muscles</div>
+        </div>
+        <div class="benefit-item">
+          <div class="b-icon">❤️</div>
+          <div class="b-title">Improved Health</div>
+          <div class="b-desc">Isometric movements, cardio, weights, and stretching — a genuinely full-body workout every class</div>
+        </div>
+        <div class="benefit-item">
+          <div class="b-icon">✨</div>
+          <div class="b-title">Gorgeously Confident</div>
+          <div class="b-desc">Members consistently report improved fitness and a transformed sense of self — this is the outcome they come for</div>
+        </div>
+        <div class="benefit-item">
+          <div class="b-icon">🧘</div>
+          <div class="b-title">Enhanced Flexibility</div>
+          <div class="b-desc">Every class includes flexibility work for greater joint movement and less muscle pain — real, lasting results</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CLASS SCHEDULE -->
+    <div class="section">
+      <h2>🗓️ Class Schedule</h2>
+      <div class="hours-row"><span class="day">Every Day</span><span>7 days a week · Classes available</span></div>
+      <div class="hours-row"><span class="day">Early Morning</span><span>Starting at 5:30 AM</span></div>
+      <div class="hours-row"><span class="day">Midday</span><span>Noon workout options</span></div>
+      <div class="hours-row"><span class="day">Evening</span><span>Evening challenge classes</span></div>
+      <p style="margin-top:12px;">Members book classes online at <a href="https://www.lilaccitybarre.com/book" target="_blank" style="color:#7b5ea7;">lilaccitybarre.com/book</a>. The variety of time slots means Lilac City Barre attracts early risers, stay-at-home parents, professionals, and evening exercisers — a broad, active Spokane audience all week long.</p>
+    </div>
+
+    <!-- WHO YOU'RE REACHING -->
+    <div class="section">
+      <h2>👥 Who You're Reaching</h2>
+      <div class="tag-list">
+        <span class="tag">Women 25–55</span>
+        <span class="tag">Fitness Enthusiasts</span>
+        <span class="tag">South Hill & Lincoln Heights</span>
+        <span class="tag">Active Spokane Adults</span>
+        <span class="tag">Health-Conscious Shoppers</span>
+        <span class="tag">Early Risers & Professionals</span>
+        <span class="tag">Stay-at-Home Parents</span>
+        <span class="tag">Wellness Community</span>
+        <span class="tag">Studio Merch Buyers</span>
+        <span class="tag">Class Pass Members</span>
+      </div>
+      <p style="margin-top:14px;">Barre members are creatures of habit — they come back multiple times a week, develop strong loyalty to the studio, and are highly receptive to health, wellness, and lifestyle brands that align with their values. This is an audience that's already investing in themselves and open to discovering products and services that support that journey.</p>
+    </div>
+
+    <!-- ADVERTISER FIT -->
+    <div class="section">
+      <h2>🎯 Advertiser Fit</h2>
+      <p>Best fits complement the wellness, fitness, and lifestyle focus of Lilac City Barre's member community.</p>
+      <div class="chip-grid">
+        <span class="chip">Health Food & Nutrition</span>
+        <span class="chip">Activewear & Apparel</span>
+        <span class="chip">Wellness & Self-Care</span>
+        <span class="chip">Skincare & Beauty</span>
+        <span class="chip">Smoothies & Juice Bars</span>
+        <span class="chip">Physical Therapy & Recovery</span>
+        <span class="chip">Massage & Bodywork</span>
+        <span class="chip">Local Restaurants & Cafes</span>
+        <span class="chip">Women-Owned Businesses</span>
+        <span class="chip">Yoga & Meditation</span>
+        <span class="chip">Children's Services</span>
+        <span class="chip">Gift & Lifestyle Shops</span>
+      </div>
+    </div>
+
+    <!-- EVERY ADVERTISER RECEIVES -->
+    <div class="section">
+      <h2>✅ Every Advertiser Receives</h2>
+      <ul class="perks">
+        <li><span class="icon">📋</span>Your business card, flyer, or materials displayed in the studio</li>
+        <li><span class="icon">🤝</span>Recognition as a supporter of Spokane's premier barre fitness community</li>
+        <li><span class="icon">👥</span>Exposure to a loyal, repeat, health-focused audience attending multiple times per week</li>
+        <li><span class="icon">📍</span>Placement in a Lincoln Heights studio with a growing regional following</li>
+      </ul>
+      <p style="margin-top:12px;"><strong>Higher packages also include:</strong> social media mentions, product sample or giveaway inclusion at class, table or locker area display, verbal mention by instructors, and event sponsorship opportunities on the Lilac City Barre events calendar.</p>
+    </div>
+
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sidebar-card">
+      <h3>Advertise Here</h3>
+      <div class="sidebar-sub">Pick your package and request to book — approval within 1 business day.</div>
+
+      <div class="sample-badge">🎨 Sample Listing — Pricing estimated for illustration</div>
+
+      <!-- IN-STUDIO -->
+      <div class="pkg-section-label label-lilac">🩰 In-Studio · Lincoln Heights</div>
+
+      <div class="package" onclick="selectPkg(this, 'Business Card Display', '$25/mo')">
+        <div class="package-top">
+          <div class="package-name">📋 Business Card Display</div>
+          <div class="package-price">$25<span style="font-size:11px;font-weight:500;color:#5f6368">/mo</span></div>
+        </div>
+        <div class="package-desc">Your card or small flyer at the front desk or locker area — seen by every member checking in for class</div>
+        <span class="freq freq-monthly">Monthly</span>
+      </div>
+
+      <div class="package" onclick="selectPkg(this, 'Locker Room / Cubbies Feature', '$50/mo')">
+        <div class="package-top">
+          <div class="package-name">🗄️ Locker Room Feature</div>
+          <div class="package-price">$50<span style="font-size:11px;font-weight:500;color:#5f6368">/mo</span></div>
+        </div>
+        <div class="package-desc">Your flyer, sample, or small display in the cubbies or locker area — seen by members as they prep for and wind down from class · a calm, receptive moment</div>
+        <span class="freq freq-monthly">Monthly</span>
+      </div>
+
+      <div class="package" onclick="selectPkg(this, 'Studio Feature Display', '$100/mo')" style="position:relative;">
+        <div class="badge-popular">Most Popular</div>
+        <div class="package-top">
+          <div class="package-name">🖼️ Studio Feature Display</div>
+          <div class="package-price">$100<span style="font-size:11px;font-weight:500;color:#5f6368">/mo</span></div>
+        </div>
+        <div class="package-desc">Printed or framed ad displayed in the studio for 30 days · seen by all members every time they attend — multiple times per week for regulars</div>
+        <span class="freq freq-monthly">Monthly</span>
+      </div>
+
+      <div class="package" onclick="selectPkg(this, 'Class Sample Drop', '$75')">
+        <div class="package-top">
+          <div class="package-name">🎁 Class Sample Drop</div>
+          <div class="package-price">$75</div>
+        </div>
+        <div class="package-desc">Your product sample, snack, or branded item handed to members after class · they've just finished a workout and are in the best possible headspace to discover something new</div>
+        <span class="freq freq-perevent">Per Class</span>
+      </div>
+
+      <!-- EVENTS -->
+      <div class="pkg-section-label label-navy">🎉 Event Sponsorship</div>
+
+      <div class="package" onclick="selectPkg(this, 'Studio Event Sponsor', '$150')">
+        <div class="package-top">
+          <div class="package-name">🎉 Studio Event Sponsor</div>
+          <div class="package-price">$150</div>
+        </div>
+        <div class="package-desc">Named sponsor of a Lilac City Barre event · verbal recognition + signage at the event + social media post before and after · option to provide giveaway or gift bag for attendees</div>
+        <span class="freq freq-perevent">Per Event</span>
+      </div>
+
+      <!-- SOCIAL -->
+      <div class="pkg-section-label label-navy">📣 Social Media</div>
+
+      <div class="package" onclick="selectPkg(this, 'Social Shoutout', '$50')">
+        <div class="package-top">
+          <div class="package-name">📣 Social Shoutout</div>
+          <div class="package-price">$50</div>
+        </div>
+        <div class="package-desc">One Instagram or Facebook mention · your handle tagged · link or description of your business · reaches Lilac City Barre's active fitness community</div>
+        <span class="freq freq-onetime">One-Time</span>
+      </div>
+
+      <!-- BUNDLES -->
+      <div class="pkg-section-label label-navy">⭐ Bundles</div>
+
+      <div class="package" onclick="selectPkg(this, 'Full Monthly Partner', '$175/mo')">
+        <div class="package-top">
+          <div class="package-name">🥇 Full Monthly Partner <span class="package-save">Save $25</span></div>
+          <div class="package-price">$175<span style="font-size:11px;font-weight:500;color:#5f6368">/mo</span></div>
+        </div>
+        <div class="package-desc">Studio Feature Display + Business Card Display + Social Shoutout · complete in-studio visibility and online reach</div>
+        <span class="freq freq-monthly">Monthly</span>
+      </div>
+
+      <div class="package" onclick="selectPkg(this, 'Premier Wellness Partner', '$300/mo')">
+        <div class="package-top">
+          <div class="package-name">⭐ Premier Wellness Partner</div>
+          <div class="package-price">$300<span style="font-size:11px;font-weight:500;color:#5f6368">/mo</span></div>
+        </div>
+        <div class="package-desc">Studio display + locker room feature + monthly class sample drop + 2 social mentions · maximum sustained visibility with Spokane's most dedicated fitness community</div>
+        <span class="freq freq-ongoing">Ongoing</span>
+      </div>
+
+      <div class="summary" id="summary">
+        <div class="summary-title" id="summaryTitle"></div>
+        <div class="summary-note">You'll be taken to a short request form. Once approved, we'll confirm details within 1 business day.</div>
+      </div>
+
+      <button class="book-btn" onclick="bookNow()">Request to Book →</button>
+
+      <div class="trust">
+        <hr>
+        <div class="trust-item">📋 Submit a quick 3-minute request form</div>
+        <div class="trust-item">✅ We'll review and confirm within 1 business day</div>
+        <div class="trust-item">🔒 Secure payment link sent upon approval</div>
+        <div class="trust-item">📧 Confirmation and materials form sent to your email</div>
+        <div class="contact-link" onclick="window.open('https://www.thelocalpostspokane.com/home','_blank')">Have questions? Contact us first</div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+function openLightbox(src, alt) {
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox-img').alt = alt || '';
+  document.getElementById('lightbox').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('active');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeLightbox(); });
+function selectPkg(el, name, price) {
+  document.querySelectorAll('.package').forEach(p => p.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById('summaryTitle').textContent = name + ' — ' + price;
+  document.getElementById('summary').classList.add('show');
+}
+function bookNow() {
+  window.open('https://docs.google.com/forms/d/e/1FAIpQLSchD8nJNLro4uFf6oSdgXgsBPnXysBAai3Xz-84ZZ6_rQS4cQ/viewform?usp=header', '_blank');
+}
+</script>
+
+</body>
+</html>
