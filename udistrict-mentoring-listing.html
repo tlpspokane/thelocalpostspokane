@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>U-District Mentoring Program — The Local Post</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Arial, sans-serif; background: #f5f7fa; color: #202124; }
+
+.nav {
+  background: #1e3a5f;
+  padding: 0 24px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-logo { font-size: 17px; font-weight: 700; color: white; letter-spacing: 0.01em; }
+.nav-links { display: flex; gap: 18px; }
+.nav-links a { text-decoration: none; color: rgba(255,255,255,0.82); font-size: 13px; }
+.nav-links a:hover { color: white; }
+
+.banner {
+  background: #2d6a4f;
+  color: white;
+  text-align: center;
+  padding: 9px 16px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* HERO — forest green gradient */
+.hero {
+  background: linear-gradient(135deg, #1b4332 0%, #2d6a4f 50%, #40916c 100%);
+  padding: 52px 32px 48px;
+  text-align: center;
+}
+.hero-tag {
+  display: inline-block;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.35);
+  color: #d8f3dc;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 14px;
+}
+.hero-title {
+  font-size: 36px;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+.hero-sub {
+  font-size: 15px;
+  color: #d8f3dc;
+  font-style: italic;
+  margin-bottom: 6px;
+}
+.hero-tagline {
+  font-size: 13px;
+  color: rgba(255,255,255,0.78);
+}
+
+/* LAYOUT */
+.page { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; display: grid; grid-template-columns: 1fr 340px; gap: 20px; }
+
+/* STATS BAR */
+.stats-bar {
+  grid-column: 1 / -1;
+  background: linear-gradient(135deg, #1b4332 0%, #2d6a4f 50%, #40916c 100%);
+  border: none;
+  border-radius: 8px;
+  display: flex;
+  padding: 4px 0;
+}
+.stat { flex: 1; text-align: center; padding: 14px 8px; border-right: 1px solid rgba(255,255,255,0.2); }
+.stat:last-child { border-right: none; }
+.stat-num { font-size: 20px; font-weight: 800; color: white; text-shadow: 0 1px 4px rgba(0,0,0,0.15); }
+.stat-label { font-size: 11px; color: rgba(255,255,255,0.82); margin-top: 3px; text-transform: uppercase; letter-spacing: 0.05em; }
+
+.social-row { display: flex; gap: 10px; flex-wrap: wrap; }
+.social-btn { display: inline-flex; align-items: center; gap: 6px; background: #f1f3f4; border: 1px solid #dadce0; color: #1e3a5f; font-size: 12px; font-weight: 600; padding: 6px 14px; border-radius: 20px; text-decoration: none; }
+.social-btn:hover { background: #e8eaed; }
+
+.section { background: white; border: 1px solid #dadce0; border-radius: 8px; padding: 22px; margin-bottom: 16px; }
+.section h2 { font-size: 16px; font-weight: 700; color: #1e3a5f; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid #f0f0f0; }
+.section p { font-size: 14px; line-height: 1.7; color: #3c4043; margin-bottom: 10px; }
+.section p:last-child { margin-bottom: 0; }
+
+/* MISSION CALLOUT */
+.mission-callout {
+  background: linear-gradient(135deg, #d8f3dc, #f0faf1);
+  border: 1px solid #b7e4c7;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 16px;
+}
+.mission-callout .principle {
+  font-size: 18px;
+  font-weight: 800;
+  color: #1b4332;
+  margin-bottom: 8px;
+}
+.mission-callout p {
+  font-size: 14px;
+  color: #2d6a4f;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* PHOTO GRID */
+.photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 4px; }
+.photo-grid img { width: 100%; aspect-ratio: 1; object-fit: cover; object-position: center top; border-radius: 6px; display: block; }
+.photo-note { font-size: 12px; color: #5f6368; margin-top: 10px; background: #f8f9fa; padding: 10px 12px; border-radius: 6px; border-left: 3px solid #2d6a4f; line-height: 1.5; }
+
+/* OUTING CHIPS */
+.outing-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.outing-chip { background: #d8f3dc; border: 1px solid #b7e4c7; color: #1b4332; font-size: 12px; font-weight: 600; padding: 5px 13px; border-radius: 20px; }
+
+/* IMPACT LIST */
+.impact-list { list-style: none; margin-top: 4px; }
+.impact-list li { display: flex; align-items: flex-start; gap: 10px; padding: 9px 0; border-bottom: 1px solid #f0f0f0; font-size: 14px; color: #3c4043; }
+.impact-list li:last-child { border-bottom: none; }
+.impact-list li .icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+
+/* AUDIENCE TAGS */
+.tag-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.tag { background: #f1f3f4; border: 1px solid #dadce0; color: #1e3a5f; font-size: 12px; font-weight: 600; padding: 5px 13px; border-radius: 20px; }
+
+/* ADVERTISER FIT */
+.fit-card { background: #eef3f9; border: 1px solid #c5d5e8; border-radius: 8px; padding: 16px; margin-bottom: 12px; }
+.fit-card:last-child { margin-bottom: 0; }
+.fit-card h3 { font-size: 13px; font-weight: 700; color: #1e3a5f; margin-bottom: 8px; }
+.fit-card p { font-size: 13px; color: #3c4043; line-height: 1.65; margin: 0 0 10px; }
+.fit-card p:last-child { margin: 0; }
+
+/* PERKS */
+.perks { list-style: none; margin-top: 4px; }
+.perks li { display: flex; align-items: flex-start; gap: 10px; padding: 9px 0; border-bottom: 1px solid #f0f0f0; font-size: 14px; color: #3c4043; }
+.perks li:last-child { border-bottom: none; }
+.perks li .icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+
+/* SIDEBAR */
+.sidebar { position: sticky; top: 20px; align-self: start; }
+.sidebar-card { background: white; border: 1px solid #dadce0; border-radius: 8px; padding: 22px; }
+.sidebar-card h3 { font-size: 15px; font-weight: 700; color: #1e3a5f; margin-bottom: 4px; }
+.sidebar-sub { font-size: 12px; color: #5f6368; margin-bottom: 16px; }
+
+/* PACKAGES */
+.package { border: 1.5px solid #dadce0; border-radius: 8px; padding: 13px 15px; margin-bottom: 9px; cursor: pointer; position: relative; transition: border-color 0.15s, background 0.15s; }
+.package:hover { border-color: #1e3a5f; background: #f8fafc; }
+.package.selected { border-color: #1e3a5f; background: #eef3f9; }
+.package-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+.package-name { font-size: 13px; font-weight: 700; color: #202124; }
+.package-price { font-size: 15px; font-weight: 800; color: #1e3a5f; white-space: nowrap; }
+.package-desc { font-size: 12px; color: #5f6368; margin-top: 4px; line-height: 1.5; }
+.package-save { font-size: 10px; font-weight: 700; color: #2d6a4f; background: #d8f3dc; padding: 2px 6px; border-radius: 10px; margin-left: 5px; }
+
+.freq { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 10px; margin-top: 6px; text-transform: uppercase; letter-spacing: 0.05em; }
+.freq-onetime  { background: #f1f3f4; color: #5f6368; }
+.freq-perouting{ background: #d8f3dc; color: #1b4332; }
+.freq-weekly   { background: #e8f0fe; color: #1a56c4; }
+.freq-monthly  { background: #e6f4ea; color: #1e7e34; }
+.freq-ongoing  { background: #fce8e6; color: #c5221f; }
+
+.badge-popular { position: absolute; top: -1px; right: 12px; background: #1e3a5f; color: white; font-size: 9px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 8px; border-radius: 0 0 6px 6px; }
+
+.summary { background: #eef3f9; border: 1px solid #c5d5e8; border-radius: 6px; padding: 12px 14px; margin: 12px 0; display: none; }
+.summary.show { display: block; }
+.summary-title { font-size: 13px; font-weight: 700; color: #1e3a5f; margin-bottom: 4px; }
+.summary-note { font-size: 12px; color: #5f6368; line-height: 1.5; }
+
+.book-btn { width: 100%; background: #1e3a5f; color: white; border: none; border-radius: 8px; padding: 14px; font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 4px; transition: background 0.15s; }
+.book-btn:hover { background: #163050; }
+
+.trust { margin-top: 16px; }
+.trust hr { border: none; border-top: 1px solid #f0f0f0; margin-bottom: 12px; }
+.trust-item { font-size: 12px; color: #5f6368; padding: 4px 0; }
+.contact-link { font-size: 12px; color: #1e3a5f; font-weight: 600; margin-top: 10px; cursor: pointer; text-decoration: underline; }
+.contact-link:hover { color: #163050; }
+
+@media (max-width: 700px) {
+  .page { grid-template-columns: 1fr; }
+  .sidebar { position: static; }
+  .stats-bar { flex-wrap: wrap; }
+  .stat { min-width: 50%; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.2); }
+  .stat:last-child { border-bottom: none; }
+  .hero-title { font-size: 26px; }
+  .hero { padding: 36px 20px 32px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-logo">📌 The Local Post</div>
+  <div class="nav-links">
+    <a href="https://sites.google.com/view/thelocalpostspokane/browse-opportunities">Browse Opportunities</a>
+    <a href="https://sites.google.com/view/thelocalpostspokane/home">Home</a>
+  </div>
+</nav>
+
+<div class="banner">
+  🌱 Sponsorships available — put your brand behind something that matters in Spokane
+</div>
+
+<!-- HERO — forest green gradient -->
+<div class="hero">
+  <div class="hero-tag">💚 Nonprofit · Youth Mentoring · Spokane, WA</div>
+  <div class="hero-title">U-District Mentoring Program</div>
+  <div class="hero-sub">Matching caring adults with vulnerable children in Spokane</div>
+  <div class="hero-tagline">501(c)(3) · U-District Foundation · EIN: 30-0391912</div>
+</div>
+
+<div class="page">
+
+  <div class="stats-bar">
+    <div class="stat">
+      <div class="stat-num">2×/mo</div>
+      <div class="stat-label">Mentor Outings</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">501(c)(3)</div>
+      <div class="stat-label">Registered Nonprofit</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">2+ hrs</div>
+      <div class="stat-label">Per Outing</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">Community</div>
+      <div class="stat-label">Based in Spokane</div>
+    </div>
+  </div>
+
+  <!-- LEFT COLUMN -->
+  <div class="left-col">
+
+    <div class="section">
+      <div class="social-row">
+        <a class="social-btn" href="https://www.instagram.com/udistrictmentoringprogram/" target="_blank">📸 @udistrictmentoringprogram</a>
+        <a class="social-btn" href="https://udistrictpt.com/foundation/" target="_blank">🌐 udistrictpt.com/foundation</a>
+        <a class="social-btn" href="https://www.u-districtmentoringprogram.com" target="_blank">🔗 u-districtmentoringprogram.com</a>
+        <a class="social-btn" href="tel:9713224684">📞 971-322-4684 (Lexi)</a>
+      </div>
+    </div>
+
+    <!-- MISSION -->
+    <div class="mission-callout">
+      <div class="principle">"No Child Walks Alone"</div>
+      <p>The U-District Foundation Mentoring Program matches committed, caring adults with vulnerable children — creating long-lasting positive relationships that act as a catalyst for hopeful futures.</p>
+    </div>
+
+    <!-- PHOTOS -->
+    <div class="section">
+      <h2>📸 Mentors & Mentees in Action</h2>
+      <div class="photo-grid">
+        <img src="IMG_9655.jpeg" alt="Mentors and mentees bowling together">
+        <img src="IMG_9656.png" alt="Mentors and mentees at laser tag">
+        <img src="IMG_9657.png" alt="Mentor and mentee at Wishing Tree Books">
+      </div>
+      <div class="photo-grid" style="margin-top:8px;">
+        <img src="IMG_9658.png" alt="Mentors and mentees playing cornhole at book event">
+        <img src="IMG_9659.png" alt="Mentors and mentees playing cards together">
+        <img src="IMG_9660.png" alt="Mentor teaching mentee a card game">
+      </div>
+      <div class="photo-grid" style="margin-top:8px;">
+        <img src="IMG_9661.png" alt="Group at Numerica Skate Ribbon ice skating">
+        <img src="IMG_9662.png" alt="Group volunteering at Second Harvest food bank">
+        <img src="IMG_9663.png" alt="U-District Mentoring Program group photo">
+      </div>
+      <div class="photo-note">
+        📍 <strong>Where outings happen:</strong> Mentors pick up their mentees twice a month and take them out into the Spokane community — bowling, laser tag, ice skating, bookstores, food banks, parks, and more. Your sponsorship puts your brand right in the middle of these real, joyful moments.
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <div class="section">
+      <h2>About This Opportunity</h2>
+      <p>The U-District Foundation Mentoring Program is a 501(c)(3) nonprofit based in Spokane that pairs committed adult mentors with vulnerable youth for regular outings in the community. Mentors meet their mentees twice a month for two-plus hour outings — bowling, ice skating, volunteering at Second Harvest, visiting bookstores, playing laser tag, and more. </p>
+      <p>This listing is different from a traditional advertising placement. Sponsors here aren't just buying visibility — they're putting their business name behind a mission that Spokane families and community members genuinely care about. When your brand shows up at a mentoring outing or in the program's communications, it lands with warmth and meaning.</p>
+      <p>The program sends mentors a weekly newsletter with outing suggestions, upcoming events, free/discounted passes to local venues, and community connections. Sponsors featured in that newsletter reach a motivated, community-minded group of Spokane adults.</p>
+    </div>
+
+    <!-- WHAT OUTINGS LOOK LIKE -->
+    <div class="section">
+      <h2>🎯 Past & Suggested Outing Activities</h2>
+      <p>Mentors take their mentees to local businesses, venues, and events across Spokane. These are the kinds of places and experiences your sponsorship supports — and where your brand can show up:</p>
+      <div class="outing-grid">
+        <span class="outing-chip">🎳 Bowling</span>
+        <span class="outing-chip">🎯 Laser Tag</span>
+        <span class="outing-chip">⛸️ Ice Skating</span>
+        <span class="outing-chip">📚 Bookstores</span>
+        <span class="outing-chip">🧗 Rock Climbing</span>
+        <span class="outing-chip">⛳ Mini Golf</span>
+        <span class="outing-chip">🪓 Axe Throwing</span>
+        <span class="outing-chip">🍓 Berry Picking</span>
+        <span class="outing-chip">🎨 Pottery Painting</span>
+        <span class="outing-chip">🏀 Spokane Indians Games</span>
+        <span class="outing-chip">🦁 Cat Tales Wildlife Center</span>
+        <span class="outing-chip">🔬 Mobius Discovery Center</span>
+        <span class="outing-chip">🌳 Hiking Trails</span>
+        <span class="outing-chip">🎭 Museums & Shows</span>
+        <span class="outing-chip">🥗 Second Harvest Volunteering</span>
+        <span class="outing-chip">🛝 Trampoline Parks</span>
+      </div>
+    </div>
+
+    <!-- WHO YOU'RE REACHING -->
+    <div class="section">
+      <h2>👥 Who You're Reaching</h2>
+      <div class="tag-list">
+        <span class="tag">Adult Mentors</span>
+        <span class="tag">Youth & Families</span>
+        <span class="tag">Community Volunteers</span>
+        <span class="tag">Spokane Locals</span>
+        <span class="tag">Mission-Driven Adults</span>
+        <span class="tag">Parents & Guardians</span>
+        <span class="tag">Program Staff</span>
+        <span class="tag">Newsletter Subscribers</span>
+      </div>
+      <p style="margin-top:14px;">Mentors are caring, community-oriented Spokane adults who commit real time and energy to a child's life. They're receptive to local businesses and deeply value community connection. When the program recommends or features a business, it carries genuine trust.</p>
+    </div>
+
+    <!-- ADVERTISER FIT -->
+    <div class="section">
+      <h2>🎯 Advertiser Fit</h2>
+      <p>This program reaches two distinct groups — mentors and the youth they serve. The best fit businesses either serve local families directly or align with the program's values of community, health, and youth development.</p>
+
+      <div class="fit-card">
+        <h3>✅ Great Fit</h3>
+        <p>Local restaurants and food businesses, family entertainment venues, youth-focused services, bookstores, outdoor recreation, health & wellness, tutoring & education, family photography, sporting goods, and any business that wants to be associated with positive community impact in Spokane.</p>
+        <div class="outing-grid" style="margin-top:8px;">
+          <span class="outing-chip">Family Restaurants</span>
+          <span class="outing-chip">Activity Venues</span>
+          <span class="outing-chip">Youth Services</span>
+          <span class="outing-chip">Health & Wellness</span>
+          <span class="outing-chip">Local Retail</span>
+          <span class="outing-chip">Education & Tutoring</span>
+        </div>
+      </div>
+
+      <div class="fit-card" style="background:#fdf5e6;border-color:#e8d5b0;margin-top:10px;">
+        <h3 style="color:#7b4a1e;">⚠️ Please Consider Before Booking</h3>
+        <p style="color:#3c4043;">Because this program serves vulnerable youth and their families, U-District Mentoring is selective about sponsor alignment. Businesses involving alcohol, adult entertainment, or anything inconsistent with a youth-serving nonprofit will not be accepted. When in doubt, reach out to confirm fit before submitting a request.</p>
+      </div>
+    </div>
+
+    <!-- IMPACT -->
+    <div class="section">
+      <h2>💚 The Impact of This Program</h2>
+      <ul class="impact-list">
+        <li><span class="icon">📉</span>Youth in the program are less likely to start using drugs and alcohol</li>
+        <li><span class="icon">🎓</span>Students set higher educational goals and are more likely to attend college</li>
+        <li><span class="icon">🏫</span>They are less likely to skip school or classes</li>
+        <li><span class="icon">⚽</span>More likely to engage in athletics and extracurricular activities</li>
+        <li><span class="icon">😊</span>Experience fewer symptoms of depression</li>
+      </ul>
+      <p style="margin-top:12px;">Sponsoring this program means your business is directly associated with these outcomes — and with the mentors and families who make them happen.</p>
+    </div>
+
+    <!-- EVERY ADVERTISER RECEIVES -->
+    <div class="section">
+      <h2>✅ Every Sponsor Receives</h2>
+      <ul class="perks">
+        <li><span class="icon">🤝</span>Recognition as a community supporter of Spokane's youth</li>
+        <li><span class="icon">📋</span>Your business featured in program communications or outing materials</li>
+        <li><span class="icon">💚</span>Association with a trusted, mission-driven 501(c)(3) nonprofit</li>
+        <li><span class="icon">📍</span>Visibility with a community-minded audience of Spokane adults</li>
+      </ul>
+      <p style="margin-top:12px;"><strong>Higher packages also include:</strong> feature placement in the weekly mentor newsletter, social media mentions on the program's Instagram, individual and group outing sponsorship recognition, gift bags or samples for group event participants, and the option to host the group at your venue as the presenting sponsor.</p>
+    </div>
+
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sidebar-card">
+      <h3>Sponsor This Program</h3>
+      <div class="sidebar-sub">Pick your package and request to book — approval within 1 business day.</div>
+
+      <!-- INDIVIDUAL OUTING PACKAGES -->
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:#2d6a4f;margin-bottom:8px;padding-bottom:6px;border-bottom:2px solid #b7e4c7;">🤝 Individual Mentor Support</div>
+
+      <div class="package" onclick="selectPkg(this, 'Community Supporter', '$25')">
+        <div class="package-top">
+          <div class="package-name">💚 Community Supporter</div>
+          <div class="package-price">$25</div>
+        </div>
+        <div class="package-desc">Your business name listed as a community supporter in program materials · warm brand association with a trusted local nonprofit</div>
+        <span class="freq freq-onetime">One-Time</span>
+      </div>
+
+      <div class="package" onclick="selectPkg(this, 'Newsletter Feature', '$50')">
+        <div class="package-top">
+          <div class="package-name">📧 Newsletter Feature</div>
+          <div class="package-price">$50</div>
+        </div>
+        <div class="package-desc">Your business featured in the weekly mentor newsletter · includes your description, offer, coupon, or discount · direct reach to community-minded Spokane adults</div>
+        <span class="freq freq-onetime">One-Time</span>
+      </div>
+
+      <div class="package" onclick="selectPkg(this, 'Individual Outing Sponsor', '$100')">
+        <div class="package-top">
+          <div class="package-name">🎳 Individual Outing Sponsor</div>
+          <div class="package-price">$100</div>
+        </div>
+        <div class="package-desc">Sponsor one mentor-mentee pair for an outing · provide discount passes, gift cards, coupons, or a small gift bag for the pair · recognized as the outing sponsor in the newsletter</div>
+        <span class="freq freq-perouting">Per Outing</span>
+      </div>
+
+      <!-- GROUP OUTING PACKAGES -->
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:#1e3a5f;margin:16px 0 8px;padding-bottom:6px;border-bottom:2px solid #c5d5e8;">🏆 Group Outing Sponsorship</div>
+      <div style="font-size:11px;color:#5f6368;margin-bottom:10px;line-height:1.5;">The foundation organizes group outings where all mentors and mentees attend together — bowling nights, skating events, book fairs, and more. Sponsor the whole group or host them at your venue.</div>
+
+      <div class="package" onclick="selectPkg(this, 'Group Outing Gift Bags', '$150')" style="position:relative;">
+        <div class="badge-popular">Most Popular</div>
+        <div class="package-top">
+          <div class="package-name">🎁 Group Gift Bags / Samples</div>
+          <div class="package-price">$150</div>
+        </div>
+        <div class="package-desc">Provide branded gift bags, product samples, or coupons for every participant at a group outing · your business in the hands of every mentor and mentee at the event · great for food, retail, or service businesses</div>
+        <span class="freq freq-perouting">Per Event</span>
+      </div>
+
+      <div class="package" onclick="selectPkg(this, 'Group Outing Presenting Sponsor', '$300')">
+        <div class="package-top">
+          <div class="package-name">🌟 Group Outing Presenting Sponsor</div>
+          <div class="package-price">$300</div>
+        </div>
+        <div class="package-desc">Named presenting sponsor of a full group outing · verbal recognition at the event + newsletter feature before and after + social media post · ideal for venues like bowling alleys, skating rinks, activity centers, or restaurants hosting the group</div>
+        <span class="freq freq-perouting">Per Event</span>
+      </div>
+
+      <div class="package" onclick="selectPkg(this, 'Monthly Program Partner', '$200/mo')">
+        <div class="package-top">
+          <div class="package-name">📅 Monthly Program Partner</div>
+          <div class="package-price">$200<span style="font-size:11px;font-weight:500;color:#5f6368">/mo</span></div>
+        </div>
+        <div class="package-desc">Monthly newsletter placement + 1–2 Instagram mentions + individual outing sponsorship each month · sustained visibility with the program community</div>
+        <span class="freq freq-monthly">Monthly</span>
+      </div>
+
+      <div class="package" onclick="selectPkg(this, 'Premier Community Partner', '$400/mo')">
+        <div class="package-top">
+          <div class="package-name">⭐ Premier Community Partner</div>
+          <div class="package-price">$400<span style="font-size:11px;font-weight:500;color:#5f6368">/mo</span></div>
+        </div>
+        <div class="package-desc">Top newsletter billing + 2–3 social mentions + group outing presenting sponsorship each month + gift bags for all participants · deepest integration with the program and its community</div>
+        <span class="freq freq-ongoing">Ongoing</span>
+      </div>
+
+      <div class="summary" id="summary">
+        <div class="summary-title" id="summaryTitle"></div>
+        <div class="summary-note">You'll be taken to a short request form. Once approved, we'll confirm details within 1 business day.</div>
+      </div>
+
+      <button class="book-btn" onclick="bookNow()">Request to Book →</button>
+
+      <div class="trust">
+        <hr>
+        <div class="trust-item">📋 Submit a quick 3-minute request form</div>
+        <div class="trust-item">✅ We'll review and confirm within 1 business day</div>
+        <div class="trust-item">🔒 Secure payment link sent upon approval</div>
+        <div class="trust-item">📧 Confirmation and materials form sent to your email</div>
+        <div class="contact-link" onclick="window.open('https://sites.google.com/view/thelocalpostspokane/home','_blank')">Have questions? Contact us first</div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+function selectPkg(el, name, price) {
+  document.querySelectorAll('.package').forEach(p => p.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById('summaryTitle').textContent = name + ' — ' + price;
+  document.getElementById('summary').classList.add('show');
+}
+function bookNow() {
+  window.open('https://docs.google.com/forms/d/e/1FAIpQLSchD8nJNLro4uFf6oSdgXgsBPnXysBAai3Xz-84ZZ6_rQS4cQ/viewform?usp=header', '_blank');
+}
+</script>
+
+</body>
+</html>
