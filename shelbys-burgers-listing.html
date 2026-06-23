@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shelby's Burgers — The Local Post</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Arial, sans-serif; background: #f5f7fa; color: #202124; }
+.nav { background: #1e3a5f; padding: 0 24px; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+.nav-logo { font-size: 17px; font-weight: 700; color: white; }
+.nav-links { display: flex; gap: 18px; }
+.nav-links a { text-decoration: none; color: rgba(255,255,255,0.82); font-size: 13px; }
+.nav-links a:hover { color: white; }
+
+.banner { background: #b02020; color: white; text-align: center; padding: 9px 16px; font-size: 13px; font-weight: 600; }
+
+/* HERO — charred black to red */
+.hero {
+  background: linear-gradient(135deg, #0f0808 0%, #2a0808 40%, #b02020 100%);
+  padding: 52px 32px 48px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(45deg, transparent, transparent 8px, rgba(255,255,255,0.02) 8px, rgba(255,255,255,0.02) 9px);
+  pointer-events: none;
+}
+.hero-tag { display: inline-block; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.28); color: #ffd0c8; font-size: 11px; font-weight: 700; padding: 4px 14px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px; }
+.hero-title { font-size: 44px; font-weight: 900; color: white; margin-bottom: 6px; text-shadow: 0 2px 12px rgba(0,0,0,0.5); letter-spacing: -0.01em; }
+.hero-sub { font-size: 15px; color: #ffd0c8; font-style: italic; margin-bottom: 6px; }
+.hero-tagline { font-size: 13px; color: rgba(255,255,255,0.7); }
+
+.page { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; display: grid; grid-template-columns: 1fr 340px; gap: 20px; }
+
+.stats-bar { grid-column: 1 / -1; background: linear-gradient(135deg, #0f0808 0%, #2a0808 40%, #b02020 100%); border-radius: 8px; display: flex; padding: 4px 0; }
+.stat { flex: 1; text-align: center; padding: 14px 8px; border-right: 1px solid rgba(255,255,255,0.18); }
+.stat:last-child { border-right: none; }
+.stat-num { font-size: 20px; font-weight: 800; color: white; }
+.stat-label { font-size: 11px; color: rgba(255,255,255,0.78); margin-top: 3px; text-transform: uppercase; letter-spacing: 0.05em; }
+
+.social-row { display: flex; gap: 10px; flex-wrap: wrap; }
+.social-btn { display: inline-flex; align-items: center; gap: 6px; background: #f1f3f4; border: 1px solid #dadce0; color: #1e3a5f; font-size: 12px; font-weight: 600; padding: 6px 14px; border-radius: 20px; text-decoration: none; }
+.social-btn:hover { background: #e8eaed; }
+
+.section { background: white; border: 1px solid #dadce0; border-radius: 8px; padding: 22px; margin-bottom: 16px; }
+.section h2 { font-size: 16px; font-weight: 700; color: #1e3a5f; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid #f0f0f0; }
+.section p { font-size: 14px; line-height: 1.7; color: #3c4043; margin-bottom: 10px; }
+.section p:last-child { margin-bottom: 0; }
+
+/* TAGLINE */
+.tagline-callout { background: linear-gradient(135deg, #0f0808, #2a0808); border-radius: 8px; padding: 20px 24px; margin-bottom: 16px; text-align: center; }
+.tagline-callout p { font-size: 22px; font-weight: 900; color: white; letter-spacing: 0.02em; text-shadow: 0 1px 6px rgba(0,0,0,0.4); }
+
+/* MENU HIGHLIGHTS */
+.menu-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 4px; }
+.menu-item { background: #fff5f5; border: 1px solid #fcc4c4; border-radius: 8px; padding: 12px 14px; border-top: 3px solid #b02020; }
+.menu-item .m-icon { font-size: 20px; margin-bottom: 5px; }
+.menu-item .m-title { font-size: 13px; font-weight: 700; color: #1e3a5f; margin-bottom: 3px; }
+.menu-item .m-desc { font-size: 12px; color: #5f6368; line-height: 1.5; }
+
+/* REVIEWS */
+.review-card { background: #f8f9fa; border: 1px solid #dadce0; border-radius: 8px; padding: 14px; margin-bottom: 10px; }
+.review-card .stars { color: #f4b400; font-size: 13px; margin-bottom: 4px; }
+.review-card p { font-size: 13px; color: #3c4043; line-height: 1.6; font-style: italic; margin: 0 0 6px; }
+.review-card .reviewer { font-size: 12px; color: #5f6368; font-weight: 600; }
+
+/* HOURS */
+.hours-row { display: flex; justify-content: space-between; padding: 7px 0; border-bottom: 1px solid #f0f0f0; font-size: 13px; color: #3c4043; }
+.hours-row:last-child { border-bottom: none; }
+.hours-row .day { font-weight: 600; color: #1e3a5f; }
+
+/* KENDALL YARDS */
+.market-callout { background: linear-gradient(135deg, #fff5f5, #fef0f0); border: 1px solid #fcc4c4; border-left: 4px solid #b02020; border-radius: 8px; padding: 16px 18px; margin-bottom: 16px; display: flex; gap: 14px; align-items: flex-start; }
+.market-callout .mc-icon { font-size: 26px; flex-shrink: 0; }
+.market-callout h3 { font-size: 14px; font-weight: 700; color: #1e3a5f; margin-bottom: 5px; }
+.market-callout p { font-size: 13px; color: #3c4043; line-height: 1.6; margin: 0; }
+
+/* PHOTO GRID */
+.photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 4px; }
+.photo-grid img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 6px; display: block; cursor: zoom-in; transition: opacity 0.15s; }
+.photo-grid img:hover { opacity: 0.88; }
+.photo-note { font-size: 12px; color: #5f6368; margin-top: 10px; background: #f8f9fa; padding: 10px 12px; border-radius: 6px; border-left: 3px solid #b02020; line-height: 1.5; }
+
+.tag-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.tag { background: #f1f3f4; border: 1px solid #dadce0; color: #1e3a5f; font-size: 12px; font-weight: 600; padding: 5px 13px; border-radius: 20px; }
+.chip-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.chip { background: #fff5f5; border: 1px solid #fcc4c4; color: #7a0808; font-size: 12px; font-weight: 600; padding: 5px 13px; border-radius: 20px; }
+
+.perks { list-style: none; margin-top: 4px; }
+.perks li { display: flex; align-items: flex-start; gap: 10px; padding: 9px 0; border-bottom: 1px solid #f0f0f0; font-size: 14px; color: #3c4043; }
+.perks li:last-child { border-bottom: none; }
+.perks li .icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+
+/* LIGHTBOX */
+.lightbox-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 9999; align-items: center; justify-content: center; cursor: zoom-out; }
+.lightbox-overlay.active { display: flex; }
+.lightbox-overlay img { max-width: 92vw; max-height: 92vh; object-fit: contain; border-radius: 4px; box-shadow: 0 8px 40px rgba(0,0,0,0.8); cursor: default; }
+.lightbox-close { position: fixed; top: 18px; right: 22px; color: white; font-size: 32px; font-weight: 300; cursor: pointer; z-index: 10000; user-select: none; }
+
+/* SIDEBAR */
+.sidebar { position: sticky; top: 20px; align-self: start; }
+.sidebar-card { background: white; border: 1px solid #dadce0; border-radius: 8px; padding: 22px; }
+.sidebar-card h3 { font-size: 15px; font-weight: 700; color: #1e3a5f; margin-bottom: 4px; }
+.sidebar-sub { font-size: 12px; color: #5f6368; margin-bottom: 16px; }
+.pkg-section-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; padding-bottom: 6px; border-bottom: 2px solid; margin: 14px 0 8px; }
+.pkg-section-label:first-of-type { margin-top: 0; }
+.label-red  { color: #b02020; border-color: #fcc4c4; }
+.label-navy { color: #1e3a5f; border-color: #c5d5e8; }
+
+.package { border: 1.5px solid #dadce0; border-radius: 8px; padding: 13px 15px; margin-bottom: 9px; cursor: pointer; position: relative; transition: border-color 0.15s, background 0.15s; }
+.package:hover { border-color: #1e3a5f; background: #f8fafc; }
+.package.selected { border-color: #1e3a5f; background: #eef3f9; }
+.package-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+.package-name { font-size: 13px; font-weight: 700; color: #202124; }
+.package-price { font-size: 15px; font-weight: 800; color: #1e3a5f; white-space: nowrap; }
+.package-desc { font-size: 12px; color: #5f6368; margin-top: 4px; line-height: 1.5; }
+.package-save { font-size: 10px; font-weight: 700; color: #b02020; background: #fff5f5; padding: 2px 6px; border-radius: 10px; margin-left: 5px; }
+.badge-popular { position: absolute; top: -1px; right: 12px; background: #1e3a5f; color: white; font-size: 9px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 8px; border-radius: 0 0 6px 6px; }
+.freq { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 10px; margin-top: 6px; text-transform: uppercase; letter-spacing: 0.05em; }
+.freq-onetime  { background: #f1f3f4; color: #5f6368; }
+.freq-monthly  { background: #e6f4ea; color: #1e7e34; }
+.freq-weekly   { background: #e8f0fe; color: #1a56c4; }
+.freq-perevent { background: #fff5f5; color: #7a0808; }
+.freq-ongoing  { background: #fce8e6; color: #c5221f; }
+
+.sample-badge { background: #fff8e1; border: 1px solid #ffe082; border-radius: 6px; padding: 7px 10px; font-size: 11px; color: #7b5c00; font-weight: 600; margin-bottom: 14px; text-align: center; }
+.summary { background: #eef3f9; border: 1px solid #c5d5e8; border-radius: 6px; padding: 12px 14px; margin: 12px 0; display: none; }
+.summary.show { display: block; }
+.summary-title { font-size: 13px; font-weight: 700; color: #1e3a5f; margin-bottom: 4px; }
+.summary-note { font-size: 12px; color: #5f6368; line-height: 1.5; }
+.book-btn { width: 100%; background: #1e3a5f; color: white; border: none; border-radius: 8px; padding: 14px; font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 4px; transition: background 0.15s; }
+.book-btn:hover { background: #163050; }
+.trust { margin-top: 16px; }
+.trust hr { border: none; border-top: 1px solid #f0f0f0; margin-bottom: 12px; }
+.trust-item { font-size: 12px; color: #5f6368; padding: 4px 0; }
+.contact-link { font-size: 12px; color: #1e3a5f; font-weight: 600; margin-top: 10px; cursor: pointer; text-decoration: underline; }
+
+@media (max-width: 700px) {
+  .page { grid-template-columns: 1fr; }
+  .sidebar { position: static; }
+  .stats-bar { flex-wrap: wrap; }
+  .stat { min-width: 50%; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.18); }
+  .stat:last-child { border-bottom: none; }
+  .hero-title { font-size: 32px; }
+  .hero { padding: 36px 20px 32px; }
+  .menu-grid { grid-template-columns: 1fr; }
+  .market-callout { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
+  <span class="lightbox-close" onclick="closeLightbox()">&#x2715;</span>
+  <img id="lightbox-img" src="" alt="" onclick="event.stopPropagation()">
+</div>
+
+<nav class="nav">
+  <div class="nav-logo">📌 The Local Post</div>
+  <div class="nav-links">
+    <a href="https://www.thelocalpostspokane.com/browse-opportunities">Browse Opportunities</a>
+    <a href="https://www.thelocalpostspokane.com/home">Home</a>
+  </div>
+</nav>
+
+<div class="banner">🍔 Hand-smashed burgers · Boozy milkshakes · Crispy fries · Catering · Kendall Yards Night Market</div>
+
+<div class="hero">
+  <div class="hero-tag">🍔 Smash Burger Joint · Spokane, WA</div>
+  <div class="hero-title">Shelby's Burgers</div>
+  <div class="hero-sub">Hand-smashed burgers, crispy fries, boozy milkshakes.</div>
+  <div class="hero-tagline">4241 Cheney Spokane Rd, Ste. B · (509) 315-8128 · @shelbys_burgers</div>
+</div>
+
+<div class="page">
+
+  <div class="stats-bar">
+    <div class="stat"><div class="stat-num">7 days</div><div class="stat-label">Open Every Day</div></div>
+    <div class="stat"><div class="stat-num">Hand-Smashed</div><div class="stat-label">Made to Order</div></div>
+    <div class="stat"><div class="stat-num">Catering</div><div class="stat-label">Events & Parties</div></div>
+    <div class="stat"><div class="stat-num">Kendall Yards</div><div class="stat-label">Every Wednesday</div></div>
+  </div>
+
+  <div class="left-col">
+
+    <div class="section">
+      <div class="social-row">
+        <a class="social-btn" href="https://www.instagram.com/shelbys_burgers" target="_blank">📸 @shelbys_burgers</a>
+        <a class="social-btn" href="https://shelbysburgers.com" target="_blank">🌐 shelbysburgers.com</a>
+        <a class="social-btn" href="https://www.toasttab.com/local/order/latah-smash-burger-4241-s-cheney-spokane-rd-ste-d/r-bac8ee45-7702-4fa6-839a-7ce001af2f91" target="_blank">🛒 Order Online</a>
+        <a class="social-btn" href="tel:5093158128">📞 (509) 315-8128</a>
+      </div>
+    </div>
+
+    <!-- TAGLINE -->
+    <div class="tagline-callout">
+      <p>Come Hungry. Leave Smashed. 🍔</p>
+    </div>
+
+    <!-- KENDALL YARDS -->
+    <div class="market-callout">
+      <div class="mc-icon">🌿</div>
+      <div>
+        <h3>Shelby's at Kendall Yards Night Market — Every Wednesday</h3>
+        <p>Shelby's Burgers is a regular vendor at the Kendall Yards Night Market, running every Wednesday evening from 5–8:30pm (May 20 – September 16). Advertising here means reaching their audience both at the brick-and-mortar location and at one of Spokane's most popular summer community events.</p>
+      </div>
+    </div>
+
+    <!-- PHOTOS -->
+    <div class="section">
+      <h2>📸 Food Photos</h2>
+      <div class="photo-grid">
+        <img src="shelbys-1.jpg" alt="Shelby's Burgers smash burger" onclick="openLightbox('shelbys-1.jpg','Shelby\'s smash burger')">
+        <img src="shelbys-2.jpg" alt="Shelby's Burgers boozy milkshake" onclick="openLightbox('shelbys-2.jpg','Shelby\'s boozy milkshake')">
+        <img src="shelbys-3.jpg" alt="Shelby's Burgers fries and food spread" onclick="openLightbox('shelbys-3.jpg','Shelby\'s fries and food')">
+      </div>
+      <div class="photo-note">
+        📍 <strong>About the location:</strong> Shelby's Burgers is a counter-serve restaurant at 4241 Cheney Spokane Rd, Ste. B in Spokane — a lively, casual atmosphere where everything is made fresh to order. Click photos to expand.
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <div class="section">
+      <h2>About This Opportunity</h2>
+      <p>Shelby's Burgers is Spokane's go-to for hand-smashed burgers, crispy fries, and boozy milkshakes — a lively counter-serve spot where everything is made to order and fresh every time. Their short rib and brisket blend, fried pickles, garlic rosemary parm fries, and signature boozy shakes have earned them a devoted following and consistently glowing 5-star reviews.</p>
+      <p>Open 7 days a week with online ordering via Toast and DoorDash, Shelby's reaches customers across multiple channels — dine-in, pickup, and delivery. They also cater events and private parties, and appear as a regular vendor at the Kendall Yards Night Market every Wednesday throughout the summer, bringing their audience to one of Spokane's most vibrant community gatherings.</p>
+      <p>Advertising here means your brand shows up in the middle of a genuinely good time — Shelby's customers are in celebratory mode. They're date nights, friend outings, and family treat nights. That's an audience already predisposed to notice and remember something good.</p>
+    </div>
+
+    <!-- MENU HIGHLIGHTS -->
+    <div class="section">
+      <h2>🍔 Menu Highlights</h2>
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="m-icon">🍔</div>
+          <div class="m-title">Hand-Smashed Burgers</div>
+          <div class="m-desc">Short rib & brisket blend — crispy edges, perfectly balanced toppings, made to order every time. Also available as Smash Tacos.</div>
+        </div>
+        <div class="menu-item">
+          <div class="m-icon">🥤</div>
+          <div class="m-title">Boozy Milkshakes</div>
+          <div class="m-desc">Signature boozy shakes including The Fire in Cider and Butterscotch — "sinful and the perfect size" (Google reviewer)</div>
+        </div>
+        <div class="menu-item">
+          <div class="m-icon">🍟</div>
+          <div class="m-title">Crispy Fries & Sides</div>
+          <div class="m-desc">Garlic rosemary parm fries, onion rings, hand-breaded fried pickles — all made fresh</div>
+        </div>
+        <div class="menu-item">
+          <div class="m-icon">🌮</div>
+          <div class="m-title">More Than Burgers</div>
+          <div class="m-desc">Short rib tacos, spicy chicken sandwich, Jones sodas, salads — a full menu for every mood</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REAL REVIEWS -->
+    <div class="section">
+      <h2>⭐ What Customers Say</h2>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p>"Short Rib and Brisket Blend to die for! Best true Smashburger, killer hand breaded fried pickles, fun boozy shakes, the garlic rosemary parm fries and fried chicken sandwich are addictive! You will be craving this guaranteed!!!"</p>
+        <div class="reviewer">— Susan · Google</div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p>"The milkshakes are sinful and the perfect size! The Oklahoma Burger was incredible — when's the last time you've had a burger where it extended past the bun? The Butterscotch Shake? You haven't lived if you haven't tasted it."</p>
+        <div class="reviewer">— Katherine H. · Google</div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p>"My fiance who is very picky rated it a 10/10! We got the Mac Daddy with a side of garlic fries with fry sauce and it was sooooo good. Definitely our new go-to burger place."</p>
+        <div class="reviewer">— Courtney B. · Google</div>
+      </div>
+    </div>
+
+    <!-- HOURS -->
+    <div class="section">
+      <h2>🕐 Hours</h2>
+      <div class="hours-row"><span class="day">Monday – Thursday & Sunday</span><span>11:00 AM – 8:00 PM</span></div>
+      <div class="hours-row"><span class="day">Friday – Saturday</span><span>11:00 AM – 9:00 PM</span></div>
+      <p style="margin-top:10px;">Order online via <a href="https://www.toasttab.com/local/order/latah-smash-burger-4241-s-cheney-spokane-rd-ste-d/r-bac8ee45-7702-4fa6-839a-7ce001af2f91" target="_blank" style="color:#b02020;">Toast</a> or <a href="https://www.doordash.com/store/shelby's-burgers-spokane-34861487/73600179/" target="_blank" style="color:#b02020;">DoorDash</a> · Catering & private parties available</p>
+    </div>
+
+    <!-- WHO YOU'RE REACHING -->
+    <div class="section">
+      <h2>👥 Who You're Reaching</h2>
+      <div class="tag-list">
+        <span class="tag">Burger & Food Enthusiasts</span>
+        <span class="tag">Date Night Crowd</span>
+        <span class="tag">Families</span>
+        <span class="tag">Young Professionals</span>
+        <span class="tag">Spokane Locals</span>
+        <span class="tag">Kendall Yards Community</span>
+        <span class="tag">DoorDash & Delivery Customers</span>
+        <span class="tag">Event & Party Planners</span>
+        <span class="tag">Foodies & Reviewers</span>
+      </div>
+      <p style="margin-top:14px;">Shelby's customers are enthusiastic and vocal — the reviews speak for themselves. This is an audience already in a great mood when they arrive, spending on an experience they genuinely love. Advertising here means your brand shows up in a context of joy, great food, and community.</p>
+    </div>
+
+    <!-- ADVERTISER FIT -->
+    <div class="section">
+      <h2>🎯 Advertiser Fit</h2>
+      <div class="chip-grid">
+        <span class="chip">Local Events & Entertainment</span>
+        <span class="chip">Beverages & Craft Drinks</span>
+        <span class="chip">Dessert & Sweet Shops</span>
+        <span class="chip">Fitness & Wellness</span>
+        <span class="chip">Date Night Experiences</span>
+        <span class="chip">Sports & Outdoors</span>
+        <span class="chip">Family Services</span>
+        <span class="chip">Local Retail</span>
+        <span class="chip">Gift Cards & Experiences</span>
+        <span class="chip">Community Organizations</span>
+      </div>
+    </div>
+
+    <!-- EVERY ADVERTISER RECEIVES -->
+    <div class="section">
+      <h2>✅ Every Advertiser Receives</h2>
+      <ul class="perks">
+        <li><span class="icon">📋</span>Your business card, flyer, or materials displayed at the restaurant</li>
+        <li><span class="icon">🤝</span>Recognition as a supporter of one of Spokane's most-loved burger joints</li>
+        <li><span class="icon">👥</span>Exposure to a loyal, enthusiastic dining audience across dine-in, takeout, and delivery</li>
+        <li><span class="icon">📍</span>Placement in a lively, high-energy counter-serve environment where people are in a great mood</li>
+      </ul>
+      <p style="margin-top:12px;"><strong>Higher packages also include:</strong> social media mentions on @shelbys_burgers, table tent display, takeout bag inserts, and the option to sponsor a Kendall Yards Night Market appearance for summer outdoor reach.</p>
+    </div>
+
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sidebar-card">
+      <h3>Advertise Here</h3>
+      <div class="sidebar-sub">Pick your package and request to book — approval within 1 business day.</div>
+
+      <div class="sample-badge">🎨 Sample Listing — Pricing estimated for illustration</div>
+
+      <!-- IN-RESTAURANT -->
+      <div class="pkg-section-label label-red">🍔 In-Restaurant</div>
+
+      <div class="package" onclick="selectPkg(this,'Counter Card Display','$25/mo')">
+        <div class="package-top"><div class="package-name">📋 Counter Card Display</div><div class="package-price">$25<span style="font-size:11px;font-weight:500;color:#5f6368">/mo</span></div></div>
+        <div class="package-desc">Your card or small flyer at the counter — seen by every customer while they order and wait for their food</div>
+        <span class="freq freq-monthly">Monthly</span>
+      </div>
+
+      <div class="package" onclick="selectPkg(this,'Table Tent Feature','$75/mo')" style="position:relative;">
+        <div class="badge-popular">Most Popular</div>
+        <div class="package-top"><div class="package-name">🪧 Table Tent Feature</div><div class="package-price">$75<span style="font-size:11px;font-weight:500;color:#5f6368">/mo</span></div></div>
+        <div class="package-desc">Your branded table tent on every table in the restaurant for 30 days · seen by every dine-in customer while they eat — a captive, happy audience</div>
+        <span class="freq freq-monthly">Monthly</span>
+      </div>
+
+      <div class="package" onclick="selectPkg(this,'Takeout Bag Insert','$75/mo')">
+        <div class="package-top"><div class="package-name">📦 Takeout Bag Insert</div><div class="package-price">$75<span style="font-size:11px;font-weight:500;color:#5f6368">/mo</span></div></div>
+        <div class="package-desc">Your flyer or card included in every takeout and DoorDash bag · your brand goes home with every order — including delivery customers</div>
+        <span class="freq freq-monthly">Monthly</span>
+      </div>
+
+      <!-- KENDALL YARDS -->
+      <div class="pkg-section-label label-navy">🌿 Kendall Yards Night Market</div>
+      <div style="font-size:11px;color:#5f6368;margin-bottom:10px;line-height:1.5;">Shelby's at the market every Wednesday, May 20–Sep 16 · outdoor crowd, summer energy.</div>
+
+      <div class="package" onclick="selectPkg(this,'Kendall Yards Market Sponsor','$100/wk')">
+        <div class="package-top"><div class="package-name">🌿 Market Night Sponsor</div><div class="package-price">$100<span style="font-size:11px;font-weight:500;color:#5f6368">/wk</span></div></div>
+        <div class="package-desc">Your flyer or card at Shelby's market booth on a Wednesday night · reaches Kendall Yards' outdoor crowd in addition to regular restaurant customers</div>
+        <span class="freq freq-weekly">Weekly</span>
+      </div>
+
+      <!-- SOCIAL -->
+      <div class="pkg-section-label label-navy">📣 Social Media</div>
+
+      <div class="package" onclick="selectPkg(this,'Social Shoutout','$50')">
+        <div class="package-top"><div class="package-name">📣 Social Shoutout</div><div class="package-price">$50</div></div>
+        <div class="package-desc">One Instagram mention · your handle tagged · reaches @shelbys_burgers' growing Spokane food community following</div>
+        <span class="freq freq-onetime">One-Time</span>
+      </div>
+
+      <!-- BUNDLES -->
+      <div class="pkg-section-label label-navy">⭐ Bundles</div>
+
+      <div class="package" onclick="selectPkg(this,'Full Monthly Partner','$175/mo')">
+        <div class="package-top"><div class="package-name">🥇 Full Monthly Partner <span class="package-save">Save $25</span></div><div class="package-price">$175<span style="font-size:11px;font-weight:500;color:#5f6368">/mo</span></div></div>
+        <div class="package-desc">Table Tent + Takeout Bag Insert + Social Shoutout · dine-in, delivery, and online reach combined</div>
+        <span class="freq freq-ongoing">Ongoing</span>
+      </div>
+
+      <div class="package" onclick="selectPkg(this,'Summer Market Bundle','$250/mo')">
+        <div class="package-top"><div class="package-name">☀️ Summer Market Bundle</div><div class="package-price">$250<span style="font-size:11px;font-weight:500;color:#5f6368">/mo</span></div></div>
+        <div class="package-desc">Full Monthly Partner + weekly Kendall Yards market presence · maximum reach across restaurant, delivery, and Spokane's biggest summer market (May–Sep)</div>
+        <span class="freq freq-ongoing">Ongoing</span>
+      </div>
+
+      <div class="summary" id="summary">
+        <div class="summary-title" id="summaryTitle"></div>
+        <div class="summary-note">You'll be taken to a short request form. Once approved, we'll confirm details within 1 business day.</div>
+      </div>
+
+      <button class="book-btn" onclick="bookNow()">Request to Book →</button>
+
+      <div class="trust">
+        <hr>
+        <div class="trust-item">📋 Submit a quick 3-minute request form</div>
+        <div class="trust-item">✅ We'll review and confirm within 1 business day</div>
+        <div class="trust-item">🔒 Secure payment link sent upon approval</div>
+        <div class="trust-item">📧 Confirmation and materials form sent to your email</div>
+        <div class="contact-link" onclick="window.open('https://www.thelocalpostspokane.com/home','_blank')">Have questions? Contact us first</div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+function openLightbox(src,alt){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox-img').alt=alt||'';document.getElementById('lightbox').classList.add('active');document.body.style.overflow='hidden';}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('active');document.body.style.overflow='';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox();});
+function selectPkg(el,name,price){document.querySelectorAll('.package').forEach(p=>p.classList.remove('selected'));el.classList.add('selected');document.getElementById('summaryTitle').textContent=name+' — '+price;document.getElementById('summary').classList.add('show');}
+function bookNow(){window.open('https://docs.google.com/forms/d/e/1FAIpQLSchD8nJNLro4uFf6oSdgXgsBPnXysBAai3Xz-84ZZ6_rQS4cQ/viewform?usp=header','_blank');}
+</script>
+</body>
+</html>
