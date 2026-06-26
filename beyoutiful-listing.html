@@ -168,9 +168,56 @@ body { font-family: Arial, sans-serif; background: #f5f7fa; color: #202124; }
   .events-grid, .spaces-grid, .location-grid { grid-template-columns: 1fr; }
   .photo-grid { grid-template-columns: 1fr; }
 }
+
+/* LIGHTBOX */
+.lightbox-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.88);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+}
+.lightbox-overlay.active { display: flex; }
+.lightbox-overlay img {
+  max-width: 92vw;
+  max-height: 92vh;
+  object-fit: contain;
+  border-radius: 4px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+  cursor: default;
+}
+.lightbox-close {
+  position: fixed;
+  top: 18px;
+  right: 22px;
+  color: white;
+  font-size: 32px;
+  font-weight: 300;
+  cursor: pointer;
+  line-height: 1;
+  z-index: 10000;
+  user-select: none;
+}
+.lightbox-close:hover { color: #ccc; }
+.photo-grid img, .photo-grid-2col img {
+  cursor: zoom-in;
+  transition: opacity 0.15s;
+}
+.photo-grid img:hover, .photo-grid-2col img:hover { opacity: 0.88; }
+
 </style>
 </head>
 <body>
+
+<!-- LIGHTBOX -->
+<div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
+  <span class="lightbox-close" onclick="closeLightbox()">&#x2715;</span>
+  <img id="lightbox-img" src="" alt="" onclick="event.stopPropagation()">
+</div>
+
 
 <nav class="nav">
   <div class="nav-logo">📌 The Local Post</div>
@@ -227,11 +274,11 @@ body { font-family: Arial, sans-serif; background: #f5f7fa; color: #202124; }
     <div class="section">
       <h2>📸 Store Photos</h2>
       <div class="photo-grid">
-        <img src="724169822_1375247067805892_2382382725486166025_n.jpg" alt="BeYOUtiful — Hillyard Variety storefront exterior">
-        <img src="723330736_27717960817836892_1724365233787262499_n.jpg" alt="BeYOUtiful — Hillyard Variety sign and awning">
+        <img src="724169822_1375247067805892_2382382725486166025_n.jpg" alt="BeYOUtiful — Hillyard Variety storefront exterior" onclick="openLightbox('724169822_1375247067805892_2382382725486166025_n.jpg', 'BeYOUtiful — Hillyard Variety storefront exterior')">
+        <img src="723330736_27717960817836892_1724365233787262499_n.jpg" alt="BeYOUtiful — Hillyard Variety sign and awning" onclick="openLightbox('723330736_27717960817836892_1724365233787262499_n.jpg', 'BeYOUtiful — Hillyard Variety sign and awning')">
       </div>
       <div class="photo-note">
-        📍 <strong>Photos are illustrative.</strong> BeYOUtiful Bath · Body · Burn is located at 5009 N. Market St., Spokane WA 99217 in the Hillyard neighborhood — look for the iconic "Hillyard Variety" sign. Interior photos available upon request from the business owner.
+        📍 BeYOUtiful Bath · Body · Burn is located at 5009 N. Market St., Spokane WA 99217 in the Hillyard neighborhood — look for the iconic "Hillyard Variety" sign. Interior photos available upon request from the business owner.
       </div>
     </div>
 
@@ -380,7 +427,7 @@ body { font-family: Arial, sans-serif; background: #f5f7fa; color: #202124; }
       <h3>Advertise Here</h3>
       <div class="sidebar-sub">Pick your space and request to book — approval within 1 business day.</div>
 
-      <div class="sample-badge">🎨 Sample Listing — Pricing estimated for illustration</div>
+      
 
       <!-- IN-STORE -->
       <div class="pkg-section-label label-green">🏪 In-Store · Hillyard</div>
@@ -522,6 +569,21 @@ function selectPkg(el, name, price) {
 function bookNow() {
   window.open('https://docs.google.com/forms/d/e/1FAIpQLSchD8nJNLro4uFf6oSdgXgsBPnXysBAai3Xz-84ZZ6_rQS4cQ/viewform?usp=header', '_blank');
 }
+
+function openLightbox(src, alt) {
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox-img').alt = alt || '';
+  document.getElementById('lightbox').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('active');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeLightbox();
+});
+
 </script>
 
 </body>
