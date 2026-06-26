@@ -123,9 +123,56 @@ body { font-family: Arial, sans-serif; background: #f5f7fa; color: #202124; }
   .hero-title { font-size: 26px; }
   .event-card { flex-direction: column; align-items: flex-start; }
 }
+
+/* LIGHTBOX */
+.lightbox-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.88);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+}
+.lightbox-overlay.active { display: flex; }
+.lightbox-overlay img {
+  max-width: 92vw;
+  max-height: 92vh;
+  object-fit: contain;
+  border-radius: 4px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+  cursor: default;
+}
+.lightbox-close {
+  position: fixed;
+  top: 18px;
+  right: 22px;
+  color: white;
+  font-size: 32px;
+  font-weight: 300;
+  cursor: pointer;
+  line-height: 1;
+  z-index: 10000;
+  user-select: none;
+}
+.lightbox-close:hover { color: #ccc; }
+.photo-grid img, .photo-grid-2col img {
+  cursor: zoom-in;
+  transition: opacity 0.15s;
+}
+.photo-grid img:hover, .photo-grid-2col img:hover { opacity: 0.88; }
+
 </style>
 </head>
 <body>
+
+<!-- LIGHTBOX -->
+<div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
+  <span class="lightbox-close" onclick="closeLightbox()">&#x2715;</span>
+  <img id="lightbox-img" src="" alt="" onclick="event.stopPropagation()">
+</div>
+
 
 <nav class="nav">
   <div class="nav-logo">📌 The Local Post</div>
@@ -140,7 +187,7 @@ body { font-family: Arial, sans-serif; background: #f5f7fa; color: #202124; }
 </div>
 
 <div class="hero">
-  <img src="IMG_5958.jpg" alt="Casa de la Salsa event">
+  <img src="IMG_5958.jpg" alt="Casa de la Salsa event" onclick="openLightbox('IMG_5958.jpg', 'Casa de la Salsa event')">
   <div class="hero-overlay">
     <div class="hero-tag">💃 Latin Dance Social · Spokane, WA</div>
     <div class="hero-title">Casa de la Salsa</div>
@@ -205,9 +252,9 @@ body { font-family: Arial, sans-serif; background: #f5f7fa; color: #202124; }
     <div class="section">
       <h2>📸 Event Photos</h2>
       <div class="photo-grid">
-        <img src="IMG_5958.jpg" alt="Casa de la Salsa event floor">
-        <img src="IMG_5999.jpg" alt="Sponsor announcement at event">
-        <img src="IMG_6774.jpg" alt="Couples dancing at Casa de la Salsa">
+        <img src="IMG_5958.jpg" alt="Casa de la Salsa event floor" onclick="openLightbox('IMG_5958.jpg', 'Casa de la Salsa event floor')">
+        <img src="IMG_5999.jpg" alt="Sponsor announcement at event" onclick="openLightbox('IMG_5999.jpg', 'Sponsor announcement at event')">
+        <img src="IMG_6774.jpg" alt="Couples dancing at Casa de la Salsa" onclick="openLightbox('IMG_6774.jpg', 'Couples dancing at Casa de la Salsa')">
       </div>
       <div class="photo-note">
         📺 <strong>About screens & displays:</strong> Photos above show past events at larger venues with projection screens. Casa de la Salsa events rotate between venues across Spokane — some have large projected screens, others have TV monitors, and outdoor park events (like Salsa in the Park) rely on signage and verbal shoutouts instead. Screen size and placement vary by venue. Your sponsor materials will always be displayed prominently on whatever setup is available, and we'll confirm the details with you after booking.
@@ -368,6 +415,21 @@ function selectPkg(el, name, price) {
 function bookNow() {
   window.open('https://docs.google.com/forms/d/e/1FAIpQLSchD8nJNLro4uFf6oSdgXgsBPnXysBAai3Xz-84ZZ6_rQS4cQ/viewform?usp=header', '_blank');
 }
+
+function openLightbox(src, alt) {
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox-img').alt = alt || '';
+  document.getElementById('lightbox').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('active');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeLightbox();
+});
+
 </script>
 
 </body>
