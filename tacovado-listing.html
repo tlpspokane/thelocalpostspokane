@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TacoVado — The Local Post</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Arial, sans-serif; background: #f5f7fa; color: #202124; }
+.nav { background: #1e3a5f; padding: 0 24px; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+.nav-logo { font-size: 17px; font-weight: 700; color: white; }
+.nav-links { display: flex; gap: 18px; }
+.nav-links a { text-decoration: none; color: rgba(255,255,255,0.82); font-size: 13px; }
+.nav-links a:hover { color: white; }
+.banner { background: #c89820; color: white; text-align: center; padding: 9px 16px; font-size: 13px; font-weight: 600; }
+/* HERO — warm yellow/gold matching logo */
+.hero { background: linear-gradient(135deg, #6a4a00 0%, #c89820 45%, #e8c040 100%); padding: 52px 32px 48px; text-align: center; }
+.hero-tag { display: inline-block; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.35); color: #fff8dc; font-size: 11px; font-weight: 700; padding: 4px 14px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px; }
+.hero-title { font-size: 46px; font-weight: 900; color: white; margin-bottom: 4px; letter-spacing: 0.04em; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+.hero-sub { font-size: 15px; color: #fff8dc; font-style: italic; margin-bottom: 6px; }
+.hero-tagline { font-size: 13px; color: rgba(255,255,255,0.75); }
+.page { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; display: grid; grid-template-columns: 1fr 340px; gap: 20px; }
+.stats-bar { grid-column: 1 / -1; background: linear-gradient(135deg, #6a4a00 0%, #c89820 50%, #e8c040 100%); border-radius: 8px; display: flex; padding: 4px 0; }
+.stat { flex: 1; text-align: center; padding: 14px 8px; border-right: 1px solid rgba(255,255,255,0.22); }
+.stat:last-child { border-right: none; }
+.stat-num { font-size: 20px; font-weight: 800; color: white; }
+.stat-label { font-size: 11px; color: rgba(255,255,255,0.82); margin-top: 3px; text-transform: uppercase; letter-spacing: 0.05em; }
+.social-row { display: flex; gap: 10px; flex-wrap: wrap; }
+.social-btn { display: inline-flex; align-items: center; gap: 6px; background: #f1f3f4; border: 1px solid #dadce0; color: #1e3a5f; font-size: 12px; font-weight: 600; padding: 6px 14px; border-radius: 20px; text-decoration: none; }
+.social-btn:hover { background: #e8eaed; }
+.section { background: white; border: 1px solid #dadce0; border-radius: 8px; padding: 22px; margin-bottom: 16px; }
+.section h2 { font-size: 16px; font-weight: 700; color: #1e3a5f; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid #f0f0f0; }
+.section p { font-size: 14px; line-height: 1.7; color: #3c4043; margin-bottom: 10px; }
+.section p:last-child { margin-bottom: 0; }
+.tagline-callout { background: linear-gradient(135deg, #6a4a00, #c89820); border-radius: 8px; padding: 18px 22px; margin-bottom: 16px; text-align: center; }
+.tagline-callout p { font-size: 18px; font-weight: 800; color: white; letter-spacing: 0.02em; }
+.tagline-callout .sub { font-size: 13px; color: rgba(255,255,255,0.78); font-style: italic; margin-top: 6px; font-weight: 400; }
+.menu-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 4px; }
+.menu-item { background: #fdf8e6; border: 1px solid #e8d070; border-radius: 8px; padding: 13px; border-top: 3px solid #c89820; }
+.menu-item .m-icon { font-size: 20px; margin-bottom: 5px; }
+.menu-item .m-name { font-size: 13px; font-weight: 700; color: #3a2800; margin-bottom: 3px; }
+.menu-item .m-desc { font-size: 12px; color: #5f6368; line-height: 1.5; }
+.order-platforms { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.platform-chip { background: #fdf8e6; border: 1px solid #e8d070; color: #3a2800; font-size: 12px; font-weight: 700; padding: 6px 14px; border-radius: 20px; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; }
+.platform-chip:hover { background: #fdf0c0; }
+.hours-row { display: flex; justify-content: space-between; padding: 7px 0; border-bottom: 1px solid #f0f0f0; font-size: 13px; color: #3c4043; }
+.hours-row:last-child { border-bottom: none; }
+.hours-row .day { font-weight: 600; color: #1e3a5f; }
+.hours-row .closed { color: #b0b0b0; }
+.tag-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.tag { background: #f1f3f4; border: 1px solid #dadce0; color: #1e3a5f; font-size: 12px; font-weight: 600; padding: 5px 13px; border-radius: 20px; }
+.chip-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.chip { background: #fdf8e6; border: 1px solid #e8d070; color: #3a2800; font-size: 12px; font-weight: 600; padding: 5px 13px; border-radius: 20px; }
+.photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 4px; }
+.photo-grid img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 6px; display: block; cursor: zoom-in; transition: opacity 0.15s; }
+.photo-grid img:hover { opacity: 0.88; }
+.photo-note { font-size: 12px; color: #5f6368; margin-top: 10px; background: #f8f9fa; padding: 10px 12px; border-radius: 6px; border-left: 3px solid #c89820; line-height: 1.5; }
+.perks { list-style: none; margin-top: 4px; }
+.perks li { display: flex; align-items: flex-start; gap: 10px; padding: 9px 0; border-bottom: 1px solid #f0f0f0; font-size: 14px; color: #3c4043; }
+.perks li:last-child { border-bottom: none; }
+.perks li .icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+.lightbox-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.88); z-index: 9999; align-items: center; justify-content: center; cursor: zoom-out; }
+.lightbox-overlay.active { display: flex; }
+.lightbox-overlay img { max-width: 92vw; max-height: 92vh; object-fit: contain; border-radius: 4px; box-shadow: 0 8px 40px rgba(0,0,0,0.6); cursor: default; }
+.lightbox-close { position: fixed; top: 18px; right: 22px; color: white; font-size: 32px; font-weight: 300; cursor: pointer; z-index: 10000; user-select: none; }
+.sidebar { position: sticky; top: 20px; align-self: start; }
+.sidebar-card { background: white; border: 1px solid #dadce0; border-radius: 8px; padding: 22px; }
+.sidebar-card h3 { font-size: 15px; font-weight: 700; color: #1e3a5f; margin-bottom: 4px; }
+.sidebar-sub { font-size: 12px; color: #5f6368; margin-bottom: 16px; }
+.pkg-section-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; padding-bottom: 6px; border-bottom: 2px solid; margin: 14px 0 8px; }
+.pkg-section-label:first-of-type { margin-top: 0; }
+.label-gold { color: #c89820; border-color: #e8d070; }
+.label-navy { color: #1e3a5f; border-color: #c5d5e8; }
+.package { border: 1.5px solid #dadce0; border-radius: 8px; padding: 13px 15px; margin-bottom: 9px; cursor: pointer; position: relative; transition: border-color 0.15s, background 0.15s; }
+.package:hover { border-color: #1e3a5f; background: #f8fafc; }
+.package.selected { border-color: #1e3a5f; background: #eef3f9; }
+.package-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+.package-name { font-size: 13px; font-weight: 700; color: #202124; }
+.package-price { font-size: 15px; font-weight: 800; color: #1e3a5f; white-space: nowrap; }
+.package-desc { font-size: 12px; color: #5f6368; margin-top: 4px; line-height: 1.5; }
+.package-save { font-size: 10px; font-weight: 700; color: #c89820; background: #fdf8e6; padding: 2px 6px; border-radius: 10px; margin-left: 5px; }
+.badge-popular { position: absolute; top: -1px; right: 12px; background: #1e3a5f; color: white; font-size: 9px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 8px; border-radius: 0 0 6px 6px; }
+.freq { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 10px; margin-top: 6px; text-transform: uppercase; letter-spacing: 0.05em; }
+.freq-onetime { background: #f1f3f4; color: #5f6368; }
+.freq-monthly { background: #e6f4ea; color: #1e7e34; }
+.freq-ongoing { background: #fce8e6; color: #c5221f; }
+.sample-badge { background: #fff8e1; border: 1px solid #ffe082; border-radius: 6px; padding: 7px 10px; font-size: 11px; color: #7b5c00; font-weight: 600; margin-bottom: 14px; text-align: center; }
+.summary { background: #eef3f9; border: 1px solid #c5d5e8; border-radius: 6px; padding: 12px 14px; margin: 12px 0; display: none; }
+.summary.show { display: block; }
+.summary-title { font-size: 13px; font-weight: 700; color: #1e3a5f; margin-bottom: 4px; }
+.summary-note { font-size: 12px; color: #5f6368; line-height: 1.5; }
+.book-btn { width: 100%; background: #1e3a5f; color: white; border: none; border-radius: 8px; padding: 14px; font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 4px; transition: background 0.15s; }
+.book-btn:hover { background: #163050; }
+.trust { margin-top: 16px; }
+.trust hr { border: none; border-top: 1px solid #f0f0f0; margin-bottom: 12px; }
+.trust-item { font-size: 12px; color: #5f6368; padding: 4px 0; }
+.contact-link { font-size: 12px; color: #1e3a5f; font-weight: 600; margin-top: 10px; cursor: pointer; text-decoration: underline; }
+@media (max-width: 700px) { .page { grid-template-columns: 1fr; } .sidebar { position: static; } .stats-bar { flex-wrap: wrap; } .stat { min-width: 50%; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.2); } .stat:last-child { border-bottom: none; } .hero-title { font-size: 34px; } .hero { padding: 36px 20px 32px; } .menu-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
+  <span class="lightbox-close" onclick="closeLightbox()">&#x2715;</span>
+  <img id="lightbox-img" src="" alt="" onclick="event.stopPropagation()">
+</div>
+<nav class="nav">
+  <div class="nav-logo">📌 The Local Post</div>
+  <div class="nav-links">
+    <a href="https://www.thelocalpostspokane.com/browse-opportunities">Browse Opportunities</a>
+    <a href="https://www.thelocalpostspokane.com/home">Home</a>
+  </div>
+</nav>
+<div class="banner">🌮 Building community one bite at a time! · NW Blvd · Breakfast all day · Vegan & Keto options</div>
+<div class="hero">
+  <div class="hero-tag">🌮 Taco Restaurant · Northwest Blvd · Spokane, WA</div>
+  <div class="hero-title">TacoVado</div>
+  <div class="hero-sub">Building community one bite at a time!</div>
+  <div class="hero-tagline">1327 W Northwest Blvd · (509) 290-6221 · @taco.vado · tacovado.com</div>
+</div>
+<div class="page">
+  <div class="stats-bar">
+    <div class="stat"><div class="stat-num">5,120</div><div class="stat-label">Instagram Followers</div></div>
+    <div class="stat"><div class="stat-num">4.8 ★</div><div class="stat-label">DoorDash (200+ Reviews)</div></div>
+    <div class="stat"><div class="stat-num">Tue–Sat</div><div class="stat-label">Breakfast All Day</div></div>
+    <div class="stat"><div class="stat-num">Vegan</div><div class="stat-label">Vegetarian · Keto</div></div>
+  </div>
+  <div class="left-col">
+    <div class="section">
+      <div class="social-row">
+        <a class="social-btn" href="https://www.instagram.com/taco.vado" target="_blank">📸 @taco.vado</a>
+        <a class="social-btn" href="https://tacovado.com" target="_blank">🌐 tacovado.com</a>
+        <a class="social-btn" href="tel:5092906221">📞 (509) 290-6221</a>
+        <a class="social-btn" href="mailto:tacovadospokane@gmail.com">✉️ Email</a>
+      </div>
+    </div>
+    <div class="tagline-callout">
+      <p>🌮 "Now You Know." — TacoVado</p>
+      <div class="sub">Try it and love us? Now you know. Try it and it's not for you? Now you know. Either way — you know.</div>
+    </div>
+    <div class="section">
+      <h2>📸 Restaurant Photos</h2>
+      <div class="photo-grid">
+        <img src="tacovado-1.jpg" alt="TacoVado tacos" onclick="openLightbox('tacovado-1.jpg','TacoVado tacos')">
+        <img src="tacovado-2.jpg" alt="TacoVado burrito" onclick="openLightbox('tacovado-2.jpg','TacoVado burrito')">
+        <img src="tacovado-3.jpg" alt="TacoVado restaurant" onclick="openLightbox('tacovado-3.jpg','TacoVado restaurant')">
+      </div>
+      <div class="photo-note">📍 TacoVado started as a drive-thru stand and grew into a full restaurant at 1327 W Northwest Blvd in Spokane. Their Poblano Burrito has its own fan account. Photos to be updated.</div>
+    </div>
+    <div class="section">
+      <h2>About This Opportunity</h2>
+      <p>TacoVado started as a drive-thru taco stand. After a few years building a loyal following, they opened a full restaurant on Northwest Blvd — and haven't looked back. The mission: give the community a space to hang out, make memories, and eat amazing food.</p>
+      <p>With a 4.8-star rating on DoorDash, 5,120 Instagram followers, and ordering available on Toast, DoorDash, GrubHub, and Uber Eats, TacoVado reaches customers across multiple channels. Their menu spans standard tacos and burritos, bowls, a full breakfast menu (served all day), and dedicated vegan, vegetarian, and keto sections — making this one of the most inclusive menus in Spokane.</p>
+      <p>"Now You Know" is printed on their merch and it says everything about the vibe: TacoVado is confident in their food and they want you to try it and decide for yourself. That energy — unpretentious, community-first, genuinely proud of their product — is exactly the kind of host that earns loyal customers and loyal advertisers.</p>
+    </div>
+    <div class="section">
+      <h2>🌮 Menu Highlights</h2>
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="m-icon">🌮</div>
+          <div class="m-name">Tacos & Burritos</div>
+          <div class="m-desc">Shredded beef · roasted poblano · classic combos · the Poblano Burrito with queso and salsa roja is a fan favorite</div>
+        </div>
+        <div class="menu-item">
+          <div class="m-icon">🍳</div>
+          <div class="m-name">Breakfast — All Day</div>
+          <div class="m-desc">Breakfast burritos, tacos, bowls, and plates · available from open to close · Tue–Fri 10am, Sat 8am</div>
+        </div>
+        <div class="menu-item">
+          <div class="m-icon">🌱</div>
+          <div class="m-name">Vegan & Vegetarian</div>
+          <div class="m-desc">Dedicated vegan tacos, burritos, salads, and bowls · roasted poblano, black beans, plant-based options throughout</div>
+        </div>
+        <div class="menu-item">
+          <div class="m-icon">🥑</div>
+          <div class="m-name">Keto-Friendly</div>
+          <div class="m-desc">Keto options available · bowls, salads, protein-forward choices for health-conscious diners</div>
+        </div>
+        <div class="menu-item">
+          <div class="m-icon">🍟</div>
+          <div class="m-name">Dippers, Sides & Salsas</div>
+          <div class="m-desc">Chips & queso, chips & guac, loaded nacho dippers, 1oz housemade salsas — a full extras menu</div>
+        </div>
+        <div class="menu-item">
+          <div class="m-icon">☕</div>
+          <div class="m-name">Housemade Drinks</div>
+          <div class="m-desc">Housemade coffee + non-caffeinated drinks, soda, and juice — a full beverage menu beyond food</div>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <h2>📲 Order Online</h2>
+      <div class="order-platforms">
+        <a class="platform-chip" href="https://www.toasttab.com/local/order/taco-vado-1327-west-northwest-boulevard" target="_blank">🍞 Toast (Pickup)</a>
+        <a class="platform-chip" href="https://www.doordash.com/store/tacovado-spokane-32117587/" target="_blank">🛵 DoorDash</a>
+        <a class="platform-chip" href="https://www.ubereats.com/store/tacovado-1327-w-northwest-blvd/MrRx1JTsXfOpGUbYDssBmQ" target="_blank">🚗 Uber Eats</a>
+        <a class="platform-chip" href="https://www.grubhub.com/restaurant/taco-vado-1327-w-northwest-blvd-spokane/10655192" target="_blank">🥡 GrubHub</a>
+      </div>
+    </div>
+    <div class="section">
+      <h2>🕐 Hours</h2>
+      <div class="hours-row"><span class="day">Tuesday – Friday</span><span>10:00 AM – 8:00 PM</span></div>
+      <div class="hours-row"><span class="day">Saturday</span><span>8:00 AM – 8:00 PM</span></div>
+      <div class="hours-row"><span class="day">Sunday – Monday</span><span class="closed">Closed</span></div>
+      <p style="margin-top:10px;">Breakfast served all day · Curbside + in-store pickup · Catering available</p>
+    </div>
+    <div class="section">
+      <h2>👥 Who You're Reaching</h2>
+      <div class="tag-list">
+        <span class="tag">Taco & Burrito Enthusiasts</span>
+        <span class="tag">Vegan & Vegetarian Community</span>
+        <span class="tag">Keto & Health-Conscious Diners</span>
+        <span class="tag">Breakfast All Day Crowd</span>
+        <span class="tag">Northwest Blvd Locals</span>
+        <span class="tag">Delivery & Takeout Customers</span>
+        <span class="tag">Families</span>
+        <span class="tag">Young Professionals</span>
+        <span class="tag">Spokane Foodie Community</span>
+      </div>
+    </div>
+    <div class="section">
+      <h2>🎯 Advertiser Fit</h2>
+      <div class="chip-grid">
+        <span class="chip">Local Events & Entertainment</span>
+        <span class="chip">Food & Beverage Brands</span>
+        <span class="chip">Health & Wellness</span>
+        <span class="chip">Vegan & Natural Products</span>
+        <span class="chip">Family Services</span>
+        <span class="chip">Apparel & Lifestyle</span>
+        <span class="chip">Community Organizations</span>
+        <span class="chip">Delivery & Convenience Apps</span>
+      </div>
+    </div>
+    <div class="section">
+      <h2>✅ Every Advertiser Receives</h2>
+      <ul class="perks">
+        <li><span class="icon">🌮</span>Your brand displayed in one of Spokane's most community-spirited taco restaurants</li>
+        <li><span class="icon">👥</span>Exposure to a loyal, diverse dining audience across dine-in, takeout, and 4 delivery platforms</li>
+        <li><span class="icon">📋</span>Your card, flyer, or materials at the restaurant</li>
+        <li><span class="icon">🤝</span>Association with a business genuinely built to give the community a place to hang out and make memories</li>
+      </ul>
+    </div>
+  </div>
+  <div class="sidebar">
+    <div class="sidebar-card">
+      <h3>Advertise Here</h3>
+      <div class="sidebar-sub">Pick your package and request to book — approval within 1 business day.</div>
+      <div class="sample-badge">🎨 Sample Listing — Pricing estimated for illustration</div>
+      <div class="pkg-section-label label-gold">🌮 In-Restaurant · NW Blvd</div>
+      <div class="package" onclick="selectPkg(this,'Counter Card Display','$25/mo')">
+        <div class="package-top"><div class="package-name">📋 Counter Card Display</div><div class="package-price">$25<span style="font-size:11px;font-weight:500;color:#5f6368">/mo</span></div></div>
+        <div class="package-desc">Your card or small flyer at the counter — seen by every customer while they order</div>
+        <span class="freq freq-monthly">Monthly</span>
+      </div>
+      <div class="package" onclick="selectPkg(this,'Table Feature Display','$75/mo')" style="position:relative;">
+        <div class="badge-popular">Most Popular</div>
+        <div class="package-top"><div class="package-name">🖼️ Table Feature Display</div><div class="package-price">$75<span style="font-size:11px;font-weight:500;color:#5f6368">/mo</span></div></div>
+        <div class="package-desc">Printed ad or table tent displayed in the restaurant for 30 days · seen by every dine-in customer while they eat and hang out</div>
+        <span class="freq freq-monthly">Monthly</span>
+      </div>
+      <div class="package" onclick="selectPkg(this,'Takeout Bag Insert','$75/mo')">
+        <div class="package-top"><div class="package-name">📦 Takeout Bag Insert</div><div class="package-price">$75<span style="font-size:11px;font-weight:500;color:#5f6368">/mo</span></div></div>
+        <div class="package-desc">Your flyer or card in every takeout and delivery bag · reaches pickup and delivery customers across Toast, DoorDash, Uber Eats, and GrubHub</div>
+        <span class="freq freq-monthly">Monthly</span>
+      </div>
+      <div class="pkg-section-label label-navy">📣 Social Media</div>
+      <div class="package" onclick="selectPkg(this,'Social Shoutout','$50')">
+        <div class="package-top"><div class="package-name">📣 Social Shoutout</div><div class="package-price">$50</div></div>
+        <div class="package-desc">One Instagram mention to @taco.vado (5,120 followers) · your handle tagged · reaches TacoVado's community-first Spokane audience</div>
+        <span class="freq freq-onetime">One-Time</span>
+      </div>
+      <div class="pkg-section-label label-navy">⭐ Bundles</div>
+      <div class="package" onclick="selectPkg(this,'Full Monthly Partner','$175/mo')">
+        <div class="package-top"><div class="package-name">🥇 Full Monthly Partner <span class="package-save">Save $25</span></div><div class="package-price">$175<span style="font-size:11px;font-weight:500;color:#5f6368">/mo</span></div></div>
+        <div class="package-desc">Table Feature Display + Takeout Bag Insert + Social Shoutout · in-restaurant, take-home, and online reach combined</div>
+        <span class="freq freq-ongoing">Ongoing</span>
+      </div>
+      <div class="summary" id="summary"><div class="summary-title" id="summaryTitle"></div><div class="summary-note">You'll be taken to a short request form. Once approved, we'll confirm details within 1 business day.</div></div>
+      <button class="book-btn" onclick="bookNow()">Request to Book →</button>
+      <div class="trust"><hr>
+        <div class="trust-item">📋 Submit a quick 3-minute request form</div>
+        <div class="trust-item">✅ We'll review and confirm within 1 business day</div>
+        <div class="trust-item">🔒 Secure payment link sent upon approval</div>
+        <div class="trust-item">📧 Confirmation and materials form sent to your email</div>
+        <div class="contact-link" onclick="window.open('https://www.thelocalpostspokane.com/home','_blank')">Have questions? Contact us first</div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+function openLightbox(src,alt){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox-img').alt=alt||'';document.getElementById('lightbox').classList.add('active');document.body.style.overflow='hidden';}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('active');document.body.style.overflow='';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox();});
+function selectPkg(el,name,price){document.querySelectorAll('.package').forEach(p=>p.classList.remove('selected'));el.classList.add('selected');document.getElementById('summaryTitle').textContent=name+' — '+price;document.getElementById('summary').classList.add('show');}
+function bookNow(){window.open('https://docs.google.com/forms/d/e/1FAIpQLSchD8nJNLro4uFf6oSdgXgsBPnXysBAai3Xz-84ZZ6_rQS4cQ/viewform?usp=header','_blank');}
+</script>
+</body>
+</html>
