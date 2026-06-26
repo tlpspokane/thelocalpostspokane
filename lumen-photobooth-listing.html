@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lumen Photobooth Co. — The Local Post</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Arial, sans-serif; background: #f5f7fa; color: #202124; }
+.nav { background: #1e3a5f; padding: 0 24px; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+.nav-logo { font-size: 17px; font-weight: 700; color: white; }
+.nav-links { display: flex; gap: 18px; }
+.nav-links a { text-decoration: none; color: rgba(255,255,255,0.82); font-size: 13px; }
+.nav-links a:hover { color: white; }
+
+.banner { background: #b87060; color: white; text-align: center; padding: 9px 16px; font-size: 13px; font-weight: 600; }
+
+/* HERO — warm champagne/gold, lighter than before */
+.hero {
+  background: linear-gradient(135deg, #7a4030 0%, #c4856a 50%, #dba898 100%);
+  padding: 52px 32px 48px;
+  text-align: center;
+}
+.hero-tag { display: inline-block; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,220,210,0.5); color: #fdeae4; font-size: 11px; font-weight: 700; padding: 4px 14px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px; }
+.hero-title { font-size: 40px; font-weight: 900; color: white; margin-bottom: 6px; letter-spacing: 0.02em; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+.hero-title span { color: #fdd5c8; }
+.hero-sub { font-size: 15px; color: #fdeae4; font-style: italic; margin-bottom: 6px; }
+.hero-tagline { font-size: 13px; color: rgba(255,255,255,0.72); }
+
+.page { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; display: grid; grid-template-columns: 1fr 340px; gap: 20px; }
+
+.stats-bar { grid-column: 1 / -1; background: #e8b0a0; border-radius: 8px; display: flex; padding: 4px 0; }
+.stat { flex: 1; text-align: center; padding: 14px 8px; border-right: 1px solid rgba(180,90,70,0.25); }
+.stat:last-child { border-right: none; }
+.stat-num { font-size: 20px; font-weight: 800; color: #5a2818; }
+.stat-label { font-size: 11px; color: #7a3820; margin-top: 3px; text-transform: uppercase; letter-spacing: 0.05em; }
+
+.social-row { display: flex; gap: 10px; flex-wrap: wrap; }
+.social-btn { display: inline-flex; align-items: center; gap: 6px; background: #f1f3f4; border: 1px solid #dadce0; color: #1e3a5f; font-size: 12px; font-weight: 600; padding: 6px 14px; border-radius: 20px; text-decoration: none; }
+.social-btn:hover { background: #e8eaed; }
+
+.section { background: white; border: 1px solid #dadce0; border-radius: 8px; padding: 22px; margin-bottom: 16px; }
+.section h2 { font-size: 16px; font-weight: 700; color: #1e3a5f; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid #f0f0f0; }
+.section p { font-size: 14px; line-height: 1.7; color: #3c4043; margin-bottom: 10px; }
+.section p:last-child { margin-bottom: 0; }
+
+/* FOUNDER CALLOUT */
+.founder-callout { background: linear-gradient(135deg, #fdf0ec, #fef7f5); border: 1px solid #e8b0a0; border-left: 4px solid #b87060; border-radius: 8px; padding: 18px 20px; margin-bottom: 16px; }
+.founder-callout h3 { font-size: 14px; font-weight: 700; color: #3a2808; margin-bottom: 6px; }
+.founder-callout p { font-size: 13px; color: #3c4043; line-height: 1.7; margin: 0; font-style: italic; }
+
+/* WHY DIFFERENT */
+.different-callout { background: linear-gradient(135deg, #5a2818, #b87060); border-radius: 8px; padding: 20px 22px; margin-bottom: 16px; }
+.different-callout h3 { font-size: 15px; font-weight: 700; color: #fdd5c8; margin-bottom: 8px; }
+.different-callout p { font-size: 13px; color: rgba(255,255,255,0.85); line-height: 1.7; margin: 0; }
+
+/* FEATURES GRID */
+.features-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 4px; }
+.feature-item { background: #fdf0ec; border: 1px solid #e8b0a0; border-radius: 8px; padding: 13px; border-top: 3px solid #b87060; }
+.feature-item .f-icon { font-size: 20px; margin-bottom: 5px; }
+.feature-item .f-title { font-size: 13px; font-weight: 700; color: #3a2808; margin-bottom: 3px; }
+.feature-item .f-desc { font-size: 12px; color: #5f6368; line-height: 1.5; }
+
+/* EVENTS CHIPS */
+.chip-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.chip { background: #fdf0ec; border: 1px solid #e8b0a0; color: #5a2818; font-size: 12px; font-weight: 600; padding: 5px 13px; border-radius: 20px; }
+
+/* PHOTO GRID */
+.photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 4px; }
+.photo-grid img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 6px; display: block; cursor: zoom-in; transition: opacity 0.15s; }
+.photo-grid img:hover { opacity: 0.88; }
+.photo-note { font-size: 12px; color: #5f6368; margin-top: 10px; background: #f8f9fa; padding: 10px 12px; border-radius: 6px; border-left: 3px solid #b87060; line-height: 1.5; }
+
+/* TAG LIST */
+.tag-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.tag { background: #f1f3f4; border: 1px solid #dadce0; color: #1e3a5f; font-size: 12px; font-weight: 600; padding: 5px 13px; border-radius: 20px; }
+
+.perks { list-style: none; margin-top: 4px; }
+.perks li { display: flex; align-items: flex-start; gap: 10px; padding: 9px 0; border-bottom: 1px solid #f0f0f0; font-size: 14px; color: #3c4043; }
+.perks li:last-child { border-bottom: none; }
+.perks li .icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+
+/* LIGHTBOX */
+.lightbox-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 9999; align-items: center; justify-content: center; cursor: zoom-out; }
+.lightbox-overlay.active { display: flex; }
+.lightbox-overlay img { max-width: 92vw; max-height: 92vh; object-fit: contain; border-radius: 4px; box-shadow: 0 8px 40px rgba(0,0,0,0.8); cursor: default; }
+.lightbox-close { position: fixed; top: 18px; right: 22px; color: white; font-size: 32px; font-weight: 300; cursor: pointer; z-index: 10000; user-select: none; }
+.lightbox-close:hover { color: #ccc; }
+
+/* SIDEBAR */
+.sidebar { position: sticky; top: 20px; align-self: start; }
+.sidebar-card { background: white; border: 1px solid #dadce0; border-radius: 8px; padding: 22px; }
+.sidebar-card h3 { font-size: 15px; font-weight: 700; color: #1e3a5f; margin-bottom: 4px; }
+.sidebar-sub { font-size: 12px; color: #5f6368; margin-bottom: 16px; }
+.pkg-section-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; padding-bottom: 6px; border-bottom: 2px solid; margin: 14px 0 8px; }
+.pkg-section-label:first-of-type { margin-top: 0; }
+.label-gold { color: #b87060; border-color: #e8b0a0; }
+.label-navy { color: #1e3a5f; border-color: #c5d5e8; }
+
+.package { border: 1.5px solid #dadce0; border-radius: 8px; padding: 13px 15px; margin-bottom: 9px; cursor: pointer; position: relative; transition: border-color 0.15s, background 0.15s; }
+.package:hover { border-color: #1e3a5f; background: #f8fafc; }
+.package.selected { border-color: #1e3a5f; background: #eef3f9; }
+.package-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+.package-name { font-size: 13px; font-weight: 700; color: #202124; }
+.package-price { font-size: 15px; font-weight: 800; color: #1e3a5f; white-space: nowrap; }
+.package-desc { font-size: 12px; color: #5f6368; margin-top: 4px; line-height: 1.5; }
+.package-save { font-size: 10px; font-weight: 700; color: #b87060; background: #fdf0ec; padding: 2px 6px; border-radius: 10px; margin-left: 5px; }
+.badge-popular { position: absolute; top: -1px; right: 12px; background: #1e3a5f; color: white; font-size: 9px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 8px; border-radius: 0 0 6px 6px; }
+.freq { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 10px; margin-top: 6px; text-transform: uppercase; letter-spacing: 0.05em; }
+.freq-perevent { background: #fdf0ec; color: #5a2818; }
+.freq-monthly   { background: #e6f4ea; color: #1e7e34; }
+.freq-onetime   { background: #f1f3f4; color: #5f6368; }
+.freq-ongoing   { background: #fce8e6; color: #c5221f; }
+
+.sample-badge { background: #fff8e1; border: 1px solid #ffe082; border-radius: 6px; padding: 7px 10px; font-size: 11px; color: #7b5c00; font-weight: 600; margin-bottom: 14px; text-align: center; }
+.summary { background: #eef3f9; border: 1px solid #c5d5e8; border-radius: 6px; padding: 12px 14px; margin: 12px 0; display: none; }
+.summary.show { display: block; }
+.summary-title { font-size: 13px; font-weight: 700; color: #1e3a5f; margin-bottom: 4px; }
+.summary-note { font-size: 12px; color: #5f6368; line-height: 1.5; }
+.book-btn { width: 100%; background: #1e3a5f; color: white; border: none; border-radius: 8px; padding: 14px; font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 4px; transition: background 0.15s; }
+.book-btn:hover { background: #163050; }
+.trust { margin-top: 16px; }
+.trust hr { border: none; border-top: 1px solid #f0f0f0; margin-bottom: 12px; }
+.trust-item { font-size: 12px; color: #5f6368; padding: 4px 0; }
+.contact-link { font-size: 12px; color: #1e3a5f; font-weight: 600; margin-top: 10px; cursor: pointer; text-decoration: underline; }
+
+@media (max-width: 700px) {
+  .page { grid-template-columns: 1fr; }
+  .sidebar { position: static; }
+  .stats-bar { flex-wrap: wrap; }
+  .stat { min-width: 50%; border-right: none; border-bottom: 1px solid rgba(255,210,200,0.3); }
+  .stat:last-child { border-bottom: none; }
+  .hero-title { font-size: 30px; }
+  .hero { padding: 36px 20px 32px; }
+  .features-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
+  <span class="lightbox-close" onclick="closeLightbox()">&#x2715;</span>
+  <img id="lightbox-img" src="" alt="" onclick="event.stopPropagation()">
+</div>
+
+<nav class="nav">
+  <div class="nav-logo">📌 The Local Post</div>
+  <div class="nav-links">
+    <a href="https://www.thelocalpostspokane.com/browse-opportunities">Browse Opportunities</a>
+    <a href="https://www.thelocalpostspokane.com/home">Home</a>
+  </div>
+</nav>
+
+<div class="banner">✨ Modern · Elevated · Effortless · Weddings · Corporate · Celebrations · Spokane & surrounding areas</div>
+
+<div class="hero">
+  <div class="hero-tag">📸 Photo Booth Rental · Spokane, WA</div>
+  <div class="hero-title">Lumen <span>Photobooth</span> Co.</div>
+  <div class="hero-sub">Modern, elevated photo booth experiences designed to make your events effortless &amp; fun.</div>
+  <div class="hero-tagline">Spokane &amp; surrounding areas · @lumenphotobooth.co · lumenphotoboothco.com</div>
+</div>
+
+<div class="page">
+
+  <div class="stats-bar">
+    <div class="stat"><div class="stat-num">2026</div><div class="stat-label">Now Booking</div></div>
+    <div class="stat"><div class="stat-num">Custom</div><div class="stat-label">Templates & Backdrops</div></div>
+    <div class="stat"><div class="stat-num">Instant</div><div class="stat-label">Digital Delivery</div></div>
+    <div class="stat"><div class="stat-num">Full</div><div class="stat-label">Setup & Breakdown</div></div>
+  </div>
+
+  <div class="left-col">
+
+    <div class="section">
+      <div class="social-row">
+        <a class="social-btn" href="https://www.instagram.com/lumenphotobooth.co/" target="_blank">📸 @lumenphotobooth.co</a>
+        <a class="social-btn" href="https://www.facebook.com/profile.php?id=61570779357584" target="_blank">👥 Facebook</a>
+        <a class="social-btn" href="https://www.lumenphotoboothco.com" target="_blank">🌐 lumenphotoboothco.com</a>
+      </div>
+    </div>
+
+    <!-- FOUNDER CALLOUT -->
+    <div class="founder-callout">
+      <h3>Meet Tori — Owner of Lumen Photobooth Co.</h3>
+      <p>"Hi! I'm Tori — Spokane born and raised, mom of four, and the face behind Lumen Photobooth Co. I create modern, elevated photo booth experiences designed to make your events effortless &amp; fun!"</p>
+    </div>
+
+    <!-- WHY DIFFERENT -->
+    <div class="different-callout">
+      <h3>⚡ Why This Listing Works Differently</h3>
+      <p>Lumen Photobooth Co. isn't a venue — it's a service that travels TO events across Spokane. Your brand doesn't sit in a window waiting to be noticed. It gets placed at a photo booth queue — the single most active, social, high-energy spot at any event — where guests are laughing, waiting, and completely present. A small table display, a treat handed out with every print, or a gift to the host puts your business in the middle of someone's best night.</p>
+    </div>
+
+    <!-- PHOTOS -->
+    <div class="section">
+      <h2>📸 Booth Photos</h2>
+      <div class="photo-grid">
+        <img src="lumen-1.jpg" alt="Lumen Photobooth Co. booth setup at event" onclick="openLightbox('lumen-1.jpg','Lumen Photobooth Co. booth')">
+        <img src="lumen-2.jpg" alt="Lumen Photobooth Co. guests posing and laughing" onclick="openLightbox('lumen-2.jpg','Lumen Photobooth guests')">
+        <img src="lumen-3.jpg" alt="Lumen Photobooth Co. custom photo print" onclick="openLightbox('lumen-3.jpg','Lumen Photobooth custom print')">
+      </div>
+      <div class="photo-note">
+        📍 Lumen Photobooth Co. travels to events across Spokane and surrounding areas. Visit <a href="https://www.instagram.com/lumenphotobooth.co/" target="_blank" style="color:#b87060;">@lumenphotobooth.co</a> on Instagram to see current booth setups, custom templates, and events. Photos to be updated with event images.
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <div class="section">
+      <h2>About This Opportunity</h2>
+      <p>Lumen Photobooth Co. is Spokane's modern luxury photo booth rental — founded by Tori, Spokane born and raised, to create elevated, effortless experiences at weddings, corporate events, birthday parties, school events, and celebrations of all kinds. Every booking is fully bespoke: custom photo templates, backdrop choices, a personalized booth interface, and a live gallery — all tailored specifically to the event.</p>
+      <p>From setup to breakdown, Tori handles everything. Guests just show up, pose, and walk away with a physical print and digital image they'll share and keep. The booth draws a crowd and a queue — and that queue is one of the warmest, most engaged advertising environments at any event. People waiting for their turn are fully present, in a great mood, and paying attention to everything around them.</p>
+      <p>Advertising here means your brand shows up at the most celebratory moments Spokane residents experience — not once, but at every Lumen event throughout the month, reaching couples, families, corporate teams, and community groups all across the area.</p>
+    </div>
+
+    <!-- WHAT LUMEN DELIVERS -->
+    <div class="section">
+      <h2>✨ What Lumen Photobooth Co. Delivers</h2>
+      <div class="features-grid">
+        <div class="feature-item">
+          <div class="f-icon">🎨</div>
+          <div class="f-title">Custom Photo Templates</div>
+          <div class="f-desc">Every event gets a unique photo strip design — layout, colors, and aesthetic built around the event's theme</div>
+        </div>
+        <div class="feature-item">
+          <div class="f-icon">📱</div>
+          <div class="f-title">Instant Digital Delivery</div>
+          <div class="f-desc">Guests receive photos instantly to share on social media — organic reach at every event</div>
+        </div>
+        <div class="feature-item">
+          <div class="f-icon">🖼️</div>
+          <div class="f-title">Live Gallery</div>
+          <div class="f-desc">A real-time shared gallery guests can browse and download during and after the event</div>
+        </div>
+        <div class="feature-item">
+          <div class="f-icon">🎭</div>
+          <div class="f-title">Modern Props & Backdrops</div>
+          <div class="f-desc">Sleek, stylish props and backdrop options chosen for each event's aesthetic</div>
+        </div>
+        <div class="feature-item">
+          <div class="f-icon">🔧</div>
+          <div class="f-title">Full Setup & Breakdown</div>
+          <div class="f-desc">Tori handles everything on event day — zero stress for the host or venue coordinator</div>
+        </div>
+        <div class="feature-item">
+          <div class="f-icon">💌</div>
+          <div class="f-title">Personalized Design Process</div>
+          <div class="f-desc">Every client gets a custom design questionnaire — template, backdrop, and booth interface tailored to their vision</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EVENTS SERVED -->
+    <div class="section">
+      <h2>🎉 Events Lumen Serves</h2>
+      <div class="chip-grid">
+        <span class="chip">💍 Weddings</span>
+        <span class="chip">🎓 Graduations</span>
+        <span class="chip">🏢 Corporate Events & Galas</span>
+        <span class="chip">🎂 Birthday Parties</span>
+        <span class="chip">👶 Baby Showers</span>
+        <span class="chip">🎉 Milestone Celebrations</span>
+        <span class="chip">🏫 School Events</span>
+        <span class="chip">🎄 Holiday Parties</span>
+        <span class="chip">🌸 Quinceañeras</span>
+        <span class="chip">🥂 Engagement Parties</span>
+        <span class="chip">🏆 Award Ceremonies</span>
+        <span class="chip">🎪 Community Events</span>
+      </div>
+    </div>
+
+    <!-- WHO YOU'RE REACHING -->
+    <div class="section">
+      <h2>👥 Who You're Reaching</h2>
+      <div class="tag-list">
+        <span class="tag">Engaged Couples & Newlyweds</span>
+        <span class="tag">Event Hosts & Planners</span>
+        <span class="tag">Corporate Teams</span>
+        <span class="tag">Celebrating Families</span>
+        <span class="tag">Adults 22–55</span>
+        <span class="tag">Spokane & Inland Northwest</span>
+        <span class="tag">Social Media Active Guests</span>
+        <span class="tag">Memory Keepers</span>
+      </div>
+      <p style="margin-top:14px;">Lumen's audience is in full celebration mode — at their weddings, their milestone parties, their company galas. They're present, happy, and sharing everything. The photo booth queue is one of the most naturally social environments at any event — people wait, chat, and notice everything around them. Advertising here reaches people at their most joyful and most receptive.</p>
+    </div>
+
+    <!-- ADVERTISER FIT -->
+    <div class="section">
+      <h2>🎯 Advertiser Fit</h2>
+      <p>The strongest fits are businesses that serve events, celebrations, and the life milestones Lumen's clients are experiencing.</p>
+      <div class="chip-grid">
+        <span class="chip">Wedding Vendors (all types)</span>
+        <span class="chip">Florists & Event Décor</span>
+        <span class="chip">Catering & Cake</span>
+        <span class="chip">Event Venues</span>
+        <span class="chip">Honeymoon & Travel</span>
+        <span class="chip">Jewelry & Accessories</span>
+        <span class="chip">Hair & Beauty Services</span>
+        <span class="chip">Bakeries & Sweet Shops</span>
+        <span class="chip">Skincare & Spa</span>
+        <span class="chip">Photography & Videography</span>
+        <span class="chip">Stationery & Paper Goods</span>
+        <span class="chip">Home & Lifestyle Brands</span>
+      </div>
+    </div>
+
+    <!-- EVERY ADVERTISER RECEIVES -->
+    <div class="section">
+      <h2>✅ Every Partner Receives</h2>
+      <ul class="perks">
+        <li><span class="icon">📸</span>Your brand placed in the most high-energy, social spot at Spokane events — right at the photo booth</li>
+        <li><span class="icon">🤝</span>Introduction to an audience actively celebrating — in the best mood of their week, month, or year</li>
+        <li><span class="icon">✨</span>Association with a modern, elevated, Spokane-born brand built around connection and joy</li>
+        <li><span class="icon">📋</span>Recognition in Lumen's growing Instagram community as a local business supporter</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sidebar-card">
+      <h3>Partner with Lumen</h3>
+      <div class="sidebar-sub">Pick your package and request to book — approval within 1 business day.</div>
+
+      <div class="sample-badge">🎨 Sample Listing — Pricing estimated for illustration</div>
+
+      <!-- AT THE EVENT -->
+      <div class="pkg-section-label label-gold">📸 At the Event</div>
+
+      <div class="package" onclick="selectPkg(this,'Table Display','$25/event')">
+        <div class="package-top"><div class="package-name">🪧 Table Display</div><div class="package-price">$25<span style="font-size:11px;font-weight:500;color:#5f6368">/event</span></div></div>
+        <div class="package-desc">Your business cards, small flyer, or coupon placed on a table near the photo booth · guests browsing and waiting in the queue are right there — relaxed, social, and paying attention</div>
+        <span class="freq freq-perevent">Per Event</span>
+      </div>
+
+      <div class="package" onclick="selectPkg(this,'Print Treat Pairing','$50/event')" style="position:relative;">
+        <div class="badge-popular">Most Popular</div>
+        <div class="package-top"><div class="package-name">🍬 Print Treat Pairing</div><div class="package-price">$50<span style="font-size:11px;font-weight:500;color:#5f6368">/event</span></div></div>
+        <div class="package-desc">A small branded treat — mini cookie, wrapped candy, or sample — handed to guests alongside their physical print. The moment guests receive their photo is the warmest moment of the night. A little something from your business makes it even more memorable.</div>
+        <span class="freq freq-perevent">Per Event</span>
+      </div>
+
+      <div class="package" onclick="selectPkg(this,'Host Gift','$75/event')">
+        <div class="package-top"><div class="package-name">🎁 Host Gift</div><div class="package-price">$75<span style="font-size:11px;font-weight:500;color:#5f6368">/event</span></div></div>
+        <div class="package-desc">Your product, gift card, or branded item presented to the host as a thank-you gift from Lumen · a warm, personal introduction at an emotionally meaningful moment — the host remembers who gave them something thoughtful</div>
+        <span class="freq freq-perevent">Per Event</span>
+      </div>
+
+      <!-- SOCIAL -->
+      <div class="pkg-section-label label-navy">📣 Social Media</div>
+
+      <div class="package" onclick="selectPkg(this,'Social Shoutout','$50')">
+        <div class="package-top"><div class="package-name">📣 Social Shoutout</div><div class="package-price">$50</div></div>
+        <div class="package-desc">One dedicated post shared to both Instagram and Facebook · your handle tagged · your business featured as a local supporter of Lumen Photobooth Co. and introduced to Tori's Spokane following</div>
+        <span class="freq freq-onetime">One-Time</span>
+      </div>
+
+      <!-- MONTHLY -->
+      <div class="pkg-section-label label-navy">⭐ Monthly Partner</div>
+
+      <div class="package" onclick="selectPkg(this,'Monthly Local Supporter','$200/mo')">
+        <div class="package-top"><div class="package-name">⭐ Monthly Local Supporter <span class="package-save">Best Value</span></div><div class="package-price">$200<span style="font-size:11px;font-weight:500;color:#5f6368">/mo</span></div></div>
+        <div class="package-desc">Table Display at ALL events booked that month + 2 Instagram mentions listing your business among Lumen's featured local supporters · sustained presence across every event Tori attends + recognition as a community partner in her social content</div>
+        <span class="freq freq-ongoing">Monthly</span>
+      </div>
+
+      <div class="summary" id="summary">
+        <div class="summary-title" id="summaryTitle"></div>
+        <div class="summary-note">You'll be taken to a short request form. Once approved, we'll confirm details within 1 business day.</div>
+      </div>
+
+      <button class="book-btn" onclick="bookNow()">Request to Book →</button>
+
+      <div class="trust">
+        <hr>
+        <div class="trust-item">📋 Submit a quick 3-minute request form</div>
+        <div class="trust-item">✅ We'll review and confirm within 1 business day</div>
+        <div class="trust-item">🔒 Secure payment link sent upon approval</div>
+        <div class="trust-item">📧 Confirmation and materials form sent to your email</div>
+        <div class="contact-link" onclick="window.open('https://www.thelocalpostspokane.com/home','_blank')">Have questions? Contact us first</div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+function openLightbox(src,alt){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox-img').alt=alt||'';document.getElementById('lightbox').classList.add('active');document.body.style.overflow='hidden';}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('active');document.body.style.overflow='';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox();});
+function selectPkg(el,name,price){document.querySelectorAll('.package').forEach(p=>p.classList.remove('selected'));el.classList.add('selected');document.getElementById('summaryTitle').textContent=name+' — '+price;document.getElementById('summary').classList.add('show');}
+function bookNow(){window.open('https://docs.google.com/forms/d/e/1FAIpQLSchD8nJNLro4uFf6oSdgXgsBPnXysBAai3Xz-84ZZ6_rQS4cQ/viewform?usp=header','_blank');}
+</script>
+</body>
+</html>
