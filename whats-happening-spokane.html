@@ -434,10 +434,10 @@
 
 <div class="submit-banner">
   <span>Hosting an event? Get it in front of Spokane.</span>
-  <a href="#" class="submit-btn">Submit Your Event →</a>
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSdNoco9eBuhYLWrn931q4k9qi2CzDrJGdlmnb_L60c0CVp2mw/viewform" class="submit-btn" target="_blank" rel="noopener">Submit Your Event →</a>
 </div>
 <div style="background:#f0f4ff; border-bottom: 1px solid #dde3f0; padding: 9px 24px; font-family:'Space Grotesk',sans-serif; font-size:12px; color:#4a5a8a; text-align:center;">
-  📌 Events created on Facebook only may not appear here. If your event is missing, <a href="#" style="color:#2C3E6B; font-weight:600;">submit it above</a> and we'll add it.
+  📌 Events created on Facebook only may not appear here. If your event is missing, <a href="https://docs.google.com/forms/d/e/1FAIpQLSdNoco9eBuhYLWrn931q4k9qi2CzDrJGdlmnb_L60c0CVp2mw/viewform" target="_blank" rel="noopener" style="color:#2C3E6B; font-weight:600;">submit it above</a> and we'll add it.
 </div>
 
 <div class="main">
@@ -484,6 +484,8 @@
       <div class="map-key-item"><div class="map-key-dot" style="background:var(--pin-family)"></div>Family</div>
       <div class="map-key-item"><div class="map-key-dot" style="background:var(--pin-market)"></div>Market</div>
       <div class="map-key-item"><div class="map-key-dot" style="background:var(--pin-sports)"></div>Sports</div>
+      <div class="map-key-item"><div class="map-key-dot" style="background:#9333ea"></div>Arts</div>
+      <div class="map-key-item"><div class="map-key-dot" style="background:#475569"></div>Community</div>
     </div>
   </div>
 
@@ -497,7 +499,7 @@
 
 <footer>
   Powered by <a href="https://www.thelocalpostspokane.com" target="_blank">The Local Post Spokane</a> · 
-  <a href="#">Submit an Event</a> · 
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSdNoco9eBuhYLWrn931q4k9qi2CzDrJGdlmnb_L60c0CVp2mw/viewform" target="_blank" rel="noopener">Submit an Event</a> · 
   Know of an event we're missing? Help us keep Spokane informed.
   <br><br>
   <a href="mailto:thelocalpostspokane@gmail.com?subject=Event%20Error%20Report&body=Event%20name%3A%0AWhat%20is%20incorrect%3A%0ACorrect%20information%3A" style="display:inline-block; margin-top:4px; font-family:'Space Grotesk',sans-serif; font-size:12px; color:#fff; background:#2C3E6B; padding:7px 16px; border-radius:6px; text-decoration:none;">⚠️ Report an Error</a>
@@ -508,128 +510,83 @@
 // ─── EVENT DATA ─────────────────────────────────────────────────────────────
 // Format: { name, date (YYYY-MM-DD), time (display), timeSort (HHmm), venue, address, lat, lng, category, desc, link }
 const EVENTS = [
-  // JUNE 11
-  { name: "Tig Notaro", date: "2026-06-11", time: "4:00 PM", timeSort: 1600, venue: "Bing Crosby Theater", address: "901 W Sprague Ave, Spokane", lat: 47.6576, lng: -117.4208, category: "music", desc: "Stand-up comedy from acclaimed comedian Tig Notaro.", link: "https://allevents.in/spokane/june" },
-  // JUNE 12
-  { name: "Tig Notaro (Night 2)", date: "2026-06-12", time: "8:00 PM", timeSort: 2000, venue: "Bing Crosby Theater", address: "901 W Sprague Ave, Spokane", lat: 47.6576, lng: -117.4208, category: "music", desc: "Second night of stand-up comedy from Tig Notaro.", link: "https://allevents.in/spokane/june" },
-  // JUNE 13
-  { name: "Union, Family & Soccer — Nuestras Raíces Fútbol Club", date: "2026-06-13", time: "4:30 PM", timeSort: 1630, venue: "2900 E 1st Ave", address: "2900 E 1st Ave, Spokane", lat: 47.6563, lng: -117.3831, category: "sports", desc: "Free youth soccer event for ages 8–13. Fun drills, meet the coaches, and free food for kids 13 and under! Hosted by Nuestras Raíces Centro Comunitario.", link: "https://www.facebook.com/profile.php?id=61587268270073" },
-  { name: "Spokane Pride Parade & Rainbow Festival", date: "2026-06-13", time: "12:00 PM", timeSort: 1200, venue: "Downtown Spokane → Riverfront Park → Lilac Bowl", address: "Downtown Spokane, WA", lat: 47.6588, lng: -117.4260, category: "festival", desc: "Free all-day Pride celebration. Noon: Pride Parade (Downtown). 1PM: Festival Kick Off (Riverfront Park). 6PM: All Ages Dance Party (Lilac Bowl).", link: "https://my.spokanecity.org/riverfrontspokane/calendar/" },
-  // JUNE 14
-  { name: "The Dead South w/ Amigo the Devil", date: "2026-06-14", time: "6:00 PM", timeSort: 1800, venue: "Gesa Pavilion", address: "334 W Spokane Falls Blvd, Spokane", lat: 47.6597, lng: -117.4266, category: "music", desc: "Folk/country concert at Gesa Pavilion in Riverfront Park.", link: "https://allevents.in/spokane/june" },
-  // JUNE 16 (recurring Tue)
-  { name: "Food Truck Tuesdays at Riverfront", date: "2026-06-16", time: "11:00 AM", timeSort: 1100, venue: "Riverfront Park", address: "507 N Howard St, Spokane", lat: 47.6617, lng: -117.4163, category: "food", desc: "Rotating lineup of local food trucks. Every Tuesday 11am–2pm, June through August.", link: "https://my.spokanecity.org/riverfrontspokane/calendar/" },
-  // JUNE 17 (recurring Wed)
-  { name: "Kendall Yards Night Market", date: "2026-06-17", time: "5:00 PM", timeSort: 1700, venue: "Kendall Yards", address: "1335 W Summit Pkwy, Spokane", lat: 47.6687, lng: -117.4355, category: "market", desc: "Weekly night market with local produce, food, artisans, and music. Every Wednesday May–Sept.", link: "https://www.visitspokane.com/spokane-farmers-markets-map/" },
-  // JUNE 18 (recurring Thu)
-  { name: "Perry Street Thursday Market", date: "2026-06-18", time: "3:00 PM", timeSort: 1500, venue: "Perry District", address: "1007 S Perry St, Spokane", lat: 47.6454, lng: -117.3961, category: "market", desc: "Fresh local produce, crafts, and community. Every Thursday 3–7pm, May–October.", link: "https://www.visitspokane.com/spokane-farmers-markets-map/" },
-  // JUNE 19
-  { name: "Storytime at Riverfront", date: "2026-06-19", time: "10:00 AM", timeSort: 1000, venue: "Riverfront Park", address: "507 N Howard St, Spokane", lat: 47.6617, lng: -117.4163, category: "family", desc: "Stories, songs, and preschool activities. Carousel rides $1.", link: "https://my.spokanecity.org/riverfrontspokane/calendar/" },
-  { name: "FIFA World Cup Fan Zone — USA vs Australia", date: "2026-06-19", time: "7:00 PM", timeSort: 1900, venue: "Gesa Pavilion, Riverfront Park", address: "334 W Spokane Falls Blvd, Spokane", lat: 47.6597, lng: -117.4266, category: "sports", desc: "Official FIFA Fan Zone watch party on a 21-foot screen.", link: "https://www.visitspokane.com/events/summer-events/" },
-  { name: "Casa de la Salsa — Father's Day Salsa-Bachata Social", date: "2026-06-19", time: "7:00 PM", timeSort: 1900, venue: "Satori Studio", address: "1104 W Wellesley Ave, Spokane", lat: 47.6898, lng: -117.4172, category: "music", desc: "Salsa, Bachata, Merengue & Cumbia social with 150–300 guests. Music by River Street Latin Group.", link: "https://tlpspokane.github.io/thelocalpostspokane/casa-de-la-salsa-listing.html", tlpListed: true },
-  // JUNE 20
-  // JUNE 20 Filipino American Friendship Festival
-  { name: "Taste of Asia / Night Market / Filipino American Friendship Festival", date: "2026-06-20", time: "11:00 AM", timeSort: 1100, venue: "Rotary Fountain & North Bank Basketball Courts, Riverfront Park", address: "507 N Howard St, Spokane", lat: 47.6630, lng: -117.4180, category: "festival", desc: "A celebration of Filipino-American friendship with food, a night market, cultural performances, and community. 11AM–8PM at Riverfront Park.", link: "https://www.visitspokane.com/events/" },
-  { name: "International Food & Culture Festival", date: "2026-06-20", time: "12:00 PM", timeSort: 1200, venue: "Riverfront Park", address: "507 N Howard St, Spokane", lat: 47.6617, lng: -117.4163, category: "festival", desc: "International foods, cultural performances, music, vendors, and community fun for all ages.", link: "https://my.spokanecity.org/riverfrontspokane/calendar/" },
-  // JUNE 20 Fri farmers market
-  { name: "Emerson-Garfield Farmers Market", date: "2026-06-20", time: "3:00 PM", timeSort: 1500, venue: "Emerson Park", address: "1116 W Alice Ave, Spokane", lat: 47.6762, lng: -117.4285, category: "market", desc: "Weekly seasonal market with local produce, baked goods, live music, and vendors. Fridays 3–7pm June–Sept.", link: "https://market.emersongarfield.org/" },
-  // JUNE 21
-  { name: "Father's Day at Riverfront", date: "2026-06-21", time: "10:00 AM", timeSort: 1000, venue: "Riverfront Park", address: "507 N Howard St, Spokane", lat: 47.6617, lng: -117.4163, category: "family", desc: "Special day dedicated to dads, 10am–7pm. Spokane is where Father's Day originated in 1910!", link: "https://my.spokanecity.org/riverfrontspokane/calendar/" },
-  { name: "Puppies & Poses Yoga", date: "2026-06-21", time: "10:00 AM", timeSort: 1000, venue: "SpokAnimal", address: "710 N Nolting St, Spokane", lat: 47.6788, lng: -117.4019, category: "family", desc: "Yoga class with adoptable puppies from SpokAnimal. All levels welcome.", link: "https://allevents.in/spokane/june" },
-  // JUNE 23 (recurring Mon Spokane Farmers Market)
-  { name: "Spokane Farmers Market", date: "2026-06-24", time: "9:00 AM", timeSort: 900, venue: "Coeur d'Alene Park, Browne's Addition", address: "W 2nd Ave & S Chestnut St, Spokane", lat: 47.6534, lng: -117.4416, category: "market", desc: "Open Wednesdays & Saturdays. Local produce, goods, and community.", link: "https://www.visitspokane.com/spokane-farmers-markets-map/" },
-  // JUNE 27
-  { name: "Summer Art & Food Festival", date: "2026-06-27", time: "10:00 AM", timeSort: 1000, venue: "Spokane Valley", address: "Spokane Valley, WA", lat: 47.6732, lng: -117.2394, category: "festival", desc: "Local artisans, fine art, handmade goods, food trucks, baked goods. 10am–5pm.", link: "https://festivalnet.com/fairs-festivals/Washington/Spokane-Valley-WA" },
-  // JUNE 28–29 Hoopfest
-  { name: "Hoopfest — World's Largest 3-on-3 Basketball", date: "2026-06-28", time: "8:00 AM", timeSort: 800, venue: "Downtown Spokane", address: "Downtown Spokane, WA", lat: 47.6588, lng: -117.4260, category: "sports", desc: "The world's largest 3-on-3 outdoor basketball tournament takes over all of downtown. Huge festival atmosphere.", link: "https://www.visitspokane.com/events/summer-events/" },
-  { name: "Hoopfest — Day 2", date: "2026-06-29", time: "8:00 AM", timeSort: 800, venue: "Downtown Spokane", address: "Downtown Spokane, WA", lat: 47.6588, lng: -117.4260, category: "sports", desc: "Day 2 of Hoopfest — championship rounds, food, and festival fun.", link: "https://www.visitspokane.com/events/summer-events/" },
-  // JUNE 30
-  { name: "J Boog", date: "2026-06-30", time: "8:00 PM", timeSort: 2000, venue: "Knitting Factory", address: "919 W Sprague Ave, Spokane", lat: 47.6567, lng: -117.4218, category: "music", desc: "Reggae/R&B concert at the Knitting Factory.", link: "https://sp.knittingfactory.com/calendar/" },
-  // JULY 1-4 Carnival
-  { name: "Riverfront Summer Carnival (4th of July)", date: "2026-07-01", time: "All Day", timeSort: 800, venue: "Riverfront Park", address: "507 N Howard St, Spokane", lat: 47.6617, lng: -117.4163, category: "festival", desc: "Five days of non-stop fun at the Riverfront Summer Carnival presented by ICCU. July 1–4.", link: "https://my.spokanecity.org/riverfrontspokane/calendar/" },
-  { name: "Riverfront Summer Carnival (4th of July)", date: "2026-07-04", time: "All Day", timeSort: 800, venue: "Riverfront Park", address: "507 N Howard St, Spokane", lat: 47.6617, lng: -117.4163, category: "festival", desc: "Fourth of July celebration with fireworks, live music, and carnival fun.", link: "https://my.spokanecity.org/riverfrontspokane/calendar/" },
-  // JULY 1 Movies at Pavilion
-  { name: "Movies at the Pavilion", date: "2026-07-01", time: "Dusk", timeSort: 2030, venue: "Gesa Pavilion, Riverfront Park", address: "334 W Spokane Falls Blvd, Spokane", lat: 47.6597, lng: -117.4266, category: "family", desc: "Kick back under the stars at Gesa Pavilion for Movies at the Pavilion presented by Kaiser Permanente.", link: "https://my.spokanecity.org/riverfrontspokane/calendar/" },
-  // JULY 10
-  { name: "Cannons", date: "2026-07-10", time: "9:00 PM", timeSort: 2100, venue: "Knitting Factory", address: "919 W Sprague Ave, Spokane", lat: 47.6567, lng: -117.4218, category: "music", desc: "Indie pop/synth concert at the Knitting Factory.", link: "https://sp.knittingfactory.com/calendar/" },
-  // JULY 11
-  { name: "Everclear", date: "2026-07-11", time: "5:00 PM", timeSort: 1700, venue: "ONE Spokane Stadium", address: "1 N Haven St, Spokane", lat: 47.6689, lng: -117.3953, category: "music", desc: "90s alt-rock legends Everclear live at ONE Spokane Stadium.", link: "https://allevents.in/spokane/july" },
-  { name: "Fruition & The Coffis Brothers", date: "2026-07-11", time: "8:00 PM", timeSort: 2000, venue: "The District", address: "W 2nd Ave, Spokane", lat: 47.6572, lng: -117.4229, category: "music", desc: "Americana/folk double bill at The District.", link: "https://sp.knittingfactory.com/calendar/" },
-  // JULY 14
-  { name: "Save Ferris", date: "2026-07-14", time: "7:00 PM", timeSort: 1900, venue: "The District", address: "W 2nd Ave, Spokane", lat: 47.6572, lng: -117.4229, category: "music", desc: "Ska/pop-punk band Save Ferris live at The District.", link: "https://sp.knittingfactory.com/calendar/" },
-  // JULY 18
-  { name: "9th Annual Jacked Up Big Show — VFW Post 1474", date: "2026-07-18", time: "11:00 AM", timeSort: 1100, venue: "Harmon Field & Skate Park", address: "Harmon Field, Spokane", lat: 47.6880, lng: -117.4220, category: "community", desc: "Annual fundraiser benefiting VFW Post 1474. Family-friendly event.", link: "https://allevents.in/spokane/july" },
-  { name: "The Ultimate K-Pop & Demon Hunters Experience", date: "2026-07-18", time: "7:30 PM", timeSort: 1930, venue: "Knitting Factory", address: "919 W Sprague Ave, Spokane", lat: 47.6567, lng: -117.4218, category: "music", desc: "K-Pop themed live experience at the Knitting Factory.", link: "https://sp.knittingfactory.com/calendar/" },
-  // JULY 19
-  { name: "FIFA World Cup Fan Zone — Final Watch Party", date: "2026-07-19", time: "TBD", timeSort: 1500, venue: "Gesa Pavilion, Riverfront Park", address: "334 W Spokane Falls Blvd, Spokane", lat: 47.6597, lng: -117.4266, category: "sports", desc: "Official FIFA Fan Zone watch party for the World Cup Final on a 21-foot screen.", link: "https://www.visitspokane.com/events/summer-events/" },
-  { name: "Colony House", date: "2026-07-19", time: "5:15 PM", timeSort: 1715, venue: "The District", address: "W 2nd Ave, Spokane", lat: 47.6572, lng: -117.4229, category: "music", desc: "Indie rock band Colony House live at The District.", link: "https://sp.knittingfactory.com/calendar/" },
-  // JULY 24
-  { name: "Nate Bargatze", date: "2026-07-24", time: "7:00 PM", timeSort: 1900, venue: "Spokane Arena", address: "720 W Mallon Ave, Spokane", lat: 47.6656, lng: -117.4264, category: "music", desc: "Stand-up comedy from one of America's top comics, Nate Bargatze.", link: "https://allevents.in/spokane/july" },
-  // JULY 29
-  { name: "Gavin Adcock, Corey Kent & Tyler Nance", date: "2026-07-29", time: "6:00 PM", timeSort: 1800, venue: "Gesa Pavilion", address: "334 W Spokane Falls Blvd, Spokane", lat: 47.6597, lng: -117.4266, category: "music", desc: "Country triple bill at Gesa Pavilion.", link: "https://allevents.in/spokane/july" },
-  // JULY 30
-  { name: "Andre Nickatina Live", date: "2026-07-30", time: "8:00 PM", timeSort: 2000, venue: "The District", address: "W 2nd Ave, Spokane", lat: 47.6572, lng: -117.4229, category: "music", desc: "West Coast hip-hop legend Andre Nickatina live at The District.", link: "https://sp.knittingfactory.com/calendar/" },
-  // CRAVE NW - July (TBD exact date)
-  { name: "CRAVE! NW Food & Drink Festival", date: "2026-07-17", time: "All Day", timeSort: 900, venue: "Riverfront Park", address: "507 N Howard St, Spokane", lat: 47.6617, lng: -117.4163, category: "food", desc: "Inland Northwest's premier 3-day food and drink celebration. Local chefs, tastings, and Pacific Northwest flavors.", link: "https://www.visitspokane.com/events/summer-events/" },
-  { name: "CRAVE! NW Food & Drink Festival", date: "2026-07-18", time: "All Day", timeSort: 900, venue: "Riverfront Park", address: "507 N Howard St, Spokane", lat: 47.6617, lng: -117.4163, category: "food", desc: "Day 2 of Inland Northwest's premier food and drink celebration.", link: "https://www.visitspokane.com/events/summer-events/" },
-  { name: "CRAVE! NW Food & Drink Festival", date: "2026-07-19", time: "All Day", timeSort: 900, venue: "Riverfront Park", address: "507 N Howard St, Spokane", lat: 47.6617, lng: -117.4163, category: "food", desc: "Day 3 of Inland Northwest's premier food and drink celebration.", link: "https://www.visitspokane.com/events/summer-events/" },
-
-  // LILAC CITY COMICON — June 6-7
-  { name: "Lilac City Comicon — Day 1", date: "2026-06-06", time: "10:00 AM", timeSort: 1000, venue: "Spokane Convention Center", address: "334 W Spokane Falls Blvd, Spokane", lat: 47.6583, lng: -117.4241, category: "arts", desc: "20th annual Lilac City Comicon — Eastern Washington's largest comic book & pop culture convention. 300+ exhibitors, special guests, cosplay, gaming, and all-ages fun.", link: "https://www.lilaccitycon.com/" },
-  { name: "Lilac City Comicon — Day 2", date: "2026-06-07", time: "10:00 AM", timeSort: 1000, venue: "Spokane Convention Center", address: "334 W Spokane Falls Blvd, Spokane", lat: 47.6583, lng: -117.4241, category: "arts", desc: "Day 2 of the 20th annual Lilac City Comicon — comics, cosplay, vendors, and celebrity guests.", link: "https://www.lilaccitycon.com/" },
-
-  // FIRST FRIDAY — monthly, first Friday 5–8pm
-  { name: "First Friday Downtown Art Walk", date: "2026-06-05", time: "5:00 PM", timeSort: 1700, venue: "Downtown Spokane", address: "Downtown Spokane, WA 99201", lat: 47.6583, lng: -117.4241, category: "arts", desc: "Monthly art walk transforming downtown into a celebration of creativity. Galleries, retailers, and restaurants host artists, musicians, and special exhibits 5–8pm. Includes First Friday Face-Off live painting showdown.", link: "https://downtownspokane.org/first-friday/" },
-  { name: "First Friday Downtown Art Walk", date: "2026-07-03", time: "5:00 PM", timeSort: 1700, venue: "Downtown Spokane", address: "Downtown Spokane, WA 99201", lat: 47.6583, lng: -117.4241, category: "arts", desc: "Monthly art walk with galleries, live music, food and drink specials, and the First Friday Face-Off live painting competition. 5–8pm.", link: "https://downtownspokane.org/first-friday/" },
-
-  // BAZAAR by Terrain — weekend before Hoopfest = June 20
-  { name: "BAZAAR — Terrain's All-Local Art Market", date: "2026-06-20", time: "10:00 AM", timeSort: 1000, venue: "Main Ave & Post St, Downtown", address: "Main Ave & Post St, Spokane, WA 99201", lat: 47.6591, lng: -117.4257, category: "arts", desc: "Spokane's largest all-local art market with 130+ booths of handmade goods, jewelry, art, skincare, ceramics, and more. Most items under $100. Free to attend.", link: "https://www.terrainspokane.com/bazaar" },
-
-  // QUEER ART WALK — June (Pride Month, First Friday)
-  { name: "Queer Art Walk — Pride Month Edition", date: "2026-06-05", time: "5:00 PM", timeSort: 1700, venue: "Downtown Spokane (multiple venues)", address: "Downtown Spokane, WA 99201", lat: 47.6583, lng: -117.4241, category: "arts", desc: "Self-guided art walk featuring queer artists at five downtown locations. Themes of identity, equality, love, and resilience. Part of First Friday and Pride Month.", link: "https://spokanearts.org/queer-art-walk/" },
-
-  // MOONSHINE Artisan Night Market — Wed nights June–Aug
-  { name: "MOONSHINE Artisan Night Market", date: "2026-06-11", time: "5:30 PM", timeSort: 1730, venue: "Downtown Spokane", address: "Downtown Spokane, WA", lat: 47.6591, lng: -117.4257, category: "market", desc: "Wednesday night artisan market blending food, culture, music, drinks, and retail. Outdoor film at sunset. June–August.", link: "https://www.visitspokane.com/spokane-farmers-markets-map/" },
-  { name: "MOONSHINE Artisan Night Market", date: "2026-06-17", time: "5:30 PM", timeSort: 1730, venue: "Downtown Spokane", address: "Downtown Spokane, WA", lat: 47.6591, lng: -117.4257, category: "market", desc: "Wednesday night artisan market blending food, culture, music, drinks, and retail. Outdoor film at sunset.", link: "https://www.visitspokane.com/spokane-farmers-markets-map/" },
-  { name: "MOONSHINE Artisan Night Market", date: "2026-06-24", time: "5:30 PM", timeSort: 1730, venue: "Downtown Spokane", address: "Downtown Spokane, WA", lat: 47.6591, lng: -117.4257, category: "market", desc: "Wednesday night artisan market blending food, culture, music, drinks, and retail. Outdoor film at sunset.", link: "https://www.visitspokane.com/spokane-farmers-markets-map/" },
-  { name: "MOONSHINE Artisan Night Market", date: "2026-07-08", time: "5:30 PM", timeSort: 1730, venue: "Downtown Spokane", address: "Downtown Spokane, WA", lat: 47.6591, lng: -117.4257, category: "market", desc: "Wednesday night artisan market blending food, culture, music, drinks, and retail. Outdoor film at sunset.", link: "https://www.visitspokane.com/spokane-farmers-markets-map/" },
-  { name: "MOONSHINE Artisan Night Market", date: "2026-07-15", time: "5:30 PM", timeSort: 1730, venue: "Downtown Spokane", address: "Downtown Spokane, WA", lat: 47.6591, lng: -117.4257, category: "market", desc: "Wednesday night artisan market blending food, culture, music, drinks, and retail. Outdoor film at sunset.", link: "https://www.visitspokane.com/spokane-farmers-markets-map/" },
-  { name: "MOONSHINE Artisan Night Market", date: "2026-07-22", time: "5:30 PM", timeSort: 1730, venue: "Downtown Spokane", address: "Downtown Spokane, WA", lat: 47.6591, lng: -117.4257, category: "market", desc: "Wednesday night artisan market blending food, culture, music, drinks, and retail. Outdoor film at sunset.", link: "https://www.visitspokane.com/spokane-farmers-markets-map/" },
-  { name: "MOONSHINE Artisan Night Market", date: "2026-07-29", time: "5:30 PM", timeSort: 1730, venue: "Downtown Spokane", address: "Downtown Spokane, WA", lat: 47.6591, lng: -117.4257, category: "market", desc: "Wednesday night artisan market blending food, culture, music, drinks, and retail. Outdoor film at sunset.", link: "https://www.visitspokane.com/spokane-farmers-markets-map/" },
-
-  // FOOD TRUCK TUESDAYS — additional weeks
-  { name: "Food Truck Tuesdays at Riverfront", date: "2026-06-23", time: "11:00 AM", timeSort: 1100, venue: "Riverfront Park", address: "507 N Howard St, Spokane", lat: 47.6617, lng: -117.4163, category: "food", desc: "Rotating lineup of local food trucks every Tuesday 11am–2pm, June through August.", link: "https://my.spokanecity.org/riverfrontspokane/calendar/" },
-  { name: "Food Truck Tuesdays at Riverfront", date: "2026-06-30", time: "11:00 AM", timeSort: 1100, venue: "Riverfront Park", address: "507 N Howard St, Spokane", lat: 47.6617, lng: -117.4163, category: "food", desc: "Rotating lineup of local food trucks every Tuesday 11am–2pm, June through August.", link: "https://my.spokanecity.org/riverfrontspokane/calendar/" },
-  { name: "Food Truck Tuesdays at Riverfront", date: "2026-07-07", time: "11:00 AM", timeSort: 1100, venue: "Riverfront Park", address: "507 N Howard St, Spokane", lat: 47.6617, lng: -117.4163, category: "food", desc: "Rotating lineup of local food trucks every Tuesday 11am–2pm, June through August.", link: "https://my.spokanecity.org/riverfrontspokane/calendar/" },
-  { name: "Food Truck Tuesdays at Riverfront", date: "2026-07-14", time: "11:00 AM", timeSort: 1100, venue: "Riverfront Park", address: "507 N Howard St, Spokane", lat: 47.6617, lng: -117.4163, category: "food", desc: "Rotating lineup of local food trucks every Tuesday 11am–2pm, June through August.", link: "https://my.spokanecity.org/riverfrontspokane/calendar/" },
-  { name: "Food Truck Tuesdays at Riverfront", date: "2026-07-21", time: "11:00 AM", timeSort: 1100, venue: "Riverfront Park", address: "507 N Howard St, Spokane", lat: 47.6617, lng: -117.4163, category: "food", desc: "Rotating lineup of local food trucks every Tuesday 11am–2pm, June through August.", link: "https://my.spokanecity.org/riverfrontspokane/calendar/" },
-  { name: "Food Truck Tuesdays at Riverfront", date: "2026-07-28", time: "11:00 AM", timeSort: 1100, venue: "Riverfront Park", address: "507 N Howard St, Spokane", lat: 47.6617, lng: -117.4163, category: "food", desc: "Rotating lineup of local food trucks every Tuesday 11am–2pm, June through August.", link: "https://my.spokanecity.org/riverfrontspokane/calendar/" },
-
-  // EMERSON-GARFIELD FARMERS MARKET — additional Fridays
-  { name: "Emerson-Garfield Farmers Market", date: "2026-06-12", time: "3:00 PM", timeSort: 1500, venue: "Emerson Park", address: "1116 W Alice Ave, Spokane", lat: 47.6762, lng: -117.4285, category: "market", desc: "Weekly seasonal market with local produce, baked goods, live music, and vendors. Fridays 3–7pm June–Sept.", link: "https://market.emersongarfield.org/" },
-  { name: "Emerson-Garfield Farmers Market", date: "2026-06-19", time: "3:00 PM", timeSort: 1500, venue: "Emerson Park", address: "1116 W Alice Ave, Spokane", lat: 47.6762, lng: -117.4285, category: "market", desc: "Weekly seasonal market with local produce, baked goods, live music, and vendors. Fridays 3–7pm June–Sept.", link: "https://market.emersongarfield.org/" },
-  { name: "Emerson-Garfield Farmers Market", date: "2026-06-26", time: "3:00 PM", timeSort: 1500, venue: "Emerson Park", address: "1116 W Alice Ave, Spokane", lat: 47.6762, lng: -117.4285, category: "market", desc: "Weekly seasonal market with local produce, baked goods, live music, and vendors. Fridays 3–7pm June–Sept.", link: "https://market.emersongarfield.org/" },
-  { name: "Emerson-Garfield Farmers Market", date: "2026-07-03", time: "3:00 PM", timeSort: 1500, venue: "Emerson Park", address: "1116 W Alice Ave, Spokane", lat: 47.6762, lng: -117.4285, category: "market", desc: "Weekly seasonal market with local produce, baked goods, live music, and vendors. Fridays 3–7pm June–Sept.", link: "https://market.emersongarfield.org/" },
-  { name: "Emerson-Garfield Farmers Market", date: "2026-07-10", time: "3:00 PM", timeSort: 1500, venue: "Emerson Park", address: "1116 W Alice Ave, Spokane", lat: 47.6762, lng: -117.4285, category: "market", desc: "Weekly seasonal market with local produce, baked goods, live music, and vendors. Fridays 3–7pm June–Sept.", link: "https://market.emersongarfield.org/" },
-  { name: "Emerson-Garfield Farmers Market", date: "2026-07-17", time: "3:00 PM", timeSort: 1500, venue: "Emerson Park", address: "1116 W Alice Ave, Spokane", lat: 47.6762, lng: -117.4285, category: "market", desc: "Weekly seasonal market with local produce, baked goods, live music, and vendors. Fridays 3–7pm June–Sept.", link: "https://market.emersongarfield.org/" },
-  { name: "Emerson-Garfield Farmers Market", date: "2026-07-24", time: "3:00 PM", timeSort: 1500, venue: "Emerson Park", address: "1116 W Alice Ave, Spokane", lat: 47.6762, lng: -117.4285, category: "market", desc: "Weekly seasonal market with local produce, baked goods, live music, and vendors. Fridays 3–7pm June–Sept.", link: "https://market.emersongarfield.org/" },
-  { name: "Emerson-Garfield Farmers Market", date: "2026-07-31", time: "3:00 PM", timeSort: 1500, venue: "Emerson Park", address: "1116 W Alice Ave, Spokane", lat: 47.6762, lng: -117.4285, category: "market", desc: "Weekly seasonal market with local produce, baked goods, live music, and vendors. Fridays 3–7pm June–Sept.", link: "https://market.emersongarfield.org/" },
-
-  // PERRY ST THURSDAY MARKET — additional Thursdays
-  { name: "Perry Street Thursday Market", date: "2026-06-11", time: "3:00 PM", timeSort: 1500, venue: "Perry District", address: "1007 S Perry St, Spokane", lat: 47.6454, lng: -117.3961, category: "market", desc: "Fresh local produce, crafts, and community in the Perry District. Every Thursday 3–7pm, May–October.", link: "https://www.visitspokane.com/spokane-farmers-markets-map/" },
-  { name: "Perry Street Thursday Market", date: "2026-06-25", time: "3:00 PM", timeSort: 1500, venue: "Perry District", address: "1007 S Perry St, Spokane", lat: 47.6454, lng: -117.3961, category: "market", desc: "Fresh local produce, crafts, and community in the Perry District. Every Thursday 3–7pm, May–October.", link: "https://www.visitspokane.com/spokane-farmers-markets-map/" },
-  { name: "Perry Street Thursday Market", date: "2026-07-02", time: "3:00 PM", timeSort: 1500, venue: "Perry District", address: "1007 S Perry St, Spokane", lat: 47.6454, lng: -117.3961, category: "market", desc: "Fresh local produce, crafts, and community in the Perry District. Every Thursday 3–7pm, May–October.", link: "https://www.visitspokane.com/spokane-farmers-markets-map/" },
-  { name: "Perry Street Thursday Market", date: "2026-07-09", time: "3:00 PM", timeSort: 1500, venue: "Perry District", address: "1007 S Perry St, Spokane", lat: 47.6454, lng: -117.3961, category: "market", desc: "Fresh local produce, crafts, and community in the Perry District. Every Thursday 3–7pm, May–October.", link: "https://www.visitspokane.com/spokane-farmers-markets-map/" },
-  { name: "Perry Street Thursday Market", date: "2026-07-16", time: "3:00 PM", timeSort: 1500, venue: "Perry District", address: "1007 S Perry St, Spokane", lat: 47.6454, lng: -117.3961, category: "market", desc: "Fresh local produce, crafts, and community in the Perry District. Every Thursday 3–7pm, May–October.", link: "https://www.visitspokane.com/spokane-farmers-markets-map/" },
-  { name: "Perry Street Thursday Market", date: "2026-07-23", time: "3:00 PM", timeSort: 1500, venue: "Perry District", address: "1007 S Perry St, Spokane", lat: 47.6454, lng: -117.3961, category: "market", desc: "Fresh local produce, crafts, and community in the Perry District. Every Thursday 3–7pm, May–October.", link: "https://www.visitspokane.com/spokane-farmers-markets-map/" },
+  // ─── JULY 24–31 ─────────────────────────────────────────────────────────
+  { name: "Emerson-Garfield Farmers Market", date: "2026-07-24", time: "3:00 PM", timeSort: 1500, venue: "Emerson Park", address: "1116 W Alice Ave, Spokane", lat: 47.6762, lng: -117.4285, category: "market", desc: "Weekly seasonal market with local produce, baked goods, live music, and vendors. Fridays 3–7pm, June–September.", link: "https://market.emersongarfield.org/" },
+  { name: "LOVE IN THE CLUB", date: "2026-07-25", time: "8:30 PM", timeSort: 2030, venue: "The District", address: "W 2nd Ave, Spokane", lat: 47.6572, lng: -117.4229, category: "music", desc: "Dance party and DJ night at The District.", link: "https://sp.knittingfactory.com/tm-event/love-in-the-club/" },
+  { name: "Movies at the Pavilion", date: "2026-07-25", time: "Dusk", timeSort: 2100, venue: "Gesa Pavilion, Riverfront Park", address: "334 W Spokane Falls Blvd, Spokane", lat: 47.6597, lng: -117.4266, category: "family", desc: "Free outdoor movie night at the Gesa Pavilion, presented by Kaiser Permanente. Bring a blanket and settle in as the sun goes down.", link: "https://my.spokanecity.org/riverfrontspokane/calendar/" },
   { name: "Perry Street Thursday Market", date: "2026-07-30", time: "3:00 PM", timeSort: 1500, venue: "Perry District", address: "1007 S Perry St, Spokane", lat: 47.6454, lng: -117.3961, category: "market", desc: "Fresh local produce, crafts, and community in the Perry District. Every Thursday 3–7pm, May–October.", link: "https://www.visitspokane.com/spokane-farmers-markets-map/" },
+  { name: "MOONSHINE Artisan Night Market", date: "2026-07-29", time: "5:30 PM", timeSort: 1730, venue: "Downtown Spokane", address: "Downtown Spokane, WA", lat: 47.6591, lng: -117.4257, category: "market", desc: "Wednesday night artisan market blending food, culture, music, drinks, and retail. Outdoor film at sunset. June–August.", link: "https://www.visitspokane.com/spokane-farmers-markets-map/" },
+  { name: "Emerson-Garfield Farmers Market", date: "2026-07-31", time: "3:00 PM", timeSort: 1500, venue: "Emerson Park", address: "1116 W Alice Ave, Spokane", lat: 47.6762, lng: -117.4285, category: "market", desc: "Weekly seasonal market with local produce, baked goods, live music, and vendors. Fridays 3–7pm, June–September.", link: "https://market.emersongarfield.org/" },
+  { name: "KEN POMEROY, RAMSEY THORNTON", date: "2026-07-28", time: "8:00 PM", timeSort: 2000, venue: "The District", address: "W 2nd Ave, Spokane", lat: 47.6572, lng: -117.4229, category: "music", desc: "Indie/folk co-headline show at The District.", link: "https://sp.knittingfactory.com/tm-event/ken-pomeroy/" },
+  { name: "BEN CHAPMAN — FEET ON FIRE TOUR", date: "2026-07-29", time: "9:00 PM", timeSort: 2100, venue: "The District", address: "W 2nd Ave, Spokane", lat: 47.6572, lng: -117.4229, category: "music", desc: "Live at The District.", link: "https://sp.knittingfactory.com/tm-event/ben-chapman-feet-on-fire-tour/" },
+  { name: "Gavin Adcock, Corey Kent & Tyler Nance", date: "2026-07-29", time: "6:00 PM", timeSort: 1800, venue: "Gesa Pavilion", address: "334 W Spokane Falls Blvd, Spokane", lat: 47.6597, lng: -117.4266, category: "music", desc: "Country triple bill at Gesa Pavilion in Riverfront Park.", link: "https://allevents.in/spokane/july" },
+  { name: "OLD 97'S", date: "2026-07-30", time: "8:00 PM", timeSort: 2000, venue: "Knitting Factory", address: "919 W Sprague Ave, Spokane", lat: 47.6577, lng: -117.4258, category: "music", desc: "Alt-country veterans live at the Knitting Factory.", link: "https://sp.knittingfactory.com/tm-event/old-97s/" },
+  { name: "HOGSLOP STRING BAND, HANNAH MARIE KELLEY", date: "2026-07-30", time: "9:00 PM", timeSort: 2100, venue: "The District", address: "W 2nd Ave, Spokane", lat: 47.6572, lng: -117.4229, category: "music", desc: "String-band show at The District.", link: "https://sp.knittingfactory.com/tm-event/hogslop-string-band/" },
+  { name: "DYING WISH", date: "2026-07-31", time: "7:00 PM", timeSort: 1900, venue: "Knitting Factory", address: "919 W Sprague Ave, Spokane", lat: 47.6577, lng: -117.4258, category: "music", desc: "Metalcore show at the Knitting Factory.", link: "https://sp.knittingfactory.com/tm-event/dying-wish/" },
+  { name: "JAMES MCMURTRY & THE MARTIAL LAW REVIEW, BETTYSOO", date: "2026-07-31", time: "9:00 PM", timeSort: 2100, venue: "The District", address: "W 2nd Ave, Spokane", lat: 47.6572, lng: -117.4229, category: "music", desc: "Singer-songwriter night at The District.", link: "https://sp.knittingfactory.com/tm-event/james-mcmurtry-the-martial-law-review-bettysoo/" },
 
-  { name: "Benson Boone: Wanted Man Tour 2026", date: "2026-08-02", time: "8:00 PM", timeSort: 2000, venue: "Spokane Arena", address: "720 W Mallon Ave, Spokane", lat: 47.6656, lng: -117.4264, category: "music", desc: "Benson Boone brings his Wanted Man Tour to Spokane Arena. 1.7K interested — grab tickets early!", link: "https://www.spokanearena.com/" },
+  // ─── AUGUST ─────────────────────────────────────────────────────────────
+  { name: "SILVERADA", date: "2026-08-02", time: "8:00 PM", timeSort: 2000, venue: "The District", address: "W 2nd Ave, Spokane", lat: 47.6572, lng: -117.4229, category: "music", desc: "Live at The District.", link: "https://sp.knittingfactory.com/tm-event/silverada/" },
+  { name: "Slightly Stoopid — Road Trippin' Summer Tour", date: "2026-08-02", time: "7:00 PM", timeSort: 1900, venue: "Gesa Pavilion", address: "334 W Spokane Falls Blvd, Spokane", lat: 47.6597, lng: -117.4266, category: "music", desc: "Summer tour stop at Gesa Pavilion, Riverfront Park.", link: "https://my.spokanecity.org/riverfrontspokane/calendar/" },
+  { name: "APOCALYPSE, NEVER! TOUR — NICK SHOULDERS", date: "2026-08-03", time: "8:00 PM", timeSort: 2000, venue: "Knitting Factory", address: "919 W Sprague Ave, Spokane", lat: 47.6577, lng: -117.4258, category: "music", desc: "Live at the Knitting Factory.", link: "https://sp.knittingfactory.com/tm-event/apocalypse-never-tour-nick-shoulders/" },
+  { name: "Riverfront Eats Food Truck Tuesdays", date: "2026-08-04", time: "11:00 AM", timeSort: 1100, venue: "Riverfront Park", address: "507 N Howard St, Spokane", lat: 47.6617, lng: -117.4163, category: "food", desc: "Rotating lineup of local food trucks, Tuesdays 11am–2pm, June through August.", link: "https://my.spokanecity.org/riverfrontspokane/calendar/" },
+  { name: "PEPPER AND THE MOVEMENT — HIGH TIDE SUMMER TOUR", date: "2026-08-05", time: "7:00 PM", timeSort: 1900, venue: "Knitting Factory", address: "919 W Sprague Ave, Spokane", lat: 47.6577, lng: -117.4258, category: "music", desc: "With guest Joe Samba, live at the Knitting Factory.", link: "https://sp.knittingfactory.com/tm-event/pepper-and-the-movement-high-tide-summer-tour-w-guest-joe-samba/" },
+  { name: "LIAM ST. JOHN, DAVIS CORLEY", date: "2026-08-05", time: "8:00 PM", timeSort: 2000, venue: "The District", address: "W 2nd Ave, Spokane", lat: 47.6572, lng: -117.4229, category: "music", desc: "Live at The District.", link: "https://sp.knittingfactory.com/tm-event/liam-st-john/" },
+  { name: "Movies at the Pavilion", date: "2026-08-05", time: "Dusk", timeSort: 2100, venue: "Gesa Pavilion, Riverfront Park", address: "334 W Spokane Falls Blvd, Spokane", lat: 47.6597, lng: -117.4266, category: "family", desc: "Free outdoor movie night presented by Kaiser Permanente.", link: "https://my.spokanecity.org/riverfrontspokane/calendar/" },
+  { name: "CHIODOS — IT'S NOT YOU, IT'S ME TOUR", date: "2026-08-06", time: "7:00 PM", timeSort: 1900, venue: "Knitting Factory", address: "919 W Sprague Ave, Spokane", lat: 47.6577, lng: -117.4258, category: "music", desc: "Live at the Knitting Factory.", link: "https://sp.knittingfactory.com/tm-event/chiodos-its-not-you-its-me-tour/" },
+  { name: "2026 ITTF World Para Challenger Spokane", date: "2026-08-06", time: "See site for daily times", timeSort: 900, venue: "The Podium", address: "511 W Dean Ave, Spokane", lat: 47.6656, lng: -117.4198, category: "sports", desc: "International para table tennis athletes compete for world ranking points. Runs August 6–9.", link: "https://www.thepodiumusa.com/events" },
+  { name: "VANDOLIERS", date: "2026-08-07", time: "9:00 PM", timeSort: 2100, venue: "The District", address: "W 2nd Ave, Spokane", lat: 47.6572, lng: -117.4229, category: "music", desc: "Live at The District.", link: "https://sp.knittingfactory.com/tm-event/vandoliers/" },
+  { name: "First Friday Downtown Art Walk", date: "2026-08-07", time: "5:00 PM", timeSort: 1700, venue: "Downtown Spokane", address: "Downtown Spokane, WA 99201", lat: 47.6583, lng: -117.4241, category: "arts", desc: "Monthly art walk with galleries, live music, food and drink specials, and the First Friday Face-Off live painting competition. 5–8pm.", link: "https://downtownspokane.org/first-friday/" },
+  { name: "Emerson-Garfield Farmers Market", date: "2026-08-07", time: "3:00 PM", timeSort: 1500, venue: "Emerson Park", address: "1116 W Alice Ave, Spokane", lat: 47.6762, lng: -117.4285, category: "market", desc: "Weekly seasonal market with local produce, baked goods, live music, and vendors. Fridays 3–7pm, June–September.", link: "https://market.emersongarfield.org/" },
+  { name: "Community Celebration — Back-to-School Bash (The Way to Justice & SERA)", date: "2026-08-08", time: "10:00 AM", timeSort: 1000, venue: "Underhill Park", address: "700 S Fiske St, Spokane, WA 99202", lat: 47.6520, lng: -117.3980, category: "community", desc: "Free annual back-to-school celebration hosted by The Way to Justice and the Spokane Eastside Reunion Association — backpacks, shoes, school supplies, live DJ, talent show, and family activities. The Local Post founder Mariella will be attending — an open opportunity to connect or collaborate if you're interested in supporting this event.", link: "https://www.facebook.com/thewaytojustice/" },
+  { name: "Perry Street Thursday Market", date: "2026-08-06", time: "3:00 PM", timeSort: 1500, venue: "Perry District", address: "1007 S Perry St, Spokane", lat: 47.6454, lng: -117.3961, category: "market", desc: "Fresh local produce, crafts, and community in the Perry District. Every Thursday 3–7pm, May–October.", link: "https://www.visitspokane.com/spokane-farmers-markets-map/" },
+  { name: "MOONSHINE Artisan Night Market", date: "2026-08-05", time: "5:30 PM", timeSort: 1730, venue: "Downtown Spokane", address: "Downtown Spokane, WA", lat: 47.6591, lng: -117.4257, category: "market", desc: "Wednesday night artisan market blending food, culture, music, drinks, and retail. Outdoor film at sunset. June–August.", link: "https://www.visitspokane.com/spokane-farmers-markets-map/" },
+  { name: "2026 Elite Para Table Tennis Championships", date: "2026-08-11", time: "See site for daily times", timeSort: 900, venue: "The Podium", address: "511 W Dean Ave, Spokane", lat: 47.6656, lng: -117.4198, category: "sports", desc: "Elite para table tennis athletes from across the globe compete. Runs August 11–15.", link: "https://www.thepodiumusa.com/events" },
+  { name: "Riverfront Eats Food Truck Tuesdays", date: "2026-08-11", time: "11:00 AM", timeSort: 1100, venue: "Riverfront Park", address: "507 N Howard St, Spokane", lat: 47.6617, lng: -117.4163, category: "food", desc: "Rotating lineup of local food trucks, Tuesdays 11am–2pm, June through August.", link: "https://my.spokanecity.org/riverfrontspokane/calendar/" },
+  { name: "Perry Street Thursday Market", date: "2026-08-13", time: "3:00 PM", timeSort: 1500, venue: "Perry District", address: "1007 S Perry St, Spokane", lat: 47.6454, lng: -117.3961, category: "market", desc: "Fresh local produce, crafts, and community in the Perry District. Every Thursday 3–7pm, May–October.", link: "https://www.visitspokane.com/spokane-farmers-markets-map/" },
+  { name: "Emerson-Garfield Farmers Market", date: "2026-08-14", time: "3:00 PM", timeSort: 1500, venue: "Emerson Park", address: "1116 W Alice Ave, Spokane", lat: 47.6762, lng: -117.4285, category: "market", desc: "Weekly seasonal market with local produce, baked goods, live music, and vendors. Fridays 3–7pm, June–September.", link: "https://market.emersongarfield.org/" },
+  { name: "Movies at the Pavilion", date: "2026-08-12", time: "Dusk", timeSort: 2100, venue: "Gesa Pavilion, Riverfront Park", address: "334 W Spokane Falls Blvd, Spokane", lat: 47.6597, lng: -117.4266, category: "family", desc: "Free outdoor movie night presented by Kaiser Permanente.", link: "https://my.spokanecity.org/riverfrontspokane/calendar/" },
+  { name: "THE BETHS & BEACH BUNNY US TOUR 2026", date: "2026-08-14", time: "7:00 PM", timeSort: 1900, venue: "Knitting Factory", address: "919 W Sprague Ave, Spokane", lat: 47.6577, lng: -117.4258, category: "music", desc: "Co-headline tour stop at the Knitting Factory.", link: "https://sp.knittingfactory.com/tm-event/the-beths-beach-bunny-us-tour-2026/" },
+  { name: "BROADWAY RAVE", date: "2026-08-14", time: "8:00 PM", timeSort: 2000, venue: "The District", address: "W 2nd Ave, Spokane", lat: 47.6572, lng: -117.4229, category: "music", desc: "Broadway-themed dance party at The District.", link: "https://sp.knittingfactory.com/tm-event/broadway-rave-2/" },
+  { name: "THE TAYLOR PARTY: TAYLOR SWIFT NIGHT", date: "2026-08-15", time: "9:00 PM", timeSort: 2100, venue: "Knitting Factory", address: "919 W Sprague Ave, Spokane", lat: 47.6577, lng: -117.4258, category: "music", desc: "Taylor Swift dance party at the Knitting Factory.", link: "https://sp.knittingfactory.com/tm-event/the-taylor-party-taylor-swift-night/" },
+  { name: "FEDERALE", date: "2026-08-15", time: "9:00 PM", timeSort: 2100, venue: "The District", address: "W 2nd Ave, Spokane", lat: 47.6572, lng: -117.4229, category: "music", desc: "Live at The District.", link: "https://sp.knittingfactory.com/tm-event/federale/" },
+  { name: "Unity in the Community", date: "2026-08-15", time: "11:00 AM", timeSort: 1100, venue: "Riverfront Park", address: "507 N Howard St, Spokane", lat: 47.6617, lng: -117.4163, category: "community", desc: "The region's largest multi-cultural celebration, with activities for all ages, live entertainment, community resources, and vendors.", link: "https://my.spokanecity.org/riverfrontspokane/calendar/" },
+  { name: "WIDOWSPEAK", date: "2026-08-16", time: "8:00 PM", timeSort: 2000, venue: "The District", address: "W 2nd Ave, Spokane", lat: 47.6572, lng: -117.4229, category: "music", desc: "Live at The District.", link: "https://sp.knittingfactory.com/tm-event/widowspeak/" },
+  { name: "STS9", date: "2026-08-16", time: "8:00 PM", timeSort: 2000, venue: "Knitting Factory", address: "919 W Sprague Ave, Spokane", lat: 47.6577, lng: -117.4258, category: "music", desc: "Electronic jam band live at the Knitting Factory.", link: "https://sp.knittingfactory.com/tm-event/sts9/" },
+  { name: "LA LUZ, SPACEMOTH", date: "2026-08-18", time: "8:00 PM", timeSort: 2000, venue: "The District", address: "W 2nd Ave, Spokane", lat: 47.6572, lng: -117.4229, category: "music", desc: "Live at The District.", link: "https://sp.knittingfactory.com/tm-event/la-luz-spacemoth/" },
+  { name: "Riverfront Eats Food Truck Tuesdays", date: "2026-08-18", time: "11:00 AM", timeSort: 1100, venue: "Riverfront Park", address: "507 N Howard St, Spokane", lat: 47.6617, lng: -117.4163, category: "food", desc: "Rotating lineup of local food trucks, Tuesdays 11am–2pm, June through August.", link: "https://my.spokanecity.org/riverfrontspokane/calendar/" },
+  { name: "MOONSHINE Artisan Night Market", date: "2026-08-19", time: "5:30 PM", timeSort: 1730, venue: "Downtown Spokane", address: "Downtown Spokane, WA", lat: 47.6591, lng: -117.4257, category: "market", desc: "Wednesday night artisan market blending food, culture, music, drinks, and retail. Outdoor film at sunset. June–August.", link: "https://www.visitspokane.com/spokane-farmers-markets-map/" },
+  { name: "Perry Street Thursday Market", date: "2026-08-20", time: "3:00 PM", timeSort: 1500, venue: "Perry District", address: "1007 S Perry St, Spokane", lat: 47.6454, lng: -117.3961, category: "market", desc: "Fresh local produce, crafts, and community in the Perry District. Every Thursday 3–7pm, May–October.", link: "https://www.visitspokane.com/spokane-farmers-markets-map/" },
+  { name: "BUFFALO TRAFFIC JAM", date: "2026-08-20", time: "8:00 PM", timeSort: 2000, venue: "Knitting Factory", address: "919 W Sprague Ave, Spokane", lat: 47.6577, lng: -117.4258, category: "music", desc: "Live at the Knitting Factory.", link: "https://sp.knittingfactory.com/tm-event/buffalo-traffic-jam/" },
+  { name: "HORSE FEATHERS", date: "2026-08-20", time: "9:00 PM", timeSort: 2100, venue: "The District", address: "W 2nd Ave, Spokane", lat: 47.6572, lng: -117.4229, category: "music", desc: "Live at The District.", link: "https://sp.knittingfactory.com/tm-event/horse-feathers/" },
+  { name: "NONPOINT", date: "2026-08-21", time: "7:30 PM", timeSort: 1930, venue: "Knitting Factory", address: "919 W Sprague Ave, Spokane", lat: 47.6577, lng: -117.4258, category: "music", desc: "Live at the Knitting Factory.", link: "https://sp.knittingfactory.com/tm-event/nonpoint/" },
+  { name: "Emerson-Garfield Farmers Market", date: "2026-08-21", time: "3:00 PM", timeSort: 1500, venue: "Emerson Park", address: "1116 W Alice Ave, Spokane", lat: 47.6762, lng: -117.4285, category: "market", desc: "Weekly seasonal market with local produce, baked goods, live music, and vendors. Fridays 3–7pm, June–September.", link: "https://market.emersongarfield.org/" },
+  { name: "Movies at the Pavilion", date: "2026-08-22", time: "Dusk", timeSort: 2100, venue: "Gesa Pavilion, Riverfront Park", address: "334 W Spokane Falls Blvd, Spokane", lat: 47.6597, lng: -117.4266, category: "family", desc: "Free outdoor movie night presented by Kaiser Permanente.", link: "https://my.spokanecity.org/riverfrontspokane/calendar/" },
+  { name: "BINGO LOCO: NAME THAT SONG", date: "2026-08-22", time: "7:00 PM", timeSort: 1900, venue: "Knitting Factory", address: "919 W Sprague Ave, Spokane", lat: 47.6577, lng: -117.4258, category: "community", desc: "Music-themed bingo night at the Knitting Factory.", link: "https://sp.knittingfactory.com/tm-event/bingo-loco-name-that-song-8-22/" },
+  { name: "BRASS CAMEL, ELEPHANT GUN RIOT", date: "2026-08-22", time: "9:00 PM", timeSort: 2100, venue: "The District", address: "W 2nd Ave, Spokane", lat: 47.6572, lng: -117.4229, category: "music", desc: "Live at The District.", link: "https://sp.knittingfactory.com/tm-event/brass-camel-elephant-gun-riot/" },
+  { name: "THE SWORD & RED FANG", date: "2026-08-24", time: "8:00 PM", timeSort: 2000, venue: "Knitting Factory", address: "919 W Sprague Ave, Spokane", lat: 47.6577, lng: -117.4258, category: "music", desc: "Co-headline metal show at the Knitting Factory.", link: "https://sp.knittingfactory.com/tm-event/the-sword-red-fang/" },
+  { name: "Jane Lynch and Kate Flannery's 'The Trouble with Angels'", date: "2026-08-25", time: "8:00 PM", timeSort: 2000, venue: "Bing Crosby Theater", address: "901 W Sprague Ave, Spokane", lat: 47.6576, lng: -117.4208, category: "arts", desc: "Comedic live show from the two screen and TV veterans.", link: "https://sp.knittingfactory.com/tm-event/postponed-jane-lynch-and-kate-flannerys-the-trouble-with-angels/" },
+  { name: "HATEBREED: SUMMER SLAUGHTER TOUR 2026", date: "2026-08-26", time: "5:00 PM", timeSort: 1700, venue: "Knitting Factory", address: "919 W Sprague Ave, Spokane", lat: 47.6577, lng: -117.4258, category: "music", desc: "Live at the Knitting Factory.", link: "https://sp.knittingfactory.com/tm-event/hatebreed-summer-slaughter-tour-2026/" },
+  { name: "Riverfront Eats Food Truck Tuesdays", date: "2026-08-25", time: "11:00 AM", timeSort: 1100, venue: "Riverfront Park", address: "507 N Howard St, Spokane", lat: 47.6617, lng: -117.4163, category: "food", desc: "Rotating lineup of local food trucks, Tuesdays 11am–2pm, June through August.", link: "https://my.spokanecity.org/riverfrontspokane/calendar/" },
+  { name: "MOONSHINE Artisan Night Market", date: "2026-08-26", time: "5:30 PM", timeSort: 1730, venue: "Downtown Spokane", address: "Downtown Spokane, WA", lat: 47.6591, lng: -117.4257, category: "market", desc: "Wednesday night artisan market blending food, culture, music, drinks, and retail. Outdoor film at sunset. June–August.", link: "https://www.visitspokane.com/spokane-farmers-markets-map/" },
+  { name: "Perry Street Thursday Market", date: "2026-08-27", time: "3:00 PM", timeSort: 1500, venue: "Perry District", address: "1007 S Perry St, Spokane", lat: 47.6454, lng: -117.3961, category: "market", desc: "Fresh local produce, crafts, and community in the Perry District. Every Thursday 3–7pm, May–October.", link: "https://www.visitspokane.com/spokane-farmers-markets-map/" },
+  { name: "HONESTAV — THE SWEET AMERICAN BOY TOUR", date: "2026-08-28", time: "8:00 PM", timeSort: 2000, venue: "Knitting Factory", address: "919 W Sprague Ave, Spokane", lat: 47.6577, lng: -117.4258, category: "music", desc: "Live at the Knitting Factory.", link: "https://sp.knittingfactory.com/tm-event/honestav-the-sweet-american-boy-tour/" },
+  { name: "BELLES, JOHNNY GATES", date: "2026-08-28", time: "9:00 PM", timeSort: 2100, venue: "The District", address: "W 2nd Ave, Spokane", lat: 47.6572, lng: -117.4229, category: "music", desc: "Live at The District.", link: "https://sp.knittingfactory.com/tm-event/belles/" },
+  { name: "Emerson-Garfield Farmers Market", date: "2026-08-28", time: "3:00 PM", timeSort: 1500, venue: "Emerson Park", address: "1116 W Alice Ave, Spokane", lat: 47.6762, lng: -117.4285, category: "market", desc: "Weekly seasonal market with local produce, baked goods, live music, and vendors. Fridays 3–7pm, June–September.", link: "https://market.emersongarfield.org/" },
+  { name: "EMO NITE", date: "2026-08-29", time: "8:00 PM", timeSort: 2000, venue: "Knitting Factory", address: "919 W Sprague Ave, Spokane", lat: 47.6577, lng: -117.4258, category: "music", desc: "Emo/pop-punk dance party at the Knitting Factory.", link: "https://sp.knittingfactory.com/tm-event/emo-nite-2/" },
+  { name: "Great Outdoors Comedy Festival — Matt Rife", date: "2026-08-29", time: "7:00 PM", timeSort: 1900, venue: "ONE Spokane Stadium", address: "Spokane, WA", lat: 47.6660, lng: -117.4185, category: "arts", desc: "GOCF returns to ONE Spokane Stadium with headliner Matt Rife. Grandstand seats are all ages; floor is 21+.", link: "https://onespokanestadium.com/events" },
+  { name: "Great Outdoors Comedy Festival — Bill Burr", date: "2026-08-30", time: "7:00 PM", timeSort: 1900, venue: "ONE Spokane Stadium", address: "Spokane, WA", lat: 47.6660, lng: -117.4185, category: "arts", desc: "Second night of GOCF at ONE Spokane Stadium, headlined by Bill Burr.", link: "https://onespokanestadium.com/events" },
+
+  // ─── SEPTEMBER ──────────────────────────────────────────────────────────
+  { name: "WILLIE WATSON & ERIN RAE", date: "2026-09-01", time: "8:00 PM", timeSort: 2000, venue: "The District", address: "W 2nd Ave, Spokane", lat: 47.6572, lng: -117.4229, category: "music", desc: "Live at The District.", link: "https://sp.knittingfactory.com/tm-event/willie-watson-erin-rae/" },
+  { name: "TOO BROKE TO ROCK FT. KINGDOM COLLAPSE", date: "2026-09-06", time: "8:00 PM", timeSort: 2000, venue: "Knitting Factory", address: "919 W Sprague Ave, Spokane", lat: 47.6577, lng: -117.4258, category: "music", desc: "Live at the Knitting Factory.", link: "https://sp.knittingfactory.com/tm-event/too-broke-to-rock-ft-kingdom-collapse/" },
+  { name: "MAGIC SWORD, SKYLIMIT", date: "2026-09-08", time: "8:00 PM", timeSort: 2000, venue: "The District", address: "W 2nd Ave, Spokane", lat: 47.6572, lng: -117.4229, category: "music", desc: "Live at The District.", link: "https://sp.knittingfactory.com/tm-event/magic-sword-skylimit/" },
+  { name: "HOUSE PARTY", date: "2026-09-12", time: "9:30 PM", timeSort: 2130, venue: "Knitting Factory", address: "919 W Sprague Ave, Spokane", lat: 47.6577, lng: -117.4258, category: "music", desc: "Live at the Knitting Factory.", link: "https://sp.knittingfactory.com/tm-event/house-party/" },
   { name: "Ice Cube", date: "2026-09-18", time: "7:30 PM", timeSort: 1930, venue: "Northern Quest Resort & Casino", address: "100 N Hayford Rd, Airway Heights", lat: 47.6446, lng: -117.5765, category: "music", desc: "Hip-hop legend Ice Cube live at Northern Quest Resort & Casino's outdoor concert venue.", link: "https://www.northernquest.com/entertainment/" },
+  { name: "Killswitch Engage", date: "2026-09-27", time: "6:00 PM", timeSort: 1800, venue: "Gesa Pavilion", address: "334 W Spokane Falls Blvd, Spokane", lat: 47.6597, lng: -117.4266, category: "music", desc: "With Machine Head, Rivers of Nihil & Judiciary, at Gesa Pavilion, Riverfront Park.", link: "https://my.spokanecity.org/riverfrontspokane/calendar/" },
 
-  // RIVERFRONT CARNIVAL extra days
-  { name: "Riverfront Summer Carnival", date: "2026-07-02", time: "All Day", timeSort: 800, venue: "Riverfront Park", address: "507 N Howard St, Spokane", lat: 47.6617, lng: -117.4163, category: "festival", desc: "Part of the 5-day 4th of July Riverfront Summer Carnival presented by ICCU.", link: "https://my.spokanecity.org/riverfrontspokane/calendar/" },
-  { name: "Riverfront Summer Carnival", date: "2026-07-03", time: "All Day", timeSort: 800, venue: "Riverfront Park", address: "507 N Howard St, Spokane", lat: 47.6617, lng: -117.4163, category: "festival", desc: "Part of the 5-day 4th of July Riverfront Summer Carnival presented by ICCU.", link: "https://my.spokanecity.org/riverfrontspokane/calendar/" },
+  // ─── LOOKING AHEAD ──────────────────────────────────────────────────────
+  { name: "Terrain 17", date: "2026-10-02", time: "5:00 PM", timeSort: 1700, venue: "Terrain", address: "314 W Riverside Ave, Spokane", lat: 47.6588, lng: -117.4232, category: "arts", desc: "The region's largest multimedia art and music event — painting, poetry, performance art, dance, film, and a full musical lineup. Preview night is October 1.", link: "https://www.terrainspokane.com/happening-now" },
 ];
 
 // ─── CATEGORY COLORS ────────────────────────────────────────────────────────
@@ -785,7 +742,7 @@ function renderEvents() {
     list.innerHTML = `
       <div class="no-events">
         <p>No events listed for this day yet.</p>
-        <small>Know of something happening? <a href="#" style="color:var(--accent)">Submit it here →</a></small>
+        <small>Know of something happening? <a href="https://docs.google.com/forms/d/e/1FAIpQLSdNoco9eBuhYLWrn931q4k9qi2CzDrJGdlmnb_L60c0CVp2mw/viewform" target="_blank" rel="noopener" style="color:var(--accent)">Submit it here →</a></small>
       </div>`;
     return;
   }
@@ -814,6 +771,144 @@ function renderEvents() {
   });
 }
 
+// ─── COMMUNITY-SUBMITTED EVENTS (pulled from your Google Form → Sheet) ──────
+// Only rows with APPROVED = "Yes" are shown. Update the URL below any time
+// you re-publish the sheet (File → Share → Publish to web in Google Sheets).
+const SUBMISSIONS_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTbzFBgv5wM8FDAy5YtYoACGdpeNe5JR7kCsULgqLNSqXn9zRzgyaDj0rzS1Ep-Ord7eCv1SWm15HBM/pub?gid=1465589245&single=true&output=csv";
+
+const SUBMISSION_CATEGORY_MAP = {
+  "festival": "festival", "music": "music", "food & drink": "food", "food": "food",
+  "family": "family", "market": "market", "sports": "sports",
+  "community": "community", "arts": "arts"
+};
+
+function parseCSV(text) {
+  const rows = [];
+  let row = [], field = '', inQuotes = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (inQuotes) {
+      if (c === '"') { if (text[i + 1] === '"') { field += '"'; i++; } else inQuotes = false; }
+      else field += c;
+    } else {
+      if (c === '"') inQuotes = true;
+      else if (c === ',') { row.push(field); field = ''; }
+      else if (c === '\n' || c === '\r') {
+        if (c === '\r' && text[i + 1] === '\n') i++;
+        row.push(field); field = '';
+        if (row.some(v => v !== '')) rows.push(row);
+        row = [];
+      } else field += c;
+    }
+  }
+  if (field !== '' || row.length) { row.push(field); rows.push(row); }
+  return rows;
+}
+
+function rowsToObjects(rows) {
+  if (!rows.length) return [];
+  const headers = rows[0].map(h => h.trim());
+  return rows.slice(1).map(r => {
+    const obj = {};
+    headers.forEach((h, idx) => obj[h] = (r[idx] || '').trim());
+    return obj;
+  });
+}
+
+// Google Forms date fields publish like "7/24/2026" — convert to YYYY-MM-DD.
+function parseFormDate(str) {
+  const m = str.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+  if (!m) return null;
+  const [, mo, d, y] = m;
+  return `${y}-${mo.padStart(2, '0')}-${d.padStart(2, '0')}`;
+}
+
+// Accepts free text like "6:00 PM", "6pm", "18:00" and returns { display, sort }.
+function parseFormTime(str) {
+  const cleaned = str.trim();
+  let m = cleaned.match(/^(\d{1,2}):(\d{2})\s*(AM|PM|am|pm)?$/);
+  if (m) {
+    let [, h, min, ap] = m;
+    h = parseInt(h, 10);
+    if (ap) {
+      ap = ap.toUpperCase();
+      if (ap === 'PM' && h !== 12) h += 12;
+      if (ap === 'AM' && h === 12) h = 0;
+    }
+    const sort = h * 100 + parseInt(min, 10);
+    const displayH = ((h % 12) || 12);
+    const displayAp = h < 12 ? 'AM' : 'PM';
+    return { display: `${displayH}:${min} ${displayAp}`, sort };
+  }
+  return { display: cleaned || 'Time TBD', sort: 1200 };
+}
+
+// Free geocoding via OpenStreetMap Nominatim — no API key, cached in
+// localStorage so the same address is never looked up twice.
+async function geocodeAddress(address) {
+  const cacheKey = `tlp-geocode:${address.toLowerCase()}`;
+  const cached = localStorage.getItem(cacheKey);
+  if (cached) return JSON.parse(cached);
+
+  try {
+    const query = /spokane/i.test(address) ? address : `${address}, Spokane, WA`;
+    const url = `https://nominatim.openstreetmap.org/search?format=json&limit=1&q=${encodeURIComponent(query)}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    const result = data[0] ? { lat: parseFloat(data[0].lat), lng: parseFloat(data[0].lon) } : null;
+    localStorage.setItem(cacheKey, JSON.stringify(result));
+    return result;
+  } catch (err) {
+    console.warn('Geocoding failed for', address, err);
+    return null;
+  }
+}
+
+async function loadSubmittedEvents() {
+  let rows;
+  try {
+    const res = await fetch(SUBMISSIONS_CSV_URL);
+    const text = await res.text();
+    rows = rowsToObjects(parseCSV(text));
+  } catch (err) {
+    console.warn('Could not load event submissions:', err);
+    return;
+  }
+
+  const approved = rows.filter(r => (r['APPROVED'] || '').trim().toLowerCase() === 'yes');
+
+  for (const r of approved) {
+    const date = parseFormDate(r['Date'] || '');
+    if (!date) continue;
+    const time = parseFormTime(r['Time'] || '');
+    const category = SUBMISSION_CATEGORY_MAP[(r['Category'] || '').trim().toLowerCase()] || 'community';
+    const address = r['Address'] || '';
+
+    let coords = null;
+    if (address) {
+      coords = await geocodeAddress(address);
+      await new Promise(resolve => setTimeout(resolve, 1100)); // respect Nominatim's 1 req/sec limit
+    }
+
+    EVENTS.push({
+      name: r['Event Name'] || 'Untitled Event',
+      date,
+      time: time.display,
+      timeSort: time.sort,
+      venue: r['Venue name'] || '',
+      address,
+      lat: coords ? coords.lat : undefined,
+      lng: coords ? coords.lng : undefined,
+      category,
+      desc: r['Any additional information you want to share?'] || '',
+      link: r['Any links you want to share?'] || ''
+    });
+  }
+
+  renderCalendar();
+  renderEvents();
+}
+
 // ─── MONTH NAV ───────────────────────────────────────────────────────────────
 document.getElementById('prevMonth').addEventListener('click', () => {
   currentMonth--;
@@ -833,6 +928,7 @@ currentMonth = now.getMonth();
 selectedDate = today();
 renderCalendar();
 renderEvents();
+loadSubmittedEvents();
 </script>
 </body>
 </html>
