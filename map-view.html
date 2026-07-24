@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Map View — The Local Post Spokane</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<style>
+  :root {
+    --navy: #2C3E6B;
+    --navy-deep: #1B2847;
+    --red: #D93025;
+    --cream: #FFF0EB;
+    --paper: #FFFDF9;
+    --ink: #33302B;
+    --ink-soft: #6B6459;
+    --line: #E7DCD1;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--cream); color: var(--ink); font-family: Georgia, 'Iowan Old Style', serif; }
+
+  .backlink {
+    display: block;
+    padding: 10px 20px;
+    background: var(--navy-deep);
+    color: var(--cream);
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 12.5px;
+    text-decoration: none;
+    letter-spacing: 0.03em;
+  }
+  .backlink:hover { text-decoration: underline; }
+
+  .masthead {
+    background: var(--navy);
+    color: var(--cream);
+    padding: 22px 24px 18px;
+    text-align: center;
+    border-bottom: 3px double var(--red);
+  }
+  .masthead-eyebrow {
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    font-size: 11px;
+    color: #C9D2E8;
+    margin-bottom: 6px;
+  }
+  .masthead h1 { font-size: clamp(24px, 4.5vw, 36px); margin: 0; }
+  .masthead p { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 13.5px; color: #C9D2E8; margin: 8px 0 0; }
+
+  #map { width: 100%; height: 62vh; min-height: 380px; }
+
+  .filter-bar {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    padding: 16px 24px;
+    max-width: 1200px; margin: 0 auto;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+  }
+  .filter-chip {
+    border: 1px solid var(--navy); background: var(--paper); color: var(--navy);
+    padding: 6px 13px; border-radius: 3px; font-size: 12px; font-weight: 600;
+    cursor: pointer; transition: all 0.15s ease; white-space: nowrap;
+  }
+  .filter-chip:hover { background: #EFE3D8; }
+  .filter-chip.active { background: var(--navy); color: var(--cream); }
+
+  .content { max-width: 1200px; margin: 0 auto; padding: 8px 24px 70px; }
+
+  .category-block { margin-bottom: 6px; }
+  .category-header {
+    display: flex; align-items: center; gap: 10px;
+    padding: 14px 4px; border-bottom: 2px solid var(--navy);
+    cursor: pointer; user-select: none;
+  }
+  .category-header .emoji { font-size: 20px; }
+  .category-header h2 { font-size: 17px; margin: 0; color: var(--navy-deep); font-weight: 700; }
+  .category-header .desc {
+    font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 12px;
+    color: var(--ink-soft); margin: 3px 0 0; font-style: normal;
+  }
+  .category-header-text { flex: 1; }
+  .category-count {
+    font-family: 'Courier New', monospace; font-size: 11px; color: var(--ink-soft);
+    background: #EFE3D8; padding: 2px 8px; border-radius: 10px; flex-shrink: 0;
+  }
+  .category-caret { font-size: 13px; color: var(--navy); transition: transform 0.2s ease; flex-shrink: 0; }
+  .category-block.collapsed .category-caret { transform: rotate(-90deg); }
+  .category-block.collapsed .listing-cards { display: none; }
+
+  .listing-cards { padding: 12px 2px 10px; display: flex; flex-direction: column; gap: 10px; }
+
+  .listing-card {
+    display: flex; gap: 12px; align-items: center;
+    background: var(--paper); border: 1px solid var(--line); border-radius: 4px;
+    padding: 11px 14px; text-decoration: none; color: inherit;
+    transition: border-color 0.15s ease, transform 0.1s ease;
+  }
+  .listing-card:hover { border-color: var(--red); transform: translateX(2px); }
+
+  .stamp {
+    flex: 0 0 auto; width: 40px; height: 40px; border-radius: 50%;
+    border: 2px dashed var(--red); display: flex; align-items: center; justify-content: center;
+    font-family: 'Courier New', monospace; font-weight: 700; font-size: 12px;
+    color: var(--red); background: #FFF6F3; transform: rotate(-4deg);
+  }
+  .listing-body h3 { margin: 0 0 2px; font-size: 15px; color: var(--navy-deep); }
+  .listing-body .tagline { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 12.5px; color: var(--red); font-weight: 600; margin-bottom: 2px; }
+  .listing-body .addr { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 12px; color: var(--ink-soft); }
+
+  .empty-state {
+    font-family: 'Helvetica Neue', Arial, sans-serif; color: var(--ink-soft);
+    font-size: 13px; padding: 4px 4px 16px; font-style: italic;
+  }
+
+  .cta-strip {
+    font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 12.5px;
+    color: var(--ink-soft); padding: 10px 4px 0; border-top: 1px dashed var(--line);
+    margin-top: 4px;
+  }
+  .cta-strip strong { color: var(--navy-deep); }
+
+  @media (max-width: 640px) {
+    #map { height: 46vh; }
+    .listing-card { flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+
+<a class="backlink" href="https://www.thelocalpostspokane.com/browse-opportunities">&larr; Back to Browse Opportunities (list view)</a>
+
+<div class="masthead">
+  <div class="masthead-eyebrow">Spokane, Washington</div>
+  <h1>Map View</h1>
+  <p>Every current host, plotted across the Spokane metro — tap a pin or a listing below</p>
+</div>
+
+<div id="map"></div>
+
+<div class="filter-bar" id="filterBar"></div>
+
+<div class="content" id="categoryList"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+/* ============================================================
+   CATEGORIES — mirrors the 12 categories on Browse Opportunities.
+   "stamp" is the short code shown on map pins.
+   ============================================================ */
+const CATEGORIES = [
+  { key: "restaurants-food",   label: "Restaurants & Food",                   emoji: "🍽️", stamp: "RF",
+    desc: "Restaurants, cafés, bars, food trucks, bakeries, wineries, and other food-focused businesses." },
+  { key: "retail-shopping",    label: "Retail & Shopping",                    emoji: "🛍️", stamp: "RS",
+    desc: "Stores, boutiques, markets, and other customer-facing businesses." },
+  { key: "salons-beauty",      label: "Salons & Beauty",                      emoji: "💄", stamp: "SB",
+    desc: "Hair salons, barbershops, spas, estheticians, nail salons, and personal-care businesses." },
+  { key: "fitness-studios",    label: "Fitness & Studios",                    emoji: "💪", stamp: "FS",
+    desc: "Fitness studios, gyms, group classes, wellness programs, and active lifestyle communities." },
+  { key: "health-wellness",    label: "Health & Wellness",                    emoji: "🩺", stamp: "HW",
+    desc: "Dental offices, medical clinics, chiropractors, physical therapists, and wellness providers." },
+  { key: "events-festivals",   label: "Events & Festivals",                   emoji: "🎪", stamp: "EF",
+    desc: "Markets, fairs, community celebrations, cultural events, conferences, and performances." },
+  { key: "student-campus",     label: "Student Clubs & Campus",               emoji: "🎓", stamp: "SC",
+    desc: "Student organizations, university programs, academic departments, and campus groups." },
+  { key: "clubs-community",    label: "Clubs & Community Groups",             emoji: "🧩", stamp: "CG",
+    desc: "Hobby groups, recreational sports teams, social clubs, and interest-based organizations." },
+  { key: "nonprofits",         label: "Nonprofits & Community Organizations", emoji: "❤️", stamp: "NP",
+    desc: "Charities, advocacy groups, community centers, and other mission-driven groups." },
+  { key: "professional",       label: "Professional Services",                emoji: "💼", stamp: "PS",
+    desc: "Real estate, insurance, legal, accounting, financial, consulting, and business services." },
+  { key: "arts-creative",      label: "Arts & Creative Services",             emoji: "🎨", stamp: "AC",
+    desc: "Businesses and individuals offering creative experiences, classes, workshops, or handmade artwork." },
+  { key: "mobile-home",        label: "Mobile & Home Services",               emoji: "🛠️", stamp: "MH",
+    desc: "Carpet cleaning, landscaping, plumbing, electricians, HVAC, house cleaning, and pest control." }
+];
+
+/* ============================================================
+   LISTINGS — pulled from the live Browse Opportunities page.
+   ⚠️ Coordinates below are APPROXIMATE (placed from the street/
+   neighborhood, not geocoded). Before publishing, verify each one:
+   drop a pin on the real address in Google Maps, right-click it,
+   and paste the lat/lng shown into this file.
+   ============================================================ */
+const listings = [
+  {
+    name: "1919 Wine Cellar",
+    category: "restaurants-food",
+    tagline: "Bar and Wine Tasting",
+    address: "1919 E Sprague Ave, Spokane, WA 99202",
+    url: "https://tlpspokane.github.io/thelocalpostspokane/1919-wine-cellar-listing.html",
+    lat: 47.6577314048172, lng: -117.38164533338637
+  },
+  {
+    name: "BeYOUtiful Market",
+    category: "retail-shopping",
+    tagline: "Gift Shop",
+    address: "5009 N. Market St, Spokane, WA 99217",
+    url: "https://tlpspokane.github.io/thelocalpostspokane/beyoutiful-listing.html",
+    lat: 47.70382164495208, lng: -117.36512259300063
+  },
+  {
+    name: "Freya",
+    category: "retail-shopping",
+    tagline: "Women's Clothing",
+    address: "111 S Cedar St, Spokane, WA 99201",
+    url: "https://tlpspokane.github.io/thelocalpostspokane/freya-listing.html",
+    lat: 47.658507466473594, lng: -117.43273821810293
+  },
+  {
+    name: "Lilac City Barre",
+    category: "fitness-studios",
+    tagline: "Physical Fitness Studio",
+    address: "2925 E 29th Ave C, Spokane, WA 99223",
+    url: "https://tlpspokane.github.io/thelocalpostspokane/lilac-city-barre-listing.html",
+    lat: 47.62921945194935, lng: -117.36828705081138
+  },
+  {
+    name: "Salsa de la Casa",
+    category: "events-festivals",
+    tagline: "Latin Dancing Events",
+    address: "Various Locations Throughout Spokane and Spokane Valley",
+    url: "https://tlpspokane.github.io/thelocalpostspokane/casa-de-la-salsa-listing.html",
+    lat: 47.6588, lng: -117.4260
+  },
+  {
+    name: "Collaborate with THE LOCAL POST founder! Mariella Zavala, Ph.D.",
+    category: "professional",
+    tagline: "Marketing Professor & Speaker",
+    address: "In-Person or Remote",
+    url: "https://tlpspokane.github.io/thelocalpostspokane/mariella-zavala-listing.html",
+    lat: 47.6673, lng: -117.4020
+  },
+  {
+    name: "New Beginnings Student Loan Advocacy",
+    category: "professional",
+    tagline: "Student Loan Repayment and Forgiveness Strategy Firm",
+    address: "1312 N Monroe St #109, Spokane, WA 99201",
+    url: "https://tlpspokane.github.io/thelocalpostspokane/newbeginnings-listing.html",
+    lat: 47.66984266201963, lng: -117.42619960508641
+  },
+  {
+    name: "Painting with Diane",
+    category: "arts-creative",
+    tagline: "Painting Classes",
+    address: "Valleyford, WA 99036",
+    url: "https://tlpspokane.github.io/thelocalpostspokane/diane-harder-listing.html",
+    lat: 47.5350, lng: -117.2530
+  }
+];
+
+/* ============================================================ */
+
+const catByKey = Object.fromEntries(CATEGORIES.map(c => [c.key, c]));
+let activeFilter = "all";
+const markers = [];
+
+const map = L.map('map', { scrollWheelZoom: false }).setView([47.6588, -117.4260], 11);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom: 19,
+  attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
+
+function pinIcon(catKey) {
+  return L.divIcon({
+    className: '',
+    html: `<div style="
+        width:28px;height:28px;border-radius:50% 50% 50% 0;
+        background:#2C3E6B;transform:rotate(-45deg);
+        border:2px solid #FFF0EB;box-shadow:0 1px 4px rgba(0,0,0,0.35);
+        display:flex;align-items:center;justify-content:center;">
+        <span style="transform:rotate(45deg);color:#FFF0EB;font-size:9px;
+          font-family:'Courier New',monospace;font-weight:700;">
+          ${catByKey[catKey].stamp}
+        </span>
+      </div>`,
+    iconSize: [28, 28],
+    iconAnchor: [14, 28],
+    popupAnchor: [0, -26]
+  });
+}
+
+listings.forEach(l => {
+  const marker = L.marker([l.lat, l.lng], { icon: pinIcon(l.category) }).addTo(map);
+  marker.bindPopup(`
+    <div style="font-family:'Helvetica Neue',Arial,sans-serif;font-size:10.5px;text-transform:uppercase;letter-spacing:0.06em;color:#D93025;font-weight:700;">${catByKey[l.category].label}</div>
+    <div style="font-family:Georgia,serif;font-weight:700;color:#1B2847;font-size:14px;margin:3px 0;">${l.name}</div>
+    <div style="font-family:'Helvetica Neue',Arial,sans-serif;font-size:12px;color:#6B6459;margin-bottom:6px;">${l.address}</div>
+    <a href="${l.url}" style="font-family:'Helvetica Neue',Arial,sans-serif;font-size:12px;color:#2C3E6B;font-weight:700;">View listing &rarr;</a>
+  `);
+  marker.category = l.category;
+  markers.push(marker);
+});
+
+function applyMapFilter() {
+  markers.forEach(m => {
+    const show = activeFilter === 'all' || m.category === activeFilter;
+    if (show && !map.hasLayer(m)) map.addLayer(m);
+    if (!show && map.hasLayer(m)) map.removeLayer(m);
+  });
+}
+
+function buildFilterBar() {
+  const bar = document.getElementById('filterBar');
+  bar.innerHTML = '';
+  const allChip = document.createElement('button');
+  allChip.className = 'filter-chip' + (activeFilter === 'all' ? ' active' : '');
+  allChip.textContent = 'All categories';
+  allChip.onclick = () => { activeFilter = 'all'; render(); };
+  bar.appendChild(allChip);
+
+  CATEGORIES.forEach(c => {
+    const chip = document.createElement('button');
+    chip.className = 'filter-chip' + (activeFilter === c.key ? ' active' : '');
+    chip.textContent = `${c.emoji} ${c.label}`;
+    chip.onclick = () => { activeFilter = c.key; render(); };
+    bar.appendChild(chip);
+  });
+}
+
+function renderList() {
+  const container = document.getElementById('categoryList');
+  container.innerHTML = '';
+  const visibleCats = activeFilter === 'all' ? CATEGORIES : CATEGORIES.filter(c => c.key === activeFilter);
+
+  visibleCats.forEach(cat => {
+    const items = listings.filter(l => l.category === cat.key);
+
+    const block = document.createElement('div');
+    block.className = 'category-block';
+
+    const header = document.createElement('div');
+    header.className = 'category-header';
+    header.innerHTML = `
+      <span class="emoji">${cat.emoji}</span>
+      <div class="category-header-text">
+        <h2>${cat.label}</h2>
+        <p class="desc">${cat.desc}</p>
+      </div>
+      <span class="category-count">${items.length}</span>
+      <span class="category-caret">&#9660;</span>`;
+    header.onclick = () => block.classList.toggle('collapsed');
+    block.appendChild(header);
+
+    const cardsWrap = document.createElement('div');
+    cardsWrap.className = 'listing-cards';
+
+    if (items.length === 0) {
+      cardsWrap.innerHTML = `<div class="empty-state">More opportunities coming soon &mdash; want to be included? Text "list TLP" and your business website or social link to (509) 850-0646.</div>`;
+    } else {
+      items.forEach(l => {
+        const card = document.createElement('a');
+        card.className = 'listing-card';
+        card.href = l.url;
+        card.innerHTML = `
+          <div class="stamp">${cat.stamp}</div>
+          <div class="listing-body">
+            <h3>${l.name}</h3>
+            <div class="tagline">${l.tagline}</div>
+            <div class="addr">${l.address}</div>
+          </div>`;
+        cardsWrap.appendChild(card);
+      });
+      const cta = document.createElement('div');
+      cta.className = 'cta-strip';
+      cta.innerHTML = `<strong>Want to be included?</strong> Text "list TLP" and your business website or social link to (509) 850-0646.`;
+      cardsWrap.appendChild(cta);
+    }
+
+    block.appendChild(cardsWrap);
+    container.appendChild(block);
+  });
+}
+
+function render() {
+  buildFilterBar();
+  renderList();
+  applyMapFilter();
+}
+
+render();
+</script>
+
+</body>
+</html>
