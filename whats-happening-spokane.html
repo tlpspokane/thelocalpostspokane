@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>What's Happening in Spokane</title>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -248,22 +249,16 @@
   #map {
     width: 100%; height: 100%;
   }
-  .map-placeholder {
-    width: 100%; height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, #ddd8ce 0%, #c9c3b8 100%);
-    gap: 12px;
+  .map-empty-note {
+    padding: 8px 16px;
+    background: var(--accent-light);
+    border-top: 1px solid var(--border);
   }
-  .map-placeholder p {
+  .map-empty-note p {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 13px;
+    font-size: 12px;
     color: var(--ink-soft);
     text-align: center;
-    max-width: 280px;
-    line-height: 1.5;
   }
   .map-key {
     padding: 10px 16px;
@@ -477,11 +472,10 @@
 
   <div class="map-section">
     <div class="map-container">
-      <div class="map-placeholder" id="mapPlaceholder">
-        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-        <p>Add a Google Maps API key to enable the interactive map. Events will still appear in the list below.</p>
-      </div>
-      <div id="map" style="display:none"></div>
+      <div id="map"></div>
+    </div>
+    <div class="map-empty-note" id="mapEmptyNote" style="display:none;">
+      <p>No events with a mapped location on this day &mdash; showing the full Spokane area.</p>
     </div>
     <div class="map-key">
       <div class="map-key-item"><div class="map-key-dot" style="background:var(--pin-festival)"></div>Festival</div>
@@ -509,6 +503,7 @@
   <a href="mailto:thelocalpostspokane@gmail.com?subject=Event%20Error%20Report&body=Event%20name%3A%0AWhat%20is%20incorrect%3A%0ACorrect%20information%3A" style="display:inline-block; margin-top:4px; font-family:'Space Grotesk',sans-serif; font-size:12px; color:#fff; background:#2C3E6B; padding:7px 16px; border-radius:6px; text-decoration:none;">⚠️ Report an Error</a>
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
 // ─── EVENT DATA ─────────────────────────────────────────────────────────────
 // Format: { name, date (YYYY-MM-DD), time (display), timeSort (HHmm), venue, address, lat, lng, category, desc, link }
@@ -649,6 +644,51 @@ const CAT_LABEL = {
   community: 'Community', arts: 'Arts'
 };
 
+// ─── MAP (Leaflet / OpenStreetMap — free, no API key required) ──────────────
+const map = L.map('map', { scrollWheelZoom: false }).setView([47.6588, -117.4260], 12);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom: 19,
+  attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
+const markerLayer = L.layerGroup().addTo(map);
+
+function updateMap(dayEvents) {
+  markerLayer.clearLayers();
+  const mappable = dayEvents.filter(e => typeof e.lat === 'number' && typeof e.lng === 'number');
+  const note = document.getElementById('mapEmptyNote');
+
+  if (mappable.length === 0) {
+    note.style.display = 'block';
+    map.setView([47.6588, -117.4260], 12);
+    return;
+  }
+  note.style.display = 'none';
+
+  const bounds = [];
+  mappable.forEach(ev => {
+    const color = CAT_COLOR[ev.category] || '#666';
+    const marker = L.circleMarker([ev.lat, ev.lng], {
+      radius: 9,
+      fillColor: color,
+      color: '#fff',
+      weight: 2,
+      fillOpacity: 0.9
+    }).addTo(markerLayer);
+    marker.bindPopup(`
+      <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;color:#2C3E6B;">${ev.name}</div>
+      <div style="font-family:'Inter',sans-serif;font-size:12px;color:#5a6a8a;margin-top:2px;">${ev.time} &middot; ${ev.venue}</div>
+      ${ev.link ? `<a href="${ev.link}" target="_blank" rel="noopener" style="font-family:'Inter',sans-serif;font-size:12px;color:#D93025;font-weight:600;">View event &rarr;</a>` : ''}
+    `);
+    bounds.push([ev.lat, ev.lng]);
+  });
+
+  if (bounds.length === 1) {
+    map.setView(bounds[0], 14);
+  } else {
+    map.fitBounds(bounds, { padding: [30, 30], maxZoom: 15 });
+  }
+}
+
 // ─── STATE ───────────────────────────────────────────────────────────────────
 let currentYear, currentMonth, selectedDate;
 
@@ -736,6 +776,8 @@ function renderEvents() {
     .sort((a,b) => a.timeSort - b.timeSort);
 
   countPill.textContent = dayEvents.length > 0 ? `${dayEvents.length} event${dayEvents.length !== 1 ? 's' : ''}` : 'No events found';
+
+  updateMap(dayEvents);
 
   list.innerHTML = '';
 
