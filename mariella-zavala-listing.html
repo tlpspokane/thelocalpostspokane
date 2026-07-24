@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr. Mariella Zavala — The Local Post</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Arial, sans-serif; background: #f5f7fa; color: #202124; }
+.nav { background: #1e3a5f; padding: 0 24px; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+.nav-logo { font-size: 17px; font-weight: 700; color: white; }
+.nav-links { display: flex; gap: 18px; }
+.nav-links a { text-decoration: none; color: rgba(255,255,255,0.82); font-size: 13px; }
+.nav-links a:hover { color: white; }
+
+.banner { background: #1e3a5f; color: white; text-align: center; padding: 9px 16px; font-size: 13px; font-weight: 600; }
+
+/* HERO — navy to red, Local Post brand colors */
+.hero {
+  background: linear-gradient(135deg, #0f1f38 0%, #1e3a5f 50%, #e8303a 100%);
+  padding: 52px 32px 48px;
+  text-align: center;
+}
+.hero-tag { display: inline-block; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,200,200,0.4); color: #ffd8d8; font-size: 11px; font-weight: 700; padding: 4px 14px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px; }
+.hero-title { font-size: 38px; font-weight: 900; color: white; margin-bottom: 4px; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+.hero-sub { font-size: 15px; color: #ffd8d8; font-style: italic; margin-bottom: 6px; }
+.hero-tagline { font-size: 13px; color: rgba(255,255,255,0.72); }
+
+.page { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; display: grid; grid-template-columns: 1fr 340px; gap: 20px; }
+
+.stats-bar { grid-column: 1 / -1; background: linear-gradient(135deg, #0f1f38 0%, #1e3a5f 55%, #e8303a 100%); border-radius: 8px; display: flex; padding: 4px 0; }
+.stat { flex: 1; text-align: center; padding: 14px 8px; border-right: 1px solid rgba(255,255,255,0.18); }
+.stat:last-child { border-right: none; }
+.stat-num { font-size: 18px; font-weight: 800; color: white; }
+.stat-label { font-size: 11px; color: rgba(255,255,255,0.78); margin-top: 3px; text-transform: uppercase; letter-spacing: 0.05em; }
+
+.social-row { display: flex; gap: 10px; flex-wrap: wrap; }
+.social-btn { display: inline-flex; align-items: center; gap: 6px; background: #f1f3f4; border: 1px solid #dadce0; color: #1e3a5f; font-size: 12px; font-weight: 600; padding: 6px 14px; border-radius: 20px; text-decoration: none; }
+.social-btn:hover { background: #e8eaed; }
+
+.section { background: white; border: 1px solid #dadce0; border-radius: 8px; padding: 22px; margin-bottom: 16px; }
+.section h2 { font-size: 16px; font-weight: 700; color: #1e3a5f; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid #f0f0f0; }
+.section p { font-size: 14px; line-height: 1.7; color: #3c4043; margin-bottom: 10px; }
+.section p:last-child { margin-bottom: 0; }
+
+/* BIO CALLOUT */
+.bio-callout { background: linear-gradient(135deg, #0f1f38, #1e3a5f); border-radius: 8px; padding: 22px 24px; margin-bottom: 16px; }
+.bio-callout p { font-size: 15px; font-weight: 700; color: white; line-height: 1.7; margin: 0 0 8px; }
+.bio-callout .sub { font-size: 13px; color: rgba(255,255,255,0.75); margin: 0; font-weight: 400; font-style: italic; }
+
+/* PHOTO GRID */
+.photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 4px; }
+.photo-grid img { width: 100%; aspect-ratio: 1; object-fit: cover; object-position: top; border-radius: 6px; display: block; cursor: zoom-in; transition: opacity 0.15s; }
+.photo-grid img:hover { opacity: 0.88; }
+.photo-note { font-size: 12px; color: #5f6368; margin-top: 10px; background: #f8f9fa; padding: 10px 12px; border-radius: 6px; border-left: 3px solid #1e3a5f; line-height: 1.5; }
+
+/* TOPICS GRID */
+.topics-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 4px; }
+.topic-item { background: #eef3f9; border: 1px solid #c5d5e8; border-radius: 8px; padding: 12px 14px; border-left: 3px solid #1e3a5f; }
+.topic-item .t-icon { font-size: 18px; margin-bottom: 4px; }
+.topic-item .t-title { font-size: 13px; font-weight: 700; color: #1e3a5f; margin-bottom: 2px; }
+.topic-item .t-desc { font-size: 12px; color: #5f6368; line-height: 1.5; }
+
+/* EVENT CALLOUT */
+.event-callout { background: linear-gradient(135deg, #fdf0ec, #fef5f2); border: 1px solid #f0b0a0; border-left: 4px solid #e8303a; border-radius: 8px; padding: 16px 18px; margin-bottom: 16px; }
+.event-callout h3 { font-size: 14px; font-weight: 700; color: #8a1010; margin-bottom: 6px; }
+.event-callout p { font-size: 13px; color: #3c4043; line-height: 1.6; margin: 0 0 8px; }
+.event-callout a { color: #e8303a; font-weight: 700; text-decoration: none; }
+.event-callout a:hover { text-decoration: underline; }
+
+/* AUDIENCES */
+.chip-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.chip { background: #eef3f9; border: 1px solid #c5d5e8; color: #1e3a5f; font-size: 12px; font-weight: 600; padding: 5px 13px; border-radius: 20px; }
+.chip-red { background: #fde8e8; border: 1px solid #f0b0b0; color: #8a1010; font-size: 12px; font-weight: 600; padding: 5px 13px; border-radius: 20px; }
+
+.tag-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.tag { background: #f1f3f4; border: 1px solid #dadce0; color: #1e3a5f; font-size: 12px; font-weight: 600; padding: 5px 13px; border-radius: 20px; }
+
+.perks { list-style: none; margin-top: 4px; }
+.perks li { display: flex; align-items: flex-start; gap: 10px; padding: 9px 0; border-bottom: 1px solid #f0f0f0; font-size: 14px; color: #3c4043; }
+.perks li:last-child { border-bottom: none; }
+.perks li .icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+
+/* LIGHTBOX */
+.lightbox-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.88); z-index: 9999; align-items: center; justify-content: center; cursor: zoom-out; }
+.lightbox-overlay.active { display: flex; }
+.lightbox-overlay img { max-width: 92vw; max-height: 92vh; object-fit: contain; border-radius: 4px; box-shadow: 0 8px 40px rgba(0,0,0,0.6); cursor: default; }
+.lightbox-close { position: fixed; top: 18px; right: 22px; color: white; font-size: 32px; font-weight: 300; cursor: pointer; z-index: 10000; user-select: none; }
+.lightbox-close:hover { color: #ccc; }
+
+/* SIDEBAR */
+.sidebar { position: sticky; top: 20px; align-self: start; }
+.sidebar-card { background: white; border: 1px solid #dadce0; border-radius: 8px; padding: 22px; }
+.sidebar-card h3 { font-size: 15px; font-weight: 700; color: #1e3a5f; margin-bottom: 4px; }
+.sidebar-sub { font-size: 12px; color: #5f6368; margin-bottom: 16px; }
+
+.pkg-section-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; padding-bottom: 6px; border-bottom: 2px solid; margin: 14px 0 8px; }
+.pkg-section-label:first-of-type { margin-top: 0; }
+.label-green { color: #2d7a4a; border-color: #a8d8bc; }
+.label-navy  { color: #1e3a5f; border-color: #c5d5e8; }
+.label-red   { color: #c0202a; border-color: #f0b0b0; }
+
+.package { border: 1.5px solid #dadce0; border-radius: 8px; padding: 13px 15px; margin-bottom: 9px; cursor: pointer; position: relative; transition: border-color 0.15s, background 0.15s; }
+.package:hover { border-color: #1e3a5f; background: #f8fafc; }
+.package.selected { border-color: #1e3a5f; background: #eef3f9; }
+.package-free { border-color: #2d7a4a; background: #f0faf4; }
+.package-free:hover { border-color: #1e5c38; background: #e6f5ec; }
+.package-free.selected { border-color: #1e5c38; background: #d8f0e0; }
+.package-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+.package-name { font-size: 13px; font-weight: 700; color: #202124; }
+.package-price { font-size: 15px; font-weight: 800; color: #1e3a5f; white-space: nowrap; }
+.package-price-free { font-size: 15px; font-weight: 800; color: #2d7a4a; white-space: nowrap; }
+.package-desc { font-size: 12px; color: #5f6368; margin-top: 4px; line-height: 1.5; }
+.badge-popular { position: absolute; top: -1px; right: 12px; background: #1e3a5f; color: white; font-size: 9px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 8px; border-radius: 0 0 6px 6px; }
+.badge-free { position: absolute; top: -1px; right: 12px; background: #2d7a4a; color: white; font-size: 9px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 8px; border-radius: 0 0 6px 6px; }
+.badge-next { position: absolute; top: -1px; right: 12px; background: #e8303a; color: white; font-size: 9px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 8px; border-radius: 0 0 6px 6px; }
+
+.freq { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 10px; margin-top: 6px; text-transform: uppercase; letter-spacing: 0.05em; }
+.freq-free     { background: #d8f0e0; color: #1e5c38; }
+.freq-perevent { background: #eef3f9; color: #1e3a5f; }
+.freq-group    { background: #fde8e8; color: #8a1010; }
+.freq-onetime  { background: #f1f3f4; color: #5f6368; }
+
+.addon-divider { border: none; border-top: 1px dashed #dadce0; margin: 14px 0 10px; }
+.addon-label { font-size: 11px; font-weight: 700; color: #5f6368; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 8px; }
+
+.summary { background: #eef3f9; border: 1px solid #c5d5e8; border-radius: 6px; padding: 12px 14px; margin: 12px 0; display: none; }
+.summary.show { display: block; }
+.summary-title { font-size: 13px; font-weight: 700; color: #1e3a5f; margin-bottom: 4px; }
+.summary-note { font-size: 12px; color: #5f6368; line-height: 1.5; }
+.book-btn { width: 100%; background: #1e3a5f; color: white; border: none; border-radius: 8px; padding: 14px; font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 4px; transition: background 0.15s; }
+.book-btn:hover { background: #163050; }
+.trust { margin-top: 16px; }
+.trust hr { border: none; border-top: 1px solid #f0f0f0; margin-bottom: 12px; }
+.trust-item { font-size: 12px; color: #5f6368; padding: 4px 0; }
+.contact-link { font-size: 12px; color: #1e3a5f; font-weight: 600; margin-top: 10px; cursor: pointer; text-decoration: underline; }
+
+@media (max-width: 700px) {
+  .page { grid-template-columns: 1fr; }
+  .sidebar { position: static; }
+  .stats-bar { flex-wrap: wrap; }
+  .stat { min-width: 50%; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.18); }
+  .stat:last-child { border-bottom: none; }
+  .hero-title { font-size: 28px; }
+  .hero { padding: 36px 20px 32px; }
+  .topics-grid { grid-template-columns: 1fr; }
+  .photo-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
+  <span class="lightbox-close" onclick="closeLightbox()">&#x2715;</span>
+  <img id="lightbox-img" src="" alt="" onclick="event.stopPropagation()">
+</div>
+
+<nav class="nav">
+  <div class="nav-logo">📌 The Local Post</div>
+  <div class="nav-links">
+    <a href="https://www.thelocalpostspokane.com/browse-opportunities">Browse Opportunities</a>
+    <a href="https://www.thelocalpostspokane.com/home">Home</a>
+  </div>
+</nav>
+
+<div class="banner">📌 Founder of The Local Post Spokane · Assistant Professor of Marketing, Gonzaga University · Speaker · Community Builder</div>
+
+<div class="hero">
+  <div class="hero-tag">🎓 Marketing Expert · Speaker · Spokane, WA</div>
+  <div class="hero-title">Dr. Mariella Zavala</div>
+  <div class="hero-sub">Marketing professor, community builder, and founder of The Local Post Spokane.</div>
+  <div class="hero-tagline">Gonzaga University · The Local Post Spokane · Ph.D. UC Irvine · @the.localpost.spokane</div>
+</div>
+
+<div class="page">
+
+  <div class="stats-bar">
+    <div class="stat"><div class="stat-num">Ph.D.</div><div class="stat-label">UC Irvine · Marketing</div></div>
+    <div class="stat"><div class="stat-num">Gonzaga</div><div class="stat-label">Asst. Professor</div></div>
+    <div class="stat"><div class="stat-num">Founder</div><div class="stat-label">The Local Post Spokane</div></div>
+    <div class="stat"><div class="stat-num">Speaker</div><div class="stat-label">Community & Academic</div></div>
+  </div>
+
+  <div class="left-col">
+
+    <div class="section">
+      <div class="social-row">
+        <a class="social-btn" href="https://www.instagram.com/the.localpost.spokane/" target="_blank">📸 @the.localpost.spokane</a>
+        <a class="social-btn" href="https://www.facebook.com/TheLocalPostSpokane" target="_blank">👥 The Local Post Spokane</a>
+        <a class="social-btn" href="https://www.linkedin.com/in/drzavala" target="_blank">💼 linkedin.com/in/drzavala</a>
+      </div>
+    </div>
+
+    <!-- BIO CALLOUT -->
+    <div class="bio-callout">
+      <p>"Who you are and where you come from are strengths, not limitations."</p>
+      <div class="sub">Dr. Mariella Zavala · Assistant Professor of Marketing, Gonzaga University · Founder, The Local Post Spokane · Ph.D. University of California, Irvine</div>
+    </div>
+
+    <!-- PHOTOS -->
+    <div class="section">
+      <h2>📸 Photos</h2>
+      <div class="photo-grid">
+        <img src="mz-1.jpg" alt="Dr. Mariella Zavala presenting at conference" onclick="openLightbox('mz-1.jpg','Dr. Mariella Zavala speaking')">
+        <img src="mz-2.jpg" alt="Dr. Mariella Zavala PhD graduation UC Irvine" onclick="openLightbox('mz-2.jpg','Dr. Mariella Zavala PhD graduation UC Irvine')">
+        <img src="mz-3.jpg" alt="Dr. Mariella Zavala at Gonzaga University" onclick="openLightbox('mz-3.jpg','Dr. Mariella Zavala at Gonzaga University')">
+      </div>
+      <div class="photo-note">
+        📍 Dr. Mariella Zavala is an Assistant Professor of Marketing at Gonzaga University in Spokane, WA, and the founder of The Local Post Spokane — Spokane's local advertising marketplace. She holds a Ph.D. in Marketing from the University of California, Irvine (Paul Merage School of Business).
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <div class="section">
+      <h2>About Dr. Zavala</h2>
+      <p>Dr. Mariella Zavala is an Assistant Professor of Marketing at Gonzaga University, where she teaches, mentors, and collaborates with students and communities to create meaningful, value-driven marketing. Her work is grounded in a simple belief: who you are and where you come from are strengths, not limitations.</p>
+      <p>In the classroom, she focuses on helping students connect theory to real-world marketing strategy — emphasizing ethical decision-making, critical thinking, and building confidence so students feel prepared to navigate a rapidly evolving landscape. Beyond teaching, she is passionate about making marketing more accessible: supporting small business owners, startups, organization leaders, and aspiring marketers in developing strategies that feel aligned with their identity, values, and goals.</p>
+      <p>Dr. Zavala is also the founder of The Local Post Spokane — a local advertising marketplace built to eliminate friction from local advertising and connect Spokane businesses, events, nonprofits, and organizations with the audiences that matter most to them.</p>
+      <p>Her research explores sustainability, marketing for social good, and decolonial perspectives in marketing. She also speaks about her personal journey navigating higher education and professional spaces with limited resources and great uncertainty — talks that center on building confidence and moving forward even when the next step isn't clear.</p>
+    </div>
+
+    <!-- UPCOMING EVENT -->
+    <div class="event-callout">
+      <h3>📅 Next Community Event — August 8, 2026</h3>
+      <p>Dr. Zavala will be at <strong>The Way to Justice Community Celebration</strong> on August 8 with The Local Post Spokane booth. Join the booth and sell your own products or advertise your services to the community while helping run it. The booth will feature a spin-the-wheel prize game for children and free printed family photos — a high-energy, family-friendly environment with great community foot traffic.</p>
+      <a href="https://www.thewaytojustice.com/community-celebration" target="_blank">→ View Event Details at thewaytojustice.com</a>
+    </div>
+
+    <!-- SPEAKING TOPICS -->
+    <div class="section">
+      <h2>🎤 Speaking Topics</h2>
+      <div class="topics-grid">
+        <div class="topic-item">
+          <div class="t-icon">📊</div>
+          <div class="t-title">Marketing 101 & Foundational Strategy</div>
+          <div class="t-desc">Accessible, practical marketing fundamentals for any audience — no jargon, all application</div>
+        </div>
+        <div class="topic-item">
+          <div class="t-icon">💡</div>
+          <div class="t-title">Values-Driven Brand Amplification</div>
+          <div class="t-desc">Strategic and ethical marketing that amplifies what makes your brand genuinely different</div>
+        </div>
+        <div class="topic-item">
+          <div class="t-icon">🎯</div>
+          <div class="t-title">Consumer Targeting & Buyer Personas</div>
+          <div class="t-desc">How to identify, understand, and reach the right audiences with the right message</div>
+        </div>
+        <div class="topic-item">
+          <div class="t-icon">📱</div>
+          <div class="t-title">Social Media & Content Strategy</div>
+          <div class="t-desc">Building a social presence that actually connects — strategy over posting for the sake of it</div>
+        </div>
+        <div class="topic-item">
+          <div class="t-icon">🌱</div>
+          <div class="t-title">Sustainability & Secondhand Consumption</div>
+          <div class="t-desc">Research-backed insights on sustainable consumer behavior and purpose-driven brand strategy</div>
+        </div>
+        <div class="topic-item">
+          <div class="t-icon">🌍</div>
+          <div class="t-title">Decolonial Thought & Degrowth in Marketing</div>
+          <div class="t-desc">Academic and community-accessible perspectives on rethinking marketing from the margins</div>
+        </div>
+        <div class="topic-item">
+          <div class="t-icon">💼</div>
+          <div class="t-title">Career Development & Job Market Navigation</div>
+          <div class="t-desc">Practical strategies for students and early-career professionals entering competitive fields</div>
+        </div>
+        <div class="topic-item">
+          <div class="t-icon">💪</div>
+          <div class="t-title">Building Confidence & Translating Your Background</div>
+          <div class="t-desc">Personal journey talk: navigating professional spaces with limited resources and real uncertainty — leaving audiences grounded, capable, and energized</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WHO SHE WORKS WITH -->
+    <div class="section">
+      <h2>👥 Who Dr. Zavala Collaborates With</h2>
+      <div class="chip-grid">
+        <span class="chip">Small Businesses & Startups</span>
+        <span class="chip">Nonprofit Organizations</span>
+        <span class="chip">Student Groups</span>
+        <span class="chip">Community Organizations</span>
+        <span class="chip">Universities & Academic Communities</span>
+        <span class="chip">Latino & Underserved Communities</span>
+        <span class="chip">Women-Led Organizations</span>
+        <span class="chip">Social Impact Organizations</span>
+        <span class="chip">Professional Associations</span>
+        <span class="chip">Corporate Teams</span>
+      </div>
+    </div>
+
+    <!-- EVERY PARTNER RECEIVES -->
+    <div class="section">
+      <h2>✅ Every Partner Receives</h2>
+      <ul class="perks">
+        <li><span class="icon">🎓</span>Access to a Ph.D.-level marketing expert who speaks plainly and practically</li>
+        <li><span class="icon">📌</span>Connection to The Local Post Spokane network of local businesses, hosts, and community members</li>
+        <li><span class="icon">💡</span>Marketing insight tailored to your audience, your values, and your goals</li>
+        <li><span class="icon">🤝</span>A collaborator who is genuinely invested in Spokane's local business community</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sidebar-card">
+      <h3>Collaborate with Dr. Zavala</h3>
+      <div class="sidebar-sub">Select an opportunity and submit a request — she'll follow up .</div>
+
+      <!-- FREE COLLAB -->
+      <div class="pkg-section-label label-green">🤝 Community Collaboration</div>
+
+      <div class="package package-free" onclick="selectPkg(this,'Community Event Booth Collaboration','Free')" style="position:relative;">
+        <div class="badge-next">Aug 8 — Next Event</div>
+        <div class="package-top"><div class="package-name">📌 Event Booth Collaboration</div><div class="package-price-free">Free</div></div>
+        <div class="package-desc">Join Dr. Zavala at The Local Post Spokane booth and sell your own products or advertise your services to the community — while helping run the booth. The booth will feature a spin-the-wheel prize game for children and free printed family photos for the community. A fun, high-traffic environment to get your business in front of Spokane families. Next event: <a href="https://www.thewaytojustice.com/community-celebration" target="_blank" style="color:#2d7a4a;font-weight:700;">Way to Justice · August 8</a></div>
+        <span class="freq freq-free">Free · By Invitation</span>
+      </div>
+
+      <!-- SPEAKING -->
+      <div class="pkg-section-label label-navy">🎤 Speaking Engagements</div>
+      <div style="font-size:11px;color:#5f6368;margin-bottom:10px;line-height:1.5;">All speaking engagements are tailored to your audience and event. Reach out to discuss topic, format, and fit.</div>
+
+      <div class="package" onclick="selectPkg(this,'10-Minute Marketing Talk','Contact for Pricing')">
+        <div class="package-top"><div class="package-name">⚡ 10-Minute Marketing Talk</div><div class="package-price" style="font-size:12px;">Contact</div></div>
+        <div class="package-desc">A punchy, high-energy talk on one marketing topic tailored to your audience — perfect for panels, mixers, kickoffs, or event openers. Gets people thinking and talking immediately.</div>
+        <span class="freq freq-perevent">Per Event</span>
+      </div>
+
+      <div class="package" onclick="selectPkg(this,'15-Minute Marketing Talk','Contact for Pricing')">
+        <div class="package-top"><div class="package-name">🎯 15-Minute Marketing Talk</div><div class="package-price" style="font-size:12px;">Contact</div></div>
+        <div class="package-desc">A focused talk with more depth — one core marketing topic with takeaways your audience can act on immediately. Great for professional development events, org meetings, or community forums.</div>
+        <span class="freq freq-perevent">Per Event</span>
+      </div>
+
+      <div class="package" onclick="selectPkg(this,'30-Minute Marketing Talk','Contact for Pricing')">
+        <div class="package-top"><div class="package-name">🗣️ 30-Minute Marketing Talk</div><div class="package-price" style="font-size:12px;">Contact</div></div>
+        <div class="package-desc">A deeper dive into one marketing topic with time for Q&A — ideal for lunch-and-learns, classroom visits, staff training sessions, or community workshops where you want real engagement and takeaways.</div>
+        <span class="freq freq-perevent">Per Event</span>
+      </div>
+
+      <div class="package" onclick="selectPkg(this,'Keynote or Featured Speaker','Contact for Pricing')">
+        <div class="package-top"><div class="package-name">🌟 Keynote / Featured Speaker</div><div class="package-price" style="font-size:12px;">Contact</div></div>
+        <div class="package-desc">A full keynote or featured session — marketing strategy, personal journey, sustainability, decolonial marketing, or career development. Customized for your conference, summit, or event audience.</div>
+        <span class="freq freq-perevent">Per Event</span>
+      </div>
+
+      <!-- WORKSHOP -->
+      <div class="pkg-section-label label-red">📋 Workshops</div>
+
+      <div class="package" onclick="selectPkg(this,'1-Hour Group Marketing Workshop','$500 / 10 people')" style="position:relative;">
+        <div class="badge-popular">Most Popular</div>
+        <div class="package-top"><div class="package-name">📋 Group Marketing Workshop</div><div class="package-price">$500</div></div>
+        <div class="package-desc">A hands-on 1-hour marketing workshop for groups of up to 10 people · covers foundational strategy, brand positioning, audience targeting, or social media — topic tailored to your group · $500 flat rate for up to 10 participants</div>
+        <span class="freq freq-group">1 hr · Up to 10 People</span>
+      </div>
+
+      <!-- ADD-ONS -->
+      <hr class="addon-divider">
+      <div class="addon-label">➕ Add-On</div>
+
+      <div class="package" onclick="selectPkg(this,'Social Shoutout','$50')">
+        <div class="package-top"><div class="package-name">📣 Social Shoutout</div><div class="package-price">$50</div></div>
+        <div class="package-desc">Your organization or event featured on The Local Post Spokane Instagram and Facebook as a community partner — reaches The Local Post's growing Spokane following</div>
+        <span class="freq freq-onetime">One-Time</span>
+      </div>
+
+      <div class="summary" id="summary">
+        <div class="summary-title" id="summaryTitle"></div>
+        <div class="summary-note">You'll be taken to a short request form. Dr. Zavala will follow up  to discuss fit and next steps.</div>
+      </div>
+
+      <button class="book-btn" onclick="bookNow()">Request to Collaborate →</button>
+
+      <div class="trust">
+        <hr>
+        <div class="trust-item">📋 Submit a quick 3-minute request form</div>
+        <div class="trust-item">✅ Follow-up </div>
+        <div class="trust-item">💬 Brief conversation to confirm fit and details</div>
+        <div class="trust-item">💼 <a href="https://www.linkedin.com/in/drzavala" target="_blank" style="color:#1e3a5f;">Connect on LinkedIn: linkedin.com/in/drzavala</a></div>
+        <div class="contact-link" onclick="window.open('https://www.thelocalpostspokane.com/home','_blank')">Questions? Visit The Local Post Spokane</div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+function openLightbox(src,alt){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox-img').alt=alt||'';document.getElementById('lightbox').classList.add('active');document.body.style.overflow='hidden';}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('active');document.body.style.overflow='';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox();});
+function selectPkg(el,name,price){document.querySelectorAll('.package').forEach(p=>p.classList.remove('selected'));el.classList.add('selected');document.getElementById('summaryTitle').textContent=name+' — '+price;document.getElementById('summary').classList.add('show');}
+function bookNow(){window.open('https://docs.google.com/forms/d/e/1FAIpQLSchD8nJNLro4uFf6oSdgXgsBPnXysBAai3Xz-84ZZ6_rQS4cQ/viewform?usp=header','_blank');}
+</script>
+</body>
+</html>
